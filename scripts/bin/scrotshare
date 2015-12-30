@@ -1,0 +1,86 @@
+#!/bin/bash
+#
+# Screenshots using xfce4-screenshooter and uploads/stores the scrot.
+
+select_area() {
+  echo 'normal' > /tmp/scrotshare.txt
+  case $1 in
+    full )
+      flag=--fullscreen;;
+    chrome )
+      echo 'chrome' > /tmp/scrotshare.txt
+      flag=--fullscreen;;
+    window )
+      flag=--window;;
+    area )
+      flag=--region;;
+  esac
+
+  if [[ $flag ]]; then
+    xfce4-screenshooter $flag -o scrotshare
+  else
+    notify-send -i plugin-screenshot "scrotshare" "Please use one of full/window/chrome/area."
+  fi
+}
+
+handle_scrot() {
+  scr="$1"
+  fnm="$( basename "$scr" )"
+  ext="${fnm##*.}"
+
+  if grep 'chrome' /tmp/scrotshare.txt > /dev/null; then
+    # Trim the image - remove top 187px
+    size=$( identify -format "%[w]x%[h]" "$scr" )
+    convert "$scr" -gravity South -crop "$size+0-110" "$scr"
+  fi
+
+  if [[ $scr ]]; then
+    init() {
+      action=$1
+      nam=$( date +"%s" )
+
+      push() {
+        notify-send -i plugin-screenshot "scrotshare" "Screenshot uploading to s.mreq.eu."
+        # copy to mreq
+        scp "$scr" mreq:"screenshots/$nam.$ext"
+        # clipboard
+        echo "http://s.mreq.eu/$nam.$ext" | xclip -sel clip
+        # notify
+        notify-send -i plugin-screenshot "scrotshare" "Screenshot URL copied to clipboard."
+      }
+      imgur() {
+        notify-send -i plugin-screenshot "scrotshare" "Not supported yet."
+        # curl -s -F "image=@$1" -F "key=api-key" https://imgur.com/api/upload.xml
+      }
+
+      case $action in
+        push)
+          push
+          ;;
+        keep)
+          mv "$scr" ~/Pictures/screenshots/"$nam.$ext"
+          notify-send -i plugin-screenshot "scrotshare" "Screenshot saved to Pictures."
+          ;;
+        imgur)
+          imgur
+          ;;
+        * )
+          rm_scrot
+          ;;
+      esac
+    }
+
+    rm_scrot() {
+      rm "$scr"
+      notify-send -i plugin-screenshot "scrotshare" "Screenshot not saved."
+    }
+
+    is_ok=$( echo -e "push\nkeep\nremove\nimgur" | rofi -dmenu -i -p '↠ ' ) && init $is_ok || rm_scrot
+  fi
+}
+
+if [[ $1 == "create" ]]; then
+  select_area "$2"
+else
+  handle_scrot "$1"
+fi
