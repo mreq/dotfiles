@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Turn off screen
+Comment=
+Exec=/home/petr/scripts/bin/select_power_action screen
+Icon=/home/petr/Dropbox/ubuntu_one/icons/screen.png
+Path=
+Terminal=false
+StartupNotify=false
+X-XFCE-Source=file:///home/petr/.dotfiles/xfce4/panel/launcher-20/14324788161.desktop

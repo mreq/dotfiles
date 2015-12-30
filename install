@@ -3,8 +3,9 @@
 # Pull submodules
 git submodule update --init --recursive
 
-# Run some commands
+# Clean some folders
 rm -rf ~/.config/doublecmd/doublecmd.xml ~/.config/doublecmd/shortcuts.scf
+rm -rf ~/.config/xfce4/panel ~/.config/xfce4/xfconf
 
 # Run dotty
 dotty/dotty.py install.json

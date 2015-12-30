@@ -1,0 +1,6 @@
+Command=/home/petr/scripts/genmons/genmon_wifi_strength
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=5000
+Font=(default)
+

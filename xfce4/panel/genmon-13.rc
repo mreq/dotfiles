@@ -1,0 +1,6 @@
+Command=/home/petr/scripts/genmons/genmon_lid_suspend
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=30000
+Font=(default)
+
