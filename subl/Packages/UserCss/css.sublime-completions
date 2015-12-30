@@ -1,0 +1,154 @@
+{
+  "scope": "source.css, source.less, source.scss",
+  "completions":
+  [
+    // syntax
+    { "trigger": "f", "contents": "#$1 {\n\t$0\n}" },
+    { "trigger": "d", "contents": ".$1 {\n\t$0\n}" },
+
+    // html elements
+    { "trigger": "p", "contents": "p {\n\t$0\n}" },
+    { "trigger": "a", "contents": "a {\n\t$0\n}" },
+    { "trigger": "div", "contents": "div {\n\t$0\n}" },
+    { "trigger": "strong", "contents": "strong {\n\t$0\n}" },
+    { "trigger": "img", "contents": "img {\n\t$0\n}" },
+    { "trigger": "b", "contents": "b {\n\t$0\n}" },
+    { "trigger": "small", "contents": "small {\n\t$0\n}" },
+    { "trigger": "h1", "contents": "h1 {\n\t$0\n}" },
+    { "trigger": "h2", "contents": "h2 {\n\t$0\n}" },
+    { "trigger": "h3", "contents": "h3 {\n\t$0\n}" },
+    { "trigger": "h4", "contents": "h4 {\n\t$0\n}" },
+    { "trigger": "h5", "contents": "h5 {\n\t$0\n}" },
+    { "trigger": "table", "contents": "table {\n\t$0\n}" },
+    { "trigger": "ul", "contents": "ul {\n\t$0\n}" },
+    { "trigger": "li", "contents": "li {\n\t$0\n}" },
+    { "trigger": "input", "contents": "input {\n\t$0\n}" },
+    { "trigger": "label", "contents": "label {\n\t$0\n}" },
+    { "trigger": "body", "contents": "body {\n\t$0\n}" },
+    { "trigger": "html", "contents": "html {\n\t$0\n}" },
+    { "trigger": "td", "contents": "td {\n\t$0\n}" },
+    { "trigger": "th", "contents": "th {\n\t$0\n}" },
+
+    // element sets
+    { "trigger": "ula", "contents": "> ul {\n\t$0\n\t> li {\n\t\t> a {\n\t\t}\n\t}\n}" },
+
+
+    // positions
+    { "trigger": "le\tleft", "contents": "left: $0;" },
+    { "trigger": "ri\tright", "contents": "right: $0;" },
+    { "trigger": "to\ttop", "contents": "top: $0;" },
+    { "trigger": "bo\tbottom", "contents": "bottom: $0;" },
+    { "trigger": "z\tz-index", "contents": "z-index: $0;" },
+
+    // borders
+    { "trigger": "bo\tbor", "contents": "border: $0;" },
+    { "trigger": "bob\tborder-bottom", "contents": "border-bottom: $0;" },
+    { "trigger": "bot\tborder-top", "contents": "border-top: $0;" },
+    { "trigger": "bol\tborder-left", "contents": "border-left: $0;" },
+    { "trigger": "bor\tborder-right", "contents": "border-right: $0;" },
+    { "trigger": "bow\tborder-width", "contents": "border-width: $0;" },
+    { "trigger": "boc\tborder-colro", "contents": "border-color: $0;" },
+
+    // margins & paddings
+    { "trigger": "ma\tmar", "contents": "margin: $0;" },
+    { "trigger": "mab", "contents": "margin-bottom: $0;" },
+    { "trigger": "mat", "contents": "margin-top: $0;" },
+    { "trigger": "mal", "contents": "margin-left: $0;" },
+    { "trigger": "mar", "contents": "margin-right: $0;" },
+    { "trigger": "pa\tpad", "contents": "padding: $0;" },
+    { "trigger": "pab", "contents": "padding-bottom: $0;" },
+    { "trigger": "pat", "contents": "padding-top: $0;" },
+    { "trigger": "pal", "contents": "padding-left: $0;" },
+    { "trigger": "par", "contents": "padding-right: $0;" },
+    { "trigger": "palr", "contents": "padding-left: $0;\npadding-right: $0;" },
+    { "trigger": "patb", "contents": "padding-top: $0;\npadding-bottom: $0;" },
+    { "trigger": "pmb", "contents": "padding-bottom: $0;\nmargin-bottom: $0;" },
+    { "trigger": "pmt", "contents": "padding-top: $0;\nmargin-top: $0;" },
+    { "trigger": "pml", "contents": "padding-left: $0;\nmargin-left: $0;" },
+    { "trigger": "pmr", "contents": "padding-right: $0;\nmargin-right: $0;" },
+
+    // positions
+    { "trigger": "po\tposition", "contents": "position: $0;" },
+    { "trigger": "poa\tabsolute", "contents": "position: absolute$0;" },
+    { "trigger": "por\trelative", "contents": "position: relative$0;" },
+    { "trigger": "pos\tstatic", "contents": "position: static$0;" },
+
+    // overflows
+    { "trigger": "ovh\toverflow-hidden", "contents": "overflow: hidden;$0" },
+    { "trigger": "ovv\toverflow-visible", "contents": "overflow: visible;$0" },
+    { "trigger": "ovxh\toverflow-x-hidden", "contents": "overflow-x: hidden;$0" },
+    { "trigger": "ovxv\toverflow-x-visible", "contents": "overflow-x: visible;$0" },
+    { "trigger": "ovyh\toverflow-y-hidden", "contents": "overflow-y: hidden;$0" },
+    { "trigger": "ovyv\toverflow-y-visible", "contents": "overflow-y: visible;$0" },
+
+
+    // dimensions
+    { "trigger": "h", "contents": "height: $0;" },
+    { "trigger": "mh", "contents": "min-height: $0;" },
+    { "trigger": "mah", "contents": "max-height: $0;" },
+    { "trigger": "w", "contents": "width: $0;" },
+    { "trigger": "mw", "contents": "min-width: $0;" },
+    { "trigger": "maw", "contents": "max-width: $0;" },
+
+    // display
+    { "trigger": "db", "contents": "display: block;" },
+    { "trigger": "di", "contents": "display: inline;" },
+    { "trigger": "dib", "contents": "display: inline-block;" },
+    { "trigger": "dn", "contents": "display: none;" },
+
+    // visibility
+    { "trigger": "v\tvis", "contents": "visibility: ${0:visible}${1:hidden};" },
+    { "trigger": "vh\tvisibilityhidden", "contents": "visibility: hidden;" },
+    { "trigger": "vv\tvisibilityvisible", "contents": "visibility: visible;" },
+
+    // text
+    { "trigger": "col\tcolor", "contents": "color: $0;" },
+    { "trigger": "lh\tline", "contents": "line-height: $0;" },
+
+    // floats
+    { "trigger": "f\tfloat", "contents": "float: $0;" },
+    { "trigger": "fl\tfleft", "contents": "float: left;" },
+    { "trigger": "fr\tfright", "contents": "float: right;" },
+    { "trigger": "cle\tclear", "contents": "clear: $0;" },
+    { "trigger": "cll\tclearleft", "contents": "clear: left;" },
+    { "trigger": "clr\tclearright", "contents": "clear: right;" },
+    { "trigger": "clb\tclearboth", "contents": "clear: both;" },
+
+    { "trigger": "ta", "contents": "text-align: $0;" },
+    { "trigger": "tac", "contents": "text-align: center;" },
+    { "trigger": "tal", "contents": "text-align: left;" },
+    { "trigger": "tar", "contents": "text-align: right;" },
+
+    { "trigger": "td\ttext-decoration", "contents": "text-decoration: $0;" },
+    { "trigger": "tdu\ttext-decoration-underline", "contents": "text-decoration: underline;$0" },
+    { "trigger": "tdn\ttext-decoration-none", "contents": "text-decoration: none;$0" },
+
+    { "trigger": "tt", "contents": "text-transform: ${0:uppercase}${1:lowercase};" },
+    { "trigger": "ti\thi", "contents": "text-indent: ${0:-9999px};" },
+
+    // fonts
+    { "trigger": "fz\tfont-size", "contents": "font-size: $0px;" },
+    { "trigger": "fsi\tfont-style", "contents": "font-style: italic;$0" },
+    { "trigger": "fsn\tfont-style", "contents": "font-style: normal;$0" },
+    { "trigger": "fwb\tfont-weight", "contents": "font-weight: bold;$0" },
+    { "trigger": "fwn\tfont-weight", "contents": "font-weight: normal;$0" },
+
+    // background
+    { "trigger": "bg", "contents": "background: $0;" },
+    { "trigger": "bgp", "contents": "background-position: $0;" },
+    { "trigger": "bgi", "contents": "background-image: url(${0});" },
+    { "trigger": "bgc", "contents": "background-color: $0;" },
+    { "trigger": "bgg", "contents": "background: url($1) ${2:0 0} ${0:no-repeat};" },
+
+    // lists
+    { "trigger": "ls", "contents": "list-style: ${0:none}${1:disc}${2:decimal};" },
+
+    // various & unsorted
+    { "trigger": "ou\toutline", "contents": "outline: ${0:none};" },
+    { "trigger": "cur", "contents": "cursor: ${0:pointer};" },
+    { "trigger": "va\tvertical-align", "contents": "vertical-align: ${0:top}${1:middle}${2:bottom}${3:baseline};" },
+    { "trigger": "vam\tvertical-align middle", "contents": "vertical-align: middle;$0" },
+    { "trigger": "q", "contents": "!important" },
+    { "trigger": "1", "contents": "!important" }
+  ]
+}

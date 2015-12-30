@@ -1,0 +1,61 @@
+{
+	"atomic_save": false,
+	"binary_file_patterns":
+	[
+		"*.ttf",
+		"*.tga",
+		"*.dds",
+		"*.ico",
+		"*.eot",
+		"*.pdf",
+		"*.swf",
+		"*.jar",
+		"*.zip"
+	],
+	"caret_style": "blink",
+	"color_scheme": "Packages/User/SublimeLinter/mreq (SL).tmTheme",
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		"tmp/class-*",
+		"tmp/es_*",
+		"tmp/jshinter*",
+		"tmp/replace_*",
+		"tmp/static_compiler*",
+		"tmp/template_compiler*",
+		"tmp/tree_merger*",
+		"tmp/coffee_script*",
+		"tmp/concat-tmp*",
+		"tmp/export_tree*",
+		"tmp/babel-*",
+		"tmp/broccoli-*",
+		"tmp/funnel-*",
+		"tmp/jshinter-*",
+		"tmp/export_tree*",
+		"tmp/sass_compiler*"
+	],
+	"font_face": "Consolas",
+	"font_size": 14.0,
+	"hide_minimap": true,
+	"highlight_line": true,
+	"hot_exit": false,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"inactive_panes_dim_strength": 0.2,
+	"index_files": false,
+	"remember_open_files": true,
+	"shift_tab_unindent": true,
+	"show_minimap": false,
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"vintageous_reset_mode_when_switching_tabs": true,
+	"vintageous_use_ctrl_keys": false,
+	"vintageous_use_sys_clipboard": true,
+	"word_wrap": true
+}

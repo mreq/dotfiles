@@ -1,0 +1,70 @@
+! xscreensaver ---------------------------------------------------------------
+! font settings
+xscreensaver.Dialog.headingFont:        -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+! general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #EDEDED
+xscreensaver.Dialog.background:         #202020
+xscreensaver.Dialog.topShadowColor:     #202024
+xscreensaver.Dialog.bottomShadowColor:  #202024
+xscreensaver.Dialog.Button.foreground:  #EDEDFF
+xscreensaver.Dialog.Button.background:  #444
+! username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #EDEDFF
+xscreensaver.Dialog.text.background:    #444
+xscreensaver.Dialog.internalBorderWidth:24
+xscreensaver.Dialog.borderWidth:        20
+xscreensaver.Dialog.shadowThickness:    2
+! timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #A9B7C4
+xscreensaver.passwd.thermometer.background:  #202020
+xscreensaver.passwd.thermometer.width:       8
+! datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
+
+! xterm ---------------------------------------------------------------
+xterm*VT100*geometry: 130x40
+xterm*faceName: DejaVu Sans Mono:style=Book:antialias=false
+xterm*faceNameDoublesize: WenQuanYi Bitmap Song
+xterm*faceSize: 10
+xterm*background: #002b36
+xterm*foreground: #eee8d5
+xterm*loginShell: true
+xterm*scrollBar: true
+xterm*rightScrollBar: true
+xterm*title: XTerm
+xterm*iconName: XTerm
+xterm*saveLines: 50000
+xterm*jumpScroll: true
+xterm*scrollTtyOutput: false
+xterm*scrollKey: true
+xterm*alwaysUseMods: true
+xterm*metaSendsEscape: true
+xterm*utf8Title: true
+
+! rofi ----------------------------------------------------------------
+rofi.background: #242424
+rofi.foreground: #ffffff
+rofi.highlightbg: #2e557e
+rofi.highlightfg: #ffffff
+rofi.bordercolor: #2e557e
+rofi.padding: 10
+rofi.lines: 10
+rofi.borderwidth: 6
+rofi.separator-style: none
+rofi.opacity: 100
+rofi.font: Ubuntu Mono 12
+rofi.location: 0
+rofi.yoffset: 0
+rofi.xoffset: 0
+rofi.width: -100
+rofi.fixed_num_lines: 10
+rofi.hmode: false
+rofi.terminal: st
+rofi.ssh-set-title: false
+rofi.fuzzy: true

@@ -1,0 +1,105 @@
+[
+  // Origami: focus up
+  {
+    "keys": ["alt+k"],
+    "command": "travel_to_pane",
+    "args": {"direction": "up"}
+  },
+
+  // Origami: focus right
+  {
+    "keys": ["alt+l"],
+    "command": "travel_to_pane",
+    "args": {"direction": "right"}
+  },
+
+  // Origami: focus down
+  {
+    "keys": ["alt+j"],
+    "command": "travel_to_pane",
+    "args": {"direction": "down"}
+  },
+
+  // Origami: focus left
+  {
+    "keys": ["alt+h"],
+    "command": "travel_to_pane",
+    "args": {"direction": "left"}
+  },
+
+
+  // Origami: split up
+  {
+    "keys": [" ", "o", "k"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["create_pane", { "direction": "up" }],
+        ["travel_to_pane", { "direction": "up" }]
+      ]
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Origami: split right
+  {
+    "keys": [" ", "o", "l"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["create_pane", { "direction": "right" }],
+        ["travel_to_pane", { "direction": "right" }]
+      ]
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Origami: split down
+  {
+    "keys": [" ", "o", "j"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["create_pane", { "direction": "down" }],
+        ["travel_to_pane", { "direction": "down" }]
+      ]
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Origami: split left
+  {
+    "keys": [" ", "o", "h"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["create_pane", { "direction": "left" }],
+        ["travel_to_pane", { "direction": "left" }]
+      ]
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Origami: close current pane
+  {
+    "keys": [" ", "o", "x"],
+    "command": "destroy_pane",
+    "args": { "direction": "self" },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Origami: zoom current pane
+  {
+    "keys": [" ", "o", "m"],
+    "command": "zoom_pane",
+    "args": { "fraction": 0.9 },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Origami: unzoom current pane
+  {
+    "keys": [" ", "o", "n"],
+    "command": "unzoom_pane",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  }
+]

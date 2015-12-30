@@ -1,0 +1,90 @@
+{
+  "scope": "source.coffee",
+  "completions":
+  [
+
+    { "trigger": "c\tconsole.log", "contents": "console.log $0" },
+    { "trigger": "switch", "contents": "switch $1\n\twhen $2 then $3 \n\telse $0" },
+
+    // jQuery
+    { "trigger": "r", "contents": "\\$('$1')" },
+    { "trigger": "rr", "contents": "\\$('$1', '#$2')" },
+    { "trigger": "re", "contents": "\\$($1)" },
+    { "trigger": "t\tthis", "contents": "\\$(this)$1" },
+    { "trigger": "th\tthisequal", "contents": "\\$this = \\$(this)$1" },
+    { "trigger": "jw\twindow", "contents": "\\$(window)$1" },
+    { "trigger": "jd\tdocument", "contents": "\\$(document)$1" },
+
+    { "trigger": "pd\tpreventDefault", "contents": "preventDefault()" },
+    { "trigger": "sp\tstopPropagation", "contents": "stopPropagation()" },
+    { "trigger": "sip\tstopImmediatePropagation", "contents": "stopImmediatePropagation()" },
+    { "trigger": "bo\tbody", "contents": "bo = \\$('body')" },
+    { "trigger": "wi\twindow", "contents": "w = \\$(window)" },
+
+    { "trigger": "ea\teach", "contents": "each ->\n\t$0" },
+    { "trigger": "css", "contents": "css\n\t$0" },
+    { "trigger": "onload\twindow.onload", "contents": "\\$(window).on 'load', $0" },
+
+    { "trigger": "wh\twindowHeight", "contents": "wh = \\$(window).height()$0" },
+    { "trigger": "ww\twindowWidth", "contents": "ww = \\$(window).width()$0" },
+
+    { "trigger": "h\theight", "contents": "height($0)" },
+    { "trigger": "w\twidth", "contents": "width($0)" },
+    { "trigger": "d\tdata", "contents": "data('$0')" },
+    { "trigger": "dd\tddata", "contents": "data('$1', '$0')" },
+    { "trigger": "n\tnot", "contents": "not('$0')" },
+    { "trigger": "fi\tfind", "contents": "find('$0')" },
+    { "trigger": "ch\tchildren", "contents": "children('$0')" },
+    { "trigger": "pa\tparent", "contents": "parent('$0')" },
+    { "trigger": "ps\tparents", "contents": "parents('$0')" },
+    { "trigger": "ne\tnext", "contents": "next('$0')" },
+    { "trigger": "pr\tprev", "contents": "prev('$0')" },
+    { "trigger": "fl\tfilter", "contents": "filter('$0')" },
+    { "trigger": "tr\ttrigger", "contents": "trigger('$0')" },
+    { "trigger": "hc\thasClass", "contents": "hasClass('$0')" },
+    { "trigger": "ac\taddClass", "contents": "addClass('$0')" },
+    { "trigger": "rc\tremoveClass", "contents": "removeClass('$0')" },
+    { "trigger": "tc\ttoggleClass", "contents": "toggleClass('$0')" },
+
+    // jQuery on
+    { "trigger": "on", "contents": "on '$1', ->\n\t$2" },
+    { "trigger": "oon", "contents": "on '$1', $2" },
+    { "trigger": "onn", "contents": "on '$1', '$2', ->\n\t$3" },
+    { "trigger": "oonn", "contents": "on '$1', '$2', $3" },
+
+    // turbolinks
+    { "trigger": "pbc|page:before-change", "contents": "\\$(document).one 'page:before-change', ->\n\t$0" },
+    { "trigger": "pbu|page:before-unload", "contents": "\\$(document).one 'page:before-unload', ->\n\t$0" },
+
+    // window resize
+    { "trigger": "res\tresize", "contents": "${1:fixLayout}()\n\\$(window).on 'resize', $1" },
+
+    // others
+    { "trigger": "u\tunlesstypeof", "contents": "unless typeof $0 is 'undefined'" },
+    { "trigger": "to\ttypeof", "contents": "typeof $0 is 'undefined'" },
+    { "trigger": "l\tlength", "contents": "length$0" },
+    { "trigger": "l1\tlength is 1", "contents": "length is 1$0" },
+    { "trigger": "hash", "contents": "hash = window.location.hash.split('#').pop()$0" },
+    { "trigger": "pi\tparseInt", "contents": "parseInt($0)" },
+    { "trigger": "pf\tparseFloat", "contents": "parseFloat($0)" },
+    { "trigger": "al\talert", "contents": "alert $0" },
+
+    // coffee classes
+    { "trigger": "cl\tclass", "contents": "class $1\n\tconstructor: ${2:() }->\n\t\t" },
+
+    // timeouts
+    { "trigger": "st\tsetTimeout", "contents": "setTimeout (${0:->}\n), $1" },
+    { "trigger": "ct\tclearTimeout", "contents": "clearTimeout $0" },
+
+    // return
+    { "trigger": "rt\treturn true", "contents": "return true$0" },
+    { "trigger": "rf\treturn false", "contents": "return false$0" },
+
+    // setters, getters
+    { "trigger": "g\tget", "contents": "get('$0')" },
+    { "trigger": "s\tset", "contents": "set('$1', $0)" },
+
+    // JSON
+    { "trigger": "js\tJSON.stringify", "contents": "JSON.stringify($0)" }
+  ]
+}

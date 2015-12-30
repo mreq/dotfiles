@@ -1,0 +1,26 @@
+{
+  "scope": "source.coffee",
+  "completions":
+  [
+  	// Generic
+  	{ "trigger": "fe\tforEach", "contents": "forEach ($1) ->\n\t$0" },
+    { "trigger": "stp\tsetProperties", "contents": "setProperties\n\t$0" },
+    { "trigger": "ec\tEmber.computed", "contents": "Ember.computed '$1', ->\n\t$0" },
+  	{ "trigger": "eca\tEmber.computed.alias", "contents": "Ember.computed.alias '$0'" },
+
+  	// Store
+  	{ "trigger": "sq\tstore.query", "contents": "@store.query '$1',\n\t$0" },
+
+    // Components
+    { "trigger": "di\tdidInsertElement", "contents": "didInsertElement: ->\n\t$0" },
+    { "trigger": "wc\twillClearRender", "contents": "willClearRender: ->\n\t$0" },
+  	{ "trigger": "sa\tsendAction", "contents": "@sendAction '$0'" },
+
+    // Routes
+    { "trigger": "cm\tcurrentModel", "contents": "@currentModel$0" },
+    { "trigger": "mf\tmodelFor", "contents": "@modelFor$0" },
+    { "trigger": "am\tafterModel", "contents": "afterModel: ->\n\t$0" },
+  	{ "trigger": "mo\tmodel", "contents": "model: ->\n\t$0" },
+  	{ "trigger": "sc\tsetupController", "contents": "setupController: (ctrl, model) ->\n\t$0" }
+  ]
+}

@@ -1,0 +1,15 @@
+#!/bin/bash
+ws_names=()
+while read name; do
+  ws_names+=("$name")
+done < <(xfconf-query -c xfwm4 -p /general/workspace_names | tail -n +3)
+
+xfconf_cmd="xfconf-query -c xfwm4 -p /general/workspace_names"
+c=0
+
+for i in "${!ws_names[@]}"; do
+  c=$(( c + 1 ))
+  xfconf_cmd+=" -s \"$c\""
+done
+
+eval "$xfconf_cmd"

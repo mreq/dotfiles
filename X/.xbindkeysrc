@@ -1,0 +1,212 @@
+"wmc_focus_window_or_run 'google-chrome.google-chrome' 'google-chrome'"
+  Mod4 + 1
+
+"google-chrome --incognito"
+  Mod4 + Shift + 1
+
+"wmc_summon_window_or_run 'chromium-browser.chromium-browser' 'chromium-browser'"
+  Mod4 + x
+
+"wmc_focus_window_or_run 'sublime_text.Sublime_text' 'subl -n'"
+  Mod4 + 2
+
+"wmc_focus_window_or_run 'terminator.Terminator' 'terminator'"
+  Mod4 + 3
+
+"wmctile.py switch_to_running 'r_x11.R_x11' 'rlogo_icon'"
+  Mod4 + Shift + 3
+
+"wmc_summon_window_or_run 'doublecmd.Doublecmd' 'doublecmd'"
+  Mod4 + 4
+
+"wmc_summon_window_or_run '\\.Thunderbird' 'thunderbird'"
+  Mod4 + 5
+
+"wmc_summon_window_or_run 'gigolo.Gigolo' 'gigolo'"
+  Mod4 + a
+
+"wmc_focus_window_or_run '.Firefox' 'firefox'"
+  Mod4 + f
+
+"wmc_summon_window_or_run 'spotify.Spotify' 'spotify'"
+  Mod4 + c
+
+"wmc_summon_window_or_run 'crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei.google-chrome'"
+  Mod4 + w
+
+"wmc_summon_window_or_run 'spotify.Spotify' 'spotify'"
+  Mod4 + Shift + c
+
+"wmc_summon_window_or_run 'hunar.Thunar' 'thunar'"
+  Mod4 + t
+
+"wmctile.py switch_to_running 'evince.Evince' 'evince'"
+  Mod4 + e
+
+"wmc_summon_window_or_run 'slack.Slack' 'slack'"
+  Mod4 + s
+
+"wmc_summon_window_or_run 'slack.Slack' 'slack'"
+  Mod4 + Shift + s
+
+"wmctile.py switch_to_running 'ristretto.Ristretto' 'ristretto'"
+  Mod4 + i
+
+"wmc_summon_window_or_run 'gimp-2.8.Gimp-2.8' 'gimp-2.8'"
+  Mod4 + g
+
+"wmc_summon_window_or_run 'vlc.Vlc' 'vlc'"
+  Mod4 + v
+
+"wmc_summon_window_or_run 'quicksynergy.Quicksynergy' 'quicksynergy'"
+  Mod4 + m
+
+"wmc_focus_window_or_run 'libreoffice.libreoffice-calc' 'libreoffice --calc'"
+  Mod4 + b
+
+"wmctile.py maximize 1 1"
+  Mod4 + Up
+
+"wmctile.py maximize 0 0"
+  Mod4 + Down
+
+"rename_xfce_workspace"
+  Mod4 + Shift + w
+
+"rename_xfce_workspace a"
+  Control + Mod4 + Shift + w
+
+"switch_to_workspace"
+  Mod4 + Escape
+
+"switch_to_workspace"
+  Mod4 + grave
+
+"switch_to_workspace last"
+  Mod4 + Tab
+
+"xf_workspace add"
+  Mod4 + Insert
+
+"xf_workspace remove"
+  Mod4 + Delete
+
+"xfce4-screenshooter -f -o gimp"
+  Mod4 + BackSpace
+
+"toggle_notifications"
+  Mod4 + F10
+
+"toggle_finger_scrolling"
+  Mod4 + F11
+
+"toggle_lid_action"
+  Mod4 + F12
+
+"wmctrl -r :ACTIVE: -t 0"
+  Mod4 + r
+
+"launch_script"
+  Mod4 + space
+
+"pick_a_subl_project"
+  Control + Mod4 + space
+
+"play_pause_spotify"
+  Pause
+
+"play_pause_spotify next"
+  Shift + Pause
+
+"play_pause_spotify prev"
+  Control + Shift + Pause
+
+"pick_a_virtualbox_machine"
+  Control + Mod4 + v
+
+"select_display"
+  Mod4 + p
+
+"select_display notebook"
+  Control + Mod4 + p
+
+"select_power_action"
+  Mod4 + o
+
+"select_power_action screen"
+  Control + Mod4 + o
+
+"scrotshare create full"
+  Control + Alt + 1
+
+"scrotshare create area"
+  Control + Alt + 2
+
+"scrotshare create window"
+  Control + Alt + 3
+
+"scrotshare create chrome"
+  Control + Alt + 4
+
+"notify-send -i info 'xbindkeys' 'was restarted.'; killall -HUP xbindkeys"
+  Mod4 + F9
+
+"switch_to_workspace 0"
+  Mod4 + F1
+
+"switch_to_workspace 1"
+  Mod4 + F2
+
+"switch_to_workspace 2"
+  Mod4 + F3
+
+"switch_to_workspace 3"
+  Mod4 + F4
+
+"switch_to_workspace 4"
+  Mod4 + F5
+
+"switch_to_workspace 5"
+  Mod4 + F6
+
+"switch_to_workspace 6"
+  Mod4 + F7
+
+"switch_to_workspace 7"
+  Mod4 + F8
+
+"wmctile.py snap left 0.5"
+  Mod4 + Left
+
+"wmctile.py snap right 0.5"
+  Mod4 + Right
+
+"wmctile.py tile_two horz 0.5"
+  Mod4 + Shift + e
+
+"wmctile.py tile_two horz 0.57 sublime_text.Sublime_text evince.Evince"
+  Control + Mod4 + Shift + e
+
+"wmctile.py tile_two vert 0.5"
+  Mod4 + Shift + o
+
+"wmctile.py resize left 0.01"
+  Mod4 + Shift + Left
+
+"wmctile.py resize right 0.01"
+  Mod4 + Shift + Right
+
+"wmctile.py resize up 0.01"
+  Mod4 + Shift + Up
+
+"wmctile.py resize down 0.01"
+  Mod4 + Shift + Down
+
+"amixer -D pulse sset Master 5%+"
+  Mod2 + Mod4 + KP_Add
+
+"amixer -D pulse sset Master 5%-"
+  Mod2 + Mod4 + KP_Subtract
+
+"amixer -D pulse set Master 1+ toggle"
+  Mod2+Mod4 + KP_Multiply

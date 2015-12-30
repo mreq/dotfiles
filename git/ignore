@@ -1,0 +1,8 @@
+# Sublime project and workspace files
+/*.sublime-*
+
+# Node stuff
+npm-debug.log
+
+# Dumps
+/dump.sql

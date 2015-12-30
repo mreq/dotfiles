@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Pull submodules
+git submodule update --init --recursive
+
+# Run some commands
+rm -rf ~/.config/doublecmd/doublecmd.xml ~/.config/doublecmd/shortcuts.scf
+
+# Run dotty
+dotty/dotty.py install.json

@@ -1,0 +1,40 @@
+{
+  "scope": "source.css.less, source.less",
+  "completions":
+  [ 
+    // syntax
+    { "trigger": "q", "contents": "&.$1 {\n\t$0\n}" },
+    { "trigger": "e", "contents": ".${1:fsize}($0);" },
+    { "trigger": "r", "contents": ".$0;" },
+
+    // classes
+    { "trigger": "ac\tactive", "contents": "&.active {\n\t$0\n}" },
+    
+    // LESS
+    { "trigger": "3", "contents": "&.$1 {\n\t$0\n}" },
+    { "trigger": "h\thover", "contents": "&:hover {\n\t$0\n}" },
+    { "trigger": "be\tbefore", "contents": "&:before {\n\t$0\n}" },
+    { "trigger": "af\tafter", "contents": "&:after {\n\t$0\n}" },
+    { "trigger": "lc\tlast-child", "contents": "&:last-child {\n\t$0\n}" },
+    { "trigger": "fc\tfirst-child", "contents": "&:first-child {\n\t$0\n}" },
+
+    { "trigger": "cc\tclass-contains", "contents": "$1[class*=\"$2\"] {\n\t$0\n}" },
+
+    { "trigger": "1", "contents": "!important" },
+
+    { "trigger": "2", "contents": "@$1: $0;" },
+    { "trigger": "s", "contents": "#s .$0;" },
+    { "trigger": "fs\tfsize", "contents": ".fsize($1, $0);" },
+    { "trigger": "tl\ttopleft", "contents": ".topleft(${1:0}, ${0:0});" },
+    { "trigger": "tr\ttopright", "contents": ".topright(${1:0}, ${0:0});" },
+    { "trigger": "bl\tbottomleft", "contents": ".bottomleft(${1:0}, ${0:0});" },
+    { "trigger": "br\tbottomright", "contents": ".bottomright(${1:0}, ${0:0});" },
+    { "trigger": "sp\tsprite", "contents": ".sprite(-${1:0}, -${2:0}, ${3:0}, ${0:0});" },
+    { "trigger": "cf\tclearfix", "contents": ".clearfix;$0" },
+    { "trigger": "tra\ttransition", "contents": ".transition(${0:opacity 0.5s ease-in-out});" },
+    { "trigger": "op\topacity", "contents": ".opacity(${0:0});" },
+    { "trigger": "bs\tbox-shadow", "contents": ".box-shadow(${0:inset 0 0 5px rgba(0,0,0,.5)});" },
+    { "trigger": "bx\tbox-sizing", "contents": ".box-sizing(border-box);$0" },
+    { "trigger": "ib", "contents": ".ib;" }
+  ]
+}

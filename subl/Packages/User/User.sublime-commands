@@ -1,0 +1,117 @@
+[
+  {
+    "caption": "Terminal",
+    "command": "open_terminal"
+  },
+
+  {
+    "caption": "Terminal project folder",
+    "command": "open_terminal_project_folder"
+  },
+
+  {
+    "caption": "doublecmd",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "doublecmd $file_dir"
+    }
+  },
+
+  {
+    "caption": "rmux",
+    "command": "run_cmd",
+    "args": {
+      "cmd": [
+        "terminator --working-directory=\"$file_dir\" -x /usr/bin/tmux new \"R --no-save\"",
+        "sleep 1 && /home/petr/scripts/wmctile/python/wmctile.py tile_two horz 0.57 sublime_text.Sublime_text terminator.Terminator"
+      ]
+    }
+  },
+
+  {
+    "caption": "Select sprite",
+    "command": "select_sprite"
+  },
+
+  {
+    "caption": "Ember: Go to",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "fn=$file_name; fn=${fn##*/}; pt -g=\".*${fn%.*}\\.(coffee|em).*\" | grep -v $fn | grep -v tests | xargs subl"
+    }
+  },
+
+  {
+    "caption": "Coffee: Model",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "pt -g='.*models.*/.*\\.coffee' | rofi -dmenu -fixed-num-lines 10 -p 'Coffee: Model ↠ ' | xargs subl"
+    }
+  },
+
+  {
+    "caption": "Coffee: Route",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "pt -g='.*routes.*/.*\\.coffee' | rofi -dmenu -fixed-num-lines 10 -p 'Coffee: Route ↠ ' | xargs subl"
+    }
+  },
+
+  {
+    "caption": "Coffee: Template",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "pt -g='.*templates.*/.*\\.em' | rofi -dmenu -fixed-num-lines 10 -p 'Coffee: Template ↠ ' | xargs subl"
+    }
+  },
+
+  {
+    "caption": "Coffee: Component",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "pt -g='.*components.*/.*\\.coffee' | rofi -dmenu -fixed-num-lines 10 -p 'Coffee: Component ↠ ' | xargs subl"
+    }
+  },
+
+  {
+    "caption": "Ruby: Controller",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "pt -g='.*controllers.*/.*\\.rb' | rofi -dmenu -fixed-num-lines 10 -p 'rb: Controller ↠ ' | xargs subl"
+    }
+  },
+
+  {
+    "caption": "Ruby: Model",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "pt -g='.*models.*/.*\\.rb' | rofi -dmenu -fixed-num-lines 10 -p 'rb: Model ↠ ' | xargs subl"
+    }
+  },
+
+  {
+    "caption": "Ruby: Views",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "pt -g='.*views.*/.*\\.slim' | rofi -dmenu -fixed-num-lines 10 -p 'rb: View ↠ ' | xargs subl"
+    }
+  },
+
+  {
+    "caption": "FilterPipes: Clear for Sass",
+    "command": "filter_pipes_regex",
+    "args": {
+      "regex": "[\\{\\};]",
+      "replacement": ""
+    }
+  },
+
+  {
+    "caption": "FilterPipes: Convert Less to Scss",
+    "command": "filter_pipes_regex",
+    "args": {
+      "regex": "^(\\s+)\\.([^;\\n\\{]+;)",
+      "replacement": "\\1@include \\2"
+    }
+  }
+]

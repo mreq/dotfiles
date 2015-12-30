@@ -1,0 +1,18 @@
+#!/bin/bash
+state=$( xfconf-query -c pointers -p /SynPS2_Synaptics_TouchPad/Properties/Synaptics_Two-Finger_Scrolling | tail -n1 )
+
+if [[ "$state" == "1" ]]; then
+  # is set scroll horizontally -> disable
+  target=0
+  message="disabled"
+  icon="window-close"
+else
+  # is disabled -> set to scroll horizontally
+  target=1
+  message="enabled"
+  icon="object-flip-horizontal"
+fi
+
+xfconf-query -c pointers -p /SynPS2_Synaptics_TouchPad/Properties/Synaptics_Two-Finger_Scrolling -s 1 -s $target
+
+notify-send -i $icon "Horizontal scrolling" "Is now $message."

@@ -1,0 +1,535 @@
+[
+  // Generic: ctrl-p
+  {
+    "keys": [" ", "j"],
+    "command": "show_overlay",
+    "args": {
+      "overlay": "goto",
+      "show_files": true
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: ctrl-shift-p
+  {
+    "keys": [" ", "k"],
+    "command": "show_overlay",
+    "args": {
+      "overlay": "command_palette"
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: close panels by escape
+  {
+    "keys": ["escape"],
+    "command": "hide_panel",
+    "args": { "cancel": true },
+    "context": [{ "key": "panel_visible" }]
+  },
+
+  // Generic: navigate menus using vim movement
+  {
+    "keys": ["ctrl+j"],
+    "command": "move",
+    "args": { "by": "lines", "forward": true },
+    "context": [
+      { "key": "overlay_visible" }
+    ]
+  },
+  {
+    "keys": ["ctrl+j"],
+    "command": "move",
+    "args": { "by": "lines", "forward": true },
+    "context": [
+      { "key": "auto_complete_visible" }
+    ]
+  },
+
+  // Generic: navigate menus using vim movement
+  {
+    "keys": ["ctrl+k"],
+    "command": "move",
+    "args": { "by": "lines", "forward": false },
+    "context": [
+      { "key": "overlay_visible" }
+    ]
+  },
+  {
+    "keys": ["ctrl+k"],
+    "command": "move",
+    "args": { "by": "lines", "forward": false },
+    "context": [
+      { "key": "auto_complete_visible" }
+    ]
+  },
+
+  // Generic: toggle menu
+  {
+    "keys": [" ", "m", "m"],
+    "command": "toggle_menu",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: select sprite
+  {
+    "keys": [" ", "s", "s"],
+    "command": "select_sprite",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: indent
+  {
+    "keys": [">"],
+    "command": "indent",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: unindent
+  {
+    "keys": ["<"],
+    "command": "unindent",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: unindent
+  {
+    "keys": [" ", "r"],
+    "command": "show_overlay",
+    "args": {
+      "overlay": "goto",
+      "text": "@"
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: change quotes
+  {
+    "keys": [" ", "c", "q"],
+    "command": "change_quotes",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Cursors: create cursor for each selected line
+  {
+    "keys": ["ctrl+shift+l"],
+    "command": "split_selection_into_lines",
+    "context": [
+      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true }
+    ]
+  },
+
+  // Cursors: create cursor for all matches under
+  {
+    "keys": ["ctrl+alt+shift+d"],
+    "command": "find_all_under"
+  },
+
+  // Cursors: add cursor above
+  {
+    "keys": ["alt+shift+up"],
+    "command": "select_lines",
+    "args": { "forward": false },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Cursors: add cursor bellow
+  {
+    "keys": ["alt+shift+down"],
+    "command": "select_lines",
+    "args": { "forward": true },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Cursors: create cursors by regex
+  {
+    "keys": ["ctrl+alt+f"],
+    "command": "select_by_regex"
+  },
+
+  // Tabs: next
+  {
+    "keys": ["ctrl+tab"],
+    "command": "next_view_in_stack"
+  },
+
+  // Tabs: previous
+  {
+    "keys": ["ctrl+shift+tab"],
+    "command": "prev_view_in_stack"
+  },
+
+  // Tabs: next
+  {
+    "keys": [" ", "l"],
+    "command": "next_view_in_stack",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Tabs: previous
+  {
+    "keys": [" ", "h"],
+    "command": "prev_view_in_stack",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+
+  // // Tabs: next
+  // {
+  //   "keys": ["shift+j"],
+  //   "command": "next_view_in_stack",
+  //   "context": [{ "key": "vi_command_mode_aware" }]
+  // },
+
+  // // Tabs: previous
+  // {
+  //   "keys": ["shift+k"],
+  //   "command": "prev_view_in_stack",
+  //   "context": [{ "key": "vi_command_mode_aware" }]
+  // },
+
+  // ChangeList: show
+  {
+    "keys": [" ", "e"],
+    "command": "show_change_list",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: new
+  {
+    "keys": [" ", "f", "n"],
+    "command": "advanced_new_file",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: delete
+  {
+    "keys": [" ", "f", "x"],
+    "command": "advanced_new_file_delete",
+    "args": { "current": true },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: move
+  {
+    "keys": [" ", "f", "m"],
+    "command": "side_bar_move",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: rename
+  {
+    "keys": [" ", "f", "r"],
+    "command": "side_bar_rename",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: reopen last closed
+  {
+    "keys": [" ", "f", "o"],
+    "command": "reopen_last_file",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: close
+  {
+    "keys": [" ", "x"],
+    "command": "close_file",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: save
+  {
+    "keys": [" ", "s"],
+    "command": "save",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: close all
+  {
+    "keys": [" ", "f", "a"],
+    "command": "close_all",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: duplicate file
+  {
+    "keys": [" ", "f", "u"],
+    "command": "side_bar_duplicate",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: find
+  {
+    "keys": [" ", "f", "f"],
+    "command": "show_panel",
+    "args": { "panel": "find_in_files" },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Texts: transform to uppercase
+  {
+    "keys": [" ", "t", "u"],
+    "command": "upper_case",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Texts: transform to uppercase
+  {
+    "keys": [" ", "t", "l"],
+    "command": "lower_case",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Texts: delete line
+  {
+    "keys": ["ctrl+shift+x"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["expand_selection", { "to": "line" }],
+        ["left_delete"]
+      ]
+    }
+  },
+
+  // Generic: redo
+  {
+    "keys": ["r"],
+    "command": "redo",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: convert to spaces
+  {
+    "keys": [" ", "c", "s"],
+    "command": "expand_tabs",
+    "args": { "set_translate_tabs": true },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: convert to spaces
+  {
+    "keys": ["alt+p"],
+    "command": "paste_and_indent"
+  },
+
+  // Navigation: move down by comments
+  {
+    "keys": ["ctrl+alt+shift+j"],
+    "command": "move_by_comments"
+  },
+
+  // Navigation: move up by comments
+  {
+    "keys": ["ctrl+alt+shift+k"],
+    "command": "move_by_comments",
+    "args": { "forward": false }
+  },
+
+  // Navigation: page down
+  {
+    "keys": ["ctrl+d"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["_vi_zz"],
+        ["move", { "by": "pages", "forward": true }]
+      ]
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Navigation: page down
+  {
+    "keys": ["ctrl+u"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["_vi_zz"],
+        ["move", { "by": "pages", "forward": false }]
+      ]
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Cursors: expand selection to whitespace
+  {
+    "keys": ["ctrl+alt+d"],
+    "command": "expand_selection_to_whitespace"
+  },
+
+  // Generic: submit replace all panel
+  {
+    "keys": ["ctrl+enter"],
+    "command": "replace_all",
+    "args": { "close_panel": true },
+    "context": [
+      { "key": "panel", "operand": "replace" },
+      { "key": "panel_has_focus" }
+    ]
+  },
+
+  // { "keys": ["ctrl+shift+l"], "command": "list_stylesheet_variables", "context": [
+  //   { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+  // ]},
+
+  // Terminal: run terminal in project dir
+  {
+    "keys": ["f9"],
+    "command": "run_cmd",
+    "args": {
+      "cmd": "terminator --working-directory=\"$project_dir\""
+    }
+  }
+
+  // //////////////////////
+  // // SublimeTODO
+  // //////////////////////
+  // {
+  //   "keys": ["j"], "command": "navigate_results",
+  //   "context": [
+  //     { "key": "selector", "operator": "equal", "operand": "text.todo-list" }
+  //   ],
+  //   "args": {"direction": "forward"}
+  // },
+  // {
+  //   "keys": ["k"], "command": "navigate_results",
+  //   "context": [
+  //     { "key": "selector", "operator": "equal", "operand": "text.todo-list" }
+  //   ],
+  //   "args": {"direction": "backward"}
+  // },
+  // {
+  //   "keys": ["enter"], "command": "goto_comment",
+  //   "context": [
+  //     { "key": "selector", "operator": "equal", "operand": "text.todo-list" }
+  //   ]
+  // },
+  // {
+  //   "keys": ["o"], "command": "goto_comment",
+  //   "context": [
+  //     { "key": "selector", "operator": "equal", "operand": "text.todo-list" }
+  //   ]
+  // },
+
+  // //////////////////////
+  // // Layout management
+  // //////////////////////
+  // // origami
+  // { "keys": ["ctrl+k", "ctrl+k"], "command": "destroy_pane", "args": {"direction": "self"} },
+  // { "keys": ["alt+up"], "command": "travel_to_pane", "args": {"direction": "up"} },
+  // { "keys": ["alt+right"], "command": "travel_to_pane", "args": {"direction": "right"} },
+  // { "keys": ["alt+down"], "command": "travel_to_pane", "args": {"direction": "down"} },
+  // { "keys": ["alt+left"], "command": "travel_to_pane", "args": {"direction": "left"} },
+  // // Vintage origami
+  // { "keys": ["alt+k"], "command": "travel_to_pane", "args": {"direction": "up"} },
+  // { "keys": ["alt+l"], "command": "travel_to_pane", "args": {"direction": "right"} },
+  // { "keys": ["alt+j"], "command": "travel_to_pane", "args": {"direction": "down"} },
+  // { "keys": ["alt+h"], "command": "travel_to_pane", "args": {"direction": "left"} },
+  // // Vintage origami
+  // { "keys": ["alt+shift+k"], "command": "carry_file_to_pane", "args": {"direction": "up"} },
+  // { "keys": ["alt+shift+l"], "command": "carry_file_to_pane", "args": {"direction": "right"} },
+  // { "keys": ["alt+shift+j"], "command": "carry_file_to_pane", "args": {"direction": "down"} },
+  // { "keys": ["alt+shift+h"], "command": "carry_file_to_pane", "args": {"direction": "left"} },
+  // // { "keys": ["ctrl+shift+o"], "command": "create_pane", "args": {"direction": "down"} },
+  // { "keys": ["ctrl+shift+e"], "command": "create_pane", "args": {"direction": "right"} },
+  // // // switch focus
+  // // { "keys": ["alt+left"], "command": "focus_group", "args": { "group": 0 } },
+  // // { "keys": ["alt+right"], "command": "focus_group", "args": { "group": 1 } },
+  // // // move to panel
+  // { "keys": ["alt+shift+left"], "command": "carry_file_to_pane", "args": {"direction": "left"} },
+  // { "keys": ["alt+shift+right"], "command": "carry_file_to_pane", "args": {"direction": "right"} },
+
+  // //////////////////////
+  // // R-box
+  // //////////////////////
+  // { "keys": ["ctrl+alt+enter"], "command": "r_box_send_selection", "context":
+  //   [
+  //     { "key": "selector", "operator": "equal", "operand": "source.r" }
+  //   ]
+  // },
+  // { "keys": ["ctrl+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"}, "context":
+  //   [
+  //     { "key": "selector", "operator": "equal", "operand": "source.r" }
+  //   ]
+  // },
+  // {
+  //   "keys": ["ctrl+shift+b"],
+  //   "command": "chain",
+  //   "args": {
+  //     "commands": [
+  //       ["save"],
+  //       ["r_box_source_code"]
+  //     ]
+  //   },
+  //   "context": [
+  //     { "key": "selector", "operator": "equal", "operand": "source.r" },
+  //     { "key": "selector", "operator": "not_equal", "operand": "text.tex.latex" },
+  //     { "key": "selector", "operator": "not_equal", "operand": "text.html.markdown" }
+  //   ]
+  // },
+  // {
+  //   "keys": ["ctrl+b"],
+  //   "command": "chain",
+  //   "args": {
+  //     "commands": [
+  //       ["save"],
+  //       ["r_box_source_code"]
+  //     ]
+  //   },
+  //   "context": [
+  //     { "key": "selector", "operator": "equal", "operand": "source.r" },
+  //     { "key": "selector", "operator": "not_equal", "operand": "text.tex.latex" },
+  //     { "key": "selector", "operator": "not_equal", "operand": "text.html.markdown" }
+  //   ]
+  // },
+
+  // //////////////////////
+  // // search results
+  // //////////////////////
+  // {
+  //   "keys": ["o"],
+  //   "command": "find_in_files_goto",
+  //   "context": [
+  //     { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+  //   ]
+  // },
+  // {
+  //   "keys": ["j"],
+  //   "command": "move_by_paragraph", "args": { "forward": true },
+  //   "context": [
+  //     { "key": "selector", "operator": "equal", "operand": "text.find-in-files" },
+  //     { "key": "vi_command_mode_aware" }
+  //   ]
+  // },
+  // {
+  //   "keys": ["k"],
+  //   "command": "move_by_paragraph", "args": { "forward": false },
+  //   "context": [
+  //     { "key": "selector", "operator": "equal", "operand": "text.find-in-files" },
+  //     { "key": "vi_command_mode_aware" }
+  //   ]
+  // },
+
+
+  // // Project search
+  // { "keys": ["ctrl+alt+shift+f"], "command": "show_panel", "args": {"panel": "find_in_files"} },
+  // { "keys": ["ctrl+shift+f"], "command": "search_in_project" },
+
+  // // Lorem: few words
+  // { "keys": ["ctrl+alt+l"], "command": "lorem_ipsum", "args": {"qty": 1, "simple": true } },
+  // // Lorem: sentence
+  // { "keys": ["ctrl+alt++shift+l"], "command": "lorem_ipsum", "args": {"qty": 1, "simple": false } },
+
+  // // JSON tree
+  // { "keys": ["ctrl+r"], "command": "json_tree", "context":[
+  //   { "key": "selector", "operator": "equal", "operand": "source.json" }
+  // ] },
+
+  // // YAML
+  // { "keys": ["ctrl+shift+r"], "command": "copy_yaml_symbol_to_clipboard", "context":[
+  //   { "key": "selector", "operator": "equal", "operand": "source.yaml" }
+  // ] },
+
+]

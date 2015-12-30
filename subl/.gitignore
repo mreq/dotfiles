@@ -1,0 +1,15 @@
+Packages/*
+!Packages/User
+!Packages/UserCoffee
+!Packages/UserCss
+!Packages/UserGit
+!Packages/UserTeX
+!Packages/UserOrigami
+
+!Packages/Base16
+!Packages/Origami
+
+Packages/User/Package Control.*
+!Packages/User/Package Control.sublime-settings
+Packages/User/ChangeList.json
+Packages/User/SublimeLinter

@@ -1,0 +1,54 @@
+# Default application configuration that all configurations inherit from.
+#
+# This is an opinionated list of which hooks are valuable to run and what their
+# out of the box settings should be.
+
+# Whether to ignore frontmatter at the beginning of Slim documents for
+# frameworks such as Jekyll/Middleman
+skip_frontmatter: false
+
+linters:
+  CommentControlStatement:
+    enabled: true
+
+  ConsecutiveControlStatements:
+    enabled: true
+    max_consecutive: 2
+
+  EmptyControlStatment:
+    enabled: true
+
+  ExplicitDiv:
+    enabled: true
+
+  LineLength:
+    enabled: false
+    max: 80
+
+  RuboCop:
+    enabled: true
+    # These cops are incredibly noisy since the Ruby we extract from Slim
+    # templates isn't well-formatted, so we ignore them.
+    ignored_cops:
+      - Lint/BlockAlignment
+      - Lint/EndAlignment
+      - Lint/Void
+      - Metrics/LineLength
+      - Style/AlignHash
+      - Style/AlignParameters
+      - Style/BlockNesting
+      - Style/FileName
+      - Style/FirstParameterIndentation
+      - Style/IfUnlessModifier
+      - Style/IndentationConsistency
+      - Style/IndentationWidth
+      - Style/Next
+      - Style/TrailingBlankLines
+      - Style/TrailingWhitespace
+      - Style/WhileUntilModifier
+
+  TagCase:
+    enabled: true
+
+  TrailingWhitespace:
+    enabled: true

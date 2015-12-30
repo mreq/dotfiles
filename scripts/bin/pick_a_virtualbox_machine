@@ -1,0 +1,20 @@
+#!/bin/bash
+path=/home/$( whoami )/virtualbox
+
+handle_selection() {
+  if [[ $1 ]]; then
+    name=$1
+    if [[ -d "$path/$name" ]]; then
+      touch "$path/$name"
+      msg="Opening vbox machine"
+
+      notify-send -i virtualbox "$msg" "$name"
+
+      virtualbox --startvm "$name" &
+    else
+      notify-send -i virtualbox "vbox" "No machine called $name."
+    fi
+  fi
+}
+
+handle_selection "$( cd "$path"; ls -t | rofi -dmenu -i -p 'vbox ↠ ' -hlbg '#5FA5D7' -bc '#5FA5D7' )"

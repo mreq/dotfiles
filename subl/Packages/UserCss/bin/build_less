@@ -1,0 +1,38 @@
+#!/bin/bash
+file="$1"
+match=$( head -n1 "$file" | grep '////' )
+
+if [[ $match ]]; then
+  if [[ ${match:4:3} = ../ ]]; then
+    echo Building "${match:7:100}".
+    cd .. &&
+    target="${match:7:100}"
+  else
+    echo Building "${match:4:100}".
+    target="${match:4:100}"
+  fi
+else
+  target="$file"
+fi
+
+fileNamePath=$( realpath "$target" )
+fileName=$( basename "$target" )
+baseName=${fileName%.less}
+dirName=$( echo "${fileNamePath%/$fileName}" | sed 's!.*/!!' )
+
+if [[ $( echo "$baseName" | grep -E 'mreq|fonts' ) ]]; then
+  echo Not building a helper file.
+else
+  if [[ $dirName == 'less' ]]; then
+    # create the file in to ../css
+    cd "${fileNamePath%/$fileName}"
+    cd ../css
+    echo Building to ../css folder.
+    lessc "$fileNamePath" > "${fileName%.less}.css"
+  elif [[ $fileNamePath == *bootstrap* ]]; then
+    # don't build bootstrap files
+    echo Not building a bootstrap file.
+  else
+    lessc "$fileNamePath" > "${fileNamePath%.less}.css"
+  fi
+fi

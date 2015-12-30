@@ -1,0 +1,21 @@
+[submodule "dotty"]
+	path = dotty
+	url = git@github.com:vibhavp/dotty.git
+[submodule "vim/.vim/bundle/genutils"]
+	path = vim/.vim/bundle/genutils
+	url = git@github.com:vim-scripts/genutils.git
+[submodule "vim/.vim/bundle/gruvbox"]
+	path = vim/.vim/bundle/gruvbox
+	url = git@github.com:morhetz/gruvbox.git
+[submodule "vim/.vim/bundle/syntastic"]
+	path = vim/.vim/bundle/syntastic
+	url = git@github.com:scrooloose/syntastic.git
+[submodule "vim/.vim/bundle/vim-multiple-cursors"]
+	path = vim/.vim/bundle/vim-multiple-cursors
+	url = git@github.com:terryma/vim-multiple-cursors.git
+[submodule "subl/Packages/Base16"]
+	path = subl/Packages/Base16
+	url = git@github.com:chriskempson/base16-textmate.git
+[submodule "vim/.vim/bundle/ctrlp.vim"]
+	path = vim/.vim/bundle/ctrlp.vim
+	url = git@github.com:kien/ctrlp.vim.git

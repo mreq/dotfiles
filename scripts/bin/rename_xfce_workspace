@@ -1,0 +1,30 @@
+#!/bin/bash
+curnt_ws_idx=$( wmctrl -d | grep '\*' | cut -d " " -f1 )
+
+handle_selection() {
+  new_name="$1"
+
+  # Get the names of all the workspaces
+  ws_names=()
+  while read name; do
+    ws_names+=("$name")
+  done < <(xfconf-query -c xfwm4 -p /general/workspace_names | tail -n +3)
+
+  # Overwrite current workspace names
+  xfconf_cmd="xfconf-query -c xfwm4 -p /general/workspace_names"
+
+  for i in "${!ws_names[@]}"; do
+    if [[ $i == "$curnt_ws_idx" && $new_name ]]; then
+      xfconf_cmd+=" -s \"$new_name\""
+    else
+      xfconf_cmd+=" -s \"${ws_names[$i]}\""
+    fi
+  done
+  eval "$xfconf_cmd"
+}
+
+if [[ $1 ]]; then
+  handle_selection $(( curnt_ws_idx + 1 ))
+else
+  handle_selection "$( echo $(( curnt_ws_idx + 1 )) | rofi -dmenu -i -p 'name ↠ ' )"
+fi

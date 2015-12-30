@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# Shortcut for livestreamer
+
+streams=(
+  'http://www.twitch.tv/dreamhackcs'
+  'http://www.twitch.tv/esl_csgo'
+  'http://www.twitch.tv/faceittv'
+  'http://www.twitch.tv/starladder_cs_en'
+  'http://www.twitch.tv/esl_greatfrag'
+  'http://www.hitbox.tv/gameagentstv'
+  'http://www.twitch.tv/nipgamingtv'
+  'http://www.twitch.tv/fragbitelive'
+  'http://www.majorleaguegaming.com/playcevo'
+  'http://www.majorleaguegaming.com/playcevo2'
+)
+
+function handleStreamSelection {
+  if [[ $1 ]]; then
+    if [[ $1 == *"twitch"* ]]; then
+      qualities=(
+        'high'
+        'source'
+        'medium'
+        'low'
+      )
+    else
+      qualities=(
+        '720p'
+        '480p'
+      )
+    fi
+    handleQualitySelection "$1" "$( printf "%s\n" "${qualities[@]}" | rofi -dmenu -i -p 'quality ↠ ' -hlbg '#6340a4' -bc '#6340a4' )"
+  fi
+}
+
+function handleQualitySelection {
+  if [[ $2 ]]; then
+    notify-send -i vlc "Running livestreamer" "$1 at $2 quality"
+    livestreamer --hls-segment-threads 2 "$1" "$2" &
+  fi
+}
+
+handleStreamSelection "$( printf "%s\n" "${streams[@]}" | rofi -dmenu -i -p 'stream ↠ ' -hlbg '#6340a4' -bc '#6340a4' )"

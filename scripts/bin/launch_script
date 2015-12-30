@@ -1,0 +1,11 @@
+#!/bin/bash
+select_action() {
+  if [[ $1 ]]; then
+    touch /home/petr/scripts/"$1"
+    (/home/petr/scripts/"$1") &
+  fi
+}
+
+arr=( $( ls -ptR ~/scripts | awk '/:$/&&f{s=$0;f=0} /:$/&&!f{sub(/:$/,"");s=$0;f=1;next} NF&&f{ print s"/"$0 }' | grep -v /$ ) )
+
+select_action "$( printf "%s\n" "${arr[@]#/home/petr/scripts/}" | rofi -dmenu -i -p 'sh ↠ ' -hlbg '#A83538' -bc '#A83538' )"

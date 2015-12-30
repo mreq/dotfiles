@@ -1,0 +1,12 @@
+#!/bin/bash
+check_ping() {
+  ping=$( echo "$1" | cut -d'=' -f 4 | cut -d' ' -f 1 )
+  echo "${ping/\.*}"
+  if [ "${ping/\.*}" -ge 120 ]; then
+    echo "$( date ) - ping $ping" >> /tmp/ping_log.txt
+  fi
+}
+
+ping "$1" | while read i; do
+  check_ping "$i"
+done

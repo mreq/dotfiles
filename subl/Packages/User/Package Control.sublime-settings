@@ -1,0 +1,47 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"AlignTab",
+		"Better Close Window",
+		"Better CoffeeScript",
+		"Chain of Command",
+		"ChangeList",
+		"ChangeQuotes",
+		"Chmod",
+		"Expand Selection to Whitespace",
+		"FilterPipes",
+		"Jade",
+		"Jinja2",
+		"JsonTree",
+		"List stylesheet variables",
+		"MoveTab",
+		"Mreq Color Scheme",
+		"Origami",
+		"Package Control",
+		"polyfill",
+		"Pretty JSON",
+		"R-Box",
+		"Ruby Slim",
+		"Shell Turtlestein",
+		"SideBarEnhancements",
+		"Slugify",
+		"SublimeGit",
+		"SublimeLinter",
+		"SublimeLinter-coffeelint",
+		"SublimeLinter-contrib-lintr",
+		"SublimeLinter-contrib-sass-lint",
+		"SublimeLinter-json",
+		"SublimeLinter-pylint",
+		"SublimeLinter-rubocop",
+		"SublimeLinter-shellcheck",
+		"SublimeLinter-slim-lint",
+		"Syntax Highlighting for Sass",
+		"Vintageous",
+		"YAML Nav"
+	]
+}

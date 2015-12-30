@@ -1,0 +1,19 @@
+#!/bin/bash
+state=$( xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lid-action-on-ac )
+
+if [[ "$state" == "0" ]]; then
+  # is set to do nothing -> set to suspend
+  target=1
+  message="suspend"
+  icon="lock"
+else
+  # is set to suspend -> set to do nothing
+  target=0
+  message="do nothing"
+  icon="window-close"
+fi
+
+xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lid-action-on-ac -s $target
+xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lid-action-on-battery -s $target
+
+notify-send -i $icon "Lid action changed" "to $message."

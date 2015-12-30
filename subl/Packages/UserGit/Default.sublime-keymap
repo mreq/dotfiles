@@ -1,0 +1,117 @@
+[
+  // Git: git status
+  {
+    "keys": [" ", "g", "s"],
+    "command": "chain",
+     "args": {
+       "commands": [
+         ["git_status"],
+         ["_enter_insert_mode"]
+       ]
+     },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: git push
+  {
+    "keys": [" ", "g", "h"],
+    "command": "git_push",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: git log
+  {
+    "keys": [" ", "g", "q"],
+    "command": "git_quick_log",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: git pull --rebase
+  {
+    "keys": [" ", "g", "p"],
+    "command": "git_custom",
+    "args": {
+      "cmd": "pull --rebase",
+      "output": "panel",
+      "async": true
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: xdg-open bitbucket commits
+  {
+    "keys": [" ", "g", "b"],
+    "command": "run_cmd",
+    "args": {
+      "cmd": "xdg-open https://$( git config --get remote.origin.url | sed 's/:/\\//' | sed 's/\\.git//' )/commits/all && /home/petr/scripts/wmctile/python/wmctile.py switch_to_running 'google-chrome.google-chrome' 'google-chrome'"
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: git checkout
+  {
+    "keys": [" ", "g", "c"],
+    "command": "git_checkout_branch",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: gitk current file
+  {
+    "keys": [" ", "g", "k"],
+    "command": "run_cmd",
+    "args": {
+      "cmd": "gitk $file_name"
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git status: close
+  {
+   "keys": ["x"],
+   "command": "close_file",
+   "context": [{ "key": "selector", "operand": "text.git-status" }]
+  },
+
+  // Git status: commit
+  {
+   "keys": ["c"],
+   "command": "chain",
+   "args": {
+     "commands": [
+       ["git_commit"],
+       ["_enter_insert_mode"]
+     ]
+   },
+   "context": [{ "key": "selector", "operand": "text.git-status" }]
+  },
+
+  // Git status: vim movement down
+  {
+    "keys": ["j"],
+    "command": "git_status_move",
+    "args": {"goto": "item:next"},
+    "context": [{ "key": "selector", "operand": "text.git-status" }]
+  },
+
+  // Git status: vim movement up
+  {
+    "keys": ["k"],
+    "command": "git_status_move",
+    "args": {"goto": "item:prev"},
+    "context": [{ "key": "selector", "operand": "text.git-status" }]
+  },
+
+  // Git status: push
+  {
+    "keys": ["h"],
+    "command": "git_push",
+    "context": [{ "key": "selector", "operand": "text.git-status" }]
+  },
+
+  // Git status: pull
+  {
+    "keys": ["p"],
+    "command": "git_pull",
+    "context": [{ "key": "selector", "operand": "text.git-status" }]
+  }
+]

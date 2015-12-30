@@ -1,0 +1,15 @@
+#!/bin/bash
+cmd="$1"
+args=${*:2}
+
+run_cmd() {
+  eval "$cmd"
+}
+
+notify-send -i terminal 'watch_run' 'Watches set up. Run CMD.'
+run_cmd
+
+while inotifywait -e MODIFY "$args"; do
+  run_cmd
+  notify-send -i terminal 'watch_run' 'Run CMD.'
+done

@@ -1,0 +1,5 @@
+{
+  "cmd": ["~/.config/sublime-text-3/UserCss/bin/build_less", "$file"],
+  "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+  "selector": "source.css.less, source.less"
+}

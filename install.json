@@ -1,0 +1,35 @@
+{
+  "directories": [
+    "~/.config/synapse",
+    "~/.config/xfce4",
+    "~/.config/doublecmd",
+    "~/.config/sublime-text-3/Local",
+    "~/.config/terminator",
+    "~/.config/git/"
+  ],
+  "link": {
+    "bash/.bashrc": "~/.bashrc",
+    "bash/.profile": "~/.profile",
+    "coffee/coffeelint.json": "~/coffeelint.json",
+    "doublecmd/doublecmd.xml": "~/.config/doublecmd/doublecmd.xml",
+    "doublecmd/shortcuts.scf": "~/.config/doublecmd/shortcuts.scf",
+    "git/.gitconfig": "~/.gitconfig",
+    "git/ignore": "~/.config/git/ignore",
+    "misc/.inputrc": "~/.inputrc",
+    "python/.pylintrc": "~/.pylintrc",
+    "ruby/.rubocop.yml": "~/.rubocop.yml",
+    "ruby/.gemrc": "~/.gemrc",
+    "sass/.sass-lint.yml": "~/.sass-lint.yml",
+    "scripts": "~/scripts",
+    "slim/.slim-lint.yml": "~/.slim-lint.yml",
+    "subl/Packages": "~/.config/sublime-text-3/Packages",
+    "synapse/config.json": "~/.config/synapse/config.json",
+    "terminator/config": "~/.config/terminator/config",
+    "vim/.vimrc": "~/.vimrc",
+    "X/.xbindkeysrc": "~/.xbindkeysrc",
+    "X/.Xdefaults": "~/.Xdefaults",
+    "X/.Xmodmap": "~/.Xmodmap",
+    "xfce4/panel": "~/.config/xfce4/panel",
+    "xfce4/xfconf": "~/.config/xfce4/xfconf"
+  }
+}

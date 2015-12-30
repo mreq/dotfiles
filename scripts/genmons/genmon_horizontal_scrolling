@@ -1,0 +1,12 @@
+#!/bin/bash
+state=$( xfconf-query -c pointers -p /SynPS2_Synaptics_TouchPad/Properties/Synaptics_Two-Finger_Scrolling | tail -n1 )
+
+if [ "$state" -eq 1 ]; then
+  # is set scroll horizontally
+  fg=03a904
+else
+  # is disabled
+  fg=0081F2
+fi
+
+echo "<txt><span foreground=\"#$fg\">H</span></txt>"

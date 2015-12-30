@@ -1,0 +1,11 @@
+{
+	"scope": "source.coffee",
+	"completions":
+	[
+		// scopes
+		{ "trigger": "asd\tscp dstr", "contents": "scope.\\$on '\\$destroy', ->\n\t" },
+
+		// translate
+		{ "trigger": "ati\t$tr.inst", "contents": "\\$translate.instant('$0')" }
+	]
+}

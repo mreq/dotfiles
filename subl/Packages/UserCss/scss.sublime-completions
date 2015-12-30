@@ -1,0 +1,18 @@
+{
+  "scope": "source.scss",
+  "completions":
+  [ 
+    { "trigger": "h\thover", "contents": "&:hover {\n\t$0\n}" },
+    { "trigger": "be\tbefore", "contents": "&:before {\n\t$0\n}" },
+    { "trigger": "af\tafter", "contents": "&:after {\n\t$0\n}" },
+    { "trigger": "lc\tlast-child", "contents": "&:last-child {\n\t$0\n}" },
+    { "trigger": "fc\tfirst-child", "contents": "&:first-child {\n\t$0\n}" },
+
+    { "trigger": "cc\tclass-contains", "contents": "$1[class*=\"$2\"] {\n\t$0\n}" },
+
+    { "trigger": "mix\tmixin", "contents": "@mixin $1($2) {\n\t$0\n}" },
+
+    { "trigger": "e", "contents": "@include $1($0);" },
+    { "trigger": "r", "contents": "@include $1($0);" }
+  ]
+}

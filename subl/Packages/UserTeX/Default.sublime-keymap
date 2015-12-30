@@ -1,0 +1,62 @@
+[
+  // TeX: shift+space tilde
+  {
+    "keys": ["shift+space"],
+    "command": "insert",
+    "args": { "characters": "~" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.tex" },
+      { "key": "selector", "operator": "not_equal", "operand": "string.other.math" }
+    ]
+  },
+
+  // TeX: math tilde
+  {
+    "keys": ["~"],
+    "command": "insert",
+    "args": {"characters": "\\sim "},
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.tex" },
+      { "key": "selector", "operator": "equal", "operand": "string.other.math" }
+    ]
+  },
+
+  // TeX: czech quotes
+  {
+    "keys": [";", ";"],
+    "command": "insert_snippet",
+    "args": { "contents": "\\uv{$0}" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.tex" }
+    ]
+  },
+
+  // TeX: build
+  {
+    "keys": ["ctrl+b"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["save"],
+        ["run_cmd", { "cmd": "~/.config/sublime-text-3/Packages/UserTeX/bin/build_xelatex '$file_name'" }]
+      ]
+    },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.tex.latex" }
+    ]
+  },
+
+  // Knitr: build
+  { "keys": ["ctrl+b"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["save"],
+        ["run_cmd", { "cmd": "~/.config/sublime-text-3/Packages/UserTeX/bin/build_knitr '$file_name'" }]
+      ]
+    },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.tex.latex.knitr" }
+    ]
+  }
+]
