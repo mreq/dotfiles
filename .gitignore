@@ -1,8 +1,7 @@
-xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 xfce4/panel/xfce4-sensors-plugin*.rc
-xfce4/xfconf/xfce-perchannel-xml/displays.xml
-xfce4/xfconf/xfce-perchannel-xml/keyboards.xml
-xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+xfce4/xfconf/xfce-perchannel-xml/*.xml
+!xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+!xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 
 scripts/wmctile/python/*
 !scripts/wmctile/python/wmctile.py
