@@ -113,5 +113,25 @@
     "keys": ["p"],
     "command": "git_pull",
     "context": [{ "key": "selector", "operand": "text.git-status" }]
+  },
+
+  // Git diff: close
+  {
+    "keys": ["x"],
+    "command": "close_file",
+    "context": [{ "key": "selector", "operand": "source.git-diff" }]
+  },
+
+  // Git diff: stage & close
+  {
+    "keys": ["s"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["git_stage_from_diff"],
+        ["close_file"]
+      ]
+    },
+    "context": [{ "key": "selector", "operand": "source.git-diff" }]
   }
 ]
