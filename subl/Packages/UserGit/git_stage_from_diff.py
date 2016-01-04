@@ -8,4 +8,4 @@ class GitStageFromDiff(sublime_plugin.WindowCommand):
         point = view.text_point(2, 0)
         third_line = view.substr(view.line(point))
         file_name = third_line.replace('--- a/', '')
-        os.system('git stage "' + file_name + '"')
+        os.system('git add "' + file_name + '"')
