@@ -3,40 +3,50 @@
   {
     "keys": ["alt+k"],
     "command": "travel_to_pane",
-    "args": {"direction": "up"}
+    "args": {
+      "direction": "up",
+      "create_new_if_necessary": false
+    }
   },
 
   // Origami: focus right
   {
     "keys": ["alt+l"],
     "command": "travel_to_pane",
-    "args": {"direction": "right"}
+    "args": {
+      "direction": "right",
+      "create_new_if_necessary": false
+    }
   },
 
   // Origami: focus down
   {
     "keys": ["alt+j"],
     "command": "travel_to_pane",
-    "args": {"direction": "down"}
+    "args": {
+      "direction": "down",
+      "create_new_if_necessary": false
+    }
   },
 
   // Origami: focus left
   {
     "keys": ["alt+h"],
     "command": "travel_to_pane",
-    "args": {"direction": "left"}
+    "args": {
+      "direction": "left",
+      "create_new_if_necessary": false
+    }
   },
 
 
   // Origami: split up
   {
     "keys": [" ", "o", "k"],
-    "command": "chain",
+    "command": "create_pane",
     "args": {
-      "commands": [
-        ["create_pane", { "direction": "up" }],
-        ["travel_to_pane", { "direction": "up" }]
-      ]
+      "direction": "up",
+      "give_focus": true
     },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
@@ -44,12 +54,10 @@
   // Origami: split right
   {
     "keys": [" ", "o", "l"],
-    "command": "chain",
+    "command": "create_pane",
     "args": {
-      "commands": [
-        ["create_pane", { "direction": "right" }],
-        ["travel_to_pane", { "direction": "right" }]
-      ]
+      "direction": "right",
+      "give_focus": true
     },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
@@ -57,12 +65,10 @@
   // Origami: split down
   {
     "keys": [" ", "o", "j"],
-    "command": "chain",
+    "command": "create_pane",
     "args": {
-      "commands": [
-        ["create_pane", { "direction": "down" }],
-        ["travel_to_pane", { "direction": "down" }]
-      ]
+      "direction": "down",
+      "give_focus": true
     },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
@@ -70,12 +76,10 @@
   // Origami: split left
   {
     "keys": [" ", "o", "h"],
-    "command": "chain",
+    "command": "create_pane",
     "args": {
-      "commands": [
-        ["create_pane", { "direction": "left" }],
-        ["travel_to_pane", { "direction": "left" }]
-      ]
+      "direction": "left",
+      "give_focus": true
     },
     "context": [{ "key": "vi_command_mode_aware" }]
   },

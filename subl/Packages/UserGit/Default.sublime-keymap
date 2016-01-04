@@ -111,7 +111,12 @@
   // Git status: pull
   {
     "keys": ["p"],
-    "command": "git_pull",
+    "command": "git_custom",
+    "args": {
+      "cmd": "pull --rebase",
+      "output": "panel",
+      "async": true
+    },
     "context": [{ "key": "selector", "operand": "text.git-status" }]
   },
 
