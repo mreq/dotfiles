@@ -19,3 +19,6 @@
 [submodule "vim/.vim/bundle/ctrlp.vim"]
 	path = vim/.vim/bundle/ctrlp.vim
 	url = git@github.com:kien/ctrlp.vim.git
+[submodule "subl/Packages/BetterFindBufferFork"]
+	path = subl/Packages/BetterFindBufferFork
+	url = git@github.com:mreq/BetterFindBuffer.git

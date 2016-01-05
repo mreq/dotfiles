@@ -376,6 +376,44 @@
     ]
   },
 
+  // Search: open
+  {
+    "keys": ["o"],
+    "command": "find_in_files_open_file",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+    ]
+  },
+
+  // Search: open all
+  {
+    "keys": [" ", "o"],
+    "command": "find_in_files_open_all_files",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+    ]
+  },
+
+  // Search: navigate down
+  {
+    "keys": ["j"],
+    "command": "find_in_files_jump_file", "args": { "forward": true },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.find-in-files" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  // Search: navigate up
+  {
+    "keys": ["k"],
+    "command": "find_in_files_jump_file", "args": { "forward": false },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.find-in-files" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
   // { "keys": ["ctrl+shift+l"], "command": "list_stylesheet_variables", "context": [
   //   { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
   // ]},
