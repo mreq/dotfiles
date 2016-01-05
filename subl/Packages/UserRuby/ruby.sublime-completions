@@ -1,0 +1,19 @@
+{
+  "scope": "source.ruby",
+  "completions":
+  [
+    { "trigger": "br\tbinding.remote_pry", "contents": "binding.remote_pry$0" },
+
+    { "trigger": "ai\tadd_index", "contents": "add_index :$1, :$0" },
+
+    { "trigger": "if", "contents": "if $1\n\t$0\nend" },
+    { "trigger": "unless", "contents": "unless $1\n\t$0\nend" },
+    { "trigger": "each", "contents": "each do |$1|\n\t$0\nend" },
+
+    { "trigger": "p\tparams", "contents": "params[:$1]" },
+
+    { "trigger": "ivg\tinstance_variable_get", "contents": "instance_variable_get(:@$0)" },
+    { "trigger": "do\tdo..end", "contents": "do\n\t$0\nend" },
+    { "trigger": "t\tI18n.t", "contents": "I18n.t('$0')" }
+  ]
+}

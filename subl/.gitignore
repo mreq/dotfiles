@@ -5,8 +5,11 @@ Packages/*
 !Packages/UserGit
 !Packages/UserTeX
 !Packages/UserOrigami
+!Packages/UserRuby
+!Packages/UserYaml
 
 !Packages/Base16
+!Packages/BetterFindBufferFork
 !Packages/Origami
 
 Packages/User/Package Control.*
