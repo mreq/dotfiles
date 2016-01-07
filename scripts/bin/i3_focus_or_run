@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+import i3
+import sys
+import os
+
+target_class = sys.argv[1]
+focused_workspace_name = i3.filter(focused=True, tree=i3.get_workspaces())[0]['name']
+focused_workspace = i3.filter(name=focused_workspace_name, type='workspace')[0]
+
+windows = i3.filter(tree=focused_workspace, nodes=[])
+target_ids = []
+focused_id = -1
+i = 0
+for window in windows:
+  class_name = window['window_properties']['class']
+  if class_name == target_class:
+    target_ids.append(window['window'])
+    if window['focused']:
+      focused_id = i
+    i += 1
+
+if len(target_ids):
+  if focused_id == -1:
+    i = 0
+  else:
+    print(focused_id, len(target_ids))
+    if focused_id + 1 == len(target_ids):
+      i = 0
+    else:
+      i = focused_id + 1
+  i3.focus(id=target_ids[i])
+else:
+  os.system('sh -c ' + sys.argv[2])
