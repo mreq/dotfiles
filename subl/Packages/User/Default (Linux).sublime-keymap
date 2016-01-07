@@ -46,6 +46,21 @@
     ]
   },
 
+  // Generic: open from menus using vim movement
+  {
+    "keys": ["ctrl+l"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["move", { "by": "characters", "forward": true }],
+        ["move", { "by": "lines", "forward": true }]
+      ]
+    },
+    "context": [
+      { "key": "overlay_visible" }
+    ]
+  },
+
   // Generic: navigate menus using vim movement
   {
     "keys": ["ctrl+k"],

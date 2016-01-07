@@ -3,7 +3,6 @@
   "completions":
   [
     // syntax
-    // { "trigger": "a", "contents": "{ $0 }" },
     { "trigger": "f", "contents": "#$1\n\t$0\n" },
     { "trigger": "d", "contents": ".$1\n\t$0\n" },
     { "trigger": "3", "contents": "&.$1\n\t$0\n" },

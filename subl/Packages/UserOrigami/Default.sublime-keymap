@@ -39,6 +39,41 @@
     }
   },
 
+  // Origami: move up
+  {
+    "keys": ["alt+shift+k"],
+    "command": "carry_file_to_pane",
+    "args": {
+      "direction": "up"
+    }
+  },
+
+  // Origami: move right
+  {
+    "keys": ["alt+shift+l"],
+    "command": "carry_file_to_pane",
+    "args": {
+      "direction": "right"
+    }
+  },
+
+  // Origami: move down
+  {
+    "keys": ["alt+shift+j"],
+    "command": "carry_file_to_pane",
+    "args": {
+      "direction": "down"
+    }
+  },
+
+  // Origami: move left
+  {
+    "keys": ["alt+shift+h"],
+    "command": "carry_file_to_pane",
+    "args": {
+      "direction": "left"
+    }
+  },
 
   // Origami: split up
   {
