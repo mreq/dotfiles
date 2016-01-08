@@ -1,0 +1,174 @@
+set $m Mod4
+set $up k
+set $down j
+set $left h
+set $right l
+
+font pango: Droid Sans Mono 9
+font xft: Droid Sans Mono 9
+
+gaps inner 15
+gaps outer 0
+
+# window borders
+new_window pixel 5
+new_float pixel 5
+for_window [class="Xfce4-notifyd"] floating enable; border none
+
+# drag floating windows
+floating_modifier $m
+
+# default layout
+workspace_layout tabbed
+
+# wrap tabbed/stacked containers
+force_focus_wrapping yes
+
+# kill focused window
+bindsym $m+Shift+q kill
+
+# change focus
+bindsym $m+$left focus left
+bindsym $m+$down focus down
+bindsym $m+$up focus up
+bindsym $m+$right focus right
+
+bindsym Mod1+Tab focus right
+bindsym Mod1+Shift+Tab focus left
+bindsym $m+Tab workspace back_and_forth
+
+# move focused window
+bindsym $m+Shift+$left move left
+bindsym $m+Shift+$down move down
+bindsym $m+Shift+$up move up
+bindsym $m+Shift+$right move right
+
+# split in horizontal orientation
+bindsym $m+shift+v split h
+
+# split in vertical orientation
+bindsym $m+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $m+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+#bindsym $m+s layout stacking
+bindsym $m+t layout tabbed
+bindsym $m+e layout toggle split
+
+# toggle tiling / floating
+bindsym $m+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+# bindsym $m+space focus mode_toggle
+
+# focus the parent container
+bindsym $m+a focus parent
+
+# focus the child container
+bindsym $m+d focus child
+
+# move the currently focused window to the scratchpad
+bindsym $m+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $m+minus scratchpad show
+
+# Smart workspaces
+workspace_auto_back_and_forth yes
+
+# switch to workspace
+bindsym $m+F1 workspace 1
+bindsym $m+F2 workspace 2
+bindsym $m+F3 workspace 3
+bindsym $m+F4 workspace 4
+bindsym $m+F5 workspace 5
+bindsym $m+F6 workspace 6
+bindsym $m+F7 workspace 7
+bindsym $m+F8 workspace 8
+bindsym $m+F9 workspace 9
+
+bindsym Control+Mod1+l workspace next
+bindsym Control+Mod1+h workspace prev
+
+# move focused container to workspace
+bindsym $m+Shift+F1 move container to workspace 1
+bindsym $m+Shift+F2 move container to workspace 2
+bindsym $m+Shift+F3 move container to workspace 3
+bindsym $m+Shift+F4 move container to workspace 4
+bindsym $m+Shift+F5 move container to workspace 5
+bindsym $m+Shift+F6 move container to workspace 6
+bindsym $m+Shift+F7 move container to workspace 7
+bindsym $m+Shift+F8 move container to workspace 8
+bindsym $m+Shift+F9 move container to workspace 9
+
+# reload the configuration file
+bindsym $m+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $m+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $m+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "RESIZE" {
+  bindsym $left       resize shrink width 20 px or 1 ppt
+  bindsym $down       resize grow height 20 px or 1 ppt
+  bindsym $up         resize shrink height 20 px or 1 ppt
+  bindsym $right      resize grow width 20 px or 1 ppt
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $m+r mode "RESIZE"
+
+# brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+
+# sound
+bindsym XF86AudioRaiseVolume exec  --no-startup-id amixer -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec  --no-startup-id amixer -D pulse sset Master 5%-
+bindsym XF86AudioMute exec  --no-startup-id amixer -D pulse set Master 1+ toggle
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+  status_command i3status
+  tray_output PRIMARY
+  position top
+}
+
+# Assigns
+assign [class="Gimp"] → ❖
+assign [class="Thunderbird"] → ❖
+assign [class="Slack"] → ❖
+assign [class="Doublecmd"] → ❖
+assign [class="google-chrome" instance="crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei"] → ❖
+
+# Launchers
+bindsym $m+space exec "launch_script"
+bindsym Control+$m+space exec "pick_a_subl_project"
+
+# Apps
+bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"
+bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
+bindsym $m+3 exec "i3_focus_or_run 'Terminator' 'terminator'"
+
+# Back and forth
+bindsym $m+4 exec "i3_back_and_forth 'Doublecmd' 'doublecmd'"
+bindsym $m+5 exec "i3_back_and_forth 'Thunderbird' 'thunderbird'"
+bindsym $m+g exec "i3_back_and_forth 'Gimp' 'gimp'"
+bindsym $m+s exec "i3_back_and_forth 'Slack' 'slack'"
+bindsym $m+w exec "i3_back_and_forth 'crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei.google-chrome' 'notify-send whatsapp not running'"
+
+# Startup
+# exec xrandr | grep -q 'HDMI1 connected' && select_display DELL
+exec synapse
+exec --no-startup-id nm-applet
+exec --no-startup-id unagi
+exec --no-startup-id feh --bg-scale /usr/share/xfce4/backdrops/xubuntu-wallpaper.png
+exec --no-startup-id xflux -l 50.0350280 -g 14.2343540

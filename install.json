@@ -1,11 +1,13 @@
 {
   "directories": [
-    "~/.config/synapse",
-    "~/.config/xfce4",
     "~/.config/doublecmd",
+    "~/.config/git",
+    "~/.config/i3",
+    "~/.config/i3status",
     "~/.config/sublime-text-3/Local",
+    "~/.config/synapse",
     "~/.config/terminator",
-    "~/.config/git/"
+    "~/.config/xfce4"
   ],
   "link": {
     "bash/.bashrc": "~/.bashrc",
@@ -15,6 +17,8 @@
     "doublecmd/shortcuts.scf": "~/.config/doublecmd/shortcuts.scf",
     "git/.gitconfig": "~/.gitconfig",
     "git/ignore": "~/.config/git/ignore",
+    "i3/config": "~/.config/i3/config",
+    "i3/i3status": "~/.config/i3status/config",
     "misc/.inputrc": "~/.inputrc",
     "python/.pylintrc": "~/.pylintrc",
     "ruby/.rubocop.yml": "~/.rubocop.yml",
