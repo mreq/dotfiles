@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import i3
 import sys
-import os
+import subprocess
 
 target_class = sys.argv[1]
 focused_workspace_name = i3.filter(focused=True, tree=i3.get_workspaces())[0]['name']
@@ -29,5 +29,5 @@ if len(target_ids):
     else:
       i = focused_id + 1
   i3.focus(id=target_ids[i])
-else:
-  os.system('sh -c ' + sys.argv[2])
+elif len(sys.argv) > 2:
+  subprocess.call('sh -c ' + sys.argv[2], shell=True)

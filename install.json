@@ -32,7 +32,6 @@
     "vim/.vimrc": "~/.vimrc",
     "X/.xbindkeysrc": "~/.xbindkeysrc",
     "X/.Xdefaults": "~/.Xdefaults",
-    "X/.Xinitrc": "~/.Xinitrc",
     "X/.Xmodmap": "~/.Xmodmap",
     "xfce4/panel": "~/.config/xfce4/panel",
     "xfce4/xfconf": "~/.config/xfce4/xfconf"

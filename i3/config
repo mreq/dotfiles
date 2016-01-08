@@ -44,7 +44,7 @@ bindsym $m+Shift+$up move up
 bindsym $m+Shift+$right move right
 
 # split in horizontal orientation
-bindsym $m+shift+v split h
+bindsym $m+Shift+v split h
 
 # split in vertical orientation
 bindsym $m+v split v
@@ -55,7 +55,7 @@ bindsym $m+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $m+s layout stacking
 bindsym $m+t layout tabbed
-bindsym $m+e layout toggle split
+bindsym $m+Shift+t layout toggle split
 
 # toggle tiling / floating
 bindsym $m+Shift+space floating toggle
@@ -67,7 +67,7 @@ bindsym $m+Shift+space floating toggle
 bindsym $m+a focus parent
 
 # focus the child container
-bindsym $m+d focus child
+#bindsym $m+d focus child
 
 # move the currently focused window to the scratchpad
 bindsym $m+Shift+minus move scratchpad
@@ -80,32 +80,32 @@ bindsym $m+minus scratchpad show
 workspace_auto_back_and_forth yes
 
 # switch to workspace
-bindsym $m+F1 workspace 1
-bindsym $m+F2 workspace 2
-bindsym $m+F3 workspace 3
-bindsym $m+F4 workspace 4
-bindsym $m+F5 workspace 5
-bindsym $m+F6 workspace 6
-bindsym $m+F7 workspace 7
-bindsym $m+F8 workspace 8
-bindsym $m+F9 workspace 9
+bindsym $m+F1 workspace number 1
+bindsym $m+F2 workspace number 2
+bindsym $m+F3 workspace number 3
+bindsym $m+F4 workspace number 4
+bindsym $m+F5 workspace number 5
+bindsym $m+F6 workspace number 6
+bindsym $m+F7 workspace number 7
+bindsym $m+F8 workspace number 8
+bindsym $m+F9 workspace number 9
 
 bindsym Control+Mod1+l workspace next
 bindsym Control+Mod1+h workspace prev
 
 # move focused container to workspace
-bindsym $m+Shift+F1 move container to workspace 1
-bindsym $m+Shift+F2 move container to workspace 2
-bindsym $m+Shift+F3 move container to workspace 3
-bindsym $m+Shift+F4 move container to workspace 4
-bindsym $m+Shift+F5 move container to workspace 5
-bindsym $m+Shift+F6 move container to workspace 6
-bindsym $m+Shift+F7 move container to workspace 7
-bindsym $m+Shift+F8 move container to workspace 8
-bindsym $m+Shift+F9 move container to workspace 9
+bindsym $m+Shift+F1 move container to workspace number 1
+bindsym $m+Shift+F2 move container to workspace number 2
+bindsym $m+Shift+F3 move container to workspace number 3
+bindsym $m+Shift+F4 move container to workspace number 4
+bindsym $m+Shift+F5 move container to workspace number 5
+bindsym $m+Shift+F6 move container to workspace number 6
+bindsym $m+Shift+F7 move container to workspace number 7
+bindsym $m+Shift+F8 move container to workspace number 8
+bindsym $m+Shift+F9 move container to workspace number 9
 
 # reload the configuration file
-bindsym $m+Shift+c reload
+#bindsym $m+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $m+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -157,6 +157,7 @@ bindsym Control+$m+space exec "pick_a_subl_project"
 bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"
 bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
 bindsym $m+3 exec "i3_focus_or_run 'Terminator' 'terminator'"
+bindsym $m+e exec "i3_focus_or_run 'Evince'"
 
 # Back and forth
 bindsym $m+4 exec "i3_back_and_forth 'Doublecmd' 'doublecmd'"
@@ -167,8 +168,10 @@ bindsym $m+w exec "i3_back_and_forth 'crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei.googl
 
 # Startup
 # exec xrandr | grep -q 'HDMI1 connected' && select_display DELL
-exec synapse
-exec --no-startup-id nm-applet
-exec --no-startup-id unagi
-exec --no-startup-id feh --bg-scale /usr/share/xfce4/backdrops/xubuntu-wallpaper.png
-exec --no-startup-id xflux -l 50.0350280 -g 14.2343540
+exec_always pgrep synapse || synapse
+exec_always pgrep nm-applet || nm-applet
+exec_always pgrep unagi || unagi
+exec_always pgrep feh || feh --bg-scale /usr/share/xfce4/backdrops/xubuntu-wallpaper.png
+exec_always pgrep xflux || xflux -l 50.0350280 -g 14.2343540
+exec_always xrdb -merge ~/.Xdefaults
+exec_always xmodmap ~/.Xmodmap
