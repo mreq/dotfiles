@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+import subprocess
+import re
+
+acpi = subprocess.check_output('acpi', shell=True).strip().decode('utf-8')
+is_charging = re.search('Charging|Full', acpi)
+percentage = re.search(',\s([^%]+)%', acpi).group(1)
+
+icon = subprocess.check_output('i3_get_ico battery', shell=True).strip().decode('utf-8')
+
+output = icon + '  '
+output += percentage
+
+print(output)
+if is_charging:
+  color = subprocess.check_output('i3_get_color base0B', shell=True).strip().decode('utf-8')
+  print()
+  print(color)
+elif int(percentage) <= 25:
+  color = subprocess.check_output('i3_get_color base08', shell=True).strip().decode('utf-8')
+  print()
+  print(color)
+

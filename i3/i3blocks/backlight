@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+import subprocess
+import re
+import os
+
+xbacklight = subprocess.check_output('xbacklight', shell=True).strip().decode('utf-8')
+percentage = re.search('(\d+)\.', xbacklight).group(1)
+
+icon = subprocess.check_output('i3_get_ico light', shell=True).strip().decode('utf-8')
+
+output = icon + '  '
+output += percentage
+
+print(output)
+
+if 'BLOCK_BUTTON' in os.environ:
+    if os.environ['BLOCK_BUTTON'] == '4':
+        # scroll up - increase
+        subprocess.call('xbacklight -inc 10; i3_restart_i3blocks', shell=True)
+    elif os.environ['BLOCK_BUTTON'] == '5':
+        # scroll down - decrease
+        subprocess.call('xbacklight -dec 10; i3_restart_i3blocks', shell=True)

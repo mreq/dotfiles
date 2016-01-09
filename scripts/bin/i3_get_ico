@@ -1,0 +1,2 @@
+#!/bin/sh
+grep "set \$ico_$1" ~/.config/i3/config | tail -c 4

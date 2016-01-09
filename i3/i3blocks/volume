@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+import subprocess
+import re
+import os
+
+amixer = subprocess.check_output('amixer -D pulse sget Master', shell=True).strip().decode('utf-8')
+is_on = re.search('\[on\]', amixer)
+
+if is_on:
+  icon = subprocess.check_output('i3_get_ico volume', shell=True).strip().decode('utf-8')
+  percentage = re.search('\[(\d+)%\]', amixer).group(1)
+else:
+  icon = subprocess.check_output('i3_get_ico muted_volume', shell=True).strip().decode('utf-8')
+  percentage = 'OFF'
+
+output = icon + '  '
+output += percentage
+
+if 'BLOCK_BUTTON' in os.environ:
+    if os.environ['BLOCK_BUTTON'] == '4':
+        # scroll up - increase
+        subprocess.call('amixer -D pulse sset Master 5%+ unmute; i3_restart_i3blocks', shell=True)
+    elif os.environ['BLOCK_BUTTON'] == '5':
+        # scroll down - decrease
+        subprocess.call('amixer -D pulse sset Master 5%- unmute; i3_restart_i3blocks', shell=True)
+    elif os.environ['BLOCK_BUTTON'] == '1' or os.environ['BLOCK_BUTTON'] == '3':
+        # click - toggle
+        subprocess.call('amixer -D pulse set Master 1+ toggle; i3_restart_i3blocks', shell=True)
+
+print(output)
+
+if not is_on:
+  print()
+  print(subprocess.check_output('i3_get_color base03', shell=True).strip().decode('utf-8'))

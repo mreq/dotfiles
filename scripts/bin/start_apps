@@ -1,5 +1,5 @@
 #!/bin/bash
-wmc_summon_window_or_run 'doublecmd.Doublecmd' 'doublecmd'
-wmc_summon_window_or_run 'Chromium-browser.Chromium-browser' 'chromium-browser'
-wmc_summon_window_or_run 'slack.Slack' 'slack'
-wmc_summon_window_or_run '.Thunderbird' 'thunderbird'
+doublecmd &
+chromium-browser &
+slack &
+thunderbird &

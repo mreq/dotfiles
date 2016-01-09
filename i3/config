@@ -4,8 +4,40 @@ set $down j
 set $left h
 set $right l
 
-font pango: Droid Sans Mono 9
-font xft: Droid Sans Mono 9
+set $ico_battery 
+set $ico_calendar 
+set $ico_folder 
+set $ico_gimp 
+set $ico_light 
+set $ico_mail 
+set $ico_music 
+set $ico_resize "  "
+set $ico_slack 
+set $ico_volume 
+set $ico_muted_volume 
+set $ico_whatsapp 
+set $ico_wifi 
+
+# Base16 Default colors
+set $base00 "#151515"
+set $base01 "#202020"
+set $base02 "#303030"
+set $base03 "#505050"
+set $base04 "#b0b0b0"
+set $base05 "#d0d0d0"
+set $base06 "#e0e0e0"
+set $base07 "#f5f5f5"
+set $base08 "#ac4142"
+set $base09 "#d28445"
+set $base0A "#f4bf75"
+set $base0B "#90a959"
+set $base0C "#75b5aa"
+set $base0D "#6a9fb5"
+set $base0E "#aa759f"
+set $base0F "#8f5536"
+
+font pango: Droid Sans Mono, FontAwesome 10
+font xft: Droid Sans Mono, FontAwesome 10
 
 gaps inner 15
 gaps outer 0
@@ -36,6 +68,10 @@ bindsym $m+$right focus right
 bindsym Mod1+Tab focus right
 bindsym Mod1+Shift+Tab focus left
 bindsym $m+Tab workspace back_and_forth
+bindsym $m+Shift+w exec i3_rename_workspace
+
+bindsym $m+o exec select_power_action
+bindsym $m+p exec select_display
 
 # move focused window
 bindsym $m+Shift+$left move left
@@ -112,7 +148,7 @@ bindsym $m+Shift+r restart
 bindsym $m+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-mode "RESIZE" {
+mode $ico_resize {
   bindsym $left       resize shrink width 20 px or 1 ppt
   bindsym $down       resize grow height 20 px or 1 ppt
   bindsym $up         resize shrink height 20 px or 1 ppt
@@ -123,31 +159,69 @@ mode "RESIZE" {
   bindsym Escape mode "default"
 }
 
-bindsym $m+r mode "RESIZE"
+bindsym $m+r mode $ico_resize
 
 # brightness
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # sound
-bindsym XF86AudioRaiseVolume exec  --no-startup-id amixer -D pulse sset Master 5%+
-bindsym XF86AudioLowerVolume exec  --no-startup-id amixer -D pulse sset Master 5%-
-bindsym XF86AudioMute exec  --no-startup-id amixer -D pulse set Master 1+ toggle
+bindsym XF86AudioRaiseVolume exec  --no-startup-id amixer -D pulse sset Master 5%+ unmute;
+bindsym XF86AudioLowerVolume exec  --no-startup-id amixer -D pulse sset Master 5%- unmute;
+bindsym XF86AudioMute exec  --no-startup-id amixer -D pulse set Master 1+ toggle;
+bindsym Pause exec "play_pause_spotify"
+bindsym Shift+Pause exec "play_pause_spotify next"
+bindsym Control+Shift+Pause exec "play_pause_spotify prev"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
-  status_command i3status
-  tray_output PRIMARY
+  status_command i3blocks
+  tray_output eDP1
+  output eDP1
   position top
+  height 24
+  colors {
+    background $base00
+    statusline $base07
+    separator  $base02
+    # name               border   background  font_color
+    focused_workspace    $base03  $base03     $base0B
+    active_workspace     $base00  $base00     $base05
+    inactive_workspace   $base00  $base00     $base05
+    urgent_workspace     $base08  $base08     $base07
+    binding_mode         $base0E  $base0E     $base01
+  }
 }
 
+bar {
+  status_command i3blocks
+  tray_output HDMI1
+  output HDMI1
+  position top
+  height 24
+  colors {
+    background $base00
+    statusline $base07
+    separator  $base02
+    # name               border   background  font_color
+    focused_workspace    $base05  $base05     $base01
+    active_workspace     $base00  $base00     $base05
+    inactive_workspace   $base00  $base00     $base05
+    urgent_workspace     $base08  $base08     $base07
+    binding_mode         $base0E  $base0E     $base01
+  }
+}
+
+# Window rules
+for_window [class="Spotify"] floating enable; resize set width 1500px; resize set height 800px;
+
 # Assigns
-assign [class="Gimp"] → ❖
-assign [class="Thunderbird"] → ❖
-assign [class="Slack"] → ❖
-assign [class="Doublecmd"] → ❖
-assign [class="google-chrome" instance="crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei"] → ❖
+assign [class="Gimp"] → $ico_gimp
+assign [class="Thunderbird"] → $ico_mail
+assign [class="Slack"] → $ico_slack
+assign [class="Doublecmd"] → $ico_folder
+assign [class="google-chrome" instance="crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei"] → $ico_whatsapp
+assign [class="chromium-browser"] → $ico_calendar
+assign [class="Spotify"] → $ico_music
 
 # Launchers
 bindsym $m+space exec "launch_script"
@@ -160,18 +234,23 @@ bindsym $m+3 exec "i3_focus_or_run 'Terminator' 'terminator'"
 bindsym $m+e exec "i3_focus_or_run 'Evince'"
 
 # Back and forth
-bindsym $m+4 exec "i3_back_and_forth 'Doublecmd' 'doublecmd'"
-bindsym $m+5 exec "i3_back_and_forth 'Thunderbird' 'thunderbird'"
-bindsym $m+g exec "i3_back_and_forth 'Gimp' 'gimp'"
-bindsym $m+s exec "i3_back_and_forth 'Slack' 'slack'"
-bindsym $m+w exec "i3_back_and_forth 'crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei.google-chrome' 'notify-send whatsapp not running'"
+bindsym $m+4 exec "i3_focus_pinned $ico_folder doublecmd"
+bindsym $m+5 exec "i3_focus_pinned $ico_mail thunderbird"
+bindsym $m+g exec "i3_focus_pinned $ico_gimp gimp"
+bindsym $m+s exec "i3_focus_pinned $ico_slack slack"
+bindsym $m+w exec "i3_focus_pinned $ico_whatsapp"
+bindsym $m+x exec "i3_focus_pinned $ico_calendar chromium-browser"
+bindsym $m+m exec "i3_focus_pinned $ico_music spotify"
 
 # Startup
 # exec xrandr | grep -q 'HDMI1 connected' && select_display DELL
-exec_always pgrep synapse || synapse
-exec_always pgrep nm-applet || nm-applet
-exec_always pgrep unagi || unagi
-exec_always pgrep feh || feh --bg-scale /usr/share/xfce4/backdrops/xubuntu-wallpaper.png
-exec_always pgrep xflux || xflux -l 50.0350280 -g 14.2343540
-exec_always xrdb -merge ~/.Xdefaults
-exec_always xmodmap ~/.Xmodmap
+exec --no-startup-id synapse
+exec --no-startup-id nm-applet
+exec --no-startup-id unagi
+exec --no-startup-id feh --bg-tile ~/Dropbox/Pictures/low_contrast_linen.png
+exec --no-startup-id xflux -l 50.0350280 -g 14.2343540
+exec --no-startup-id dropbox start -i
+exec --no-startup-id indicator-cpufreq
+exec --no-startup-id setxkbmap -layout us,cz -variant ,qwerty -option grp:alt_shift_toggle
+exec --no-startup-id xrdb -merge ~/.Xdefaults
+exec --no-startup-id xmodmap ~/.Xmodmap

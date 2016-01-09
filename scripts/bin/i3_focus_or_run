@@ -11,23 +11,27 @@ windows = i3.filter(tree=focused_workspace, nodes=[])
 target_ids = []
 focused_id = -1
 i = 0
-for window in windows:
-  class_name = window['window_properties']['class']
-  if class_name == target_class:
-    target_ids.append(window['window'])
-    if window['focused']:
-      focused_id = i
-    i += 1
+if len(windows):
+  for window in windows:
+    if 'window_properties' in window:
+      class_name = window['window_properties']['class']
+      if class_name == target_class:
+        target_ids.append(window['window'])
+        if window['focused']:
+          focused_id = i
+        i += 1
 
-if len(target_ids):
-  if focused_id == -1:
-    i = 0
-  else:
-    print(focused_id, len(target_ids))
-    if focused_id + 1 == len(target_ids):
+  if len(target_ids):
+    if focused_id == -1:
       i = 0
     else:
-      i = focused_id + 1
-  i3.focus(id=target_ids[i])
-elif len(sys.argv) > 2:
-  subprocess.call('sh -c ' + sys.argv[2], shell=True)
+      print(focused_id, len(target_ids))
+      if focused_id + 1 == len(target_ids):
+        i = 0
+      else:
+        i = focused_id + 1
+    i3.focus(id=target_ids[i])
+    sys.exit()
+
+if len(sys.argv) > 2:
+  subprocess.call(sys.argv[2] + ' &', shell=True)

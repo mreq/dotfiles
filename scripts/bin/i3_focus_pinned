@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+import i3
+import sys
+import subprocess
+
+# Switch to workspace_name (creates one if needed)
+workspace_name = sys.argv[1]
+i3.command('workspace ' + workspace_name)
+
+# Run the command if given
+if len(sys.argv) > 2:
+  app_command = sys.argv[2]
+  try:
+      subprocess.check_output('pgrep ' + app_command, shell=True)
+  except subprocess.CalledProcessError as e:
+      subprocess.call(app_command + ' &', shell=True)
