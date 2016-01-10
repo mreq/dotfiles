@@ -6,10 +6,12 @@ set $right l
 
 set $ico_battery 
 set $ico_calendar 
+set $ico_clock 
 set $ico_folder 
 set $ico_gimp 
 set $ico_light 
 set $ico_mail 
+set $ico_move "  "
 set $ico_music 
 set $ico_resize "  "
 set $ico_slack 
@@ -36,11 +38,14 @@ set $base0D "#6a9fb5"
 set $base0E "#aa759f"
 set $base0F "#8f5536"
 
+set $focusc "#4592B1"
+
 font pango: Droid Sans Mono, FontAwesome 10
 font xft: Droid Sans Mono, FontAwesome 10
 
 gaps inner 15
 gaps outer 0
+smart_gaps on
 
 # window borders
 new_window pixel 5
@@ -89,9 +94,8 @@ bindsym $m+v split v
 bindsym $m+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $m+s layout stacking
-bindsym $m+t layout tabbed
-bindsym $m+Shift+t layout toggle split
+bindsym $m+u layout tabbed
+bindsym $m+Shift+u layout toggle split
 
 # toggle tiling / floating
 bindsym $m+Shift+space floating toggle
@@ -158,8 +162,20 @@ mode $ico_resize {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-
 bindsym $m+r mode $ico_resize
+
+# move window
+mode $ico_move {
+  bindsym $left       move left  20 px
+  bindsym $down       move down  20 px
+  bindsym $up         move up    20 px
+  bindsym $right      move right 20 px
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $m+t mode $ico_move
 
 # brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
@@ -184,7 +200,7 @@ bar {
     statusline $base07
     separator  $base02
     # name               border   background  font_color
-    focused_workspace    $base03  $base03     $base0B
+    focused_workspace    $base03  $base03     $focusc
     active_workspace     $base00  $base00     $base05
     inactive_workspace   $base00  $base00     $base05
     urgent_workspace     $base08  $base08     $base07
@@ -203,7 +219,7 @@ bar {
     statusline $base07
     separator  $base02
     # name               border   background  font_color
-    focused_workspace    $base05  $base05     $base01
+    focused_workspace    $base05  $base05     $focusc
     active_workspace     $base00  $base00     $base05
     inactive_workspace   $base00  $base00     $base05
     urgent_workspace     $base08  $base08     $base07
@@ -211,8 +227,15 @@ bar {
   }
 }
 
+# Colors
+# name                   border   background  font_color
+client.focused           $focusc  $focusc     $base07
+client.focused_inactive  $base00  $base00     $base07
+client.unfocused         $base00  $base00     $base07
+client.urgent            $base08  $base08     $base00
+
 # Window rules
-for_window [class="Spotify"] floating enable; resize set width 1500px; resize set height 800px;
+for_window [class="Spotify"] floating enable
 
 # Assigns
 assign [class="Gimp"] → $ico_gimp
@@ -242,6 +265,13 @@ bindsym $m+w exec "i3_focus_pinned $ico_whatsapp"
 bindsym $m+x exec "i3_focus_pinned $ico_calendar chromium-browser"
 bindsym $m+m exec "i3_focus_pinned $ico_music spotify"
 
+# Screenshots
+bindsym $m+BackSpace exec "xfce4-screenshooter -f -o gimp && i3_focus_pinned $ico_gimp gimp"
+bindsym Control+Mod1+1 exec "scrotshare create full"
+bindsym Control+Mod1+2 exec "scrotshare create area"
+bindsym Control+Mod1+3 exec "scrotshare create window"
+bindsym Control+Mod1+4 exec "scrotshare create chrome"
+
 # Startup
 # exec xrandr | grep -q 'HDMI1 connected' && select_display DELL
 exec --no-startup-id synapse
@@ -254,3 +284,4 @@ exec --no-startup-id indicator-cpufreq
 exec --no-startup-id setxkbmap -layout us,cz -variant ,qwerty -option grp:alt_shift_toggle
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id xautolock -detectsleep -locker "i3lock -c 000000"

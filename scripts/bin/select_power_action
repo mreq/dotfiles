@@ -7,10 +7,6 @@ actions=(
   'logout'
 )
 
-lock() {
-  i3lock -c 000000
-}
-
 select_action() {
   case $1 in
     screen )
@@ -18,7 +14,6 @@ select_action() {
     suspend )
       # x=$(( $(  wmctrl -d | head -n1 | awk '{ print $4 }' | awk -F'x' '{ print $1 }' ) - 40 ))
       # xdotool mousemove $x 10 && xdotool click 1 && xdotool mousemove $x 37 && sleep 0.5s && xdotool click 1
-      lock
       dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend ;;
     reboot )
       dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart ;;
