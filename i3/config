@@ -153,10 +153,10 @@ bindsym $m+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut.
 
 # resize window (you can also use the mouse for that)
 mode $ico_resize {
-  bindsym $left       resize shrink width 20 px or 1 ppt
-  bindsym $down       resize grow height 20 px or 1 ppt
-  bindsym $up         resize shrink height 20 px or 1 ppt
-  bindsym $right      resize grow width 20 px or 1 ppt
+  bindsym $left       resize shrink width  10 px
+  bindsym $down       resize grow   height 10 px
+  bindsym $up         resize shrink height 10 px
+  bindsym $right      resize grow   width  10 px
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
@@ -166,10 +166,10 @@ bindsym $m+r mode $ico_resize
 
 # move window
 mode $ico_move {
-  bindsym $left       move left  20 px
-  bindsym $down       move down  20 px
-  bindsym $up         move up    20 px
-  bindsym $right      move right 20 px
+  bindsym $left       move left  10 px
+  bindsym $down       move down  10 px
+  bindsym $up         move up    10 px
+  bindsym $right      move right 10 px
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
@@ -235,7 +235,7 @@ client.unfocused         $base00  $base00     $base07
 client.urgent            $base08  $base08     $base00
 
 # Window rules
-for_window [class="Spotify"] floating enable
+for_window [class="Spotify"] floating enable resize set width 1550 px height 834 px
 
 # Assigns
 assign [class="Gimp"] → $ico_gimp
@@ -252,7 +252,7 @@ bindsym Control+$m+space exec "pick_a_subl_project"
 
 # Apps
 bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"
-bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
+bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl'"
 bindsym $m+3 exec "i3_focus_or_run 'Terminator' 'terminator'"
 bindsym $m+e exec "i3_focus_or_run 'Evince'"
 

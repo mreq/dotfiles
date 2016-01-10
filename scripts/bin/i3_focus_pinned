@@ -11,6 +11,6 @@ i3.command('workspace ' + workspace_name)
 if len(sys.argv) > 2:
   app_command = sys.argv[2]
   try:
-      subprocess.check_output('pgrep ' + app_command, shell=True)
+      subprocess.check_output('pgrep -f ' + app_command, shell=True)
   except subprocess.CalledProcessError as e:
       subprocess.call(app_command + ' &', shell=True)
