@@ -1,2 +1,4 @@
 #!/bin/sh
-date '+%m-%d %H:%M'
+echo "$( i3_get_ico clock )  $( date '+%H:%M' )"
+echo
+i3_get_color base0A

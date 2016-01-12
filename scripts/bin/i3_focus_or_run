@@ -7,6 +7,8 @@ target_class = sys.argv[1]
 focused_workspace_name = i3.filter(focused=True, tree=i3.get_workspaces())[0]['name']
 focused_workspace = i3.filter(name=focused_workspace_name, type='workspace')[0]
 
+print(focused_workspace)
+
 windows = i3.filter(tree=focused_workspace, nodes=[])
 target_ids = []
 focused_id = -1

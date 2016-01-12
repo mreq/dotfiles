@@ -6,7 +6,7 @@ set $right l
 
 set $ico_battery 
 set $ico_calendar 
-set $ico_clock 
+set $ico_clock 
 set $ico_folder 
 set $ico_gimp 
 set $ico_light 
@@ -45,7 +45,7 @@ font xft: Droid Sans Mono, FontAwesome 10
 
 gaps inner 15
 gaps outer 0
-smart_gaps on
+#smart_gaps on
 
 # window borders
 new_window pixel 5
@@ -74,6 +74,7 @@ bindsym Mod1+Tab focus right
 bindsym Mod1+Shift+Tab focus left
 bindsym $m+Tab workspace back_and_forth
 bindsym $m+Shift+w exec i3_rename_workspace
+bindsym $m+grave exec i3_focus_workspace
 
 bindsym $m+o exec select_power_action
 bindsym $m+p exec select_display
@@ -132,6 +133,8 @@ bindsym $m+F9 workspace number 9
 
 bindsym Control+Mod1+l workspace next
 bindsym Control+Mod1+h workspace prev
+bindsym Control+Shift+Mod1+l move container to workspace next; workspace next
+bindsym Control+Shift+Mod1+h move container to workspace prev; workspace prev
 
 # move focused container to workspace
 bindsym $m+Shift+F1 move container to workspace number 1
@@ -200,7 +203,7 @@ bar {
     statusline $base07
     separator  $base02
     # name               border   background  font_color
-    focused_workspace    $base03  $base03     $focusc
+    focused_workspace    $base0D  $base0D     $base07
     active_workspace     $base00  $base00     $base05
     inactive_workspace   $base00  $base00     $base05
     urgent_workspace     $base08  $base08     $base07
@@ -219,7 +222,7 @@ bar {
     statusline $base07
     separator  $base02
     # name               border   background  font_color
-    focused_workspace    $base05  $base05     $focusc
+    focused_workspace    $base0D  $base0D     $base07
     active_workspace     $base00  $base00     $base05
     inactive_workspace   $base00  $base00     $base05
     urgent_workspace     $base08  $base08     $base07
@@ -252,7 +255,7 @@ bindsym Control+$m+space exec "pick_a_subl_project"
 
 # Apps
 bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"
-bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl'"
+bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
 bindsym $m+3 exec "i3_focus_or_run 'Terminator' 'terminator'"
 bindsym $m+e exec "i3_focus_or_run 'Evince'"
 
@@ -284,4 +287,4 @@ exec --no-startup-id indicator-cpufreq
 exec --no-startup-id setxkbmap -layout us,cz -variant ,qwerty -option grp:alt_shift_toggle
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id xmodmap ~/.Xmodmap
-exec --no-startup-id xautolock -detectsleep -locker "i3lock -c 000000"
+#exec --no-startup-id xautolock -detectsleep -locker "i3lock -c 000000"

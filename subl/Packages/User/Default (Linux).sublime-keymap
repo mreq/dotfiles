@@ -165,26 +165,26 @@
   // Tabs: next
   {
     "keys": ["ctrl+tab"],
-    "command": "next_view_in_stack"
+    "command": "next_view"
   },
 
   // Tabs: previous
   {
     "keys": ["ctrl+shift+tab"],
-    "command": "prev_view_in_stack"
+    "command": "prev_view"
   },
 
   // Tabs: next
   {
     "keys": [" ", "l"],
-    "command": "next_view_in_stack",
+    "command": "next_view",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
   // Tabs: previous
   {
     "keys": [" ", "h"],
-    "command": "prev_view_in_stack",
+    "command": "prev_view",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -192,14 +192,14 @@
   // // Tabs: next
   // {
   //   "keys": ["shift+j"],
-  //   "command": "next_view_in_stack",
+  //   "command": "next_view",
   //   "context": [{ "key": "vi_command_mode_aware" }]
   // },
 
   // // Tabs: previous
   // {
   //   "keys": ["shift+k"],
-  //   "command": "prev_view_in_stack",
+  //   "command": "prev_view",
   //   "context": [{ "key": "vi_command_mode_aware" }]
   // },
 

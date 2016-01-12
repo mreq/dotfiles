@@ -64,6 +64,9 @@ handle_scrot() {
         imgur)
           imgur
           ;;
+        gimp)
+          gimp "$scr" &
+          ;;
         * )
           rm_scrot
           ;;
@@ -75,7 +78,7 @@ handle_scrot() {
       notify-send -i plugin-screenshot "scrotshare" "Screenshot not saved."
     }
 
-    is_ok=$( echo -e "push\nkeep\nremove\nimgur" | rofi -dmenu -i -p '↠ ' ) && init $is_ok || rm_scrot
+    is_ok=$( echo -e "push\nkeep\nremove\ngimp" | rofi -dmenu -i -p '↠ ' ) && init $is_ok || rm_scrot
   fi
 }
 

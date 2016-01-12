@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "$( i3_get_ico calendar )  $( date '+%d/%m' )"
