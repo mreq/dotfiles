@@ -29,6 +29,7 @@
 		"Pretty JSON",
 		"R-Box",
 		"Ruby Slim",
+		"Search in Project",
 		"Select By Regex",
 		"Shell Turtlestein",
 		"SideBarEnhancements",
@@ -46,6 +47,7 @@
 		"Syntax Highlighting for Sass",
 		"Text Pastry",
 		"Vintageous",
-		"YAML Nav"
+		"YAML Nav",
+		"yardgen"
 	]
 }

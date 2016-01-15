@@ -134,6 +134,8 @@ alias mps="mina production ssh"
 alias msc="mina staging console"
 alias msd="mina staging deploy"
 alias mss="mina staging ssh"
+alias rc="[[ -f bin/rails ]] && bin/rails console || rails console"
+alias tmux="TERM=screen-256color-bce tmux"
 
 # Add scripts path
 PATH=$PATH:$HOME/scripts/bin:$HOME/scripts/scrotshare

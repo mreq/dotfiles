@@ -19,7 +19,7 @@
 "wmc_summon_window_or_run 'doublecmd.Doublecmd' 'doublecmd'"
   Mod4 + 4
 
-"wmc_summon_window_or_run '\\.Thunderbird' 'thunderbird'"
+"wmc_summon_window_or_run 'Thunderbird' 'thunderbird'"
   Mod4 + 5
 
 "wmc_summon_window_or_run 'gigolo.Gigolo' 'gigolo'"

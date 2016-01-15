@@ -188,6 +188,47 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
+  // Tabs: next
+  {
+    "keys": ["L"],
+    "command": "next_view",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Tabs: previous
+  {
+    "keys": ["H"],
+    "command": "prev_view",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Tabs: next
+  {
+    "keys": ["ctrl+h"],
+    "command": "prev_view"
+  },
+
+  // Tabs: previous
+  {
+    "keys": ["ctrl+l"],
+    "command": "next_view"
+  },
+
+  // Tabs: move next
+  {
+    "keys": ["ctrl+shift+h"],
+    "command": "move_tab",
+    "args": { "position": "-1" },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Tabs: move previous
+  {
+    "keys": ["ctrl+shift+l"],
+    "command": "move_tab",
+    "args": { "position": "+1" },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
 
   // // Tabs: next
   // {
@@ -283,8 +324,7 @@
   // Files: find
   {
     "keys": [" ", "f", "f"],
-    "command": "show_panel",
-    "args": { "panel": "find_in_files" },
+    "command": "search_in_project",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 

@@ -24,7 +24,7 @@ select_display() {
     DELL-main )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
       xrandr --addmode HDMI1 "2560x1440"
-      xrandr --output HDMI1 --mode 2560x1440 --output eDP1 --auto --pos 2560x1440 ;;
+      xrandr --output HDMI1 --mode 2560x1440 --output eDP1 --auto --below HDMI1 ;;
     DELL-DP )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
       xrandr --addmode DisplayPort-0 "2560x1440"
