@@ -28,7 +28,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Set color scheme
 set background=dark
-colorscheme gruvbox
+colorscheme default
 
 " Enable file system for tab completions
 filetype plugin on

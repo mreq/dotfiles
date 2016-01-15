@@ -22,8 +22,6 @@ if [[ -d "$HOME/wmcutils/bin" ]]; then
   PATH="$PATH:$HOME/wmcutils/bin"
 fi
 
-# Load xmodmap
-xmodmap ~/.Xmodmap
-
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
+

@@ -99,6 +99,11 @@ if [ -x /usr/bin/dircolors ]; then
   alias grep='grep --color=auto'
 fi
 
+# fix xfce4-terminal colors (256)
+if [ "$COLORTERM" == "xfce4-terminal" ]; then
+  export TERM=xterm-256color
+fi
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -134,8 +139,12 @@ alias mps="mina production ssh"
 alias msc="mina staging console"
 alias msd="mina staging deploy"
 alias mss="mina staging ssh"
-alias rc="[[ -f bin/rails ]] && bin/rails console || rails console"
+alias rc="[[ -f bin/rails ]] && bin/rails c || rails c"
 alias tmux="TERM=screen-256color-bce tmux"
+alias xfce4-terminal-tmux="xfce4-terminal --maximize --command=tmux"
+terminal-colors() {
+  for x in 0 1 4 5 7 8; do for i in $( seq 30 37 ); do for a in $( seq 40 47 ); do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""
+}
 
 # Add scripts path
 PATH=$PATH:$HOME/scripts/bin:$HOME/scripts/scrotshare

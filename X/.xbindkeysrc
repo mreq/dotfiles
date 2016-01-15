@@ -10,7 +10,8 @@
 "wmc_focus_window_or_run 'sublime_text.Sublime_text' 'subl -n'"
   Mod4 + 2
 
-"wmc_focus_window_or_run 'terminator.Terminator' 'terminator'"
+# "wmc_focus_window_or_run 'terminator.Terminator' 'terminator'"
+"wmc_focus_window_or_run 'xfce4-terminal.Xfce4-terminal' 'xfce4-terminal --maximize --command=tmux'"
   Mod4 + 3
 
 "wmctile.py switch_to_running 'r_x11.R_x11' 'rlogo_icon'"
@@ -84,6 +85,12 @@
 
 "switch_to_workspace last"
   Mod4 + Tab
+
+"wmctrl -s $(( $( wmctrl -d | grep '\*' | cut -d' ' -f 1 ) + 1 ))"
+  Control + Alt + l
+
+"wmctrl -s $(( $( wmctrl -d | grep '\*' | cut -d' ' -f 1 ) - 1 ))"
+  Control + Alt + h
 
 "xf_workspace add"
   Mod4 + Insert

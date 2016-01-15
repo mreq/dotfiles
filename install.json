@@ -11,6 +11,7 @@
   ],
   "link": {
     "bash/.bashrc": "~/.bashrc",
+    "bash/.dircolors": "~/.dircolors",
     "bash/.profile": "~/.profile",
     "coffee/coffeelint.json": "~/coffeelint.json",
     "doublecmd/doublecmd.xml": "~/.config/doublecmd/doublecmd.xml",
@@ -31,10 +32,12 @@
     "subl/Packages": "~/.config/sublime-text-3/Packages",
     "synapse/config.json": "~/.config/synapse/config.json",
     "terminator/config": "~/.config/terminator/config",
+    "tmux/.tmux.conf": "~/.tmux.conf",
     "vim/.vimrc": "~/.vimrc",
     "X/.xbindkeysrc": "~/.xbindkeysrc",
     "X/.Xdefaults": "~/.Xdefaults",
     "xfce4/panel": "~/.config/xfce4/panel",
+    "xfce4/terminal": "~/.config/xfce4/terminal",
     "xfce4/xfconf": "~/.config/xfce4/xfconf"
   }
 }
