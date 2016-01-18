@@ -10,6 +10,7 @@
     "~/.config/xfce4"
   ],
   "link": {
+    "autostart": "~/.config/autostart",
     "bash/.bashrc": "~/.bashrc",
     "bash/.dircolors": "~/.dircolors",
     "bash/.profile": "~/.profile",
