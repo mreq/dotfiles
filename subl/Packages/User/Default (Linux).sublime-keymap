@@ -478,7 +478,8 @@
     "keys": ["f9"],
     "command": "run_cmd",
     "args": {
-      "cmd": "xfce4-terminal --maximize --command=tmux --working-directory=\"$project_dir\""
+      "cmd": "terminator --working-directory=\"$project_dir\""
+      // "cmd": "xfce4-terminal --maximize --command=tmux --working-directory=\"$project_dir\""
     }
   }
 
