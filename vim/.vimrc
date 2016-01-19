@@ -8,6 +8,9 @@ filetype plugin indent on
 " 256 color terminal
 let &t_Co=256
 
+" Change leader key
+let mapleader=" "
+
 " Enable syntax highlight
 syntax on
 
@@ -28,7 +31,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Set color scheme
 set background=dark
-colorscheme default
+colorscheme gruvbox
 
 " Enable file system for tab completions
 filetype plugin on

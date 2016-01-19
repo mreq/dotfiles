@@ -22,3 +22,6 @@
 [submodule "subl/Packages/BetterFindBufferFork"]
 	path = subl/Packages/BetterFindBufferFork
 	url = git@github.com:mreq/BetterFindBuffer.git
+[submodule "vim/.vim/bundle/vim-easymotion"]
+	path = vim/.vim/bundle/vim-easymotion
+	url = git@github.com:easymotion/vim-easymotion.git

@@ -7,5 +7,11 @@ git submodule update --init --recursive
 rm -rf ~/.config/doublecmd/doublecmd.xml ~/.config/doublecmd/shortcuts.scf
 rm -rf ~/.config/xfce4/panel ~/.config/xfce4/xfconf
 
+# Dropbox symlinks
+if [[ -d ~/Dropbox/ubuntu/fonts ]]; then
+  rm -rf ~/.fonts
+  ln -s ~/Dropbox/ubuntu/fonts ~/.fonts
+fi
+
 # Run dotty
 dotty/dotty.py install.json
