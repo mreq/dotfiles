@@ -15,7 +15,8 @@ let mapleader=" "
 syntax on
 
 " Enable numbers
-set number
+" set number
+set relativenumber
 
 " Font
 set guifont=Ubuntu\ Mono\ 12

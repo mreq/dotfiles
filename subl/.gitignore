@@ -1,5 +1,6 @@
 Packages/*
 !Packages/User
+!Packages/UserAceJump
 !Packages/UserCoffee
 !Packages/UserCss
 !Packages/UserGit
@@ -8,6 +9,7 @@ Packages/*
 !Packages/UserRuby
 !Packages/UserYaml
 
+!Packages/AceJump
 !Packages/Base16
 !Packages/BetterFindBufferFork
 !Packages/Origami

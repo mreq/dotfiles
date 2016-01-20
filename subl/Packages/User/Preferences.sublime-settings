@@ -41,6 +41,7 @@
 	"font_size": 14.0,
 	"hide_minimap": true,
 	"highlight_line": true,
+	"highlight_modified_tabs": true,
 	"hot_exit": false,
 	"ignored_packages":
 	[
@@ -48,6 +49,7 @@
 	],
 	"inactive_panes_dim_strength": 0.2,
 	"index_files": false,
+	"polyfill.experimental_features": true,
 	"remember_open_files": true,
 	"shift_tab_unindent": true,
 	"show_minimap": false,

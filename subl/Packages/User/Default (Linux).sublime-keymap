@@ -28,24 +28,6 @@
     "context": [{ "key": "panel_visible" }]
   },
 
-  // Generic: navigate menus using vim movement
-  {
-    "keys": ["ctrl+j"],
-    "command": "move",
-    "args": { "by": "lines", "forward": true },
-    "context": [
-      { "key": "overlay_visible" }
-    ]
-  },
-  {
-    "keys": ["ctrl+j"],
-    "command": "move",
-    "args": { "by": "lines", "forward": true },
-    "context": [
-      { "key": "auto_complete_visible" }
-    ]
-  },
-
   // Generic: open from menus using vim movement
   {
     "keys": ["ctrl+l"],
@@ -58,24 +40,6 @@
     },
     "context": [
       { "key": "overlay_visible" }
-    ]
-  },
-
-  // Generic: navigate menus using vim movement
-  {
-    "keys": ["ctrl+k"],
-    "command": "move",
-    "args": { "by": "lines", "forward": false },
-    "context": [
-      { "key": "overlay_visible" }
-    ]
-  },
-  {
-    "keys": ["ctrl+k"],
-    "command": "move",
-    "args": { "by": "lines", "forward": false },
-    "context": [
-      { "key": "auto_complete_visible" }
     ]
   },
 
@@ -120,7 +84,7 @@
 
   // Generic: change quotes
   {
-    "keys": [" ", "c", "q"],
+    "keys": [" ", "h", "q"],
     "command": "change_quotes",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
@@ -162,6 +126,13 @@
     "command": "select_by_regex"
   },
 
+  // Cursors: create cursors by regex
+  {
+    "keys": ["ctrl+alt+f"],
+    "command": "select_by_regex"
+  },
+
+
   // Tabs: next
   {
     "keys": ["ctrl+tab"],
@@ -176,20 +147,6 @@
 
   // Tabs: next
   {
-    "keys": [" ", "l"],
-    "command": "next_view",
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
-
-  // Tabs: previous
-  {
-    "keys": [" ", "h"],
-    "command": "prev_view",
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
-
-  // Tabs: next
-  {
     "keys": ["L"],
     "command": "next_view",
     "context": [{ "key": "vi_command_mode_aware" }]
@@ -200,18 +157,6 @@
     "keys": ["H"],
     "command": "prev_view",
     "context": [{ "key": "vi_command_mode_aware" }]
-  },
-
-  // Tabs: next
-  {
-    "keys": ["ctrl+h"],
-    "command": "prev_view"
-  },
-
-  // Tabs: previous
-  {
-    "keys": ["ctrl+l"],
-    "command": "next_view"
   },
 
   // Tabs: move next
@@ -363,14 +308,6 @@
 
   // Generic: convert to spaces
   {
-    "keys": [" ", "c", "s"],
-    "command": "expand_tabs",
-    "args": { "set_translate_tabs": true },
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
-
-  // Generic: convert to spaces
-  {
     "keys": ["alt+p"],
     "command": "paste_and_indent"
   },
@@ -391,12 +328,10 @@
   // Navigation: page down
   {
     "keys": ["ctrl+d"],
-    "command": "chain",
+    "command": "move",
     "args": {
-      "commands": [
-        ["_vi_zz"],
-        ["move", { "by": "pages", "forward": true }]
-      ]
+      "by": "pages",
+      "forward": true
     },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
@@ -404,12 +339,10 @@
   // Navigation: page down
   {
     "keys": ["ctrl+u"],
-    "command": "chain",
+    "command": "move",
     "args": {
-      "commands": [
-        ["_vi_zz"],
-        ["move", { "by": "pages", "forward": false }]
-      ]
+      "by": "pages",
+      "forward": false
     },
     "context": [{ "key": "vi_command_mode_aware" }]
   },

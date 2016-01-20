@@ -1,0 +1,61 @@
+[
+  // AceJump: word
+  {
+    "keys": [" ", "w"],
+    "command": "ace_jump_word",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // AceJump: select by word
+  {
+    "keys": [" ", "W"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["ace_jump_select"],
+        ["ace_jump_word"]
+      ]
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // AceJump: character
+  {
+    "keys": [" ", "c"],
+    "command": "ace_jump_char",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // AceJump: select by character
+  {
+    "keys": [" ", "C"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["ace_jump_select"],
+        ["ace_jump_char"]
+      ]
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // AceJump: line
+  {
+    "keys": [" ", "l"],
+    "command": "ace_jump_line",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // AceJump: select by line
+  {
+    "keys": [" ", "L"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["ace_jump_select"],
+        ["ace_jump_line"]
+      ]
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+]
