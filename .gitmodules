@@ -25,3 +25,6 @@
 [submodule "vim/.vim/bundle/vim-easymotion"]
 	path = vim/.vim/bundle/vim-easymotion
 	url = git@github.com:easymotion/vim-easymotion.git
+[submodule "wmctile"]
+	path = wmctile
+	url = git@github.com:mreq/wmctile.git

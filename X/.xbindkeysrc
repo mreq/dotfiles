@@ -1,68 +1,67 @@
-"wmc_focus_window_or_run 'google-chrome.google-chrome' 'google-chrome'"
+"wmctile -x 'google-chrome' --switch-to 'google-chrome.google-chrome'"
   Mod4 + 1
 
 "google-chrome --incognito"
   Mod4 + Shift + 1
 
-"wmc_summon_window_or_run 'chromium-browser.chromium-browser' 'chromium-browser'"
+"wmctile -x 'chromium-browser' --summon 'chromium-browser.chromium-browser'"
   Mod4 + x
 
-"wmc_focus_window_or_run 'sublime_text.Sublime_text' 'subl -n'"
+"wmctile -x 'subl -n' --switch-to 'sublime_text.Sublime_text'"
   Mod4 + 2
 
-# "wmc_focus_window_or_run 'xfce4-terminal.Xfce4-terminal' 'xfce4-terminal --maximize --command=tmux'"
-"wmc_focus_window_or_run 'terminator.Terminator' 'terminator'"
+"wmctile -x 'terminator' --switch-to 'terminator.Terminator'"
   Mod4 + 3
 
 "wmctile.py switch_to_running 'r_x11.R_x11' 'rlogo_icon'"
   Mod4 + Shift + 3
 
-"wmc_summon_window_or_run 'doublecmd.Doublecmd' 'doublecmd'"
+"wmctile -x 'doublecmd' --summon 'doublecmd.Doublecmd'"
   Mod4 + 4
 
-"wmc_summon_window_or_run 'Thunderbird' 'thunderbird'"
+"wmctile -x 'thunderbird' --summon 'Thunderbird'"
   Mod4 + 5
 
-"wmc_summon_window_or_run 'gigolo.Gigolo' 'gigolo'"
+"wmctile -x 'gigolo' --summon 'gigolo.Gigolo'"
   Mod4 + a
 
-"wmc_focus_window_or_run '.Firefox' 'firefox'"
+"wmctile -x 'firefox' --switch-to '.Firefox'"
   Mod4 + f
 
-"wmc_summon_window_or_run 'spotify.Spotify' 'spotify'"
+"wmctile -x 'spotify' --summon 'spotify.Spotify'"
   Mod4 + c
 
-"wmc_summon_window_or_run 'crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei.google-chrome'"
+"wmctile -x 'google-chrome --profile-directory=Default --app-id=nfjdjopfnbnkmfldmeffmhgodmlhdnei' --summon 'crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei.google-chrome'"
   Mod4 + w
 
-"wmc_summon_window_or_run 'spotify.Spotify' 'spotify'"
+"wmctile -x 'spotify' --summon 'spotify.Spotify'"
   Mod4 + Shift + c
 
-"wmc_summon_window_or_run 'hunar.Thunar' 'thunar'"
+"wmctile -x 'thunar' --summon 'hunar.Thunar'"
   Mod4 + t
 
 "wmctile.py switch_to_running 'evince.Evince' 'evince'"
   Mod4 + e
 
-"wmc_summon_window_or_run 'slack.Slack' 'slack'"
+"wmctile -x 'slack' --summon 'slack.Slack'"
   Mod4 + s
 
-"wmc_summon_window_or_run 'slack.Slack' 'slack'"
+"wmctile -x 'slack' --summon 'slack.Slack'"
   Mod4 + Shift + s
 
 "wmctile.py switch_to_running 'ristretto.Ristretto' 'ristretto'"
   Mod4 + i
 
-"wmc_summon_window_or_run 'gimp-2.8.Gimp-2.8' 'gimp-2.8'"
+"wmctile -x 'gimp-2.8' --summon 'gimp-2.8.Gimp-2.8'"
   Mod4 + g
 
-"wmc_summon_window_or_run 'vlc.Vlc' 'vlc'"
+"wmctile -x 'vlc' --summon 'vlc.Vlc'"
   Mod4 + v
 
-"wmc_summon_window_or_run 'quicksynergy.Quicksynergy' 'quicksynergy'"
+"wmctile -x 'quicksynergy' --summon 'quicksynergy.Quicksynergy' "
   Mod4 + m
 
-"wmc_focus_window_or_run 'libreoffice.libreoffice-calc' 'libreoffice --calc'"
+"wmctile -x 'libreoffice --calc' --switch-to 'libreoffice.libreoffice-calc'"
   Mod4 + b
 
 "wmctile.py maximize 1 1"
