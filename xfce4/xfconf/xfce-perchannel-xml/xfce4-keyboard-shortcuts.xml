@@ -11,6 +11,7 @@
         <property name="startup-notify" type="empty"/>
       </property>
       <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;l" type="empty"/>
       <property name="XF86Display" type="empty"/>
       <property name="&lt;Super&gt;p" type="empty"/>
       <property name="&lt;Primary&gt;Escape" type="empty"/>
@@ -161,7 +162,6 @@
       <property name="&lt;Alt&gt;space" type="string" value="popup_menu_key"/>
       <property name="&lt;Control&gt;&lt;Alt&gt;Right" type="string" value="right_workspace_key"/>
       <property name="override" type="bool" value="true"/>
-      <property name="&lt;Super&gt;d" type="string" value="hide_window_key"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Left" type="string" value="move_window_left_workspace_key"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;&lt;Alt&gt;Right" type="string" value="move_window_right_workspace_key"/>
     </property>

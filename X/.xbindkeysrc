@@ -70,6 +70,9 @@
 "wmctile.py maximize 0 0"
   Mod4 + Down
 
+"wmctile -a --shade"
+  Mod4 + d
+
 "rename_xfce_workspace"
   Mod4 + Shift + w
 
