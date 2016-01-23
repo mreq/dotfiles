@@ -1,4 +1,4 @@
-"wmctile -x 'google-chrome' --switch-to 'google-chrome.google-chrome'"
+"wmctile -c -x 'google-chrome' --switch-to 'google-chrome.google-chrome'"
   Mod4 + 1
 
 "google-chrome --incognito"
@@ -7,10 +7,10 @@
 "wmctile -x 'chromium-browser' --summon 'chromium-browser.chromium-browser'"
   Mod4 + x
 
-"wmctile -x 'subl -n' --switch-to 'sublime_text.Sublime_text'"
+"wmctile -c -x 'subl -n' --switch-to 'sublime_text.Sublime_text'"
   Mod4 + 2
 
-"wmctile -x 'terminator' --switch-to 'terminator.Terminator'"
+"wmctile -c -x 'terminator' --switch-to 'terminator.Terminator'"
   Mod4 + 3
 
 "wmctile.py switch_to_running 'r_x11.R_x11' 'rlogo_icon'"
@@ -25,7 +25,7 @@
 "wmctile -x 'gigolo' --summon 'gigolo.Gigolo'"
   Mod4 + a
 
-"wmctile -x 'firefox' --switch-to '.Firefox'"
+"wmctile -c -x 'firefox' --switch-to '.Firefox'"
   Mod4 + f
 
 "wmctile -x 'spotify' --summon 'spotify.Spotify'"
@@ -61,7 +61,7 @@
 "wmctile -x 'quicksynergy' --summon 'quicksynergy.Quicksynergy' "
   Mod4 + m
 
-"wmctile -x 'libreoffice --calc' --switch-to 'libreoffice.libreoffice-calc'"
+"wmctile -c -x 'libreoffice --calc' --switch-to 'libreoffice.libreoffice-calc'"
   Mod4 + b
 
 "wmctile.py maximize 1 1"
