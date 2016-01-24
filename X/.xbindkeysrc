@@ -64,10 +64,10 @@
 "wmctile -c -x 'libreoffice --calc' --switch-to 'libreoffice.libreoffice-calc'"
   Mod4 + b
 
-"wmctile.py maximize 1 1"
+"wmctile -a --maximize"
   Mod4 + Up
 
-"wmctile.py maximize 0 0"
+"wmctile -a --unmaximize"
   Mod4 + Down
 
 "wmctile -a --shade"
@@ -88,11 +88,17 @@
 "switch_to_workspace last"
   Mod4 + Tab
 
-"wmctrl -s $(( $( wmctrl -d | grep '\*' | cut -d' ' -f 1 ) + 1 ))"
+"wmctile --switch-to-workspace next"
   Control + Alt + l
 
-"wmctrl -s $(( $( wmctrl -d | grep '\*' | cut -d' ' -f 1 ) - 1 ))"
+"wmctile --switch-to-workspace previous"
   Control + Alt + h
+
+"wmctile -a --follow-to-workspace next"
+  Control + Alt + Shift + l
+
+"wmctile -a --follow-to-workspace previous"
+  Control + Alt + Shift + h
 
 "xf_workspace add"
   Mod4 + Insert
@@ -112,7 +118,7 @@
 "toggle_lid_action"
   Mod4 + F12
 
-"wmctrl -r :ACTIVE: -t 0"
+"wmctile -a --move-to-workspace 0"
   Mod4 + r
 
 "launch_script"
@@ -160,28 +166,28 @@
 "notify-send -i info 'xbindkeys' 'was restarted.'; killall -HUP xbindkeys"
   Mod4 + F9
 
-"switch_to_workspace 0"
+"wmctile --switch-to-workspace 0"
   Mod4 + F1
 
-"switch_to_workspace 1"
+"wmctile --switch-to-workspace 1"
   Mod4 + F2
 
-"switch_to_workspace 2"
+"wmctile --switch-to-workspace 2"
   Mod4 + F3
 
-"switch_to_workspace 3"
+"wmctile --switch-to-workspace 3"
   Mod4 + F4
 
-"switch_to_workspace 4"
+"wmctile --switch-to-workspace 4"
   Mod4 + F5
 
-"switch_to_workspace 5"
+"wmctile --switch-to-workspace 5"
   Mod4 + F6
 
-"switch_to_workspace 6"
+"wmctile --switch-to-workspace 6"
   Mod4 + F7
 
-"switch_to_workspace 7"
+"wmctile --switch-to-workspace 7"
   Mod4 + F8
 
 "wmctile.py snap left 0.5"
