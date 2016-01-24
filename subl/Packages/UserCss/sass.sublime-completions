@@ -138,6 +138,8 @@
     { "trigger": "va", "contents": "vertical-align: ${0:top}${1:middle}${2:bottom}${3:baseline}" },
     { "trigger": "1", "contents": "!important" },
 
+    { "trigger": "wo\twebkit-overflow", "contents": "-webkit-overflow-scrolling: touch$0" },
+
     { "trigger": "ho", "contents": "&:hover\n\t$0\n" },
 
     { "trigger": "tl\ttopleft", "contents": "+topleft(${1:0}, ${0:0})" },
