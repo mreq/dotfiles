@@ -11,34 +11,36 @@ options=(
   'HDMI-main'
 )
 
+notebook_output=$( xrandr | head -n2 | tail -n1 | awk '{ print $1 }' )
+
 select_display() {
   case $1 in
     notebook )
-      xrandr --output eDP1 --auto --output HDMI1 --off --output VGA1 --off ;;
+      xrandr --output $notebook_output --auto --output HDMI1 --off --output VGA1 --off ;;
     HDMI )
-      xrandr --output HDMI1 --auto --output eDP1 --off --output VGA1 --off ;;
+      xrandr --output HDMI1 --auto --output $notebook_output --off --output VGA1 --off ;;
     DELL )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
       xrandr --addmode HDMI1 "2560x1440"
-      xrandr --output HDMI1 --mode 2560x1440 --output eDP1 --off --output VGA1 --off ;;
+      xrandr --output HDMI1 --mode 2560x1440 --output $notebook_output --off --output VGA1 --off ;;
     DELL-main )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
       xrandr --addmode HDMI1 "2560x1440"
-      xrandr --output HDMI1 --mode 2560x1440 --output eDP1 --auto --below HDMI1 ;;
+      xrandr --output HDMI1 --mode 2560x1440 --output $notebook_output --auto --below HDMI1 ;;
     DELL-DP )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
       xrandr --addmode DisplayPort-0 "2560x1440"
       xrandr --output DisplayPort-0 --mode 2560x1440 ;;
     VGA )
-      xrandr --output VGA1 --auto --output eDP1 --off ;;
+      xrandr --output VGA1 --auto --output $notebook_output --off ;;
     extend-right )
-      xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1 ;;
+      xrandr --output $notebook_output --auto --output HDMI1 --auto --right-of $notebook_output ;;
     extend-left )
-      xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1 ;;
+      xrandr --output $notebook_output --auto --output HDMI1 --auto --left-of $notebook_output ;;
     HDMI-left )
-      xrandr --output HDMI1 --auto --output eDP1 --auto --left-of HDMI1 ;;
+      xrandr --output HDMI1 --auto --output $notebook_output --auto --left-of HDMI1 ;;
     HDMI-main )
-      xrandr --output HDMI1 --auto --output eDP1 --auto --pos 1920x1080 ;;
+      xrandr --output HDMI1 --auto --output $notebook_output --auto --pos 1920x1080 ;;
   esac
 }
 
