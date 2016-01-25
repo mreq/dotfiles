@@ -138,5 +138,15 @@
       ]
     },
     "context": [{ "key": "selector", "operand": "source.git-diff" }]
+  },
+
+  // Git diff: show from diff
+  {
+    "keys": ["o"],
+    "command": "git_show_from_diff",
+    "context": [
+      { "key": "selector", "operand": "source.git-show" },
+      { "key": "vi_command_mode_aware" }
+    ]
   }
 ]
