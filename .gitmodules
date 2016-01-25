@@ -38,3 +38,7 @@
 	path = wmctile
 	url = git@github.com:mreq/wmctile.git
 	ignore = all
+[submodule "vim/.vim/bundle/vim-coffee-script"]
+	path = vim/.vim/bundle/vim-coffee-script
+	url = git@github.com:kchmck/vim-coffee-script.git
+	ignore = all
