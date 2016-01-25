@@ -34,6 +34,7 @@
     "synapse/config.json": "~/.config/synapse/config.json",
     "terminator/config": "~/.config/terminator/config",
     "tmux/.tmux.conf": "~/.tmux.conf",
+    "vim/.vim": "~/.vim",
     "vim/.vimrc": "~/.vimrc",
     "X/.xbindkeysrc": "~/.xbindkeysrc",
     "X/.Xdefaults": "~/.Xdefaults",
