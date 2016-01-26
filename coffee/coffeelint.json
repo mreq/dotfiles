@@ -58,7 +58,7 @@
     "level": "ignore"
   },
   "no_backticks": {
-    "level": "warn"
+    "level": "ignore"
   },
   "no_debugger": {
     "level": "warn",
