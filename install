@@ -8,9 +8,11 @@ rm -rf ~/.config/doublecmd/doublecmd.xml ~/.config/doublecmd/shortcuts.scf
 rm -rf ~/.config/xfce4/panel ~/.config/xfce4/xfconf
 
 # Dropbox symlinks
-if [[ -d ~/Dropbox/ubuntu/fonts ]]; then
+if [[ -d ~/Dropbox/ubuntu ]]; then
   rm -rf ~/.fonts
   ln -s ~/Dropbox/ubuntu/fonts ~/.fonts
+  rm -rf ~/texmf
+  ln -s ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
 fi
 
 # Run dotty

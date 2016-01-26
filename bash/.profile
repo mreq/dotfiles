@@ -16,12 +16,8 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
-# Extend path
-PATH="$PATH:$HOME/scripts/bin"
-if [[ -d "$HOME/wmcutils/bin" ]]; then
-  PATH="$PATH:$HOME/wmcutils/bin"
-fi
+# Add NPM to PATH for scripting
+PATH="$PATH:$HOME/.local/share/npm/bin"
 
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
-
