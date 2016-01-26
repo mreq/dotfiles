@@ -14,6 +14,8 @@
 	],
 	"caret_style": "blink",
 	"color_scheme": "Packages/User/SublimeLinter/mreq (SL).tmTheme",
+	"color_scheme_dark": "Packages/User/SublimeLinter/mreq (SL).tmTheme",
+	"color_scheme_light": "Packages/User/SublimeLinter/Solarized (Light) (SL).tmTheme",
 	"folder_exclude_patterns":
 	[
 		".svn",
