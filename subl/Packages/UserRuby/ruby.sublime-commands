@@ -1,0 +1,9 @@
+[
+  {
+    "caption": "Rubocop: Fix current file",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "rubocop -a $file_name"
+    }
+  }
+]
