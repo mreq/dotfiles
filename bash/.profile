@@ -16,6 +16,8 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
+PATH="$PATH:$HOME/scripts/bin"
+
 # Add NPM to PATH for scripting
 PATH="$PATH:$HOME/.local/share/npm/bin"
 
