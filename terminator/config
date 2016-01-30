@@ -16,14 +16,6 @@
   go_up = <Alt>k
   layout_launcher = <Alt>bracketright
   toggle_zoom = <Alt>z
-[layouts]
-  [[default]]
-    [[[child1]]]
-      parent = window0
-      type = Terminal
-    [[[window0]]]
-      parent = ""
-      type = Window
 [plugins]
 [profiles]
   [[default]]
