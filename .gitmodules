@@ -46,3 +46,7 @@
 	path = subl/Packages/SublimeLinter
 	url = git@github.com:mreq/SublimeLinter3.git
 	ignore = all
+[submodule "subl/Packages/MreqColorScheme"]
+	path = subl/Packages/MreqColorScheme
+	url = git@github.com:mreq/mreq-theme.git
+	ignore = all

@@ -12,6 +12,7 @@ Packages/*
 !Packages/AceJump
 !Packages/Base16
 !Packages/BetterFindBufferFork
+!Packages/MreqColorScheme
 !Packages/Origami
 !Packages/yardgen
 
