@@ -13,9 +13,7 @@
 		"*.zip"
 	],
 	"caret_style": "blink",
-	"color_scheme": "Packages/User/SublimeLinter/mreq_dark (SL).tmTheme",
-	"color_scheme_dark": "Packages/User/SublimeLinter/mreq (SL).tmTheme",
-	"color_scheme_light": "Packages/User/SublimeLinter/Solarized (Light) (SL).tmTheme",
+	"color_scheme": "Packages/MreqColorScheme/mreq_dark.tmTheme",
 	"folder_exclude_patterns":
 	[
 		".svn",
