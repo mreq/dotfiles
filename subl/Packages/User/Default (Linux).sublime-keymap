@@ -10,6 +10,13 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
+  // Generic: ctrl-p for the same folder
+  {
+    "keys": [" ", "o"],
+    "command": "show_overlay_folder",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
   // Generic: ctrl-shift-p
   {
     "keys": [" ", "k"],
