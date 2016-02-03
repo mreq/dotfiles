@@ -7,10 +7,11 @@ class ShowOverlayFolder(sublime_plugin.WindowCommand):
         window = self.window
         view = window.active_view()
         folders = window.folders()
-        path = view.file_name()
+        path = os.path.realpath(view.file_name())
         if path:
             path = path.replace(os.path.basename(path), '')
             for folder in folders:
+                folder = os.path.realpath(folder)
                 if folder in path:
                     path = path.replace(folder, '')[1:]
                     break

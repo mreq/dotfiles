@@ -12,7 +12,7 @@
 
   // Generic: ctrl-p for the same folder
   {
-    "keys": [" ", "o"],
+    "keys": [" ", "i"],
     "command": "show_overlay_folder",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
@@ -20,6 +20,7 @@
   // Generic: ctrl-shift-p
   {
     "keys": [" ", "k"],
+
     "command": "show_overlay",
     "args": {
       "overlay": "command_palette"

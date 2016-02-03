@@ -9,7 +9,6 @@ Packages/*
 !Packages/UserRuby
 !Packages/UserYaml
 
-!Packages/AceJump
 !Packages/Base16
 !Packages/BetterFindBufferFork
 !Packages/MreqColorScheme

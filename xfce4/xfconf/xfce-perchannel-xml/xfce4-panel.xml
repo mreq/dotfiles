@@ -131,6 +131,7 @@
         <value type="string" value="-logout-dialog"/>
       </property>
       <property name="ask-confirmation" type="bool" value="false"/>
+      <property name="appearance" type="uint" value="1"/>
     </property>
     <property name="plugin-9" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
