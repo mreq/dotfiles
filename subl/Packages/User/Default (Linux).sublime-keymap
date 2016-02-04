@@ -1,5 +1,5 @@
 [
-  // Generic: ctrl-p
+  // Ctrl+p
   {
     "keys": [" ", "j"],
     "command": "show_overlay",
@@ -10,20 +10,44 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
-  // Generic: ctrl-p for the same folder
+  // Ctrl+p: same folder
   {
     "keys": [" ", "i"],
     "command": "show_overlay_folder",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
-  // Generic: ctrl-shift-p
+  // Ctrl+Shift+p
   {
     "keys": [" ", "k"],
 
     "command": "show_overlay",
     "args": {
       "overlay": "command_palette"
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Ctrl+p: controllers
+  {
+    "keys": [" ", "r", "c"],
+    "command": "show_overlay",
+    "args": {
+      "overlay": "goto",
+      "show_files": true,
+      "text": "app/controllers/"
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Ctrl+p: models
+  {
+    "keys": [" ", "r", "m"],
+    "command": "show_overlay",
+    "args": {
+      "overlay": "goto",
+      "show_files": true,
+      "text": "app/models/"
     },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
@@ -81,7 +105,7 @@
 
   // Generic: unindent
   {
-    "keys": [" ", "r"],
+    "keys": [" ", "r", "r"],
     "command": "show_overlay",
     "args": {
       "overlay": "goto",
