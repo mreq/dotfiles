@@ -3,6 +3,7 @@
   {
     "keys": [" ", "w"],
     "command": "ace_jump_word",
+    "args": { "current_buffer_only": true },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -13,7 +14,7 @@
     "args": {
       "commands": [
         ["ace_jump_select"],
-        ["ace_jump_word"]
+        ["ace_jump_word", { "current_buffer_only": true }]
       ]
     },
     "context": [{ "key": "vi_command_mode_aware" }]
@@ -23,6 +24,7 @@
   {
     "keys": [" ", " "],
     "command": "ace_jump_char",
+    "args": { "current_buffer_only": true },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -33,7 +35,7 @@
     "args": {
       "commands": [
         ["ace_jump_select"],
-        ["ace_jump_char"]
+        ["ace_jump_char", { "current_buffer_only": true }]
       ]
     },
     "context": [{ "key": "vi_command_mode_aware" }]
@@ -43,6 +45,7 @@
   {
     "keys": [" ", "l"],
     "command": "ace_jump_line",
+    "args": { "current_buffer_only": true },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -53,7 +56,7 @@
     "args": {
       "commands": [
         ["ace_jump_select"],
-        ["ace_jump_line"]
+        ["ace_jump_line", { "current_buffer_only": true }]
       ]
     },
     "context": [{ "key": "vi_command_mode_aware" }]
