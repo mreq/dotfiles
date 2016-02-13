@@ -145,6 +145,9 @@
 "select_display notebook"
   Control + Mod4 + p
 
+"select_display DELL"
+  Control + Shift + Mod4 + p
+
 "select_power_action"
   Mod4 + o
 
