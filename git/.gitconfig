@@ -12,5 +12,8 @@
   # Detect whitespace errors when applying a patch
   whitespace = fix
 
+[merge]
+  tool = meld
+
 [rerere]
 	enabled = 1

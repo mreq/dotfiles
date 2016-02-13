@@ -124,7 +124,7 @@
   {
     "keys": ["x"],
     "command": "close_file",
-    "context": [{ "key": "selector", "operand": "source.git-diff" }]
+    "context": [{ "key": "selector", "operand": "source.git-diff, git-savvy.diff" }]
   },
 
   // Git diff: stage & close
@@ -137,7 +137,7 @@
         ["close_file"]
       ]
     },
-    "context": [{ "key": "selector", "operand": "source.git-diff" }]
+    "context": [{ "key": "selector", "operand": "source.git-diff, git-savvy.diff" }]
   },
 
   // Git diff: show from diff
@@ -172,4 +172,52 @@
         { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
     ]
   },
+
+  // Git status: tab
+  {
+    "keys": ["tab"],
+    "command": "gs_tab_cycle",
+    "args": { "source": "graph" },
+    "context": [
+      { "key": "setting.git_savvy.log_graph_view", "operator": "equal", "operand": true },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  // Git status: graph movement
+  {
+    "keys": ["j"],
+    "command": "gs_log_graph_next_commit",
+    "args": { "forward": true },
+    "context": [
+      { "key": "setting.git_savvy.log_graph_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Git status: graph movement
+  {
+    "keys": ["k"],
+    "command": "gs_log_graph_next_commit",
+    "args": { "forward": false },
+    "context": [
+      { "key": "setting.git_savvy.log_graph_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Git status: open
+  {
+    "keys": ["o"],
+    "command": "gs_log_graph_action",
+    "args": { "action": "view" },
+    "context": [
+      { "key": "setting.git_savvy.log_graph_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Git diff: close
+  {
+    "keys": ["q"],
+    "command": "close_file",
+    "context": [{ "key": "selector", "operand": "git-savvy.diff" }]
+  }
 ]
