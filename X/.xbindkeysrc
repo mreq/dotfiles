@@ -85,7 +85,7 @@
 "switch_to_workspace"
   Mod4 + grave
 
-"switch_to_workspace last"
+"wmctile --switch-to-workspace history"
   Mod4 + Tab
 
 "wmctile --switch-to-workspace next"
