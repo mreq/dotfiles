@@ -14,6 +14,6 @@
 
     { "trigger": "ivg\tinstance_variable_get", "contents": "instance_variable_get(:@$0)" },
     { "trigger": "do\tdo..end", "contents": "do\n\t$0\nend" },
-    { "trigger": "t\tI18n.t", "contents": "I18n.t('$0')" }
+    { "trigger": "it\tI18n.t", "contents": "I18n.t('$0')" }
   ]
 }

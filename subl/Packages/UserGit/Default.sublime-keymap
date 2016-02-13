@@ -148,5 +148,28 @@
       { "key": "selector", "operand": "source.git-show" },
       { "key": "vi_command_mode_aware" }
     ]
-  }
+  },
+
+  ///////////////////////
+  // Git Savvy
+  ///////////////////////
+  // Git status: next file
+  {
+    "keys": ["j"],
+    "command": "gs_status_navigate_file",
+    "args": { "forward": true },
+    "context": [
+        { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Git status: previous file
+  {
+    "keys": ["k"],
+    "command": "gs_status_navigate_file",
+    "args": { "forward": false },
+    "context": [
+        { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+    ]
+  },
 ]
