@@ -15,14 +15,23 @@ let mapleader=" "
 syntax on
 
 " Enable numbers
-" set number
+set number
 set relativenumber
 
 " Font
-set guifont=Ubuntu\ Mono\ 12
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Ubuntu\ Mono\ 12
+  elseif has("gui_win32")
+    set guifont=Consolas:h12
+  endif
+endif
 
 " Modify tab size
 set tabstop=2
+
+" Convert tabs to spaces
+set expandtab
 
 " Smart indenting
 set autoindent
@@ -49,3 +58,4 @@ let g:syntastic_check_on_wq = 0
 
 " Keybinds
 nnoremap ; :
+
