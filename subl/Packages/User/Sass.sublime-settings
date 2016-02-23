@@ -1,6 +1,7 @@
 {
 	"extensions":
 	[
-		"sass"
+		"sass",
+		"sass.erb"
 	]
 }

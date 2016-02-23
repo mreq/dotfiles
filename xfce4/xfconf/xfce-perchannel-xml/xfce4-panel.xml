@@ -93,8 +93,6 @@
     </property>
     <property name="plugin-5" type="string" value="indicator">
       <property name="blacklist" type="array">
-        <value type="string" value="com.canonical.indicator.messages"/>
-        <value type="string" value="libappmenu.so"/>
       </property>
       <property name="known-indicators" type="array">
         <value type="string" value="libapplication.so"/>
@@ -103,6 +101,8 @@
         <value type="string" value="com.canonical.indicator.messages"/>
       </property>
       <property name="single-row" type="bool" value="false"/>
+      <property name="whitelist" type="array">
+      </property>
     </property>
     <property name="plugin-6" type="string" value="separator">
       <property name="style" type="uint" value="0"/>

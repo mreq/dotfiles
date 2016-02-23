@@ -70,7 +70,7 @@
     { "trigger": "al\talert", "contents": "alert $0" },
 
     // coffee classes
-    { "trigger": "cl\tclass", "contents": "class $1\n\tconstructor: ${2:() }->\n\t\t" },
+    { "trigger": "class\tclass", "contents": "class $1\n\tconstructor: ${2:() }->\n\t\t" },
 
     // timeouts
     { "trigger": "st\tsetTimeout", "contents": "setTimeout (${0:->}\n), $1" },

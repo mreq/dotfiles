@@ -139,6 +139,11 @@ alias xfce4-terminal-tmux="xfce4-terminal --maximize --command=tmux"
 terminal-colors() {
   for x in 0 1 4 5 7 8; do for i in $( seq 30 37 ); do for a in $( seq 40 47 ); do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""
 }
+shle_prepare() {
+  export STAGING_AWS_ACCESS_KEY_ID=$( grep aws_access_key_id ~/.aws/credentials | awk '{ print $3 }' )
+  export STAGING_AWS_SECRET_ACCESS_KEY=$( grep aws_secret_access_key ~/.aws/credentials | awk '{ print $3 }' )
+  export SHLE_DEFAULT_PASSWORD=$( cat ~/.shle_default_password )
+}
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
