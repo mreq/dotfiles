@@ -141,6 +141,9 @@
     { "trigger": "wo\twebkit-overflow", "contents": "-webkit-overflow-scrolling: touch$0" },
 
     { "trigger": "ho", "contents": "&:hover\n\t$0\n" },
+    { "trigger": "nth", "contents": "&:nth-child($1)\n\t$0\n" },
+    { "trigger": "odd", "contents": "&:nth-child(odd)\n\t$0\n" },
+    { "trigger": "even", "contents": "&:nth-child(even)\n\t$0\n" },
 
     { "trigger": "tl\ttopleft", "contents": "+topleft(${1:0}, ${0:0})" },
     { "trigger": "tr\ttopright", "contents": "+topright(${1:0}, ${0:0})" },
