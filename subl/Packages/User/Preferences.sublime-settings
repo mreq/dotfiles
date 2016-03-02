@@ -11,6 +11,7 @@
 		"*.tga",
 		"*.ttf",
 		"*.zip",
+		"frontend/node_modules/**",
 		"tmp/**"
 	],
 	"caret_style": "blink",
