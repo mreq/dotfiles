@@ -5,10 +5,7 @@
 options:
   # Don't merge default rules
   merge-default-rules: false
-  # Set the formatter to 'html'
-  formatter: html
-  # Output file instead of logging results
-  output-file: 'linters/sass-lint.html'
+  formatter: stylish
 # File Options
 files:
   include: 'sass/**/*.s+(a|c)ss'
@@ -28,14 +25,14 @@ rules:
 
   no-warn: 1
   no-debug: 1
-  no-ids: 2
-  no-important: 2
+  no-ids: 0
+  no-important: 1
   hex-notation:
     - 2
     -
-      style: uppercase
+      style: lowercase
   indentation:
-    - 2
+    - 0
     -
       size: 2
   property-sort-order:
@@ -46,8 +43,6 @@ rules:
         - margin
       ignore-custom-properties: true
   variable-for-property:
-    - 2
+    - 0
     -
       properties:
-        - margin
-        - content
