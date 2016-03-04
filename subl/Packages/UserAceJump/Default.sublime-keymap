@@ -1,25 +1,4 @@
 [
-  // AceJump: word
-  {
-    "keys": [" ", "w"],
-    "command": "ace_jump_word",
-    "args": { "current_buffer_only": true },
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
-
-  // AceJump: select by word
-  {
-    "keys": [" ", "W"],
-    "command": "chain",
-    "args": {
-      "commands": [
-        ["ace_jump_select"],
-        ["ace_jump_word", { "current_buffer_only": true }]
-      ]
-    },
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
-
   // AceJump: character
   {
     "keys": [" ", " "],
@@ -39,26 +18,5 @@
       ]
     },
     "context": [{ "key": "vi_command_mode_aware" }]
-  },
-
-  // AceJump: line
-  {
-    "keys": [" ", "l"],
-    "command": "ace_jump_line",
-    "args": { "current_buffer_only": true },
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
-
-  // AceJump: select by line
-  {
-    "keys": [" ", "L"],
-    "command": "chain",
-    "args": {
-      "commands": [
-        ["ace_jump_select"],
-        ["ace_jump_line", { "current_buffer_only": true }]
-      ]
-    },
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
+  }
 ]
