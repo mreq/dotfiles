@@ -1,7 +1,7 @@
 [
   // CSS: Wrap in double brackets
   {
-    "keys": [" ", "w", "w"],
+    "keys": [" ", "t", "w"],
     "command": "toggle_math_wrap",
     "context": [
       { "key": "selector", "operator": "equal", "operand": "source.sass" },
