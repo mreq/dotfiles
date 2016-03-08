@@ -34,6 +34,9 @@
 "wmctile -x 'google-chrome --profile-directory=Default --app-id=nfjdjopfnbnkmfldmeffmhgodmlhdnei' --summon 'crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei.google-chrome'"
   Mod4 + w
 
+"wmctile -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg' --summon 'crx_oflhioojkbelepjlnafgmgkkjhojphcg.google-chrome'"
+  Mod4 + e
+
 "wmctile -x 'spotify' --summon 'spotify.Spotify'"
   Mod4 + Shift + c
 
@@ -41,16 +44,13 @@
   Mod4 + t
 
 "wmctile.py switch_to_running 'evince.Evince' 'evince'"
-  Mod4 + e
+  Mod4 + i
 
 "wmctile -x 'slack' --summon 'slack.Slack'"
   Mod4 + s
 
 "wmctile -x 'slack' --summon 'slack.Slack'"
   Mod4 + Shift + s
-
-"wmctile.py switch_to_running 'ristretto.Ristretto' 'ristretto'"
-  Mod4 + i
 
 "wmctile -x 'gimp-2.8' --summon 'gimp-2.8.Gimp-2.8'"
   Mod4 + g
