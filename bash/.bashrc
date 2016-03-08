@@ -133,7 +133,6 @@ alias mps="mina production ssh"
 alias msc="mina staging console"
 alias msd="mina staging deploy"
 alias mss="mina staging ssh"
-alias rc="[[ -f bin/rails ]] && bin/rails c || rails c"
 alias tmux="TERM=screen-256color-bce tmux"
 alias xfce4-terminal-tmux="xfce4-terminal --maximize --command=tmux"
 terminal-colors() {
@@ -144,8 +143,18 @@ shle_prepare() {
   export STAGING_AWS_SECRET_ACCESS_KEY=$( grep aws_secret_access_key ~/.aws/credentials | awk '{ print $3 }' )
   export SHLE_DEFAULT_PASSWORD=$( cat ~/.shle_default_password )
 }
+r() {
+  if [[ -f bin/rails ]]; then
+    bin/rails "$@"
+  else
+    rails "$@"
+  fi
+}
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Bash completions
 find ~/.dotfiles/ -name "*_completions.sh" -exec bash -c {} \;
