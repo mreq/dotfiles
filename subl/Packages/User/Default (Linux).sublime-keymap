@@ -452,6 +452,15 @@
       "cmd": "terminator --working-directory=\"$project_dir\""
       // "cmd": "xfce4-terminal --maximize --command=tmux --working-directory=\"$project_dir\""
     }
+  },
+
+  // Sidebar: focus
+  {
+    "keys": [" ", "d"],
+    "command": "focus_side_bar",
+    "context": [
+      { "key": "vi_command_mode_aware" }
+    ]
   }
 
   // //////////////////////

@@ -11,6 +11,7 @@
 		"*.tga",
 		"*.ttf",
 		"*.zip",
+		".sass-cache/**",
 		"frontend/node_modules/**",
 		"tmp/**"
 	],
