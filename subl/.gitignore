@@ -11,6 +11,7 @@ Packages/*
 
 !Packages/Base16
 !Packages/BetterFindBufferFork
+!Packages/BetterCoffeescriptFork
 !Packages/MreqColorScheme
 !Packages/Origami
 !Packages/SendTextPlus

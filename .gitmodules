@@ -50,3 +50,6 @@
 	path = subl/Packages/MreqColorScheme
 	url = git@github.com:mreq/mreq-theme.git
 	ignore = all
+[submodule "subl/Packages/BetterCoffeescriptFork"]
+	path = subl/Packages/BetterCoffeescriptFork
+	url = git@github.com:mreq/sublime-better-coffeescript.git
