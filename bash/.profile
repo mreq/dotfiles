@@ -21,9 +21,6 @@ PATH="$PATH:$HOME/scripts/bin"
 # Add RVM to PATH for scripting
 PATH="$PATH:$HOME/.rvm/bin"
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 export EDITOR=vim
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
