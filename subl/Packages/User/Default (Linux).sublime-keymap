@@ -461,7 +461,18 @@
     "context": [
       { "key": "vi_command_mode_aware" }
     ]
+  },
+
+  // Templates: Toggle wrap
+  {
+    "keys": [" ", "t", "w"],
+    "command": "toggle_template_wrap",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.emblem" },
+      { "key": "vi_command_mode_aware" }
+    ]
   }
+
 
   // //////////////////////
   // // SublimeTODO

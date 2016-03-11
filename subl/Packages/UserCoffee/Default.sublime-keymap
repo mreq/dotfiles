@@ -1,11 +1,11 @@
 [
-  // Ember: go to - find and open coffee/emblem file with matching file
+  // Coffee: Toggle function brackets
   {
-    "keys": [" ", "e", "g"],
-    "command": "run_cmd",
-     "args": {
-       "command": "fn=$file_name; fn=${fn##*/}; pt -g=\".*${fn%.*}\\.(coffee|em).*\" | grep -v $fn | grep -v tests | xargs subl"
-     },
-    "context": [{ "key": "vi_command_mode_aware" }]
+    "keys": [" ", "t", "b"],
+    "command": "toggle_coffee_brackets",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.coffee" },
+      { "key": "vi_command_mode_aware" }
+    ]
   }
 ]
