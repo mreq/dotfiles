@@ -44,11 +44,11 @@ select_display() {
   esac
 }
 
-if [[ $1 ]]; then
-  select_display "$1"
+if xrandr | grep -q DisplayPort; then
+  select_display "DELL-DP"
 else
-  if xrandr | grep -q DisplayPort; then
-    select_display "DELL-DP"
+  if [[ $1 ]]; then
+    select_display "$1"
   else
     select_display "$( printf "%s\n" "${options[@]}" | rofi -dmenu -i -p '↠ ' )"
   fi
