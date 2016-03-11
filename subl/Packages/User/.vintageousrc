@@ -1,2 +1,4 @@
 :map ; :
 :map Y y$
+:map [ ^
+:map ] $
