@@ -26,6 +26,7 @@
 		"Jinja2",
 		"JsonTree",
 		"LessImproved",
+		"knitr",
 		"List stylesheet variables",
 		"LogMagic",
 		"MarkdownHighlighting",

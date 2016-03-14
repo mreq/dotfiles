@@ -1,0 +1,10 @@
+[
+  {
+    "keys": [" ", "r"],
+    "command": "send_text_plus",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.r" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  }
+]
