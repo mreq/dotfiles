@@ -12,6 +12,7 @@ Packages/*
 !Packages/Base16
 !Packages/BetterFindBufferFork
 !Packages/BetterCoffeescriptFork
+!Packages/GitSavvy
 !Packages/MreqColorScheme
 !Packages/Origami
 !Packages/Pretty JSON

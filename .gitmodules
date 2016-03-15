@@ -53,3 +53,6 @@
 [submodule "subl/Packages/BetterCoffeescriptFork"]
 	path = subl/Packages/BetterCoffeescriptFork
 	url = git@github.com:mreq/sublime-better-coffeescript.git
+[submodule "subl/Packages/GitSavvy"]
+	path = subl/Packages/GitSavvy
+	url = git@github.com:mreq/GitSavvy.git
