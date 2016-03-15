@@ -12,6 +12,7 @@
 		"*.ttf",
 		"*.zip",
 		".sass-cache/**",
+		"frontend/bower_components/**",
 		"frontend/node_modules/**",
 		"frontend/tmp/**",
 		"tmp/**"

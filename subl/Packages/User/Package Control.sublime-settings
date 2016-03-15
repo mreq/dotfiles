@@ -49,7 +49,6 @@
 		"SublimeLinter",
 		"SublimeLinter-coffeelint",
 		"SublimeLinter-contrib-lintr",
-		"SublimeLinter-contrib-sass-lint",
 		"SublimeLinter-json",
 		"SublimeLinter-pylint",
 		"SublimeLinter-rubocop",
