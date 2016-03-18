@@ -50,6 +50,7 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
+		"All Autocomplete",
 		"Vintage"
 	],
 	"inactive_panes_dim_strength": 0.2,
