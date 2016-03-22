@@ -1,3 +1,5 @@
 {
-  "commit_on_close": true
+  "dev_mode": true,
+  "commit_on_close": true,
+  "vintageous_friendly": true
 }
