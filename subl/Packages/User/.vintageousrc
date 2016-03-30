@@ -1,7 +1,8 @@
-:let mapleader=<Space>
+:let mapleader=\
 
 :map ; :
 :map Y y$
 :map [ ^
 :map ] $
-:map <Leader>g 0f'lvi'p
+:nmap <Leader>' 0vi'p0
+:nmap <Leader>\ <C-P>

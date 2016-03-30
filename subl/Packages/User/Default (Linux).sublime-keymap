@@ -95,21 +95,21 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
-  // Generic: indent
-  {
-    "keys": [">"],
-    "command": "indent",
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
+  // // Generic: indent
+  // {
+  //   "keys": [">"],
+  //   "command": "indent",
+  //   "context": [{ "key": "vi_command_mode_aware" }]
+  // },
 
-  // Generic: unindent
-  {
-    "keys": ["<"],
-    "command": "unindent",
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
+  // // Generic: unindent
+  // {
+  //   "keys": ["<"],
+  //   "command": "unindent",
+  //   "context": [{ "key": "vi_command_mode_aware" }]
+  // },
 
-  // Generic: unindent
+  // Generic: goto @
   {
     "keys": [" ", "r", "r"],
     "command": "show_overlay",

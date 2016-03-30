@@ -8,6 +8,7 @@
     { "trigger": "3", "contents": "&.$1\n\t$0\n" },
     { "trigger": "e", "contents": "+${1:fsize}($0)" },
     { "trigger": "r", "contents": "+$0" },
+    { "trigger": "4", "contents": "\\$${1:var}: $2" },
 
     { "trigger": "h\thover", "contents": "&:hover\n\t$0" },
     { "trigger": "be\tbefore", "contents": "&:before\n\t$0" },

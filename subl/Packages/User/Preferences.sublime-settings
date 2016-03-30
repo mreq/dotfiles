@@ -21,10 +21,12 @@
 	"color_scheme": "Packages/User/SublimeLinter/mreq_dark (SL).tmTheme",
 	"folder_exclude_patterns":
 	[
-		".svn",
 		".git",
 		".hg",
+		".sass-cache",
+		".svn",
 		"CVS",
+		"node_modules",
 		"tmp/class-*",
 		"tmp/es_*",
 		"tmp/jshinter*",
