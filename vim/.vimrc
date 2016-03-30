@@ -58,4 +58,9 @@ let g:syntastic_check_on_wq = 0
 
 " Keybinds
 nnoremap ; :
-
+map <Leader>k <C-W>k
+map <Leader>j <C-W>j
+map <Leader>h <C-W>h
+map <Leader>l <C-W>l
+map <Leader>t gt
+map <Leader>T gT
