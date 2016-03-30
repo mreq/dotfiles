@@ -1,25 +1,33 @@
 #!/bin/bash
-checkDir() {
-  if [[ ! -d $1 ]]; then
-    echo "No $1, exiting."
-    exit 1
-  fi
-}
-checkDir 'sprites@1x' || exit 1
-checkDir 'sprites@2x' || exit 1
+spritesMoveAround() {
+  checkDir() {
+    if [[ ! -d $1 ]]; then
+      echo "No $1, exiting."
+      exit 1
+    fi
+  }
+  checkDir 'sprites@1x' || exit 1
+  checkDir 'sprites@2x' || exit 1
 
-for file in *.png; do
-  if [[ $file == *'@2x'* ]]; then
-    folder='sprites@2x'
-    name=${file/@2x/}
-  else
-    folder='sprites@1x'
-    name=${file/@1x/}
-  fi
-  # ico- ->
-  name=${name/ico-/}
-  # -hover -> __hover
-  name=${name/-hover/__hover}
-  mv "$file" "$folder/$name"
-  echo "mv $file $folder/$name"
-done
+  for file in *.png; do
+    if [[ $file == *'@2x'* ]]; then
+      folder='sprites@2x'
+      name=${file/@2x/}
+    else
+      folder='sprites@1x'
+      name=${file/@1x/}
+    fi
+    # ico- ->
+    name=${name/ico-/}
+    # -hover -> __hover
+    name=${name/-hover/__hover}
+    mv "$file" "$folder/$name"
+    echo "mv $file $folder/$name"
+  done
+}
+
+if [[ -d app/assets/images ]]; then
+  ( cd app/assets/images; spritesMoveAround )
+else
+  spritesMoveAround
+fi
