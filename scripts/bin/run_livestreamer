@@ -3,15 +3,16 @@
 # Shortcut for livestreamer
 
 streams=(
-  'http://www.twitch.tv/dreamhackcs'
-  'http://www.twitch.tv/esl_csgo'
-  'http://www.twitch.tv/faceittv'
-  'http://www.twitch.tv/starladder_cs_en'
-  'http://www.twitch.tv/esl_greatfrag'
-  'http://www.hitbox.tv/gameagentstv'
-  'http://www.twitch.tv/nipgamingtv'
-  'http://www.twitch.tv/fragbitelive'
-  'http://www.twitch.tv/p4wnyhof'
+  'twitch.tv/mlg'
+  'twitch.tv/dreamhackcs'
+  'twitch.tv/esl_csgo'
+  'twitch.tv/faceittv'
+  'twitch.tv/starladder_cs_en'
+  'twitch.tv/esl_greatfrag'
+  'hitbox.tv/gameagentstv'
+  'twitch.tv/nipgamingtv'
+  'twitch.tv/fragbitelive'
+  'twitch.tv/p4wnyhof'
   'http://www.majorleaguegaming.com/playcevo'
   'http://www.majorleaguegaming.com/playcevo2'
 )
