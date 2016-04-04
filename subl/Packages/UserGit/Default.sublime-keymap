@@ -5,35 +5,28 @@
     "command": "chain",
      "args": {
        "commands": [
-         ["git_status"],
-         ["_enter_insert_mode"]
+         ["gs_show_status"]
        ]
      },
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
-
-  // Git: git push
-  {
-    "keys": [" ", "g", "h"],
-    "command": "git_push",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
   // Git: git log
   {
     "keys": [" ", "g", "q"],
-    "command": "git_quick_log",
+    "command": "g_log",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
   // Git: git pull --rebase
   {
     "keys": [" ", "g", "p"],
-    "command": "git_custom",
+    "command": "gs_custom",
     "args": {
-      "cmd": "pull --rebase",
-      "output": "panel",
-      "async": true
+      "args": ["pull", "--rebase"],
+      "output_to_panel": true,
+      "start_msg": "Starting pull (rebase)...",
+      "complete_msg": "Pull complete."
     },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
@@ -51,7 +44,7 @@
   // Git: git checkout
   {
     "keys": [" ", "g", "c"],
-    "command": "git_checkout_branch",
+    "command": "gs_checkout_branch",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -80,67 +73,11 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
-
-  // Git status: close
-  {
-   "keys": ["x"],
-   "command": "close_file",
-   "context": [{ "key": "selector", "operand": "text.git-status" }]
-  },
-
-  // Git status: commit
-  {
-   "keys": ["c"],
-   "command": "chain",
-   "args": {
-     "commands": [
-       ["git_commit"],
-       ["_enter_insert_mode"]
-     ]
-   },
-   "context": [{ "key": "selector", "operand": "text.git-status" }]
-  },
-
-  // Git status: vim movement down
-  {
-    "keys": ["j"],
-    "command": "git_status_move",
-    "args": {"goto": "item:next"},
-    "context": [{ "key": "selector", "operand": "text.git-status" }]
-  },
-
-  // Git status: vim movement up
-  {
-    "keys": ["k"],
-    "command": "git_status_move",
-    "args": {"goto": "item:prev"},
-    "context": [{ "key": "selector", "operand": "text.git-status" }]
-  },
-
-  // Git status: push
-  {
-    "keys": ["h"],
-    "command": "git_push",
-    "context": [{ "key": "selector", "operand": "text.git-status" }]
-  },
-
-  // Git status: pull
-  {
-    "keys": ["p"],
-    "command": "git_custom",
-    "args": {
-      "cmd": "pull --rebase",
-      "output": "panel",
-      "async": true
-    },
-    "context": [{ "key": "selector", "operand": "text.git-status" }]
-  },
-
   // Git diff: close
   {
     "keys": ["x"],
     "command": "close_file",
-    "context": [{ "key": "selector", "operand": "source.git-diff, git-savvy.diff" }]
+    "context": [{ "key": "selector", "operand": "git-savvy.diff" }]
   },
 
   // Git diff: stage & close
@@ -153,17 +90,7 @@
         ["close_file"]
       ]
     },
-    "context": [{ "key": "selector", "operand": "source.git-diff, git-savvy.diff" }]
-  },
-
-  // Git diff: show from diff
-  {
-    "keys": ["o"],
-    "command": "git_show_from_diff",
-    "context": [
-      { "key": "selector", "operand": "source.git-show" },
-      { "key": "vi_command_mode_aware" }
-    ]
+    "context": [{ "key": "selector", "operand": "git-savvy.diff" }]
   },
 
   // Git diff: close
