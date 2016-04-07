@@ -31,6 +31,17 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
+  // Git: git whatchanged
+  {
+    "keys": [" ", "g", "w"],
+    "command": "gs_custom",
+    "args": {
+      "args": ["whatchanged"],
+      "output_to_panel": true
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
   // Git: xdg-open bitbucket commits
   {
     "keys": [" ", "g", "b"],
