@@ -17,6 +17,7 @@
     "coffee/coffeelint.json": "~/coffeelint.json",
     "doublecmd/doublecmd.xml": "~/.config/doublecmd/doublecmd.xml",
     "doublecmd/shortcuts.scf": "~/.config/doublecmd/shortcuts.scf",
+    "fontconfig": "~/.config/fontconfig",
     "git/.gitconfig": "~/.gitconfig",
     "git/ignore": "~/.config/git/ignore",
     "i3/config": "~/.config/i3/config",
