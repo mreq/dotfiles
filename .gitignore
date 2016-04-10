@@ -7,3 +7,6 @@ xfce4/xfconf/xfce-perchannel-xml/*.xml
 scripts/wmctile/python/*
 !scripts/wmctile/python/wmctile.py
 vim/.vim/.netrwhist
+
+/vim/.vim/dein.vim/
+/bash/base16-shell/
