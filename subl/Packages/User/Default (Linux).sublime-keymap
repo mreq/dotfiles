@@ -120,6 +120,13 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
+  // Generic: goto definition
+  {
+    "keys": [" ", "f", "d"],
+    "command": "goto_definition",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
   // Generic: change quotes
   {
     "keys": [" ", "t", "q"],
