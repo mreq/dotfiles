@@ -19,6 +19,7 @@
 	],
 	"caret_style": "blink",
 	"color_scheme": "Packages/User/SublimeLinter/mreq_dark (SL).tmTheme",
+	"ensure_newline_at_eof_on_save": true,
 	"folder_exclude_patterns":
 	[
 		".git",
