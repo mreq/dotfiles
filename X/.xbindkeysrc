@@ -22,7 +22,7 @@
 "wmctile -x 'thunderbird' --summon 'Thunderbird'"
   Mod4 + 5
 
-"wmctile -x 'gigolo' --summon 'gigolo.Gigolo'"
+"wmctile -x 'xfce4-terminal' --summon 'xfce4-terminal.Xfce4-terminal'"
   Mod4 + a
 
 "wmctile -c -x 'firefox' --switch-to '.Firefox'"
