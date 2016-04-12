@@ -17,6 +17,7 @@ Packages/*
 !Packages/Origami
 !Packages/Pretty JSON
 !Packages/SendTextPlus
+!Packages/SublimeLogMagic
 !Packages/yardgen
 
 Packages/User/GitSavvy/GitSavvy.active-diff-view.*
