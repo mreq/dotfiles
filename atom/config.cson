@@ -3,26 +3,30 @@
   "base16-syntax":
     scheme: "Eighties"
   core:
+    disabledPackages: [
+      "autoflow"
+    ]
     ignoredNames: [
       ".git"
       ".sass-cache"
       "node_modules"
-    ]
-    packagesWithKeymapsDisabled: [
-      "base16-syntax"
-      "git-status"
+      "tmp"
     ]
     projectHome: "/home/petr/work"
     themes: [
       "one-dark-ui"
       "base16-syntax"
     ]
+  "disable-keybindings":
+    prefixKeys: [
+      "ctrl-k"
+      "ctrl-w"
+    ]
   editor:
     fontFamily: "Consolas"
     fontSize: 16
     invisibles: {}
     lineHeight: 1.4
-    showInvisibles: true
     zoomFontWhenCtrlScrolling: false
   "exception-reporting":
     userId: "d11a1e59-99c5-f8ff-e1df-4c527560c43f"

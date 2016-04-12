@@ -1,9 +1,25 @@
-'atom-text-editor.vim-mode-plus.normal-mode':
+'body':
+    'ctrl-h': 'core:move-left'
+    'ctrl-j': 'core:move-down'
+    'ctrl-k': 'core:move-up'
+    'ctrl-l': 'core:move-right'
+
+'atom-workspace atom-text-editor:not([mini])':
+    'ctrl-h': 'core:move-left'
+    'ctrl-j': 'core:move-down'
+    'ctrl-k': 'core:move-up'
+    'ctrl-l': 'core:move-right'
+
+'atom-text-editor.vim-mode-plus.insert-mode':
+    'ctrl-w': 'core:close'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
     # Generic
     'space s': 'core:save'
     'space x': 'core:close'
-    'space k': 'command-palette:toggle'
+    'ctrl-w': 'core:close'
     'space j': 'fuzzy-finder:toggle-file-finder'
+    'space k': 'command-palette:toggle'
     'escape escape': 'vim-mode-plus:clear-highlight-search'
     # Pane focus
     'alt-l': 'window:focus-pane-on-right'
