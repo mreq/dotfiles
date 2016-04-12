@@ -1,0 +1,16 @@
+'atom-text-editor.vim-mode-plus.normal-mode':
+    # Generic
+    'space s': 'core:save'
+    'space x': 'core:close'
+    'space k': 'command-palette:toggle'
+    'space j': 'fuzzy-finder:toggle-file-finder'
+    'escape escape': 'vim-mode-plus:clear-highlight-search'
+    # Pane focus
+    'alt-l': 'window:focus-pane-on-right'
+    'alt-h': 'window:focus-pane-on-left'
+    # Pane creation
+    'space o l': 'pane:split-right-and-copy-active-item'
+    'space o j': 'pane:split-down-and-copy-active-item'
+    'space o x': 'pane:close'
+    # Git
+    'space g s': 'atomatigit:toggle'

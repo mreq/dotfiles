@@ -1,0 +1,34 @@
+"*":
+  atomatigit: {}
+  "base16-syntax":
+    scheme: "Eighties"
+  core:
+    ignoredNames: [
+      ".git"
+      ".sass-cache"
+      "node_modules"
+    ]
+    packagesWithKeymapsDisabled: [
+      "base16-syntax"
+      "git-status"
+    ]
+    projectHome: "/home/petr/work"
+    themes: [
+      "one-dark-ui"
+      "base16-syntax"
+    ]
+  editor:
+    fontFamily: "Consolas"
+    fontSize: 16
+    invisibles: {}
+    lineHeight: 1.4
+    showInvisibles: true
+    zoomFontWhenCtrlScrolling: false
+  "exception-reporting":
+    userId: "d11a1e59-99c5-f8ff-e1df-4c527560c43f"
+  "git-plus":
+    pullBeforePush: "pull --rebase"
+  "one-dark-ui": {}
+  "relative-numbers": {}
+  welcome:
+    showOnStartup: false
