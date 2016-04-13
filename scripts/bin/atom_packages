@@ -1,0 +1,15 @@
+#!/bin/bash
+actions=(
+  'save'
+  'restore'
+)
+
+select_action() {
+  if [[ $1 == 'save' ]]; then
+    apm list --installed --bare > ~/.dotfiles/atom/package-list.txt
+  elif [[ $1 == 'restore' ]]; then
+    apm install --packages-file ~/.dotfiles/atom/package-list.txt
+  fi
+}
+
+select_action "$( printf "%s\n" "${actions[@]}" | rofi -dmenu -i -p '↠ ' -hlbg '#4F5A0B' -bc '#4F5A0B' )"

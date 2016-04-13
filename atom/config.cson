@@ -24,7 +24,7 @@
     ]
   editor:
     fontFamily: "Consolas"
-    fontSize: 16
+    fontSize: 17
     invisibles: {}
     lineHeight: 1.4
     zoomFontWhenCtrlScrolling: false

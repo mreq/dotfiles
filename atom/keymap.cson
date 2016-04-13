@@ -28,5 +28,7 @@
     'space o l': 'pane:split-right-and-copy-active-item'
     'space o j': 'pane:split-down-and-copy-active-item'
     'space o x': 'pane:close'
+    # Close all
+    'space q': 'custom:close-panes'
     # Git
     'space g s': 'atomatigit:toggle'
