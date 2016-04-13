@@ -1,0 +1,12 @@
+" python3 plugins
+call remote#host#RegisterPlugin('python3', '/home/petr/.config/nvim/dein.vim/.dein/rplugin/python3/deoplete', [
+      \ {'sync': 1, 'name': '_deoplete', 'opts': {}, 'type': 'function'},
+     \ ])
+
+
+" ruby plugins
+
+
+" python plugins
+
+

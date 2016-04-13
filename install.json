@@ -17,6 +17,7 @@
     "bash/.profile": "~/.profile",
     "bash/base16-shell": "~/.config/base16-shell",
     "coffee/coffeelint.json": "~/coffeelint.json",
+    "ctags/.ctags": "~/.ctags",
     "doublecmd/doublecmd.xml": "~/.config/doublecmd/doublecmd.xml",
     "doublecmd/shortcuts.scf": "~/.config/doublecmd/shortcuts.scf",
     "fontconfig": "~/.config/fontconfig",

@@ -1,1 +1,1 @@
-/home/petr/.vimrc
+/home/petr/.dotfiles/vim/init.vim

@@ -22,8 +22,8 @@
 "wmctile -x 'thunderbird' --summon 'Thunderbird'"
   Mod4 + 5
 
-"wmctile -x 'xfce4-terminal' --summon 'xfce4-terminal.Xfce4-terminal'"
-  Mod4 + a
+"wmctile -c -x 'xfce4-terminal' --switch-to 'xfce4-terminal.Xfce4-terminal'"
+  Mod4 + l
 
 "wmctile -c -x 'firefox' --switch-to '.Firefox'"
   Mod4 + f

@@ -3,8 +3,8 @@ if &compatible
 endif
 "----------------------------------------
 " dein setup:
-set runtimepath^=~/.vim/dein.vim/repos/github.com/Shougo/dein.vim
-call dein#begin(expand('~/.vim/dein.vim'))
+set runtimepath^=~/.config/nvim/dein.vim/repos/github.com/Shougo/dein.vim
+call dein#begin(expand('~/.config/nvim/dein.vim'))
 call dein#add('Shougo/dein.vim')
 "----------------------------------------
 " Utility
@@ -14,6 +14,8 @@ call dein#add('tpope/vim-surround')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
 call dein#add('terryma/vim-multiple-cursors')
+call dein#add('soramugi/auto-ctags.vim')
+call dein#add('maxbrunsfeld/vim-yankstack')
 " Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 " Text objects
@@ -36,17 +38,15 @@ call dein#add('chriskempson/base16-vim')
 call dein#add('kchmck/vim-coffee-script', { 'on_ft': 'coffee' })
 call dein#add('tpope/vim-markdown', { 'on_ft': 'markdown' })
 call dein#add('vim-scripts/vim-emblem')
+call dein#add('slim-template/vim-slim')
 "----------------------------------------
 call dein#end()
 "----------------------------------------
-" Required:
 filetype plugin indent on
 "----------------------------------------
-" If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
-"End dein Scripts-------------------------
 "----------------------------------------
 
 " 256 color terminal
@@ -138,7 +138,13 @@ nnoremap <Leader>j :bprevious<CR>
 nnoremap <Leader>k :bnext<CR>
 nnoremap <Leader>s :w<CR>
 nnoremap <Leader>x :b#<bar>bd#<CR>
-nnoremap <Leader>q :bufdo bd<CR>
+nnoremap <Leader>q :q<CR>
+
+" Insert mode movement
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 
 " Search
 nnoremap <silent> <Leader>f :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
@@ -149,6 +155,9 @@ nnoremap <F12> :let &background = ( &background == "dark"? "light" : "dark" )<CR
 " Reload config
 nnoremap <Leader>rr :so $MYVIMRC<CR>
 nnoremap <Leader>ev :e ~/.config/nvim/init.vim<CR>
+
+" NERDTree
+nnoremap <Leader>l :NERDTreeToggle<CR>
 
 " Hide Highlight
 nnoremap <Esc><Esc> :noh<CR>
