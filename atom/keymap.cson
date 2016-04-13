@@ -10,25 +10,43 @@
     'ctrl-k': 'core:move-up'
     'ctrl-l': 'core:move-right'
 
+'atom-text-editor.vim-mode-plus':
+    # Pane focus
+    'alt-h': 'window:focus-pane-on-left'
+    'alt-j': 'window:focus-pane-on-down'
+    'alt-k': 'window:focus-pane-on-up'
+    'alt-l': 'window:focus-pane-on-right'
+    # Pane movement
+    'alt-shift-h': 'window:move-active-item-to-pane-on-left'
+    'alt-shift-j': 'window:move-active-item-to-pane-bellow'
+    'alt-shift-k': 'window:move-active-item-to-pane-above'
+    'alt-shift-l': 'window:move-active-item-to-pane-on-right'
+
 'atom-text-editor.vim-mode-plus.insert-mode':
     'ctrl-w': 'core:close'
 
-'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+'atom-text-editor.vim-mode-plus.normal-mode':
     # Generic
     'space s': 'core:save'
     'space x': 'core:close'
     'ctrl-w': 'core:close'
+    'ctrl-y': 'vim-mode-plus:redo'
     'space j': 'fuzzy-finder:toggle-file-finder'
     'space k': 'command-palette:toggle'
-    'escape escape': 'vim-mode-plus:clear-highlight-search'
-    # Pane focus
-    'alt-l': 'window:focus-pane-on-right'
-    'alt-h': 'window:focus-pane-on-left'
+    'scape escape': 'vim-mode-plus:clear-highlight-search'
+    'space l': 'tree-view:toggle'
     # Pane creation
     'space o l': 'pane:split-right-and-copy-active-item'
     'space o j': 'pane:split-down-and-copy-active-item'
     'space o x': 'pane:close'
+    # Pane switch
+    'shift-l': 'pane:show-next-item'
+    'shift-h': 'pane:show-previous-item'
     # Close all
     'space q': 'custom:close-panes'
     # Git
     'space g s': 'atomatigit:toggle'
+    # Change surround
+    'space c s': 'vim-mode-plus:change-surround'
+    'space d s': 'vim-mode-plus:delete-surround'
+    'space y s': 'vim-mode-plus:surround'

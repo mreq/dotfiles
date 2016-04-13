@@ -2,3 +2,20 @@
   'I18n.t':
     'prefix': 'it'
     'body': "I18n.t('$1')"
+
+'.source.sass':
+  'position: fixed':
+    'prefix': 'pof'
+    'body': 'position: fixed'
+  'position: relative':
+    'prefix': 'por'
+    'body': 'position: relative'
+  'float: left':
+    'prefix': 'fl'
+    'body': 'float: left'
+  'float: right':
+    'prefix': 'fr'
+    'body': 'float: right'
+  'float: none':
+    'prefix': 'fn'
+    'body': 'float: none'

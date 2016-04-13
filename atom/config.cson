@@ -1,10 +1,16 @@
 "*":
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
   atomatigit: {}
+  "autocomplete-ctags": {}
   "base16-syntax":
     scheme: "Eighties"
   core:
+    autoHideMenuBar: true
     disabledPackages: [
       "autoflow"
+      "background-tips"
+      "atom-ctags"
     ]
     ignoredNames: [
       ".git"
@@ -15,7 +21,7 @@
     projectHome: "/home/petr/work"
     themes: [
       "one-dark-ui"
-      "base16-syntax"
+      "mreq-theme"
     ]
   "disable-keybindings":
     prefixKeys: [
@@ -24,9 +30,10 @@
     ]
   editor:
     fontFamily: "Consolas"
-    fontSize: 17
+    fontSize: 18
     invisibles: {}
-    lineHeight: 1.4
+    lineHeight: 1.3
+    softWrap: true
     zoomFontWhenCtrlScrolling: false
   "exception-reporting":
     userId: "d11a1e59-99c5-f8ff-e1df-4c527560c43f"
@@ -34,5 +41,7 @@
     pullBeforePush: "pull --rebase"
   "one-dark-ui": {}
   "relative-numbers": {}
+  "vim-mode-plus":
+    useClipboardAsDefaultRegister: true
   welcome:
     showOnStartup: false

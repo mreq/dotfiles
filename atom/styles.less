@@ -36,4 +36,23 @@ atom-text-editor::shadow {
   .wrap-guide {
     visibility: hidden;
   }
+  .lines .line.cursor-line {
+    background-color: rgba(255,255,255,.125);
+  }
+}
+
+// atom-text-editor.vim-mode-plus.operator-pending-mode.is-focused::shadow .cursor, atom-text-editor.vim-mode-plus.operator-pending-mode.is-focused .cursor {
+//   border-bottom-color: red;
+// }
+atom-text-editor.vim-mode-plus {
+  &.normal-mode, &.operator-pending-mode, &.visual-mode {
+    // .cursor {}
+    &.is-focused {
+      &, &::shadow {
+        .cursor {
+          opacity: 0.35;
+        }
+      }
+    }
+  }
 }
