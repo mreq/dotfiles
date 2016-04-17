@@ -16,6 +16,8 @@ call dein#add('AndrewRadev/switch.vim')
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('soramugi/auto-ctags.vim')
 call dein#add('maxbrunsfeld/vim-yankstack')
+call dein#add('tpope/vim-sleuth')
+call dein#add('bling/vim-bufferline')
 " Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 " Text objects
@@ -36,9 +38,11 @@ call dein#add('benekastah/neomake')
 call dein#add('chriskempson/base16-vim')
 " Syntax specific
 call dein#add('kchmck/vim-coffee-script', { 'on_ft': 'coffee' })
+call dein#add('lukaszkorecki/CoffeeTags', { 'on_ft': 'coffee' })
 call dein#add('tpope/vim-markdown', { 'on_ft': 'markdown' })
 call dein#add('vim-scripts/vim-emblem')
 call dein#add('slim-template/vim-slim')
+call dein#add('tpope/vim-rails')
 "----------------------------------------
 call dein#end()
 "----------------------------------------
@@ -87,15 +91,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 set background=dark
 colorscheme base16-eighties
 set cursorline
-
-" Airline setup
-set noshowmode
-let g:airline#extensions#tabline#enabled = 1
-set hidden
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
 
 " Autocomplete
 let g:deoplete#enable_at_startup = 1

@@ -115,7 +115,6 @@ fi
 
 # Alias for clipboard
 alias clipboard='xclip -sel clip'
-
 alias peg='ps -aux | grep '
 alias R='R --no-save'
 alias sudo='sudo '
@@ -136,14 +135,17 @@ alias mss="mina staging ssh"
 alias tmux="TERM=screen-256color-bce tmux"
 alias xfce4-terminal-tmux="xfce4-terminal --maximize --command=tmux"
 alias nvim="sh ~/.dotfiles/bash/base16-shell/base16-eighties.dark.sh; nvim"
+
 terminal-colors() {
   for x in 0 1 4 5 7 8; do for i in $( seq 30 37 ); do for a in $( seq 40 47 ); do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""
 }
+
 shle_prepare() {
   export STAGING_AWS_ACCESS_KEY_ID=$( grep aws_access_key_id ~/.aws/credentials | awk '{ print $3 }' )
   export STAGING_AWS_SECRET_ACCESS_KEY=$( grep aws_secret_access_key ~/.aws/credentials | awk '{ print $3 }' )
   export SHLE_DEFAULT_PASSWORD=$( cat ~/.shle_default_password )
 }
+
 r() {
   if [[ -f bin/rails ]]; then
     bin/rails "$@"
