@@ -15,7 +15,6 @@
     "bash/.bashrc": "~/.bashrc",
     "bash/.dircolors": "~/.dircolors",
     "bash/.profile": "~/.profile",
-    "bash/base16-shell": "~/.config/base16-shell",
     "coffee/coffeelint.json": "~/coffeelint.json",
     "ctags/.ctags": "~/.ctags",
     "doublecmd/doublecmd.xml": "~/.config/doublecmd/doublecmd.xml",

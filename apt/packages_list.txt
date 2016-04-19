@@ -19,10 +19,12 @@ libpq5
 libpq-dev
 libreadline6-dev
 libreoffice
+libgmp3-dev
 mysql-server
 mysql-workbench
 nfs-common
 nginx
+neovim
 p7zip-full
 pdfgrep
 php5-curl
