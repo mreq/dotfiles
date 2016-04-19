@@ -12,21 +12,22 @@ options=(
 )
 
 notebook_output=$( xrandr | head -n2 | tail -n1 | awk '{ print $1 }' )
+hdmi_output=$( xrandr | grep HDMI | head -n1 | awk '{ print $1 }' )
 
 select_display() {
   case $1 in
     notebook )
-      xrandr --output $notebook_output --auto --output HDMI1 --off --output VGA1 --off ;;
+      xrandr --output $notebook_output --auto --output $hdmi_output --off --output VGA1 --off ;;
     HDMI )
-      xrandr --output HDMI1 --auto --output $notebook_output --off --output VGA1 --off ;;
+      xrandr --output $hdmi_output --auto --output $notebook_output --off --output VGA1 --off ;;
     DELL )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
-      xrandr --addmode HDMI1 "2560x1440"
-      xrandr --output HDMI1 --mode 2560x1440 --output $notebook_output --off --output VGA1 --off ;;
+      xrandr --addmode $hdmi_output "2560x1440"
+      xrandr --output $hdmi_output --mode 2560x1440 --output $notebook_output --off --output VGA1 --off ;;
     DELL-main )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
-      xrandr --addmode HDMI1 "2560x1440"
-      xrandr --output HDMI1 --mode 2560x1440 --output $notebook_output --auto --below HDMI1 ;;
+      xrandr --addmode $hdmi_output "2560x1440"
+      xrandr --output $hdmi_output --mode 2560x1440 --output $notebook_output --auto --below $hdmi_output ;;
     DELL-DP )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
       xrandr --addmode DisplayPort-0 "2560x1440"
@@ -34,22 +35,18 @@ select_display() {
     VGA )
       xrandr --output VGA1 --auto --output $notebook_output --off ;;
     extend-right )
-      xrandr --output $notebook_output --auto --output HDMI1 --auto --right-of $notebook_output ;;
+      xrandr --output $notebook_output --auto --output $hdmi_output --auto --right-of $notebook_output ;;
     extend-left )
-      xrandr --output $notebook_output --auto --output HDMI1 --auto --left-of $notebook_output ;;
+      xrandr --output $notebook_output --auto --output $hdmi_output --auto --left-of $notebook_output ;;
     HDMI-left )
-      xrandr --output HDMI1 --auto --output $notebook_output --auto --left-of HDMI1 ;;
+      xrandr --output $hdmi_output --auto --output $notebook_output --auto --left-of $hdmi_output ;;
     HDMI-main )
-      xrandr --output HDMI1 --auto --output $notebook_output --auto --pos 1920x1080 ;;
+      xrandr --output $hdmi_output --auto --output $notebook_output --auto --pos 1920x1080 ;;
   esac
 }
 
-if xrandr | grep -q DisplayPort; then
-  select_display "DELL-DP"
+if [[ $1 ]]; then
+  select_display "$1"
 else
-  if [[ $1 ]]; then
-    select_display "$1"
-  else
-    select_display "$( printf "%s\n" "${options[@]}" | rofi -dmenu -i -p '↠ ' )"
-  fi
+  select_display "$( printf "%s\n" "${options[@]}" | rofi -dmenu -i -p '↠ ' )"
 fi
