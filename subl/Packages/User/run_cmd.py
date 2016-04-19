@@ -7,6 +7,8 @@ class RunCmd(sublime_plugin.WindowCommand):
 		if type(cmd) != type([]):
 			cmd = [cmd]
 		cmds = cmd
+		pwd = self.window.folders()[0]
+		os.chdir(pwd)
 		for cmd in cmds:
 			if "$file_name" in cmd:
 				view = self.window.active_view()
@@ -18,6 +20,6 @@ class RunCmd(sublime_plugin.WindowCommand):
 				view = self.window.active_view()
 				cmd = cmd.replace("$selected_text",view.substr(view.sel()[0]))
 			if "$project_dir" in cmd:
-				cmd = cmd.replace("$project_dir",self.window.folders()[0])
+				cmd = cmd.replace("$project_dir",pwd)
 			print('Running custom command:', cmd)
 			os.system(cmd + " &")
