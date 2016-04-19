@@ -1,0 +1,9 @@
+[
+  {
+    "caption": "rails: open locale ymls",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "pt --follow -g='^config/locales/\\w+.yml' | xargs subl"
+    }
+  }
+]

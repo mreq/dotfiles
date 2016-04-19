@@ -34,46 +34,6 @@
   },
 
   {
-    "caption": "Ember: Go to",
-    "command": "run_cmd",
-    "args": {
-      "cmd": "fn=$file_name; fn=${fn##*/}; pt --follow -g=\".*${fn%.*}\\.(coffee|em).*\" | grep -v $fn | grep -v tests | xargs subl"
-    }
-  },
-
-  {
-    "caption": "Coffee: Model",
-    "command": "run_cmd",
-    "args": {
-      "cmd": "pt --follow -g='.*models.*/.*\\.coffee' | rofi -dmenu -fixed-num-lines 10 -p 'Coffee: Model ↠ ' | xargs subl"
-    }
-  },
-
-  {
-    "caption": "Coffee: Route",
-    "command": "run_cmd",
-    "args": {
-      "cmd": "pt --follow -g='.*routes.*/.*\\.coffee' | rofi -dmenu -fixed-num-lines 10 -p 'Coffee: Route ↠ ' | xargs subl"
-    }
-  },
-
-  {
-    "caption": "Coffee: Template",
-    "command": "run_cmd",
-    "args": {
-      "cmd": "pt --follow -g='.*templates.*/.*\\.em' | rofi -dmenu -fixed-num-lines 10 -p 'Coffee: Template ↠ ' | xargs subl"
-    }
-  },
-
-  {
-    "caption": "Coffee: Component",
-    "command": "run_cmd",
-    "args": {
-      "cmd": "pt --follow -g='.*components.*/.*\\.coffee' | rofi -dmenu -fixed-num-lines 10 -p 'Coffee: Component ↠ ' | xargs subl"
-    }
-  },
-
-  {
     "caption": "Ruby: Controller",
     "command": "run_cmd",
     "args": {

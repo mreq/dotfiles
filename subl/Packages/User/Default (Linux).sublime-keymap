@@ -52,6 +52,12 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
+  // Generic: ctrl+vim movement
+  { "keys": ["ctrl+h"], "command": "move", "args": { "by": "characters", "forward": false }, "context": [{ "key": "vi_insert_mode_aware" }] },
+  { "keys": ["ctrl+l"], "command": "move", "args": { "by": "characters", "forward": true }, "context": [{ "key": "vi_insert_mode_aware" }] },
+  { "keys": ["ctrl+k"], "command": "move", "args": { "by": "lines", "forward": false }, "context": [{ "key": "vi_insert_mode_aware" }] },
+  { "keys": ["ctrl+j"], "command": "move", "args": { "by": "lines", "forward": true }, "context": [{ "key": "vi_insert_mode_aware" }] },
+
   // Generic: close window
   {
     "keys": ["ctrl+q"],
