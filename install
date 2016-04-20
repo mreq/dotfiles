@@ -3,7 +3,7 @@
 # Pull submodules
 git submodule update --init --recursive
 git submodule foreach "(git checkout master; git pull)"
-( cd subl/Packages/GitSavvy; git checkout vintageous-friendly )
+( cd subl/Packages/GitSavvy; git checkout vintageous-friendly-new )
 
 # Clean some folders
 rm -rf ~/.config/doublecmd/doublecmd.xml ~/.config/doublecmd/shortcuts.scf
