@@ -34,8 +34,6 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('ctrlpvim/ctrlp.vim')
 " Linters, etc.
 call dein#add('benekastah/neomake')
-" Colors
-call dein#add('chriskempson/base16-vim')
 " Syntax specific
 call dein#add('kchmck/vim-coffee-script', { 'on_ft': 'coffee' })
 call dein#add('lukaszkorecki/CoffeeTags', { 'on_ft': 'coffee' })
@@ -55,7 +53,6 @@ endif
 
 " 256 color terminal
 let &t_Co=256
-let base16colorspace=256
 
 " Change leader key
 let mapleader=" "
@@ -89,7 +86,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Set color scheme
 set background=dark
-colorscheme base16-eighties
 set cursorline
 
 " Autocomplete

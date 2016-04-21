@@ -1,4 +1,1 @@
-alexx2000/doublecmd
-kilian/f.lux
-xubuntu-dev/xfce-4.12
 neovim-ppa/unstable
