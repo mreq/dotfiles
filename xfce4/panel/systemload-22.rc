@@ -2,6 +2,8 @@
 Timeout=2000
 Timeout_Seconds=2
 Use_Timeout_Seconds=true
+Use_Click_Command=true
+Click_Command=htop
 
 [SL_Cpu]
 Enabled=false

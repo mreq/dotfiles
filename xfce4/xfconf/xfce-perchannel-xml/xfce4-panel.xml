@@ -12,15 +12,12 @@
         <value type="int" value="9"/>
         <value type="int" value="2"/>
         <value type="int" value="3"/>
-        <value type="int" value="16"/>
         <value type="int" value="17"/>
+        <value type="int" value="13"/>
+        <value type="int" value="14"/>
         <value type="int" value="15"/>
         <value type="int" value="22"/>
         <value type="int" value="18"/>
-        <value type="int" value="13"/>
-        <value type="int" value="14"/>
-        <value type="int" value="21"/>
-        <value type="int" value="20"/>
         <value type="int" value="24"/>
         <value type="int" value="4"/>
         <value type="int" value="5"/>
@@ -72,13 +69,16 @@
         <value type="string" value="google-chrome"/>
         <value type="string" value="xchat"/>
         <value type="string" value="networkmanager applet"/>
+        <value type="string" value="task manager"/>
         <value type="string" value="indicator-cpufreq"/>
+        <value type="string" value="network"/>
         <value type="string" value="skype"/>
         <value type="string" value="gigolo"/>
         <value type="string" value="spotify"/>
         <value type="string" value="photoqt"/>
         <value type="string" value="pidgin"/>
         <value type="string" value="blueman-applet"/>
+        <value type="string" value="synapse"/>
         <value type="string" value="dropbox"/>
         <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="gpick"/>
@@ -143,8 +143,6 @@
     <property name="plugin-12" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-13" type="string" value="genmon"/>
-    <property name="plugin-14" type="string" value="genmon"/>
     <property name="plugin-15" type="string" value="cpugraph"/>
     <property name="plugin-16" type="string" value="xfce4-sensors-plugin"/>
     <property name="plugin-17" type="string" value="separator">
@@ -162,6 +160,10 @@
     </property>
     <property name="plugin-20" type="string" value="genmon"/>
     <property name="plugin-24" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-13" type="string" value="xfce4-sensors-plugin"/>
+    <property name="plugin-14" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
   </property>
