@@ -17,6 +17,10 @@ if [[ -d ~/Dropbox/ubuntu ]]; then
   ln -s ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
   rm -rf ~/sublime_projects
   ln -s ~/Dropbox/ubuntu/sublime_projects ~/sublime_projects
+  rm -rf ~/.ssh/config
+  ln -s ~/Dropbox/ubuntu/ssh/config ~/.ssh/config
+  rm -rf ~/.ssh/known_hosts
+  ln -s ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
 fi
 
 # Run dotty
