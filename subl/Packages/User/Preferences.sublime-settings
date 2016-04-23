@@ -46,7 +46,7 @@
 		"tmp/sass_compiler*"
 	],
 	"font_face": "Consolas",
-	"font_size": 14.0,
+	"font_size": 13.5,
 	"hide_minimap": true,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
