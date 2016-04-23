@@ -1,0 +1,46 @@
+#!/bin/bash
+urlHelper() {
+  app=$1
+  url=$2
+  echo "$app url: $url"
+  read -p "Is that ok? [Yn]" choice
+  echo
+  case "$choice" in
+    n|N )
+      exit ;;
+    * )
+      wget "$url" ;;
+  esac
+}
+
+getSlack() {
+  if which slack > /dev/null; then
+    echo "Slack is already installed."
+  else
+    url=$( lynx -dump -hiddenlinks=listonly https://slack.com/downloads | grep amd64.deb | awk '{print $2}' )
+    urlHelper Slack "$url"
+  fi
+}
+
+getChrome() {
+  if which google-chrome > /dev/null; then
+    echo "Google chrome is already installed."
+  else
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  fi
+}
+
+getDropbox() {
+  if which dropbox > /dev/null; then
+    echo "Dropbox is already installed."
+  else
+    url=$( lynx -dump -hiddenlinks=listonly https://www.dropbox.com/install?os=lnx | grep amd64.deb | grep ubuntu | awk '{print $2}' )
+    urlHelper Dropbox "$url"
+  fi
+}
+
+mkdir -p ~/Downloads/remote_apps
+cd ~/Downloads/remote_apps
+getSlack
+getChrome
+getDropbox

@@ -15,6 +15,8 @@ if [[ -d ~/Dropbox/ubuntu ]]; then
   ln -s ~/Dropbox/ubuntu/fonts ~/.fonts
   rm -rf ~/texmf
   ln -s ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
+  rm -rf ~/sublime_projects
+  ln -s ~/Dropbox/ubuntu/sublime_projects ~/sublime_projects
 fi
 
 # Run dotty
