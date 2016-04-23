@@ -1,1 +1,2 @@
+alexx2000/doublecmd
 neovim-ppa/unstable

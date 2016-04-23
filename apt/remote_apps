@@ -39,8 +39,18 @@ getDropbox() {
   fi
 }
 
+getPt() {
+  if which pt > /dev/null; then
+    echo "The pt is already installed."
+  else
+    url=$( lynx -dump -hiddenlinks=listonly https://github.com/monochromegane/the_platinum_searcher/releases/latest | grep linux_amd | awk '{print $2}' )
+    urlHelper "The pt" "$url"
+  fi
+}
+
 mkdir -p ~/Downloads/remote_apps
 cd ~/Downloads/remote_apps
 getSlack
 getChrome
 getDropbox
+getPt

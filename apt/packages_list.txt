@@ -1,5 +1,6 @@
 chromium-browser
 curl
+doublecmd-gtk
 exfat-fuse
 exfat-utils
 gdebi
@@ -12,6 +13,7 @@ indicator-cpufreq
 inkscape
 inotify-tools
 jq
+libmagickwand-dev
 libpq5
 libpq-dev
 libreadline6-dev
