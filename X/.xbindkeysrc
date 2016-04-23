@@ -7,7 +7,7 @@
 "wmctile -x 'chromium-browser' --summon 'chromium-browser.chromium-browser'"
   Mod4 + x
 
-"wmctile -c -x 'subl -n' --switch-to 'sublime_text.Sublime_text'"
+"wmctile -c -x 'subl --new-window' --switch-to 'sublime_text.Sublime_text'"
   Mod4 + 2
 
 "wmctile -c -x 'terminator' --switch-to 'terminator.Terminator'"
@@ -23,7 +23,7 @@
   Mod4 + 5
 
 # "wmctile -c -x 'xfce4-terminal' --switch-to 'xfce4-terminal.Xfce4-terminal'"
-"wmctile -c -x 'subl -n' --switch-to 'sublime_text.Sublime_text'"
+"wmctile -c -x 'subl --new-window' --switch-to 'sublime_text.Sublime_text'"
   Mod4 + l
 
 "wmctile -c -x 'xfce4-terminal' --switch-to 'xfce4-terminal.Xfce4-terminal'"
