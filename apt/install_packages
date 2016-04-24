@@ -23,4 +23,4 @@ if [[ ! -f $listFile ]]; then
   exit
 fi
 
-apt-get install $( echo $( cat $listFile ) )
+apt install $( echo $( cat $listFile ) )

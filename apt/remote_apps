@@ -48,9 +48,20 @@ getPt() {
   fi
 }
 
+getSublime() {
+  if which subl > /dev/null; then
+    echo "Sublime is already installed."
+  else
+    url=$( lynx -dump -hiddenlinks=listonly https://www.sublimetext.com/3 | grep amd64.deb | awk '{print $2}' )
+    urlHelper Sublime "$url"
+  fi
+}
+
 mkdir -p ~/Downloads/remote_apps
 cd ~/Downloads/remote_apps
 getSlack
 getChrome
 getDropbox
 getPt
+getSublime
+
