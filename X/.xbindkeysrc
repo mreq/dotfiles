@@ -13,9 +13,6 @@
 "wmctile -c -x 'terminator' --switch-to 'terminator.Terminator'"
   Mod4 + 3
 
-"wmctile.py switch_to_running 'r_x11.R_x11' 'rlogo_icon'"
-  Mod4 + Shift + 3
-
 "wmctile -x 'doublecmd' --summon 'doublecmd.Doublecmd'"
   Mod4 + 4
 
@@ -47,7 +44,7 @@
 "wmctile -x 'thunar' --summon 'hunar.Thunar'"
   Mod4 + t
 
-"wmctile.py switch_to_running 'evince.Evince' 'evince'"
+"wmctile -x 'notify-send -i evince Evince "No evince is running."' --switch-to 'evince.Evince'"
   Mod4 + i
 
 "wmctile -x 'slack' --summon 'slack.Slack'"
