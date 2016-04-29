@@ -18,8 +18,8 @@ fi
 
 PATH="$PATH:$HOME/scripts/bin"
 
-# Add RVM to PATH for scripting
-PATH="$PATH:$HOME/.rvm/bin"
+# Add RVM and ruby to PATH for scripting
+PATH="$PATH:$HOME/.rvm/bin:$HOME/.rvm/rubies/default/bin"
 
 export EDITOR=vim
 

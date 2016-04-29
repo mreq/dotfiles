@@ -65,6 +65,7 @@
 	"tab_size": 2,
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
+	"vintage_lines.force_mode": true,
 	"vintageous_reset_mode_when_switching_tabs": true,
 	"vintageous_use_ctrl_keys": false,
 	"vintageous_use_sys_clipboard": true,

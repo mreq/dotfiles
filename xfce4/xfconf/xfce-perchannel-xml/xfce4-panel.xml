@@ -79,16 +79,17 @@
         <value type="string" value="pidgin"/>
         <value type="string" value="blueman-applet"/>
         <value type="string" value="synapse"/>
+        <value type="string" value="opera"/>
         <value type="string" value="dropbox"/>
         <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="gpick"/>
         <value type="string" value="scp-dbus-service.py"/>
         <value type="string" value="thunderbird"/>
         <value type="string" value="javaembeddedframe"/>
+        <value type="string" value="hexchat"/>
         <value type="string" value="slack"/>
         <value type="string" value="toggl desktop"/>
         <value type="string" value="telegram"/>
-        <value type="string" value="opera"/>
       </property>
     </property>
     <property name="plugin-5" type="string" value="indicator">

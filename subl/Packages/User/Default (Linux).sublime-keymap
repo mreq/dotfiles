@@ -363,6 +363,12 @@
     "command": "paste_and_indent"
   },
 
+  // Generic: convert case
+  {
+    "keys": [" ", "c", "c"],
+    "command": "toggle_snake_camel_pascal"
+  },
+
   // Navigation: move down by comments
   {
     "keys": ["ctrl+alt+shift+j"],

@@ -30,7 +30,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Set color scheme
 set background=dark
-set cursorline
 
 nnoremap ; :
 nnoremap ;; q:
