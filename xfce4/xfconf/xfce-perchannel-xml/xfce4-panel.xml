@@ -119,7 +119,7 @@
     </property>
     <property name="plugin-8" type="string" value="actions">
       <property name="items" type="array">
-        <value type="string" value="-lock-screen"/>
+        <value type="string" value="+lock-screen"/>
         <value type="string" value="-switch-user"/>
         <value type="string" value="-separator"/>
         <value type="string" value="+suspend"/>
