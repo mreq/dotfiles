@@ -48,6 +48,7 @@
 		"Solarized Toggle",
 		"SublimeLinter",
 		"SublimeLinter-coffeelint",
+		"SublimeLinter-contrib-lessc",
 		"SublimeLinter-contrib-lintr",
 		"SublimeLinter-json",
 		"SublimeLinter-pylint",

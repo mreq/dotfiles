@@ -53,10 +53,10 @@
   },
 
   // Generic: ctrl+vim movement
-  { "keys": ["ctrl+h"], "command": "move", "args": { "by": "characters", "forward": false }, "context": [{ "key": "vi_insert_mode_aware" }] },
-  { "keys": ["ctrl+l"], "command": "move", "args": { "by": "characters", "forward": true }, "context": [{ "key": "vi_insert_mode_aware" }] },
-  { "keys": ["ctrl+k"], "command": "move", "args": { "by": "lines", "forward": false }, "context": [{ "key": "vi_insert_mode_aware" }] },
-  { "keys": ["ctrl+j"], "command": "move", "args": { "by": "lines", "forward": true }, "context": [{ "key": "vi_insert_mode_aware" }] },
+  { "keys": ["ctrl+h"], "command": "move", "args": { "by": "characters", "forward": false }, "context": [{ "key": "vi_insert_mode_aware" }, { "key": "selection_empty" }] },
+  { "keys": ["ctrl+l"], "command": "move", "args": { "by": "characters", "forward": true }, "context":  [{ "key": "vi_insert_mode_aware" }, { "key": "selection_empty" }] },
+  { "keys": ["ctrl+k"], "command": "move", "args": { "by": "lines", "forward": false }, "context":      [{ "key": "vi_insert_mode_aware" }, { "key": "selection_empty" }] },
+  { "keys": ["ctrl+j"], "command": "move", "args": { "by": "lines", "forward": true }, "context":       [{ "key": "vi_insert_mode_aware" }, { "key": "selection_empty" }] },
 
   // Generic: close window
   {
