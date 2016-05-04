@@ -183,7 +183,6 @@
     "command": "select_by_regex"
   },
 
-
   // Tabs: next
   {
     "keys": ["ctrl+tab"],
@@ -367,6 +366,15 @@
   {
     "keys": [" ", "c", "c"],
     "command": "toggle_snake_camel_pascal"
+  },
+
+  // Generic: Strip leading whitespace
+  {
+    "keys": [" ", "r", "l"],
+    "command": "strip_spaces",
+    "context": [
+      { "key": "vi_command_mode_aware" }
+    ]
   },
 
   // Navigation: move down by comments
