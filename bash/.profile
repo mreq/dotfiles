@@ -17,6 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 PATH="$PATH:$HOME/scripts/bin"
+PATH="$PATH:$HOME/.local/bin"
 
 # Add RVM and ruby to PATH for scripting
 PATH="$PATH:$HOME/.rvm/bin"
@@ -24,3 +25,5 @@ PATH="$PATH:$HOME/.rvm/bin"
 export EDITOR=vim
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+export PYTHONPATH="$HOME/.local/lib/python2.7/site-packages"
