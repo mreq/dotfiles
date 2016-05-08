@@ -2,6 +2,7 @@
   "directories": [
     "~/.config/doublecmd",
     "~/.config/git",
+    "~/.config/gtk-3.0",
     "~/.config/i3",
     "~/.config/i3status",
     "~/.config/nvim",
@@ -27,6 +28,8 @@
     "i3/.i3blocks.conf": "~/.i3blocks.conf",
     "i3/i3blocks": "~/.config/i3blocks",
     "misc/.inputrc": "~/.inputrc",
+    "misc/.gtkrc-2.0": "~/.gtkrc-2.0",
+    "misc/.gtk-3.0/settings.ini": "~/.config/gtk-3.0/settings.ini",
     "python/.pylintrc": "~/.pylintrc",
     "R/.Rprofile": "~/.Rprofile",
     "ruby/.rubocop.yml": "~/.rubocop.yml",

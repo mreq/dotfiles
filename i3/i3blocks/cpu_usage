@@ -1,0 +1,4 @@
+#!/home/petr/.rvm/rubies/ruby-2.2.4/bin/ruby
+mpstat = `mpstat | tail -n1`.chomp
+load = (100-mpstat[/\d+,\d+$/].to_f).round
+puts " #{'%3.3s' % load}%"

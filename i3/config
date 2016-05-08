@@ -15,6 +15,7 @@ set $ico_move "  "
 set $ico_music 
 set $ico_resize "  "
 set $ico_slack 
+set $ico_trello 
 set $ico_volume 
 set $ico_muted_volume 
 set $ico_whatsapp 
@@ -45,7 +46,7 @@ font xft: Droid Sans Mono, FontAwesome 10
 
 gaps inner 15
 gaps outer 0
-#smart_gaps on
+smart_gaps on
 
 # window borders
 new_window pixel 5
@@ -185,9 +186,12 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # sound
-bindsym XF86AudioRaiseVolume exec  --no-startup-id amixer -D pulse sset Master 5%+ unmute;
-bindsym XF86AudioLowerVolume exec  --no-startup-id amixer -D pulse sset Master 5%- unmute;
-bindsym XF86AudioMute exec  --no-startup-id amixer -D pulse set Master 1+ toggle;
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ unmute;
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- unmute;
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle;
+bindsym $m+KP_Add exec --no-startup-id amixer -D pulse sset Master 5%+ unmute;
+bindsym $m+KP_Subtract exec --no-startup-id amixer -D pulse sset Master 5%- unmute;
+bindsym $m+KP_Multiply exec --no-startup-id amixer -D pulse set Master 1+ toggle;
 bindsym Pause exec "play_pause_spotify"
 bindsym Shift+Pause exec "play_pause_spotify next"
 bindsym Control+Shift+Pause exec "play_pause_spotify prev"
@@ -219,7 +223,7 @@ client.unfocused         $base00  $base00     $base07
 client.urgent            $base08  $base08     $base00
 
 # Window rules
-for_window [class="Spotify"] floating enable resize set width 1550 px height 834 px
+# for_window [class="Spotify"] floating enable resize set width 1550 px height 834 px
 
 # Assigns
 assign [class="Gimp"] → $ico_gimp
@@ -227,18 +231,20 @@ assign [class="Thunderbird"] → $ico_mail
 assign [class="Slack"] → $ico_slack
 assign [class="Doublecmd"] → $ico_folder
 assign [class="google-chrome" instance="crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei"] → $ico_whatsapp
+assign [class="google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] → $ico_trello
 assign [class="chromium-browser"] → $ico_calendar
 assign [class="Spotify"] → $ico_music
 
 # Launchers
 bindsym $m+space exec "launch_script"
 bindsym Control+$m+space exec "pick_a_subl_project"
+bindsym $m+Mod1+space exec "rofi -show window"
 
 # Apps
 bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"
 bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
 bindsym $m+3 exec "i3_focus_or_run 'Terminator' 'terminator'"
-bindsym $m+e exec "i3_focus_or_run 'Evince'"
+bindsym $m+i exec "i3_focus_or_run 'Evince'"
 
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned $ico_folder doublecmd"
@@ -246,6 +252,7 @@ bindsym $m+5 exec "i3_focus_pinned $ico_mail thunderbird"
 bindsym $m+g exec "i3_focus_pinned $ico_gimp gimp"
 bindsym $m+s exec "i3_focus_pinned $ico_slack slack"
 bindsym $m+w exec "i3_focus_pinned $ico_whatsapp"
+bindsym $m+e exec "i3_focus_pinned $ico_trello"
 bindsym $m+x exec "i3_focus_pinned $ico_calendar chromium-browser"
 bindsym $m+m exec "i3_focus_pinned $ico_music spotify"
 
@@ -264,8 +271,8 @@ exec --no-startup-id unagi
 exec --no-startup-id feh --bg-tile ~/Dropbox/Pictures/low_contrast_linen.png
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start -i
-exec --no-startup-id indicator-cpufreq
 exec --no-startup-id setxkbmap -layout us,cz -variant ,qwerty -option grp:alt_shift_toggle
+exec --no-startup-id capslock_escape
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id xmodmap ~/.Xmodmap
 #exec --no-startup-id xautolock -detectsleep -locker "i3lock -c 000000"

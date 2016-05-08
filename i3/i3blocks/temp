@@ -1,0 +1,13 @@
+#!/home/petr/.rvm/rubies/ruby-2.2.4/bin/ruby
+show_gpu = false
+output = []
+sensors = `sensors`.chomp
+output << sensors[/ISA adapter\n.+(\d+\.\d+)/][/\d+\.\d+/].to_f.round
+if show_gpu
+  begin
+    output << sensors[/PCI adapter\n.+(\d+\.\d+)/][/\d+\.\d+/].to_f.round
+  rescue
+  end
+end
+output.map! { |s| "#{s}°" }
+puts "  #{output.join(' ')}"
