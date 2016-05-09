@@ -68,7 +68,6 @@
         <value type="string" value="screencloud"/>
         <value type="string" value="google-chrome"/>
         <value type="string" value="xchat"/>
-        <value type="string" value="toggl desktop"/>
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="task manager"/>
         <value type="string" value="indicator-cpufreq"/>
@@ -83,12 +82,13 @@
         <value type="string" value="dropbox"/>
         <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="gpick"/>
+        <value type="string" value="hexchat"/>
         <value type="string" value="scp-dbus-service.py"/>
         <value type="string" value="thunderbird"/>
-        <value type="string" value="slack"/>
-        <value type="string" value="hexchat"/>
-        <value type="string" value="telegram"/>
         <value type="string" value="javaembeddedframe"/>
+        <value type="string" value="slack"/>
+        <value type="string" value="toggl desktop"/>
+        <value type="string" value="telegram"/>
         <value type="string" value="opera"/>
       </property>
     </property>

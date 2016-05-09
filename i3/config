@@ -44,14 +44,16 @@ set $focusc "#4592B1"
 font pango: Droid Sans Mono, FontAwesome 10
 font xft: Droid Sans Mono, FontAwesome 10
 
-gaps inner 15
-gaps outer 0
-smart_gaps on
+#gaps inner 15
+#gaps outer 0
+#smart_gaps on
 
 # window borders
 new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
+
+hide_edge_borders both
 
 # drag floating windows
 floating_modifier $m
@@ -198,10 +200,12 @@ bindsym Control+Shift+Pause exec "play_pause_spotify prev"
 
 bar {
   status_command i3blocks
-  tray_output HDMI-0
+  tray_output primary
   output HDMI-0
+  output LVDS1
+  output VGA1
   position top
-  height 24
+  #height 24
   colors {
     background $base00
     statusline $base07
@@ -243,7 +247,7 @@ bindsym $m+Mod1+space exec "rofi -show window"
 # Apps
 bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"
 bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
-bindsym $m+3 exec "i3_focus_or_run 'Terminator' 'terminator'"
+bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=tmux'"
 bindsym $m+i exec "i3_focus_or_run 'Evince'"
 
 # Back and forth
@@ -275,4 +279,4 @@ exec --no-startup-id setxkbmap -layout us,cz -variant ,qwerty -option grp:alt_sh
 exec --no-startup-id capslock_escape
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id xmodmap ~/.Xmodmap
-#exec --no-startup-id xautolock -detectsleep -locker "i3lock -c 000000"
+exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid
