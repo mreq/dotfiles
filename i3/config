@@ -44,16 +44,15 @@ set $focusc "#4592B1"
 font pango: Droid Sans Mono, FontAwesome 10
 font xft: Droid Sans Mono, FontAwesome 10
 
-#gaps inner 15
-#gaps outer 0
-#smart_gaps on
+gaps inner 10
+gaps outer 0
+smart_gaps on
+smart_borders on
 
 # window borders
 new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
-
-hide_edge_borders both
 
 # drag floating windows
 floating_modifier $m
