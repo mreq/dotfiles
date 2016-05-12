@@ -1,16 +1,24 @@
-#!/usr/bin/env python3
-import i3
-import sys
-import subprocess
+#!/home/petr/.rvm/rubies/ruby-2.3.0/bin/ruby
+require 'optparse'
 
-# Switch to workspace_name (creates one if needed)
-workspace_name = sys.argv[1]
-i3.command('workspace ' + workspace_name)
+options = {}
+OptionParser.new do |opts|
+  opts.banner = 'Usage: i3_focus_pinned [options]'
+  opts.on('-w [string]',
+          '--workspace-name [string]',
+          'Switch [string] workspace.') { |o| options[:workspace] = o }
+  opts.on('-c [WM_CLASS]',
+          '--class [WM_CLASS]',
+          'Look for such a window.') { |o| options[:class] = o }
+  opts.on('-x [command]',
+          '--exec [command]',
+          'Execute this command if [WM_CLASS] is not found') { |o| options[:exec] = o }
+end.parse!
 
-# Run the command if given
-if len(sys.argv) > 2:
-  app_command = sys.argv[2]
-  try:
-      subprocess.check_output('pgrep -f ' + app_command, shell=True)
-  except subprocess.CalledProcessError as e:
-      subprocess.call(app_command + ' &', shell=True)
+fail 'You need to provide a workspace using the -w option.' unless options[:workspace]
+`i3-msg 'workspace #{options[:workspace]}'`
+
+return unless options[:class]
+options[:exec] = options[:class] unless options[:exec]
+
+`wmctrl -lx | grep #{options[:class]} || #{options[:exec]} &`

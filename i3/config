@@ -97,8 +97,8 @@ bindsym $m+v split v
 bindsym $m+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $m+u layout tabbed
-bindsym $m+Shift+u layout toggle split
+# bindsym $m+u layout tabbed
+# bindsym $m+Shift+u layout toggle split
 
 # toggle tiling / floating
 bindsym $m+Shift+space floating toggle
@@ -180,7 +180,7 @@ mode $ico_move {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-bindsym $m+t mode $ico_move
+bindsym $m+u mode $ico_move
 
 # brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
@@ -248,20 +248,21 @@ bindsym $m+Mod1+space exec "rofi -show window"
 bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"
 bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
 bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=tmux'"
+bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
 bindsym $m+i exec "i3_focus_or_run 'Evince'"
 
 # Back and forth
-bindsym $m+4 exec "i3_focus_pinned $ico_folder doublecmd"
-bindsym $m+5 exec "i3_focus_pinned $ico_mail thunderbird"
-bindsym $m+g exec "i3_focus_pinned $ico_gimp gimp"
-bindsym $m+s exec "i3_focus_pinned $ico_slack slack"
-bindsym $m+w exec "i3_focus_pinned $ico_whatsapp"
-bindsym $m+e exec "i3_focus_pinned $ico_trello"
-bindsym $m+x exec "i3_focus_pinned $ico_calendar chromium-browser"
-bindsym $m+m exec "i3_focus_pinned $ico_music spotify"
+bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c doublecmd"
+bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c thunderbird"
+bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c gimp"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c slack"
+bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c 'nfjdjopfnbnkmfldmeffmhgodmlhdnei' -x 'google-chrome --profile-directory=Default --app-id=nfjdjopfnbnkmfldmeffmhgodmlhdnei'"
+bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
+bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c chromium-browser"
+bindsym $m+m exec "i3_focus_pinned -w $ico_music -c spotify"
 
 # Screenshots
-bindsym $m+BackSpace exec "xfce4-screenshooter -f -o gimp && i3_focus_pinned $ico_gimp gimp"
+bindsym $m+BackSpace exec "xfce4-screenshooter -f -o gimp && i3_focus_pinned -w $ico_gimp -c gimp"
 bindsym Control+Mod1+1 exec "scrotshare create full"
 bindsym Control+Mod1+2 exec "scrotshare create area"
 bindsym Control+Mod1+3 exec "scrotshare create window"
