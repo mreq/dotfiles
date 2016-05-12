@@ -15,17 +15,18 @@ options=(
 notebook_output=$( xrandr | head -n2 | tail -n1 | awk '{ print $1 }' )
 hdmi_output=$( xrandr | grep HDMI | head -n1 | awk '{ print $1 }' )
 dvi_output=$( xrandr | grep 'DVI.* connected' | head -n1 | awk '{ print $1 }' )
+vga_output=VGA1
 
 select_display() {
   case $1 in
     notebook )
-      xrandr --output $notebook_output --auto --output $hdmi_output --off --output VGA1 --off ;;
+      xrandr --output $notebook_output --auto --output $hdmi_output --off --output $vga_output --off ;;
     HDMI )
-      xrandr --output $hdmi_output --auto --output $notebook_output --off --output VGA1 --off --output $dvi_output --off ;;
+      xrandr --output $hdmi_output --auto --output $notebook_output --off --output $vga_output --off --output $dvi_output --off ;;
     DELL )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
       xrandr --addmode $hdmi_output "2560x1440"
-      xrandr --output $hdmi_output --mode 2560x1440 --output $notebook_output --off --output VGA1 --off --output $dvi_output --off ;;
+      xrandr --output $hdmi_output --mode 2560x1440 --output $notebook_output --off --output $vga_output --off --output $dvi_output --off ;;
     DELL-main )
       xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
       xrandr --addmode $hdmi_output "2560x1440"
@@ -39,7 +40,7 @@ select_display() {
       xrandr --addmode DisplayPort-0 "2560x1440"
       xrandr --output DisplayPort-0 --mode 2560x1440 ;;
     VGA )
-      xrandr --output VGA1 --auto --output $notebook_output --off ;;
+      xrandr --output $vga_output --auto --output $notebook_output --off ;;
     extend-right )
       xrandr --output $notebook_output --auto --output $hdmi_output --auto --right-of $notebook_output ;;
     extend-left )

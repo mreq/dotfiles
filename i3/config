@@ -201,6 +201,7 @@ bar {
   status_command i3blocks
   tray_output primary
   output HDMI-0
+  output DVI-1
   output LVDS1
   output VGA1
   position top
