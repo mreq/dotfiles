@@ -34,6 +34,8 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('ctrlpvim/ctrlp.vim')
 " Linters, etc.
 call dein#add('benekastah/neomake')
+" Colors
+call dein#add('chriskempson/base16-vim')
 " Syntax specific
 call dein#add('kchmck/vim-coffee-script', { 'on_ft': 'coffee' })
 call dein#add('lukaszkorecki/CoffeeTags', { 'on_ft': 'coffee' })
@@ -84,7 +86,10 @@ set autoindent
 " Auto-trim trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
+" Access colors present in 256 colorspace
+let base16colorspace=256
 " Set color scheme
+colorscheme base16-default
 set background=dark
 set cursorline
 
