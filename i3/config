@@ -79,6 +79,7 @@ bindsym $m+Shift+w exec i3_rename_workspace
 bindsym $m+grave exec i3_focus_workspace
 
 bindsym $m+o exec select_power_action
+bindsym $m+Shift+o exec "select_power_action screen"
 bindsym $m+p exec select_display
 
 # move focused window
