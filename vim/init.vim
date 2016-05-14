@@ -168,5 +168,9 @@ nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
+nnoremap ^[h <C-w>h
+nnoremap ^[j <C-w>j
+nnoremap ^[k <C-w>k
+nnoremap ^[l <C-w>l
 nnoremap <Leader>z :ZoomToggle<CR>
 

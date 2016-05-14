@@ -106,6 +106,9 @@ fi
 # fix xfce4-terminal colors (256)
 if [ "$COLORTERM" == "xfce4-terminal" ]; then
   export TERM=xterm-256color
+  if [[ -f "$HOME/.dotfiles/bash/base16-shell/base16-default.dark.sh" ]]; then
+    source "$HOME/.dotfiles/bash/base16-shell/base16-default.dark.sh"
+  fi
 fi
 
 # Alias definitions.
