@@ -22,23 +22,9 @@ select_display() {
     notebook )
       xrandr --output $notebook_output --auto --output $hdmi_output --off --output $vga_output --off ;;
     HDMI )
-      xrandr --output $hdmi_output --auto --output $notebook_output --off --output $vga_output --off --output $dvi_output --off ;;
-    DELL )
-      xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
-      xrandr --addmode $hdmi_output "2560x1440"
-      xrandr --output $hdmi_output --mode 2560x1440 --output $notebook_output --off --output $vga_output --off --output $dvi_output --off ;;
-    DELL-main )
-      xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
-      xrandr --addmode $hdmi_output "2560x1440"
-      xrandr --output $hdmi_output --mode 2560x1440 --output $notebook_output --auto --below $hdmi_output --output $dvi_output --off ;;
-    DELL-DVI )
-      xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
-      xrandr --addmode $hdmi_output "2560x1440"
-      xrandr --output $hdmi_output --mode 2560x1440 --output $notebook_output --off --output $dvi_output --auto --right-of $hdmi_output  ;;
-    DELL-DP )
-      xrandr --newmode "2560x1440" 220.812 2560 2608 2640 2720 1440 1443 1448 1478 -hsync -vsync
-      xrandr --addmode DisplayPort-0 "2560x1440"
-      xrandr --output DisplayPort-0 --mode 2560x1440 ;;
+      xrandr --output $hdmi_output --auto --primary --output $vga_output --off --output $dvi_output --off ;;
+    HDMI-DVI )
+      xrandr --output $hdmi_output --auto --primary --output --output $dvi_output --auto --right-of $hdmi_output  ;;
     VGA )
       xrandr --output $vga_output --auto --output $notebook_output --off ;;
     extend-right )
