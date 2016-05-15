@@ -83,6 +83,23 @@ set expandtab
 " Smart indenting
 set autoindent
 
+" Display incomplete command
+set showcmd
+
+" Always display the status line
+set laststatus=2
+
+" Disable swap file
+set noswapfile
+
+" Searching tweaks
+set gdefault
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set showmatch
+
 " Auto-trim trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -92,6 +109,9 @@ let base16colorspace=256
 colorscheme base16-default
 set background=dark
 set cursorline
+
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
 
 " Autocomplete
 let g:deoplete#enable_at_startup = 1
@@ -116,15 +136,15 @@ endif
 
 " Function - window zoom toggle
 function! s:ZoomToggle() abort
-    if exists('t:zoomed') && t:zoomed
-        execute t:zoom_winrestcmd
-        let t:zoomed = 0
-    else
-        let t:zoom_winrestcmd = winrestcmd()
-        resize
-        vertical resize
-        let t:zoomed = 1
-    endif
+  if exists('t:zoomed') && t:zoomed
+    execute t:zoom_winrestcmd
+    let t:zoomed = 0
+  else
+    let t:zoom_winrestcmd = winrestcmd()
+    resize
+    vertical resize
+    let t:zoomed = 1
+  endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 
@@ -173,4 +193,7 @@ nnoremap ^[j <C-w>j
 nnoremap ^[k <C-w>k
 nnoremap ^[l <C-w>l
 nnoremap <Leader>z :ZoomToggle<CR>
+
+" Reindent file
+nnoremap == gg=G``
 
