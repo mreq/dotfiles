@@ -48,23 +48,23 @@ xterm*metaSendsEscape: true
 xterm*utf8Title: true
 
 ! rofi ----------------------------------------------------------------
-rofi.background: #242424
-rofi.foreground: #ffffff
-rofi.highlightbg: #2e557e
-rofi.highlightfg: #ffffff
-rofi.bordercolor: #2e557e
-rofi.padding: 10
-rofi.lines: 10
-rofi.borderwidth: 6
+rofi.background:  #181818
+rofi.foreground:  #F8F8F8
+rofi.highlightbg: argb:DD7CAFC2
+rofi.highlightfg: #F8F8F8
+rofi.bordercolor: #86C1B9
+rofi.padding: 460
+rofi.borderwidth: 0
 rofi.separator-style: none
-rofi.opacity: 100
-rofi.font: Ubuntu Mono 12
+rofi.opacity: 93
+rofi.font: Ubuntu Mono 14
 rofi.location: 0
-rofi.yoffset: 0
-rofi.xoffset: 0
-rofi.width: -100
-rofi.fixed_num_lines: 10
 rofi.hmode: false
-rofi.terminal: st
-rofi.ssh-set-title: false
 rofi.fuzzy: true
+rofi.fullscreen: false
+rofi.eh: 2
+rofi.line-margin: 7
+rofi.hide-scrollbar: true
+rofi.width: 100
+rofi.lines: 10
+rofi.fixed-num-lines: 10
