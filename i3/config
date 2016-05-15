@@ -67,10 +67,10 @@ force_focus_wrapping yes
 bindsym $m+Shift+q kill
 
 # change focus
-bindsym $m+$left focus left
-bindsym $m+$down focus down
-bindsym $m+$up focus up
-bindsym $m+$right focus right
+bindsym $m+$left  exec i3_superfocus left
+bindsym $m+$down  exec i3_superfocus down
+bindsym $m+$up    exec i3_superfocus up
+bindsym $m+$right exec i3_superfocus right
 
 bindsym Mod1+Tab focus right
 bindsym Mod1+Shift+Tab focus left
@@ -260,13 +260,13 @@ assign [class="Spotify"] → $ico_music
 bindsym $m+space exec "launch_script"
 bindsym Control+$m+space exec "pick_a_subl_project"
 bindsym $m+Mod1+space exec "rofi -show window"
+bindsym $m+i exec "i3_controller"
 
 # Apps
 bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"
 bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
 bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\"tmux -2\\"'"
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
-bindsym $m+i exec "i3_focus_or_run 'Evince'"
 
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c doublecmd"

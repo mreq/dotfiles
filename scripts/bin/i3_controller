@@ -1,0 +1,52 @@
+#!/bin/bash
+actions=(
+  'Change workspace layout'
+  'Rename workspace'
+)
+
+function handleActionSelection {
+  case $1 in
+    'Change workspace layout' )
+      changeWorkspaceLayout ;;
+    'Rename workspace' )
+      renameWorkspace ;;
+  esac
+}
+
+function renameWorkspace {
+  function handleInput {
+    if [[ $1 ]]; then
+      i3-msg rename workspace to "$1"
+    fi
+  }
+  original=$( i3-msg -t get_workspaces | jq '.[] | select(.focused) | .num' )
+  handleInput "$( echo "$original" | rofi -dmenu -i -p 'rename ↠ ' )"
+}
+
+function changeWorkspaceLayout {
+  function handleInput {
+    case $1 in
+      'tabbed' )
+        layout='tabbed' ;;
+      'horizontal split' )
+        layout='splith' ;;
+      'vertical split' )
+        layout='splitv' ;;
+      'stacked' )
+        layout='stacked' ;;
+    esac
+    if [[ $layout ]]; then
+      i3-msg layout "$layout"
+    fi
+  }
+  layouts=(
+    'tabbed'
+    'horizontal split'
+    'vertical split'
+    'stacked'
+  )
+  original=$( i3-msg -t get_workspaces | jq '.[] | select(.focused) | .num' )
+  handleInput "$( printf "%s\n" "${layouts[@]}" | rofi -dmenu -i -p 'rename ↠ ' )"
+}
+
+handleActionSelection "$( printf "%s\n" "${actions[@]}" | rofi -dmenu -i -p 'i3 action ↠ ' )"
