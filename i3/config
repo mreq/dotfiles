@@ -134,10 +134,10 @@ bindsym $m+F7 workspace number 7
 bindsym $m+F8 workspace number 8
 bindsym $m+F9 workspace number 9
 
-bindsym Control+Mod1+l workspace next
-bindsym Control+Mod1+h workspace prev
-bindsym Control+Shift+Mod1+l move container to workspace next; workspace next
-bindsym Control+Shift+Mod1+h move container to workspace prev; workspace prev
+bindsym Control+Mod1+$right workspace next
+bindsym Control+Mod1+$left workspace prev
+bindsym Control+Shift+Mod1+$right move container to workspace next; workspace next
+bindsym Control+Shift+Mod1+$left move container to workspace prev; workspace prev
 
 # move focused container to workspace
 bindsym $m+Shift+F1 move container to workspace number 1
@@ -159,10 +159,10 @@ bindsym $m+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut.
 
 # resize window (you can also use the mouse for that)
 mode $ico_resize {
-  bindsym $left       resize shrink width  10 px
-  bindsym $down       resize grow   height 10 px
-  bindsym $up         resize shrink height 10 px
-  bindsym $right      resize grow   width  10 px
+  bindsym $left       resize shrink width  10 px or 1 ppt
+  bindsym $down       resize grow   height 10 px or 1 ppt
+  bindsym $up         resize shrink height 10 px or 1 ppt
+  bindsym $right      resize grow   width  10 px or 1 ppt
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
@@ -270,7 +270,7 @@ bindsym $m+i exec "i3_focus_or_run 'Evince'"
 
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c doublecmd"
-bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c thunderbird"
+bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c gimp"
 bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c slack"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c 'nfjdjopfnbnkmfldmeffmhgodmlhdnei' -x 'google-chrome --profile-directory=Default --app-id=nfjdjopfnbnkmfldmeffmhgodmlhdnei'"

@@ -9,7 +9,7 @@ select_area() {
       flag=--fullscreen;;
     chrome )
       echo 'chrome' > /tmp/scrotshare.txt
-      flag=--fullscreen;;
+      flag=--window;;
     window )
       flag=--window;;
     area )
@@ -31,7 +31,11 @@ handle_scrot() {
   if grep 'chrome' /tmp/scrotshare.txt > /dev/null; then
     # Trim the image - remove top 187px
     size=$( identify -format "%[w]x%[h]" "$scr" )
-    convert "$scr" -gravity South -crop "$size+0-134" "$scr"
+    if wmctrl -m | grep i3; then
+      convert "$scr" -gravity South -crop "$size+0-80" -shave 5x5 "$scr"
+    else
+      convert "$scr" -gravity South -crop "$size+0-85" "$scr"
+    fi
   fi
 
   if [[ $scr ]]; then
