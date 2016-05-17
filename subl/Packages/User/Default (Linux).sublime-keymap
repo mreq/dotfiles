@@ -477,7 +477,7 @@
     "command": "run_cmd",
     "args": {
       // "cmd": "terminator --working-directory=\"$project_dir\""
-      "cmd": "xfce4-terminal --command=tmux --working-directory=\"$project_dir\""
+      "cmd": "xfce4-terminal --command='tmux -2' --working-directory=\"$project_dir\""
     }
   },
 
