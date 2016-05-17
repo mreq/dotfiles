@@ -20,6 +20,9 @@
     { "trigger": "rt\tredirect_to", "contents": "redirect_to $0" },
     { "trigger": "fl\tflash", "contents": ":flash => { :success => '$0' }" },
 
+    // translations
+    { "trigger": "t\ttranslate", "contents": "t('$0')" },
+
     // migrations
     { "trigger": "ac\tadd_column", "contents": "add_column :${1:table}, :${2:field}, :${0:integer}" },
     { "trigger": "rc\tremove_column", "contents": "remove_column :${1:table}, :${0:field}" }

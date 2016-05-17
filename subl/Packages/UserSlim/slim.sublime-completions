@@ -1,0 +1,7 @@
+{
+  "scope": "text.slim",
+  "completions":
+  [
+    { "trigger": "t\ttranslate", "contents": "t('$0')" }
+  ]
+}

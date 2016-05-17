@@ -7,6 +7,7 @@ Packages/*
 !Packages/UserTeX
 !Packages/UserOrigami
 !Packages/UserRuby
+!Packages/UserSlim
 !Packages/UserYaml
 
 !Packages/Base16
