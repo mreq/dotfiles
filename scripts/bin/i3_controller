@@ -14,13 +14,7 @@ function handleActionSelection {
 }
 
 function renameWorkspace {
-  function handleInput {
-    if [[ $1 ]]; then
-      i3-msg rename workspace to "$1"
-    fi
-  }
-  original=$( i3-msg -t get_workspaces | jq '.[] | select(.focused) | .num' )
-  handleInput "$( echo "$original" | rofi -dmenu -i -p 'rename ↠ ' )"
+  i3_rename_workspace
 }
 
 function changeWorkspaceLayout {

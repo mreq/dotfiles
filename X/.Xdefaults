@@ -56,7 +56,7 @@ rofi.bordercolor: #86C1B9
 rofi.padding: 460
 rofi.borderwidth: 0
 rofi.separator-style: none
-rofi.opacity: 93
+rofi.opacity: 85
 rofi.font: Ubuntu Mono 14
 rofi.location: 0
 rofi.hmode: false

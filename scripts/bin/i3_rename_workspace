@@ -1,16 +1,12 @@
-#!/usr/bin/env python3
-import i3
-import sys
-import subprocess
+#!/bin/bash
+function renameWorkspace {
+  function handleInput {
+    if [[ $1 ]]; then
+      i3-msg rename workspace to "$1"
+    fi
+  }
+  original=$( i3-msg -t get_workspaces | jq '.[] | select(.focused) | .num' )
+  handleInput "$( echo "$original" | rofi -dmenu -i -p 'rename ↠ ' )"
+}
 
-original = i3.filter(tree=i3.get_workspaces(), focused=True)[0]
-
-p = subprocess.Popen('rofi -dmenu -i -p "name ↠ "', stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
-new_name = p.communicate()[0].strip().decode('utf-8')
-
-if len(new_name) > 0:
-    cmd = 'rename workspace to "'+str(original['num'])+':'+str(new_name)+'"'
-else:
-    cmd = 'rename workspace to "'+str(original['num'])+'"'
-
-i3.command(cmd)
+renameWorkspace
