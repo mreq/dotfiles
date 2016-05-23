@@ -1,21 +1,18 @@
 #!/bin/bash
 options=(
   'notebook'
-  'DELL'
-  'DELL-main'
-  'DELL-DVI'
   'HDMI'
+  'HDMI-DVI'
   'VGA'
-  'extend-right'
-  'extend-left'
-  'HDMI-left'
-  'HDMI-main'
 )
 
 notebook_output=$( xrandr | head -n2 | tail -n1 | awk '{ print $1 }' )
 hdmi_output=$( xrandr | grep HDMI | head -n1 | awk '{ print $1 }' )
 dvi_output=$( xrandr | grep 'DVI.* connected' | head -n1 | awk '{ print $1 }' )
 vga_output=VGA1
+
+echo $hdmi_output
+echo $dvi_output
 
 select_display() {
   case $1 in
@@ -24,17 +21,9 @@ select_display() {
     HDMI )
       xrandr --output $hdmi_output --auto --primary --output $vga_output --off --output $dvi_output --off ;;
     HDMI-DVI )
-      xrandr --output $hdmi_output --auto --primary --output --output $dvi_output --auto --right-of $hdmi_output  ;;
+      xrandr --output $hdmi_output --auto --primary --output $dvi_output --auto --right-of $hdmi_output  ;;
     VGA )
       xrandr --output $vga_output --auto --output $notebook_output --off ;;
-    extend-right )
-      xrandr --output $notebook_output --auto --output $hdmi_output --auto --right-of $notebook_output ;;
-    extend-left )
-      xrandr --output $notebook_output --auto --output $hdmi_output --auto --left-of $notebook_output ;;
-    HDMI-left )
-      xrandr --output $hdmi_output --auto --output $notebook_output --auto --left-of $hdmi_output ;;
-    HDMI-main )
-      xrandr --output $hdmi_output --auto --output $notebook_output --auto --pos 1920x1080 ;;
   esac
 }
 

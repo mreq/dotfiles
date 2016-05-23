@@ -6,7 +6,7 @@ import re
 
 names = [workspace['name'] for workspace in i3.get_workspaces() if re.match('\d', workspace['name'])]
 
-p = subprocess.Popen('echo "'+"\n".join(names)+'" | rofi -dmenu -i -p "name ↠ "', stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+p = subprocess.Popen('echo "'+"\n".join(names)+'" | rofi -dmenu -i -p "workspace ↠ "', stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
 target_workspace = p.communicate()[0].strip().decode('utf-8')
 
 if len(target_workspace) > 0:

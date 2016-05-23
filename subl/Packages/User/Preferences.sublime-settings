@@ -57,6 +57,11 @@
 		"Vintage"
 	],
 	"inactive_panes_dim_strength": 0.2,
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
 	"index_files": true,
 	"line_numbers": true,
 	"polyfill.experimental_features": true,

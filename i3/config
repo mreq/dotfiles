@@ -88,11 +88,11 @@ bindsym $m+Shift+$down move down
 bindsym $m+Shift+$up move up
 bindsym $m+Shift+$right move right
 
-# split in horizontal orientation
-bindsym $m+Shift+v split h
+# # split in horizontal orientation
+# bindsym $m+Shift+v split h
 
-# split in vertical orientation
-bindsym $m+v split v
+# # split in vertical orientation
+# bindsym $m+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $m+f fullscreen toggle
@@ -111,7 +111,7 @@ bindsym $m+Shift+space floating toggle
 bindsym $m+a focus parent
 
 # focus the child container
-#bindsym $m+d focus child
+bindsym $m+c focus child
 
 # move the currently focused window to the scratchpad
 bindsym $m+Shift+minus move scratchpad
@@ -287,7 +287,7 @@ bindsym Control+Mod1+4 exec "scrotshare create chrome"
 
 # Startup
 # exec xrandr | grep -q 'HDMI1 connected' && select_display DELL
-exec --no-startup-id synapse
+exec --no-startup-id synapse -s
 exec --no-startup-id nm-applet
 exec --no-startup-id unagi
 exec --no-startup-id feh --bg-tile ~/Dropbox/Pictures/low_contrast_linen.png
