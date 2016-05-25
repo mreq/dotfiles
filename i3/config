@@ -105,7 +105,7 @@ bindsym $m+f fullscreen toggle
 bindsym $m+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-# bindsym $m+space focus mode_toggle
+bindsym Control+$m+Shift+space focus mode_toggle
 
 # focus the parent container
 bindsym $m+a focus parent
@@ -244,7 +244,7 @@ client.unfocused         $base00  $base00     $base07
 client.urgent            $base08  $base08     $base00
 
 # Window rules
-# for_window [class="Spotify"] floating enable resize set width 1550 px height 834 px
+for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 
 # Assigns
 assign [class="Gimp"] → $ico_gimp
