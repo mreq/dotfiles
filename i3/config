@@ -20,6 +20,7 @@ set $ico_volume 
 set $ico_muted_volume 
 set $ico_whatsapp 
 set $ico_wifi 
+set $ico_zeplin 
 
 # Base16 Default colors
 set $base00 "#151515"
@@ -277,6 +278,7 @@ bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c 'nfjdjopfnbnkmfldmeffmhgo
 bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c chromium-browser"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c spotify"
+bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin"
 
 # Screenshots
 bindsym $m+BackSpace exec "xfce4-screenshooter -f -o gimp && i3_focus_pinned -w $ico_gimp -c gimp"
