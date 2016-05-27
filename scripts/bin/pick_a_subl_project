@@ -1,5 +1,5 @@
 #!/bin/bash
-paths="work/**/*.sublime-project sublime_projects/*.sublime-project uni/**/*.sublime-project"
+paths="work/**/*.sublime-project uni/**/*.sublime-project .dotfiles/*.sublime-project"
 
 handle_selection() {
   if [[ $1 ]]; then
