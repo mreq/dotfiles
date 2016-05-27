@@ -53,11 +53,11 @@ rofi.foreground:  #F8F8F8
 rofi.highlightbg: argb:DD7CAFC2
 rofi.highlightfg: #F8F8F8
 rofi.bordercolor: #86C1B9
-rofi.padding: 460
+rofi.padding: 350
 rofi.borderwidth: 0
 rofi.separator-style: none
 rofi.opacity: 85
-rofi.font: Ubuntu Mono 14
+rofi.font: Ubuntu Mono Bold 14
 rofi.location: 0
 rofi.hmode: false
 rofi.fuzzy: true
