@@ -18,6 +18,7 @@ set $ico_slack 
 set $ico_trello 
 set $ico_volume 
 set $ico_muted_volume 
+set $ico_virtualbox 
 set $ico_whatsapp 
 set $ico_wifi 
 set $ico_zeplin 
@@ -256,12 +257,14 @@ assign [class="google-chrome" instance="crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei"] �
 assign [class="google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] → $ico_trello
 assign [class="chromium-browser"] → $ico_calendar
 assign [class="Spotify"] → $ico_music
+assign [class="VirtualBox"] → $ico_virtualbox
 
 # Launchers
 bindsym $m+space exec "launch_script"
-bindsym Control+$m+space exec "pick_a_subl_project"
 bindsym $m+Mod1+space exec "rofi -show window"
 bindsym $m+i exec "i3_controller"
+bindsym Control+$m+s exec "pick_a_subl_project"
+bindsym Control+$m+v exec "pick_a_virtualbox_machine"
 
 # Apps
 bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"
