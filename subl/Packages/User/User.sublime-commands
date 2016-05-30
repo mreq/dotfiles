@@ -67,6 +67,15 @@
   },
 
   {
+    "caption": "FilterPipes: Clear invisible",
+    "command": "filter_pipes_regex",
+    "args": {
+      "regex": "[ ]",
+      "replacement": ""
+    }
+  },
+
+  {
     "caption": "FilterPipes: Convert Less to Scss",
     "command": "filter_pipes_regex",
     "args": {
