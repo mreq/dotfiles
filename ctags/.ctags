@@ -1,3 +1,27 @@
+--exclude=.git
+--exclude=.svn
+--exclude=.hg
+--exclude=min
+--exclude=vendor
+--exclude=node_modules
+--exclude=tmp
+--exclude=\*.min.\*
+--exclude=\*.map
+--exclude=\*.swp
+--exclude=\*.bak
+--exclude=\*.pyc
+--exclude=\*.class
+--exclude=\*.sln
+--exclude=\*.Master
+--exclude=\*.csproj
+--exclude=\*.csproj.user
+--exclude=\*.cache
+--exclude=\*.dll
+--exclude=\*.pdb
+--exclude=tags
+--exclude=cscope.\*
+--exclude=\*.tar.\*
+
 --langmap=javascript:.js
 --regex-javascript=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*[\(]function[ \t]*\(/\1/f,function,functions/
 --regex-javascript=/^[ \t]*[\(]function[ \t]*([A-Za-z0-9._$]+)/\1/f,function,functions/
@@ -59,26 +83,4 @@
 --regex-markdown=/^#\+[ \t](.*$)/\1/h,heading,headings/
 
 --langmap=vim:+(vimrc)
-
---exclude=.git
---exclude=.svn
---exclude=.hg
---exclude=min
---exclude=vendor
---exclude=\*.min.\*
---exclude=\*.map
---exclude=\*.swp
---exclude=\*.bak
---exclude=\*.pyc
---exclude=\*.class
---exclude=\*.sln
---exclude=\*.Master
---exclude=\*.csproj
---exclude=\*.csproj.user
---exclude=\*.cache
---exclude=\*.dll
---exclude=\*.pdb
---exclude=tags
---exclude=cscope.\*
---exclude=\*.tar.\*
 

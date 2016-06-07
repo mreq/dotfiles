@@ -18,6 +18,7 @@ call dein#add('soramugi/auto-ctags.vim')
 call dein#add('maxbrunsfeld/vim-yankstack')
 call dein#add('tpope/vim-sleuth')
 call dein#add('bling/vim-bufferline')
+call dein#add('tsukkee/unite-tag')
 " Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 " Text objects
@@ -180,7 +181,7 @@ nnoremap <Leader>l :NERDTreeToggle<CR>
 nnoremap <Esc><Esc> :noh<CR>
 
 " Git keybinds
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gs :Gstatus<CR><C-w><C-o>
 
 " Splits/window management
 nnoremap <Leader>wj <C-w>S<C-w>j
@@ -195,6 +196,6 @@ nnoremap ^[k <C-w>k
 nnoremap ^[l <C-w>l
 nnoremap <Leader>z :ZoomToggle<CR>
 
-" Reindent file
-nnoremap == gg=G``
+" tags
+nnoremap <Leader>t :Unite tag:%<CR>
 
