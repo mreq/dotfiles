@@ -481,10 +481,31 @@
     }
   },
 
-  // Sidebar: focus
+  // Sidebar: toggle
   {
-    "keys": [" ", "d"],
-    "command": "focus_side_bar",
+    "keys": [" ", "l"],
+    "command": "chain",
+    "args": {
+      "commands": [["toggle_side_bar"], ["focus_side_bar"]]
+    },
+    "context": [
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  // Sidebar: hide on escape
+  {
+    "keys": ["escape"],
+    "command": "toggle_side_bar",
+    "context": [
+      { "key": "control", "operand": "sidebar_tree" }
+    ]
+  },
+
+  // Open-Include override
+  {
+    "keys": ["g", "f"],
+    "command": "open_include",
     "context": [
       { "key": "vi_command_mode_aware" }
     ]

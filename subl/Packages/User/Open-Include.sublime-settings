@@ -1,0 +1,20 @@
+{
+  "auto_extension": [
+    {
+      "extension": ".scss",
+      "prefix": "_"
+    },
+    {
+      "extension": ".slim",
+      "prefix": "_"
+    },
+    {
+      "extension": ".html.slim",
+      "prefix": "_"
+    },
+    {
+      "extension": ".rb",
+      "prefix": "_"
+    }
+  ]
+}

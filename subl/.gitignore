@@ -17,6 +17,7 @@ Packages/*
 !Packages/MaxPane
 !Packages/MreqColorScheme
 !Packages/Origami
+!Packages/Open-Include
 !Packages/Pretty JSON
 !Packages/SendTextPlus
 !Packages/SublimeLogMagic

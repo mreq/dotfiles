@@ -2,7 +2,3 @@
 
 :map ; :
 :map Y y$
-:map [ ^
-:map ] $
-:nmap <Leader>' 0vi'p0
-:nmap <Leader>\ <C-P>
