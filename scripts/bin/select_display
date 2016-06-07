@@ -1,9 +1,10 @@
 #!/bin/bash
 options=(
-  'notebook'
+  'guess'
   'HDMI'
   'HDMI-DVI'
   'VGA'
+  'notebook'
 )
 
 notebook_output=$( xrandr | head -n2 | tail -n1 | awk '{ print $1 }' )
@@ -14,8 +15,18 @@ vga_output=VGA1
 echo $hdmi_output
 echo $dvi_output
 
+guess_display() {
+  if xrandr | grep 'VGA.* connected'; then
+    select_display VGA
+  elif xrandr | grep 'HDMI.* connected'; then
+    select_display HDMI
+  fi
+}
+
 select_display() {
   case $1 in
+    guess )
+      guess_display ;;
     notebook )
       xrandr --output $notebook_output --auto --output $hdmi_output --off --output $vga_output --off ;;
     HDMI )

@@ -14,6 +14,7 @@
     // Components
     { "trigger": "di\tdidInsertElement", "contents": "didInsertElement: ->\n\t$0" },
     { "trigger": "wc\twillClearRender", "contents": "willClearRender: ->\n\t$0" },
+    { "trigger": "wd\twillDestroyElement", "contents": "willDestroyElement: ->\n\t$0" },
     { "trigger": "sa\tsendAction", "contents": "@sendAction '$0'" },
     { "trigger": "cn\tclassNames", "contents": "classNames: $0" },
     { "trigger": "cnb\tclassNameBindings", "contents": "classNameBindings: $0" },

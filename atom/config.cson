@@ -20,8 +20,8 @@
     ]
     projectHome: "/home/petr/work"
     themes: [
-      "one-dark-ui"
-      "mreq-theme"
+      "atom-dark-ui"
+      "gruvbox"
     ]
   "disable-keybindings":
     prefixKeys: [

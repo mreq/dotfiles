@@ -221,7 +221,7 @@ bar {
 
 bar {
   status_command i3blocks
-  tray_output LVDS1
+  tray_output VGA1
   output LVDS1
   output VGA1
   position top
@@ -292,7 +292,7 @@ bindsym Control+Mod1+3 exec "scrotshare create window"
 bindsym Control+Mod1+4 exec "scrotshare create chrome"
 
 # Startup
-# exec xrandr | grep -q 'HDMI1 connected' && select_display DELL
+exec --no-startup-id select_display guess
 exec --no-startup-id synapse -s
 exec --no-startup-id nm-applet
 exec --no-startup-id unagi

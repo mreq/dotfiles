@@ -36,6 +36,7 @@ call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('benekastah/neomake')
 " Colors
 call dein#add('chriskempson/base16-vim')
+call dein#add('endel/vim-github-colorscheme')
 " Syntax specific
 call dein#add('kchmck/vim-coffee-script', { 'on_ft': 'coffee' })
 call dein#add('lukaszkorecki/CoffeeTags', { 'on_ft': 'coffee' })
@@ -106,8 +107,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Access colors present in 256 colorspace
 let base16colorspace=256
 " Set color scheme
-colorscheme base16-default
 set background=dark
+colorscheme base16-default
 set cursorline
 
 " Treat <li> and <p> tags like the block tags they are
