@@ -212,7 +212,7 @@ bar {
     separator  $base02
     # name               border   background  font_color
     focused_workspace    $base0D  $base0D     $base07
-    active_workspace     $base00  $base00     $base05
+    active_workspace     $base00  $base00     $base0D
     inactive_workspace   $base00  $base00     $base05
     urgent_workspace     $base08  $base08     $base07
     binding_mode         $base0E  $base0E     $base01
@@ -231,7 +231,7 @@ bar {
     separator  $base02
     # name               border   background  font_color
     focused_workspace    $base0D  $base0D     $base07
-    active_workspace     $base00  $base00     $base05
+    active_workspace     $base00  $base00     $base0D
     inactive_workspace   $base00  $base00     $base05
     urgent_workspace     $base08  $base08     $base07
     binding_mode         $base0E  $base0E     $base01

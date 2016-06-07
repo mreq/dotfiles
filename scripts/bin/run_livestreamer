@@ -3,6 +3,7 @@
 # Shortcut for livestreamer
 
 streams=(
+  'twitch.tv/eleaguetv'
   'twitch.tv/mlg'
   'twitch.tv/dreamhackcs'
   'twitch.tv/esl_csgo'
