@@ -19,6 +19,7 @@ call dein#add('maxbrunsfeld/vim-yankstack')
 call dein#add('tpope/vim-sleuth')
 call dein#add('bling/vim-bufferline')
 call dein#add('tsukkee/unite-tag')
+call dein#add('christoomey/vim-tmux-navigator')
 " Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 " Text objects
@@ -37,7 +38,7 @@ call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('benekastah/neomake')
 " Colors
 call dein#add('chriskempson/base16-vim')
-call dein#add('endel/vim-github-colorscheme')
+call dein#add('w0ng/vim-hybrid')
 " Syntax specific
 call dein#add('kchmck/vim-coffee-script', { 'on_ft': 'coffee' })
 call dein#add('lukaszkorecki/CoffeeTags', { 'on_ft': 'coffee' })
@@ -109,7 +110,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 let base16colorspace=256
 " Set color scheme
 set background=dark
-colorscheme base16-default
+colorscheme hybrid
 set cursorline
 
 " Treat <li> and <p> tags like the block tags they are
@@ -184,16 +185,19 @@ nnoremap <Esc><Esc> :noh<CR>
 nnoremap <Leader>gs :Gstatus<CR><C-w><C-o>
 
 " Splits/window management
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
 nnoremap <Leader>wj <C-w>S<C-w>j
 nnoremap <Leader>wl <C-w>v<C-w>l
-nnoremap <M-h> <C-w>h
-nnoremap <M-j> <C-w>j
-nnoremap <M-k> <C-w>k
-nnoremap <M-l> <C-w>l
-nnoremap ^[h <C-w>h
-nnoremap ^[j <C-w>j
-nnoremap ^[k <C-w>k
-nnoremap ^[l <C-w>l
+nnoremap <silent> ^[h :TmuxNavigateLeft<cr>
+nnoremap <silent> ^[j :TmuxNavigateDown<cr>
+nnoremap <silent> ^[k :TmuxNavigateUp<cr>
+nnoremap <silent> ^[l :TmuxNavigateRight<cr>
+nnoremap <silent> ^[\ :TmuxNavigatePrevious<cr>
 nnoremap <Leader>z :ZoomToggle<CR>
 
 " tags
