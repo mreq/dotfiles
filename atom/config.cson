@@ -21,7 +21,7 @@
     projectHome: "/home/petr/work"
     themes: [
       "atom-dark-ui"
-      "gruvbox"
+      "hybrid-next-syntax"
     ]
   "disable-keybindings":
     prefixKeys: [

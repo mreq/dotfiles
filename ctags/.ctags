@@ -19,6 +19,7 @@
 --exclude=\*.dll
 --exclude=\*.pdb
 --exclude=tags
+--exclude=frontend/dist
 --exclude=cscope.\*
 --exclude=\*.tar.\*
 
