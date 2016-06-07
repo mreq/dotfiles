@@ -9,7 +9,8 @@
     "~/.config/sublime-text-3/Local",
     "~/.config/synapse",
     "~/.config/terminator",
-    "~/.config/xfce4"
+    "~/.config/xfce4",
+    "~/.atom"
   ],
   "link": {
     "autostart": "~/.config/autostart",

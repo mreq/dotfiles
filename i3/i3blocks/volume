@@ -1,34 +1,30 @@
-#!/usr/bin/env python3
-import subprocess
-import re
-import os
+#!/bin/bash
+percent=$( amixer -D pulse sget Master | grep '\[on\]' | head -n1 | grep -o '[1-9][0-9]*%' )
 
-amixer = subprocess.check_output('amixer -D pulse sget Master', shell=True).strip().decode('utf-8')
-is_on = re.search('\[on\]', amixer)
 
-if is_on:
-  icon = subprocess.check_output('i3_get_ico volume', shell=True).strip().decode('utf-8')
-  percentage = re.search('\[(\d+)%\]', amixer).group(1)
-else:
-  icon = subprocess.check_output('i3_get_ico muted_volume', shell=True).strip().decode('utf-8')
-  percentage = 'OFF'
+if [[ $percent ]]; then
+  icon=''
+else
+  icon=' '
+  percent='OFF'
+  color=$( i3_get_color base03 )
+fi
 
-output = icon + '  '
-output += percentage
+echo "$icon $percent"
 
-if 'BLOCK_BUTTON' in os.environ:
-    if os.environ['BLOCK_BUTTON'] == '4':
-        # scroll up - increase
-        subprocess.call('amixer -D pulse sset Master 5%+ unmute; i3_restart_i3blocks', shell=True)
-    elif os.environ['BLOCK_BUTTON'] == '5':
-        # scroll down - decrease
-        subprocess.call('amixer -D pulse sset Master 5%- unmute; i3_restart_i3blocks', shell=True)
-    elif os.environ['BLOCK_BUTTON'] == '1' or os.environ['BLOCK_BUTTON'] == '3':
-        # click - toggle
-        subprocess.call('amixer -D pulse set Master 1+ toggle; i3_restart_i3blocks', shell=True)
+if [[ $color ]]; then
+  echo
+  echo "$color"
+fi
 
-print(output)
-
-if not is_on:
-  print()
-  print(subprocess.check_output('i3_get_color base03', shell=True).strip().decode('utf-8'))
+handleButtons() {
+  case $BLOCK_BUTTON in
+    4 )
+      amixer -D pulse sset Master 5%+ unmute; pkill -SIGRTMIN+10 i3blocks ;;
+    5 )
+      amixer -D pulse sset Master 5%- unmute; pkill -SIGRTMIN+10 i3blocks ;;
+    1|3 )
+      amixer -D pulse set Master 1+ toggle; pkill -SIGRTMIN+10 i3blocks ;;
+  esac
+}
+handleButtons > /dev/null

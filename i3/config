@@ -55,6 +55,7 @@ smart_borders on
 new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
+for_window [class="Thunar"] floating enable
 
 # drag floating windows
 floating_modifier $m
@@ -190,12 +191,12 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # sound
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ unmute;
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- unmute;
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle;
-bindsym $m+KP_Add exec --no-startup-id amixer -D pulse sset Master 5%+ unmute;
-bindsym $m+KP_Subtract exec --no-startup-id amixer -D pulse sset Master 5%- unmute;
-bindsym $m+KP_Multiply exec --no-startup-id amixer -D pulse set Master 1+ toggle;
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master 5%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master 5%- unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 1+ toggle; pkill -SIGRTMIN+10 i3blocks;"
+bindsym $m+KP_Add exec --no-startup-id "amixer -D pulse sset Master 5%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym $m+KP_Subtract exec --no-startup-id "amixer -D pulse sset Master 5%- unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym $m+KP_Multiply exec --no-startup-id "amixer -D pulse set Master 1+ toggle; pkill -SIGRTMIN+10 i3blocks;"
 bindsym Pause exec "play_pause_spotify"
 bindsym Shift+Pause exec "play_pause_spotify next"
 bindsym Control+Shift+Pause exec "play_pause_spotify prev"
