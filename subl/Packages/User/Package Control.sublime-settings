@@ -52,7 +52,7 @@
 		"SublimeLinter-contrib-lintr",
 		"SublimeLinter-json",
 		"SublimeLinter-pylint",
-		"SublimeLinter-rubocop",
+		"SublimeLinter-ruby",
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-slim-lint",
 		"Syntax Highlighting for Sass",
