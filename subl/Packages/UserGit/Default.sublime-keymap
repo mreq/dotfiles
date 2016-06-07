@@ -31,6 +31,23 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
+  // Git: git pull --rebase
+  {
+    "keys": ["p"],
+    "command": "gs_custom",
+    "args": {
+      "args": ["pull", "--rebase"],
+      "output_to_panel": true,
+      "start_msg": "Starting pull (rebase)...",
+      "complete_msg": "Pull complete."
+    },
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+
   // Git: git whatchanged
   {
     "keys": [" ", "g", "w"],
