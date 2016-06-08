@@ -5,7 +5,6 @@
 	],
 	"installed_packages":
 	[
-		"AceJump",
 		"AdvancedNewFile",
 		"All Autocomplete",
 		"Better Close Window",
@@ -13,6 +12,7 @@
 		"Chain of Command",
 		"ChangeList",
 		"ChangeQuotes",
+		"Cheatsheet",
 		"Chmod",
 		"CSScheme",
 		"Emblem.js Syntax Highlighting",
@@ -27,6 +27,7 @@
 		"LessImproved",
 		"List stylesheet variables",
 		"LogMagic",
+		"Make Bookmarklet",
 		"MarkdownHighlighting",
 		"MaxPane",
 		"MoveTab",

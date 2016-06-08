@@ -1,6 +1,5 @@
 Packages/*
 !Packages/User
-!Packages/UserAceJump
 !Packages/UserCoffee
 !Packages/UserCss
 !Packages/UserGit
