@@ -56,6 +56,7 @@ new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
 for_window [class="Thunar"] floating enable
+# for_window [class="Wine" instance="PokerStars.exe"] floating enable
 
 # drag floating windows
 floating_modifier $m
@@ -70,10 +71,10 @@ force_focus_wrapping yes
 bindsym $m+Shift+q kill
 
 # change focus
-bindsym $m+$left  exec i3_superfocus left
-bindsym $m+$down  exec i3_superfocus down
-bindsym $m+$up    exec i3_superfocus up
-bindsym $m+$right exec i3_superfocus right
+bindsym $m+$left  focus left
+bindsym $m+$down  focus down
+bindsym $m+$up    focus up
+bindsym $m+$right focus right
 
 bindsym Mod1+Tab focus right
 bindsym Mod1+Shift+Tab focus left
@@ -91,18 +92,18 @@ bindsym $m+Shift+$down move down
 bindsym $m+Shift+$up move up
 bindsym $m+Shift+$right move right
 
-# # split in horizontal orientation
-# bindsym $m+Shift+v split h
+# split in horizontal orientation
+bindsym $m+bracketleft split h
 
-# # split in vertical orientation
-# bindsym $m+v split v
+# split in vertical orientation
+bindsym $m+bracketright split v
 
 # enter fullscreen mode for the focused container
 bindsym $m+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $m+u layout tabbed
-# bindsym $m+Shift+u layout toggle split
+bindsym $m+u layout tabbed
+bindsym $m+Shift+u layout toggle split
 
 # toggle tiling / floating
 bindsym $m+Shift+space floating toggle
@@ -173,18 +174,18 @@ mode $ico_resize {
 }
 bindsym $m+r mode $ico_resize
 
-# move window
-mode $ico_move {
-  bindsym $left       move left  10 px
-  bindsym $down       move down  10 px
-  bindsym $up         move up    10 px
-  bindsym $right      move right 10 px
+## move window
+#mode $ico_move {
+#  bindsym $left       move left  10 px
+#  bindsym $down       move down  10 px
+#  bindsym $up         move up    10 px
+#  bindsym $right      move right 10 px
 
-  # back to normal: Enter or Escape
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $m+u mode $ico_move
+#  # back to normal: Enter or Escape
+#  bindsym Return mode "default"
+#  bindsym Escape mode "default"
+#}
+#bindsym $m+u mode $ico_move
 
 # brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
