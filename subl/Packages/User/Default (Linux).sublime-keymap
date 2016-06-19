@@ -13,7 +13,7 @@
   // Ctrl+p: same folder
   {
     "keys": [" ", "i"],
-    "command": "show_overlay_folder",
+    "command": "fuzzy_start_from_file",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -364,7 +364,7 @@
 
   // Generic: convert case
   {
-    "keys": [" ", "c", "c"],
+    "keys": ["alt+c"],
     "command": "toggle_snake_camel_pascal"
   },
 
