@@ -56,7 +56,7 @@ new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
 for_window [class="Thunar"] floating enable
-# for_window [class="Wine" instance="PokerStars.exe"] floating enable
+for_window [class="Wine" instance="PokerStars.exe"] floating enable; border none
 
 # drag floating windows
 floating_modifier $m

@@ -6,10 +6,10 @@ run_cmd() {
   eval "$cmd"
 }
 
-notify-send -i terminal 'watch_run' 'Watches set up. Run CMD.'
+notify-send -i terminal 'watch_run' "Watches set up. Run $( echo $cmd | awk '{ print $1 }' )."
 run_cmd
 
 while inotifywait -e MODIFY $args; do
   run_cmd
-  notify-send -i terminal 'watch_run' 'Run CMD.'
+  notify-send -i terminal 'watch_run' "Run $( echo $cmd | awk '{ print $1 }' )."
 done
