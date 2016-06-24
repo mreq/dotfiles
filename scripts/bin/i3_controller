@@ -1,6 +1,7 @@
 #!/bin/bash
 actions=(
   'Change workspace layout'
+  'Show all scratchpad windows'
   'Load layout'
   'Rename workspace'
 )
@@ -9,6 +10,8 @@ function handleActionSelection {
   case $1 in
     'Change workspace layout' )
       changeWorkspaceLayout ;;
+    'Show all scratchpad windows' )
+      showAllScratchpadWindows ;;
     'Rename workspace' )
       renameWorkspace ;;
     'Load layout' )
@@ -54,6 +57,10 @@ function loadLayout {
   }
 
   handleInput "$( ls ~/.dotfiles/i3/layouts | rofi -dmenu -i -p 'layout ↠ ' )"
+}
+
+function showAllScratchpadWindows {
+  i3-msg -t get_tree | jq "recurse(.nodes[]) | select(.name == \"__i3_scratch\") | recurse(.floating_nodes[]) | recurse(.nodes[]) | .window" | grep -v null | awk '{ print "i3-msg \"[id="$1"]\" scratchpad show" }' | sh
 }
 
 handleActionSelection "$( printf "%s\n" "${actions[@]}" | rofi -dmenu -i -p 'i3 action ↠ ' )"

@@ -19,6 +19,6 @@ fail 'You need to provide a workspace using the -w option.' unless options[:work
 `i3-msg 'workspace #{options[:workspace]}'`
 
 return unless options[:class]
-options[:exec] = options[:class] unless options[:exec]
+options[:exec] = options[:class].downcase unless options[:exec]
 
 `wmctrl -lx | grep #{options[:class]} || #{options[:exec]} &`

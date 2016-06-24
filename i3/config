@@ -251,15 +251,15 @@ client.urgent            $base08  $base08     $base00
 for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 
 # Assigns
-assign [class="Gimp"] → $ico_gimp
-assign [class="Thunderbird"] → $ico_mail
-assign [class="Slack"] → $ico_slack
-assign [class="Doublecmd"] → $ico_folder
-assign [class="google-chrome" instance="crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei"] → $ico_whatsapp
-assign [class="google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] → $ico_trello
-assign [class="chromium-browser"] → $ico_calendar
-assign [class="Spotify"] → $ico_music
 assign [class="VirtualBox"] → $ico_virtualbox
+assign [class="chromium-browser"] → $ico_calendar
+assign [class="google-chrome" instance="crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei"] → $ico_whatsapp
+assign [class="Spotify"] → $ico_music
+for_window [class="Gimp"] floating_enable
+for_window [class="Thunderbird"] floating enable
+for_window [class="Slack"] floating enable
+for_window [class="Doublecmd"] floating enable
+for_window [class="google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] floating enable
 
 # Launchers
 bindsym $m+space exec "launch_script"
@@ -275,19 +275,19 @@ bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
 
 # Back and forth
-bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c doublecmd"
-bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
-bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c gimp"
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c slack"
+bindsym $m+4 exec "i3_scratchpad_toggle -c Doublecmd -x doublecmd"
+bindsym $m+5 exec "i3_scratchpad_toggle -c Thunderbird -x thunderbird"
+bindsym $m+s exec "i3_scratchpad_toggle -c Slack -x slack"
+bindsym $m+e exec "i3_scratchpad_toggle -i 'oflhioojkbelepjlnafgmgkkjhojphcg' -c 'google-chrome' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
+bindsym $m+g exec "i3_scratchpad_toggle -c Gimp"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c 'nfjdjopfnbnkmfldmeffmhgodmlhdnei' -x 'google-chrome --profile-directory=Default --app-id=nfjdjopfnbnkmfldmeffmhgodmlhdnei'"
-bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c chromium-browser"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c spotify"
-bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c Virtualbox"
 bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin"
+bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c Virtualbox"
 
 # Screenshots
-bindsym $m+BackSpace exec "xfce4-screenshooter -f -o gimp && i3_focus_pinned -w $ico_gimp -c gimp"
+bindsym $m+BackSpace exec "xfce4-screenshooter -f -o gimp && i3_scratchpad_toggle -c Gimp"
 bindsym Control+Mod1+1 exec "scrotshare create full"
 bindsym Control+Mod1+2 exec "scrotshare create area"
 bindsym Control+Mod1+3 exec "scrotshare create window"
