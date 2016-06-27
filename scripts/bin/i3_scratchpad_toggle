@@ -20,7 +20,7 @@ options[:exec] = options[:class].downcase unless options[:exec]
 
 class_condition = %{select(.window_properties.class == \\"#{options[:class]}\\") }
 if options[:instance]
-  instance_condition = %{select(.window_properties.instance == \\"#{options[:instance]}\\") }
+  instance_condition = %{| select(.window_properties.instance == \\"#{options[:instance]}\\") }
 else
   instance_condition = ''
 end
