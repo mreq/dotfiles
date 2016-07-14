@@ -10,7 +10,7 @@
 "wmctile -c -x 'subl --new-window' --switch-to 'sublime_text.Sublime_text'"
   Mod4 + 2
 
-"wmctile -c -x 'terminator' --switch-to 'terminator.Terminator'"
+"wmctile -c -x 'xfce4-terminal --command="tmux -2"' --switch-to 'xfce4-terminal.Xfce4-terminal'"
   Mod4 + 3
 
 "wmctile -x 'doublecmd' --summon 'doublecmd.Doublecmd'"

@@ -1,4 +1,4 @@
-#!/home/petr/.rvm/rubies/ruby-2.2.4/bin/ruby
+#!/home/petr/.rvm/rubies/ruby-2.3.0/bin/ruby
 show_gpu = false
 output = []
 sensors = `sensors`.chomp

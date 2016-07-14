@@ -1,2 +1,2 @@
 #!/bin/bash
-~/.rvm/rubies/ruby-2.2.4/bin/ruby ~/.dotfiles/wmctile/bin/wmctile "$@"
+~/.rvm/rubies/ruby-2.3.0/bin/ruby ~/.dotfiles/wmctile/bin/wmctile "$@"
