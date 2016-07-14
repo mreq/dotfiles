@@ -56,7 +56,6 @@ new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
 for_window [class="Thunar"] floating enable
-for_window [class="Wine" instance="PokerStars.exe"] floating enable; border none
 
 # drag floating windows
 floating_modifier $m
@@ -272,11 +271,15 @@ assign [class="VirtualBox"] → $ico_virtualbox
 assign [class="chromium-browser"] → $ico_calendar
 assign [class="google-chrome" instance="crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei"] → $ico_whatsapp
 assign [class="Spotify"] → $ico_music
-for_window [class="Gimp"] floating_enable
-for_window [class="Thunderbird"] floating enable
-for_window [class="Slack"] floating enable
-for_window [class="Doublecmd"] floating enable
-for_window [class="google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] floating enable
+assign [class="Gimp"] → $ico_gimp
+assign [class="Thunderbird"] → $ico_mail
+assign [class="Slack"] → $ico_slack
+assign [class="Doublecmd"] → $ico_folder
+assign [class="google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] → $ico_trello
+# for_window [class="Thunderbird"] floating enable
+# for_window [class="Slack"] floating enable
+# for_window [class="Doublecmd"] floating enable
+# for_window [class="google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] floating enable
 
 # Launchers
 bindsym $m+space exec "launch_script"
@@ -292,16 +295,16 @@ bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
 
 # Back and forth
-bindsym $m+4 exec "i3_scratchpad_toggle -c Doublecmd -x doublecmd"
-bindsym $m+5 exec "i3_scratchpad_toggle -c Thunderbird -x thunderbird"
-bindsym $m+s exec "i3_scratchpad_toggle -c Slack -x slack"
-bindsym $m+e exec "i3_scratchpad_toggle -i 'crx_oflhioojkbelepjlnafgmgkkjhojphcg' -c 'google-chrome' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
-bindsym $m+g exec "i3_scratchpad_toggle -c Gimp"
+bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
+bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
+bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
+bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c 'nfjdjopfnbnkmfldmeffmhgodmlhdnei' -x 'google-chrome --profile-directory=Default --app-id=nfjdjopfnbnkmfldmeffmhgodmlhdnei'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c chromium-browser"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c spotify"
 bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin"
-bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c Virtualbox"
+bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox"
 
 # Screenshots
 bindsym $m+BackSpace exec "xfce4-screenshooter -f -o gimp && i3_scratchpad_toggle -c Gimp"
@@ -318,7 +321,6 @@ exec --no-startup-id unagi
 exec --no-startup-id feh --bg-tile ~/Dropbox/Pictures/low_contrast_linen.png
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start -i
-exec --no-startup-id setxkbmap -layout us,cz -variant ,qwerty -option grp:alt_shift_toggle
 exec --no-startup-id capslock_escape
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id xmodmap ~/.Xmodmap

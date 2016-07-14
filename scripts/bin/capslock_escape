@@ -1,2 +1,2 @@
 #!/bin/sh
-setxkbmap -option caps:escape
+setxkbmap -layout us,cz -variant ,qwerty -option grp:alt_shift_toggle -option caps:escape

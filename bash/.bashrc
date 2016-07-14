@@ -161,6 +161,14 @@ r() {
   fi
 }
 
+rr() {
+  if [[ -f bin/rake ]]; then
+    bin/rake "$@"
+  else
+    rake "$@"
+  fi
+}
+
 e() {
   if [[ -f bin/ember ]]; then
     bin/ember "$@"
