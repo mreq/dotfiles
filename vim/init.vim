@@ -17,9 +17,9 @@ call dein#add('terryma/vim-multiple-cursors')
 call dein#add('soramugi/auto-ctags.vim')
 call dein#add('maxbrunsfeld/vim-yankstack')
 call dein#add('tpope/vim-sleuth')
-call dein#add('bling/vim-bufferline')
 call dein#add('tsukkee/unite-tag')
 call dein#add('christoomey/vim-tmux-navigator')
+call dein#add('ap/vim-buftabline')
 " Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 " Text objects
