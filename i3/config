@@ -56,6 +56,8 @@ new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
 for_window [class="Gdebi-gtk"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="Wine" instance="explorer.exe"] floating enable
 
 # drag floating windows
 floating_modifier $m
@@ -287,6 +289,7 @@ bindsym $m+Mod1+space exec "rofi -show window"
 bindsym $m+i exec "i3_controller"
 bindsym Control+$m+s exec "pick_a_subl_project"
 bindsym Control+$m+v exec "pick_a_virtualbox_machine"
+bindsym Mod1+F2 exec "xfce4-appfinder"
 
 # Apps
 bindsym $m+1 exec "i3_focus_or_run 'google-chrome' 'google-chrome'"

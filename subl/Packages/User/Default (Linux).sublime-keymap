@@ -1,4 +1,11 @@
 [
+  // Magic
+  {
+    "keys": [" ", " "],
+    "command": "sublime_magic",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
   // Ctrl+p
   {
     "keys": [" ", "j"],

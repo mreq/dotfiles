@@ -45,7 +45,7 @@
     # Close all
     'space q': 'custom:close-panes'
     # Git
-    'space g s': 'atomatigit:toggle'
+    'space g s': 'git-control:toggle'
     # Change surround
     'space c s': 'vim-mode-plus:change-surround'
     'space d s': 'vim-mode-plus:delete-surround'
