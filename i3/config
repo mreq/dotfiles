@@ -57,6 +57,7 @@ new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
 for_window [class="Gdebi-gtk"] floating enable
 for_window [class="Xfce4-appfinder"] floating enable
+for_window [title="Task Manager - Google Chrome"] floating enable
 for_window [class="Wine" instance="explorer.exe"] floating enable
 
 # drag floating windows
