@@ -1,0 +1,10 @@
+#!/bin/bash
+current=$( i3-msg -t get_workspaces | jq '.[] | select(.focused)' )
+current_output=$( echo $current | jq '.output' )
+other_output_workspace=$( i3-msg -t get_outputs | jq ".[] | select(.active) | select(.name != $current_output) | .current_workspace" )
+
+if [[ $other_output_workspace ]]; then
+  i3-msg workspace $other_output_workspace
+else
+  notify-send 'i3_focus_other_monitor' 'No other output.'
+fi

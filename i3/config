@@ -81,6 +81,7 @@ bindsym $m+$right focus right
 bindsym Mod1+Tab focus right
 bindsym Mod1+Shift+Tab focus left
 bindsym $m+Tab workspace back_and_forth
+bindsym $m+Shift+Tab exec i3_focus_other_monitor
 bindsym $m+Shift+w exec i3_rename_workspace
 bindsym $m+grave exec i3_focus_workspace
 
