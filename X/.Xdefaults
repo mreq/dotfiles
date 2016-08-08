@@ -48,15 +48,14 @@ xterm*metaSendsEscape: true
 xterm*utf8Title: true
 
 ! rofi ----------------------------------------------------------------
-rofi.background:  #181818
-rofi.foreground:  #F8F8F8
-rofi.highlightbg: argb:DD7CAFC2
-rofi.highlightfg: #F8F8F8
-rofi.bordercolor: #86C1B9
-rofi.padding: 350
-rofi.borderwidth: 0
+rofi.background:  #151515
+rofi.foreground:  #F5F5F5
+rofi.highlightfg: #F5F5F5
+rofi.bordercolor: #6A9FB5
+rofi.padding: 50
+rofi.borderwidth: 1
 rofi.separator-style: none
-rofi.opacity: 85
+rofi.opacity: 100
 rofi.font: Ubuntu Mono Bold 14
 rofi.location: 0
 rofi.hmode: false
@@ -65,6 +64,6 @@ rofi.fullscreen: false
 rofi.eh: 2
 rofi.line-margin: 7
 rofi.hide-scrollbar: true
-rofi.width: 100
+rofi.width: -50
 rofi.lines: 10
 rofi.fixed-num-lines: 10

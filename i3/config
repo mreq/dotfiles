@@ -287,6 +287,7 @@ assign [class="google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] â
 
 # Launchers
 bindsym $m+space exec "launch_script"
+bindsym Control+$m+space exec "i3-dmenu-desktop --dmenu='rofi -dmenu -i -p \\"run â†  \\"'"
 bindsym $m+Mod1+space exec "rofi -show window"
 bindsym $m+i exec "i3_controller"
 bindsym Control+$m+s exec "pick_a_subl_project"
@@ -320,7 +321,6 @@ bindsym Control+Mod1+4 exec "scrotshare create chrome"
 
 # Startup
 exec --no-startup-id select_display guess
-exec --no-startup-id synapse -s
 exec --no-startup-id nm-applet
 exec --no-startup-id unagi
 exec --no-startup-id feh --bg-tile ~/Dropbox/Pictures/low_contrast_linen.png
