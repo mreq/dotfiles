@@ -6,6 +6,8 @@
     { "trigger": "c\tconsole.log", "contents": "console.log $0" },
     { "trigger": "switch", "contents": "switch $1\n\twhen $2 then $3 \n\telse $0" },
 
+    { "trigger": "bp", "contents": "debugger" },
+
     // jQuery
     { "trigger": "r", "contents": "\\$('$1')" },
     { "trigger": "rr", "contents": "\\$('$1', '#$2')" },

@@ -7,6 +7,8 @@
     { "trigger": "stp\tsetProperties", "contents": "setProperties\n\t$0" },
     { "trigger": "ec\tEmber.computed", "contents": "Ember.computed '$1', ->\n\t$0" },
     { "trigger": "eca\tEmber.computed.alias", "contents": "Ember.computed.alias '$0'" },
+    { "trigger": "eis\tEmber.inject.service", "contents": "Ember.inject.service()$0" },
+    { "trigger": "eo\tEmber.observer", "contents": "Ember.observer '$1', ->\n\t$0" },
 
     // Store
     { "trigger": "sq\tstore.query", "contents": "@store.query '$1',\n\t$0" },
@@ -24,6 +26,7 @@
     { "trigger": "mf\tmodelFor", "contents": "@modelFor$0" },
     { "trigger": "am\tafterModel", "contents": "afterModel: ->\n\t$0" },
     { "trigger": "mo\tmodel", "contents": "model: ->\n\t$0" },
-    { "trigger": "sc\tsetupController", "contents": "setupController: (ctrl, model) ->\n\t$0" }
+    { "trigger": "sc\tsetupController", "contents": "setupController: (ctrl, model) ->\n\t$0" },
+    { "trigger": "tt\ttransitionTo", "contents": "@transitionTo '$0'" }
   ]
 }
