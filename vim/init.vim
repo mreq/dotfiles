@@ -31,6 +31,7 @@ call dein#add('lucapette/vim-textobj-underscore')
 call dein#add('jasonlong/vim-textobj-css')
 " Git
 call dein#add('tpope/vim-fugitive')
+call dein#add('jreybert/vimagit')
 " File nav
 call dein#add('scrooloose/nerdtree')
 call dein#add('ctrlpvim/ctrlp.vim')
@@ -182,7 +183,7 @@ nnoremap <Leader>l :NERDTreeToggle<CR>
 nnoremap <Esc><Esc> :noh<CR>
 
 " Git keybinds
-nnoremap <Leader>gs :Gstatus<CR><C-w><C-o>
+nnoremap <Leader>gs :MagitOnly<CR>
 
 " Splits/window management
 let g:tmux_navigator_no_mappings = 1
@@ -201,5 +202,6 @@ nnoremap <silent> ^[\ :TmuxNavigatePrevious<cr>
 nnoremap <Leader>z :ZoomToggle<CR>
 
 " tags
-nnoremap <Leader>t :Unite tag:%<CR>
+nnoremap <Leader>T :Unite tag:%<CR>
+nnoremap <Leader>t :Unite tag<CR>
 
