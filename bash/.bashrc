@@ -186,3 +186,6 @@ export NODE_PATH=$N_PREFIX:"$N_PREFIX/lib/node_modules"
 
 # Bash completions
 find ~/.dotfiles/ -name "*_completions.sh" -exec bash -c {} \;
+
+export FZF_DEFAULT_COMMAND='pt -g ""'
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

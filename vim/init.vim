@@ -17,9 +17,11 @@ call dein#add('terryma/vim-multiple-cursors')
 call dein#add('soramugi/auto-ctags.vim')
 call dein#add('maxbrunsfeld/vim-yankstack')
 call dein#add('tpope/vim-sleuth')
+call dein#add('tpope/vim-unimpaired')
 call dein#add('tsukkee/unite-tag')
 call dein#add('christoomey/vim-tmux-navigator')
 call dein#add('ap/vim-buftabline')
+call dein#add('vim-scripts/ReplaceWithRegister')
 " Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 " Text objects
@@ -34,7 +36,7 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('jreybert/vimagit')
 " File nav
 call dein#add('scrooloose/nerdtree')
-call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('junegunn/fzf')
 " Linters, etc.
 call dein#add('benekastah/neomake')
 " Colors
@@ -119,15 +121,14 @@ let g:html_indent_tags = 'li\|p'
 
 " Autocomplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#tag#cache_limit_size = 50000000
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " switch.vim setup
 let g:switch_mapping = 'gs'
 
-" CtrlP setup
-let g:ctrlp_map = '<Leader>p'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-let g:ctrlp_cmd = 'CtrlP'
+" fzf setup
+set rtp+=~/.fzf
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.sass-cache/*
 
 " Unite settings
@@ -167,14 +168,15 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
 " Search
-nnoremap <silent> <Leader>f :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> <Leader>ff :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> <Leader>p :FZF<CR>
 
 " Dark/light switch
 nnoremap <F12> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 " Reload config
 nnoremap <Leader>rr :so $MYVIMRC<CR>
-nnoremap <Leader>ev :e ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>fv :e ~/.config/nvim/init.vim<CR>
 
 " NERDTree
 nnoremap <Leader>l :NERDTreeToggle<CR>
@@ -184,6 +186,7 @@ nnoremap <Esc><Esc> :noh<CR>
 
 " Git keybinds
 nnoremap <Leader>gs :MagitOnly<CR>
+nnoremap <Leader>gl :Glog<CR>
 
 " Splits/window management
 let g:tmux_navigator_no_mappings = 1
@@ -194,14 +197,13 @@ nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
 nnoremap <Leader>wj <C-w>S<C-w>j
 nnoremap <Leader>wl <C-w>v<C-w>l
-nnoremap <silent> ^[h :TmuxNavigateLeft<cr>
-nnoremap <silent> ^[j :TmuxNavigateDown<cr>
-nnoremap <silent> ^[k :TmuxNavigateUp<cr>
-nnoremap <silent> ^[l :TmuxNavigateRight<cr>
-nnoremap <silent> ^[\ :TmuxNavigatePrevious<cr>
 nnoremap <Leader>z :ZoomToggle<CR>
 
 " tags
-nnoremap <Leader>T :Unite tag:%<CR>
-nnoremap <Leader>t :Unite tag<CR>
+nnoremap <Leader>e :Unite -start-insert tag:%<CR>
+nnoremap <Leader>t :Unite -start-insert tag<CR>
 
+" yanking
+nmap <silent> <M-y> "+y
+vmap <silent> <M-y> "+y
+map Y y$
