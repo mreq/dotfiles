@@ -13,3 +13,7 @@ npm-debug.log
 
 # .todo files
 /*.todo
+
+# php crap
+/composer-setup.php
+/bin/composer.phar
