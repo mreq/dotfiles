@@ -50,6 +50,7 @@
     "vim/.vim": "~/.vim",
     "vim/.vimrc": "~/.vimrc",
     "vim/init.vim": "~/.config/nvim/init.vim",
+    "vim/snippets": "~/.config/nvim/UltiSnips",
     "X/.screenrc": "~/.screenrc",
     "X/.xbindkeysrc": "~/.xbindkeysrc",
     "X/.Xdefaults": "~/.Xdefaults",

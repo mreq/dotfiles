@@ -24,6 +24,7 @@ call dein#add('ap/vim-buftabline')
 call dein#add('vim-scripts/ReplaceWithRegister')
 " Autocomplete
 call dein#add('Shougo/deoplete.nvim')
+call dein#add('SirVer/ultisnips')
 " Text objects
 call dein#add('kana/vim-textobj-user')
 call dein#add('michaeljsmith/vim-indent-object')
