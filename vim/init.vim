@@ -14,10 +14,10 @@ call dein#add('tpope/vim-surround')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
 call dein#add('terryma/vim-multiple-cursors')
-call dein#add('soramugi/auto-ctags.vim')
 call dein#add('maxbrunsfeld/vim-yankstack')
 call dein#add('tpope/vim-sleuth')
 call dein#add('tpope/vim-unimpaired')
+call dein#add('fntlnz/atags.vim')
 call dein#add('tsukkee/unite-tag')
 call dein#add('christoomey/vim-tmux-navigator')
 call dein#add('ap/vim-buftabline')
@@ -109,6 +109,10 @@ set showmatch
 
 " Auto-trim trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :noh<CR>
+
+" Auto tag generation
+autocmd BufWritePost * call atags#generate()
 
 " Access colors present in 256 colorspace
 let base16colorspace=256
@@ -168,6 +172,9 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
+" File management
+nnoremap <Leader>fx :call delete(expand('%')) \| bdelete!<CR>
+
 " Search
 nnoremap <silent> <Leader>ff :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> <Leader>p :FZF<CR>
@@ -191,14 +198,15 @@ nnoremap <Leader>gl :Glog<CR>
 
 " Splits/window management
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+nnoremap <silent> <M-h> :TmuxNavigateLeft<CR>
+nnoremap <silent> <M-j> :TmuxNavigateDown<CR>
+nnoremap <silent> <M-k> :TmuxNavigateUp<CR>
+nnoremap <silent> <M-l> :TmuxNavigateRight<CR>
+nnoremap <silent> <M-\> :TmuxNavigatePrevious<CR>
 nnoremap <Leader>wj <C-w>S<C-w>j
 nnoremap <Leader>wl <C-w>v<C-w>l
 nnoremap <Leader>z :ZoomToggle<CR>
+nnoremap <Leader>bx :%bd<CR>
 
 " tags
 nnoremap <Leader>e :Unite -start-insert tag:%<CR>
@@ -208,3 +216,6 @@ nnoremap <Leader>t :Unite -start-insert tag<CR>
 nmap <silent> <M-y> "+y
 vmap <silent> <M-y> "+y
 map Y y$
+
+" abbreviations
+cabbr <expr> %% expand('%:p:h')
