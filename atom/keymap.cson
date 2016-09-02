@@ -50,3 +50,5 @@
     'space c s': 'vim-mode-plus:change-surround'
     'space d s': 'vim-mode-plus:delete-surround'
     'space y s': 'vim-mode-plus:surround'
+
+    'g r': 'vim-mode-plus:replace-with-register'

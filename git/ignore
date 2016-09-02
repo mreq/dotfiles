@@ -10,6 +10,7 @@ npm-debug.log
 # ctags
 /.tags*
 /tags
+/tags.tmp
 
 # .todo files
 /*.todo
