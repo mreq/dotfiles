@@ -5,6 +5,11 @@
     "command": "sublime_magic",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
+  {
+    "keys": ["alt+space"],
+    "command": "sublime_magic",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
 
   // Ctrl+p
   {
@@ -144,6 +149,22 @@
   {
     "keys": [" ", "t", "q"],
     "command": "change_quotes",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: add line
+  {
+    "keys": ["alt+o"],
+    "command": "run_macro_file",
+    "args": {"file": "res://Packages/Default/Add Line.sublime-macro"},
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: add line above
+  {
+    "keys": ["alt+shift+o"],
+    "command": "run_macro_file",
+    "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"},
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
