@@ -108,8 +108,7 @@ set incsearch
 set showmatch
 
 " Auto-trim trailing whitespace
-autocmd BufWritePre * :%s/\s\+$//e
-autocmd BufWritePre * :noh<CR>
+autocmd BufWritePre * :silent! %s/\s\+$//e
 
 " Auto tag generation
 autocmd BufWritePost * call atags#generate()

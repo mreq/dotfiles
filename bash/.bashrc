@@ -106,9 +106,9 @@ fi
 # fix xfce4-terminal colors (256)
 if [ "$COLORTERM" == "xfce4-terminal" ]; then
   export TERM=xterm-256color
-  if [[ -f "$HOME/.dotfiles/bash/base16-shell/base16-default.dark.sh" ]]; then
-    source "$HOME/.dotfiles/bash/base16-shell/base16-default.dark.sh"
-  fi
+  # if [[ -f "$HOME/.dotfiles/bash/base16-shell/base16-default.dark.sh" ]]; then
+  #   source "$HOME/.dotfiles/bash/base16-shell/base16-default.dark.sh"
+  # fi
 fi
 
 # Alias definitions.
@@ -131,7 +131,6 @@ alias rmux="tmux new 'R --no-save'"
 alias nette-fix="[ -d temp/cache/ ] && [ -f composer.json ] && rm -rf temp/cache/* && composer install"
 alias be="bundle exec"
 alias bi="bundle install"
-alias gc="git clone"
 alias fs="foreman start"
 alias mpc="mina production console"
 alias mpd="mina production deploy"
@@ -142,6 +141,15 @@ alias mss="mina staging ssh"
 alias tmux="TERM=screen-256color-bce tmux"
 alias xfce4-terminal-tmux="xfce4-terminal --maximize --command=tmux"
 alias htop="TERM=screen htop"
+
+alias gcc="git clone"
+alias gc="git commit"
+alias gs="git status"
+alias ga="git add -p"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gp="git push"
+alias gu="git pull --rebase"
 
 terminal-colors() {
   for x in 0 1 4 5 7 8; do for i in $( seq 30 37 ); do for a in $( seq 40 47 ); do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""
@@ -177,6 +185,9 @@ e() {
   fi
 }
 
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 # Override NODE_PATH for yeoman
 export NODE_PATH=$N_PREFIX:"$N_PREFIX/lib/node_modules"
@@ -187,5 +198,5 @@ export NODE_PATH=$N_PREFIX:"$N_PREFIX/lib/node_modules"
 # Bash completions
 find ~/.dotfiles/ -name "*_completions.sh" -exec bash -c {} \;
 
-export FZF_DEFAULT_COMMAND='pt -g ""'
+export FZF_DEFAULT_COMMAND='pt -g "" --hidden'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
