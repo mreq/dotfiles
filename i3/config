@@ -57,6 +57,7 @@ new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
 for_window [class="Gdebi-gtk"] floating enable
 for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
 for_window [class="Wine" instance="explorer.exe"] floating enable
 
@@ -323,7 +324,7 @@ bindsym Control+Mod1+4 exec "scrotshare create chrome"
 exec --no-startup-id select_display guess
 exec --no-startup-id nm-applet
 exec --no-startup-id unagi
-exec --no-startup-id feh --bg-tile ~/Dropbox/Pictures/low_contrast_linen.png
+exec --no-startup-id feh --bg-tile ~/Dropbox/Pictures/hovering-fog-3440x1440.jpg
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start -i
 exec --no-startup-id capslock_escape

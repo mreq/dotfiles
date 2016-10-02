@@ -1,6 +1,6 @@
 #!/bin/bash
 select_action() {
-  if [[ $1 ]]; then
+  if [[ -f /home/petr/scripts/"$1" ]]; then
     touch /home/petr/scripts/"$1"
     (/home/petr/scripts/"$1") &
   fi

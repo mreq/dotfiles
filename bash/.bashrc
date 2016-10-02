@@ -123,7 +123,7 @@ fi
 # Alias for clipboard
 alias clipboard='xclip -sel clip'
 alias peg='ps -aux | grep '
-alias R='R --no-save'
+alias R='R --no-save -q'
 alias sudo='sudo '
 alias connect_android='adb forward tcp:9222 localabstract:chrome_devtools_remote'
 alias dmenu_custom="dmenu -i -b -l 10 -nb '#242424' -nf white -sb '#2e557e' -fn 'Ubuntu Mono-12'"

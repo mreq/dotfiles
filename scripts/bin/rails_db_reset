@@ -1,3 +1,4 @@
 #!/bin/bash
-rm db/schema.rb
+rm -rf db/schema.rb db/structure.sql
+bin/rails db:environment:set RAILS_ENV=development
 bin/rake db:drop db:create db:migrate db:seed
