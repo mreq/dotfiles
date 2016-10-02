@@ -12,7 +12,6 @@ call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim', { 'build': 'make' })
 call dein#add('tpope/vim-surround')
 call dein#add('tomtom/tcomment_vim')
-call dein#add('AndrewRadev/switch.vim')
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('maxbrunsfeld/vim-yankstack')
 call dein#add('tpope/vim-sleuth')
@@ -34,7 +33,6 @@ call dein#add('lucapette/vim-textobj-underscore')
 call dein#add('jasonlong/vim-textobj-css')
 " Git
 call dein#add('tpope/vim-fugitive')
-call dein#add('jreybert/vimagit')
 " File nav
 call dein#add('scrooloose/nerdtree')
 call dein#add('junegunn/fzf')
@@ -113,6 +111,9 @@ autocmd BufWritePre * :silent! %s/\s\+$//e
 " Auto tag generation
 autocmd BufWritePost * call atags#generate()
 
+" mkdir -p when saving
+au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+
 " Access colors present in 256 colorspace
 let base16colorspace=256
 " Set color scheme
@@ -173,6 +174,7 @@ inoremap <C-l> <Right>
 
 " File management
 nnoremap <Leader>fx :call delete(expand('%')) \| bdelete!<CR>
+nnoremap <Leader>fu :saveas expand('%')
 
 " Search
 nnoremap <silent> <Leader>ff :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
@@ -192,7 +194,7 @@ nnoremap <Leader>l :NERDTreeToggle<CR>
 nnoremap <Esc><Esc> :noh<CR>
 
 " Git keybinds
-nnoremap <Leader>gs :MagitOnly<CR>
+nnoremap <Leader>gs :Gstatus<CR><C-w>o
 nnoremap <Leader>gl :Glog<CR>
 
 " Splits/window management
