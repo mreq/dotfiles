@@ -1,0 +1,17 @@
+#!/bin/bash
+write() {
+  file=$1
+  line_number=$2
+  text=$3
+  gawk -i inplace "NR==$line_number{print \"$text\"}1" "$file"
+}
+
+if [[ -f app/assets/stylesheets/application.sass ]]; then
+  module_file_name=$( basename "$1" )
+  module_name="${module_file_name%.*}"
+  module_name="${module_name##_}"
+  line_number=$(grep -n "@import 'modules" app/assets/stylesheets/application.sass | tail -n1 | awk -F':' '{print $1}')
+  write app/assets/stylesheets/application.sass $(( line_number + 1 )) "@import 'modules/$module_name'"
+else
+  echo 'Not in the root of a rails app.'
+fi

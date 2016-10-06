@@ -5,5 +5,12 @@
     "args": {
       "cmd": "rvm default do rubocop -a $file_name"
     }
+  },
+  {
+    "caption": "Rails: Add module to application.sass",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "~/.dotfiles/rails/append_module_to_application_css $file_name"
+    }
   }
 ]
