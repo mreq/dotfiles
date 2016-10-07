@@ -21,6 +21,7 @@ call dein#add('tsukkee/unite-tag')
 call dein#add('christoomey/vim-tmux-navigator')
 call dein#add('ap/vim-buftabline')
 call dein#add('vim-scripts/ReplaceWithRegister')
+call dein#add('tpope/vim-eunuch')
 " Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('SirVer/ultisnips')
@@ -47,7 +48,6 @@ call dein#add('lukaszkorecki/CoffeeTags', { 'on_ft': 'coffee' })
 call dein#add('tpope/vim-markdown', { 'on_ft': 'markdown' })
 call dein#add('vim-scripts/vim-emblem')
 call dein#add('slim-template/vim-slim')
-call dein#add('tpope/vim-rails')
 "----------------------------------------
 call dein#end()
 "----------------------------------------
@@ -57,6 +57,12 @@ if dein#check_install()
   call dein#install()
 endif
 "----------------------------------------
+
+" allow unsaved background buffers and remember marks/undo for them
+set hidden
+
+" remember more commands and search history
+set history=10000
 
 " 256 color terminal
 let &t_Co=256
@@ -127,7 +133,9 @@ let g:html_indent_tags = 'li\|p'
 " Autocomplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#tag#cache_limit_size = 50000000
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" Tab for autocomplete
+inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " switch.vim setup
 let g:switch_mapping = 'gs'
@@ -158,8 +166,6 @@ function! s:ZoomToggle() abort
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 
-nnoremap ; :
-nnoremap ;; q:
 nnoremap <Leader>j :bprevious<CR>
 nnoremap <Leader>k :bnext<CR>
 nnoremap <Leader>s :w<CR>
@@ -196,6 +202,7 @@ nnoremap <Esc><Esc> :noh<CR>
 " Git keybinds
 nnoremap <Leader>gs :Gstatus<CR><C-w>o
 nnoremap <Leader>gl :Glog<CR>
+autocmd BufRead fugitive* map <buffer> q :Gstatus<CR><C-w>o
 
 " Splits/window management
 let g:tmux_navigator_no_mappings = 1
