@@ -41,7 +41,8 @@
 	"ignored_packages":
 	[
 		"All Autocomplete",
-		"Vintage"
+		"Vintage",
+		"VintageLines"
 	],
 	"inactive_panes_dim_strength": 0.2,
 	"indent_guide_options":

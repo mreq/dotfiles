@@ -7,5 +7,13 @@
       { "key": "selector", "operator": "equal", "operand": "source.sass" },
       { "key": "vi_command_mode_aware" }
     ]
+  },
+  // CSS: Wrap in double brackets
+  {
+    "keys": ["ctrl+shift+c"],
+    "command": "colorconvert",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.sass" }
+    ]
   }
 ]
