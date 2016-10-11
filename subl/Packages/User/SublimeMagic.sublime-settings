@@ -1,0 +1,80 @@
+{
+  "spells": [
+    {
+      "name": "Strip extra whitespace",
+      "context": {
+        "line_matches": ["\\S\\s\\s+"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(\\S)(\\s)\\s+",
+        "replacement": "\\1\\2"
+      }
+    },
+    {
+      "name": "Add spaces around brackets",
+      "context": {
+        "scope": ["source\\.(less|sass)"],
+        "line_matches": ["\\(\\((.+)\\)\\)"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\(\\((\\S+)\\)\\)",
+        "replacement": "(( \\1 ))"
+      }
+    },
+    {
+      "name": "Replace single quoted content with clipboard",
+      "context": {
+        "scope": ["string\\.quoted\\.single"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "inside",
+        "delimiter": "'",
+        "replacement": "$clipboard"
+      }
+    },
+    {
+      "name": "Replace double quoted content with clipboard",
+      "context": {
+        "scope": ["string\\.quoted\\.double"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "inside",
+        "delimiter": "\"",
+        "replacement": "$clipboard"
+      }
+    },
+    {
+      "name": "Toggle CSS direction",
+      "context": {
+        "scope": ["source\\.(css|less|sass)"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": ["-top", "-bottom", "-left", "-right"]
+      }
+    },
+    {
+      "name": "Toggle true/false",
+      "spell": "toggle_values",
+      "args": {
+        "values": ["true", "false"]
+      }
+    },
+    {
+      "name": "Replace content after colon with clipboard",
+      "context": {
+        "line_matches": [": "]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": ": ",
+        "replacement": "$clipboard"
+      }
+    }
+  ]
+}

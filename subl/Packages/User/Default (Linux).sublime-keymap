@@ -283,7 +283,7 @@
   // Files: new
   {
     "keys": [" ", "f", "n"],
-    "command": "advanced_new_file",
+    "command": "side_bar_copy_name",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -313,6 +313,13 @@
   {
     "keys": [" ", "f", "o"],
     "command": "reopen_last_file",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: copy path with line number
+  {
+    "keys": [" ", "f", "p"],
+    "command": "copy_file_path_with_line_number",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 

@@ -1,9 +1,13 @@
 [
   {
-    "caption": "rails: open locale ymls",
+    "caption": "Rails: open locale ymls",
     "command": "run_cmd",
     "args": {
       "cmd": "pt --follow -g='^config/locales/\\w+.yml' | xargs subl"
     }
+  },
+  {
+    "caption": "Rails: active admin params",
+    "command": "extract_active_admin_params"
   }
 ]
