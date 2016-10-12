@@ -9,7 +9,12 @@ spritesMoveAround() {
   checkDir 'sprites@1x' || exit 1
   checkDir 'sprites@2x' || exit 1
 
-  for file in *.png; do
+  file_mask=$1
+  if [[ ! $file_mask ]]; then
+    file_mask="*.png"
+  fi
+
+  for file in $file_mask; do
     if [[ $file == *'@2x'* ]]; then
       folder='sprites@2x'
       name=${file/@2x/}
@@ -27,7 +32,7 @@ spritesMoveAround() {
 }
 
 if [[ -d app/assets/images ]]; then
-  ( cd app/assets/images; spritesMoveAround )
+  ( cd app/assets/images; spritesMoveAround "$1" )
 else
-  spritesMoveAround
+  spritesMoveAround "$1"
 fi
