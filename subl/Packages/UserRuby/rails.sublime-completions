@@ -1,5 +1,5 @@
 {
-  "scope": "source.ruby",
+  "scope": "source.ruby.rails",
   "completions":
   [
     // models
@@ -11,11 +11,11 @@
     { "trigger": "hm\thas_many", "contents": "has_many :$1"},
     { "trigger": "hmt\thas_many_through", "contents": "has_many :$1, :through => :$2${3:, :source => :$4}"},
     { "trigger": "va\tvalidates", "contents": "validates :$1, "},
-    { "trigger": "vap\tvalidates_presence", "contents": "validates :$1, :presence => true"},
-    { "trigger": "vau\tvalidates_uniqueness", "contents": "validates :$1, :uniqueness => \\{:case_sensitive => ${2:true}${3:false}\\}"},
+    { "trigger": "vap\tvalidates_presence", "contents": "validates :$1,\n          presence: true"},
+    { "trigger": "vau\tvalidates_uniqueness", "contents": "validates :$1,\n          uniqueness: true"},
     { "trigger": "vapu\tvalidates_presence_uniqueness", "contents": "validates :$1, :presence => true, :uniqueness => \\{:case_sensitive => ${2:true}${3:false}\\}"},
-    { "trigger": "ap\tattr_protected", "contents": "attr_protected" },
-    { "trigger": "aa\tattr_accessible", "contents": "attr_accessible" },
+
+    { "trigger": "aa\tacts_as_list", "contents": "acts_as_list${1: scope: [:$2]}" },
 
     { "trigger": "rt\tredirect_to", "contents": "redirect_to $0" },
     { "trigger": "fl\tflash", "contents": ":flash => { :success => '$0' }" },

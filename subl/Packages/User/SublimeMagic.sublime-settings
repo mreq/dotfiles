@@ -1,6 +1,41 @@
 {
   "spells": [
     {
+      "name": "Toggle *-ico-* classes.",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["\\w+-ico-\\w+"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": [".", "$sprite-height-", "$sprite-width-"]
+      }
+    },
+    {
+      "name": "Strip double $ characters",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["\\${2}"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\${2}",
+        "replacement": "$"
+      }
+    },
+    {
+      "name": "Strip double @ characters",
+      "context": {
+        "scope": ["source.coffee"],
+        "line_matches": ["@{2}"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "@{2}",
+        "replacement": "@"
+      }
+    },
+    {
       "name": "Strip extra whitespace",
       "context": {
         "line_matches": ["\\S\\s\\s+"]
