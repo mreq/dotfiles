@@ -64,7 +64,7 @@
     "keys": [" ", "g", "b"],
     "command": "run_cmd",
     "args": {
-      "cmd": "xdg-open https://$( git config --get remote.origin.url | sed 's/:/\\//' | sed 's/\\.git//' |  sed 's/git@//' )/commits && wmctile -c --switch-to 'google-chrome.google-chrome'"
+      "cmd": "xdg-open https://$( git config --get remote.origin.url | sed 's/:/\\//' | sed 's/\\.git//' |  sed 's/git@//' )/commits && wmctile -c --switch-to 'google-chrome.Google-chrome'"
     },
     "context": [{ "key": "vi_command_mode_aware" }]
   },

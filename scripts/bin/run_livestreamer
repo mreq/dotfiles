@@ -14,6 +14,7 @@ streams=(
   'twitch.tv/nipgamingtv'
   'twitch.tv/fragbitelive'
   'twitch.tv/p4wnyhof'
+  'twitch.tv/epicenter_en1'
   'http://www.majorleaguegaming.com/playcevo'
   'http://www.majorleaguegaming.com/playcevo2'
 )
@@ -26,6 +27,7 @@ function handleStreamSelection {
         'source'
         'medium'
         'low'
+        '1080p60'
       )
     else
       qualities=(

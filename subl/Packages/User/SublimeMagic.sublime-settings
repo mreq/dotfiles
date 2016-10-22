@@ -47,7 +47,7 @@
       }
     },
     {
-      "name": "Add spaces around brackets",
+      "name": "Add spaces around () brackets",
       "context": {
         "scope": ["source\\.(less|sass)"],
         "line_matches": ["\\(\\((.+)\\)\\)"]
@@ -109,6 +109,30 @@
         "where": "after",
         "delimiter": ": ",
         "replacement": "$clipboard"
+      }
+    },
+    {
+      "name": "Add spaces around {} brackets",
+      "context": {
+        "scope": ["source\\.ruby"],
+        "line_matches": ["\\{(.+)\\}"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\{(.+)\\}",
+        "replacement": "{ \\1 }"
+      }
+    },
+    {
+      "name": "Add spaces around [] brackets",
+      "context": {
+        "scope": ["source\\.ruby"],
+        "line_matches": ["\\[(.+)\\]"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\[(.+)\\]",
+        "replacement": "[ \\1 ]"
       }
     }
   ]

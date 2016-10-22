@@ -7,6 +7,7 @@
 	[
 		"AdvancedNewFile",
 		"All Autocomplete",
+		"Babel",
 		"Better Close Window",
 		"BetterFindBuffer",
 		"Case Conversion",
@@ -59,6 +60,7 @@
 		"SublimeLinter-coffeelint",
 		"SublimeLinter-contrib-lessc",
 		"SublimeLinter-contrib-lintr",
+		"SublimeLinter-contrib-standard",
 		"SublimeLinter-json",
 		"SublimeLinter-pylint",
 		"SublimeLinter-ruby",

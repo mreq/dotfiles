@@ -68,6 +68,11 @@
                 "@disable": false,
                 "args": [],
                 "excludes": []
+            },
+            "standard": {
+                "@disable": false,
+                "args": [],
+                "excludes": []
             }
         },
         "mark_style": "none",

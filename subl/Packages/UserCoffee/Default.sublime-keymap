@@ -9,7 +9,7 @@
     ]
   },
 
-  // Ember: Go to
+  // Ember: Go to component
   {
     "keys": [" ", "g", "e"],
     "command": "run_cmd",
@@ -21,6 +21,8 @@
       { "key": "vi_command_mode_aware" }
     ]
   },
+
+  // Ember: Go to component
   {
     "keys": [" ", "g", "e"],
     "command": "run_cmd",
