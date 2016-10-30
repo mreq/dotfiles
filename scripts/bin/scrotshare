@@ -46,7 +46,7 @@ handle_scrot() {
       push() {
         notify-send -i plugin-screenshot "scrotshare" "Screenshot uploading to s.mreq.eu."
         # copy to mreq
-        scp "$scr" mreq:"screenshots/$nam.$ext"
+        scp "$scr" mreq:"s.mreq.eu/$nam.$ext"
         # clipboard
         echo "http://s.mreq.eu/$nam.$ext" | xclip -sel clip
         # notify
