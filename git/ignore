@@ -6,6 +6,7 @@ npm-debug.log
 
 # Dumps
 /dump.sql
+/db/*_*.sql
 
 # ctags
 /.tags*
