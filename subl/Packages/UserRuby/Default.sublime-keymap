@@ -1,7 +1,7 @@
 [
   {
-    "keys": [" ", "w", "r"],
-    "command": "wrap_in_begin_rescue",
+    "keys": [" ", "t", "r"],
+    "command": "toggle_begin_rescue",
     "context": [
       { "key": "selector", "operator": "equal", "operand": "source.ruby" },
       { "key": "vi_command_mode_aware" }

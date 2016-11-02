@@ -1,0 +1,16 @@
+{
+  "scope": "meta.unit_test.rails, meta.functional_test.rails",
+  "completions":
+  [
+    { "trigger": "t\ttest", "contents": "test '$1' do\n\t$0\nend" },
+
+    // asserts
+    { "trigger": "ae\tassert_equal", "contents": "assert_equal(${1:expected},\n             ${2:actual},\n             '$0')" },
+    { "trigger": "are\tassert_response", "contents": "assert_response(:${0:success})" },
+    { "trigger": "ar\tassert_raises", "contents": "assert_raises(${1:StandardError}) { $0 }" },
+
+    // factory girl
+    { "trigger": "c\tcreate", "contents": "create(:$0)" },
+    { "trigger": "b\tbuild", "contents": "build(:$0)" }
+  ]
+}

@@ -2,8 +2,9 @@ import sublime
 import sublime_plugin
 import re
 
-class WrapInBeginRescue(sublime_plugin.TextCommand):
+class ToggleBeginRescue(sublime_plugin.TextCommand):
     def run(self, edit):
+        # TODO: be able to reverse
         view = self.view
         line = view.line(view.sel()[0])
         line_text = view.substr(line)

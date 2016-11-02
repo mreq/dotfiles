@@ -320,10 +320,24 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
-  // Files: copy path with line number
+  // Files: copy path
   {
     "keys": [" ", "f", "p"],
+    "command": "copy_file_path",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: copy path with line number
+  {
+    "keys": [" ", "f", "l"],
     "command": "copy_file_path_with_line_number",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: copy git path
+  {
+    "keys": [" ", "f", "g"],
+    "command": "copy_file_path_on_git_repo",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -518,6 +532,12 @@
       // "cmd": "terminator --working-directory=\"$project_dir\""
       "cmd": "xfce4-terminal --command='tmux -2' --working-directory=\"$project_dir\""
     }
+  },
+
+  // UnitTesting: test current project
+  {
+    "keys": ["f10"],
+    "command": "unit_testing_current_project_reload"
   },
 
   // Sidebar: toggle
