@@ -4,6 +4,7 @@
 
 list_file=~/Dropbox/ubuntu/various_configs/streamlink_streams.txt
 stream_list=$( cat $list_file )
+ico=~/Dropbox/ubuntu/icons/twitch.png
 
 function prepend_to_list {
   # prepend
@@ -16,8 +17,8 @@ function handleStreamSelection {
   if [[ $1 ]]; then
     if [[ $1 == *"twitch"* ]]; then
       qualities=(
-        'high'
         'source'
+        'high'
         'medium'
         'low'
         '1080p60'
@@ -34,9 +35,9 @@ function handleStreamSelection {
 
 function handleQualitySelection {
   if [[ $2 ]]; then
-    notify-send -i vlc "Running streamlink" "$1 at $2 quality"
+    notify-send -i $ico "Running streamlink" "$1 at $2 quality"
     prepend_to_list "$1"
-    streamlink "$1" "$2" &
+    streamlink "$1" "$2" | while read OUTPUT; do notify-send -i $ico "$OUTPUT"; done
   fi
 }
 

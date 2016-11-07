@@ -341,6 +341,16 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
+  // Files: copy test command
+  {
+    "keys": [" ", "f", "t"],
+    "command": "copy_file_path_as_rails_test",
+    "context": [
+      { "key": "vi_command_mode_aware" },
+      { "key": "selector", "operator": "equal", "operand": "source.ruby.rails" }
+    ]
+  },
+
   // Files: close
   {
     "keys": [" ", "x"],

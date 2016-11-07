@@ -17,7 +17,6 @@ Packages/*
 !Packages/MreqColorScheme
 !Packages/Origami
 !Packages/Open-Include
-!Packages/Pretty JSON
 !Packages/SendTextPlus
 !Packages/SublimeLogMagic
 !Packages/SublimeLinter-rubocop

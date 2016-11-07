@@ -21,6 +21,13 @@ class CopyFilePathWithLineNumber(CopyFilePath):
         (row, col) = self.view.rowcol(self.view.sel()[0].begin())
         return path + ':' + str(row + 1)
 
+
+class CopyFilePathAsRailsTest(CopyFilePath):
+
+    def get_path(self):
+        path = super().get_path()
+        return 'r t ' + path
+
 # wip
 # class CopyFilePathOnGitRepo(CopyFilePath):
 

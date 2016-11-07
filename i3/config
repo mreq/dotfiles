@@ -60,7 +60,7 @@ for_window [class="Gdebi-gtk"] floating enable
 for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
-for_window [class="Wine" instance="explorer.exe"] floating enable
+for_window [class="Wine"] floating enable
 
 # drag floating windows
 floating_modifier $m
@@ -85,7 +85,6 @@ bindsym Mod1+Shift+Tab focus left
 bindsym $m+Tab workspace back_and_forth
 bindsym $m+Shift+Tab exec i3_focus_other_monitor
 bindsym $m+Shift+w exec i3_rename_workspace
-bindsym $m+grave exec i3_focus_workspace
 
 bindsym $m+o exec select_power_action
 bindsym $m+Shift+o exec "select_power_action screen"
@@ -114,7 +113,7 @@ bindsym $m+Shift+u layout toggle split
 bindsym $m+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym Control+$m+Shift+space focus mode_toggle
+bindsym $m+grave focus mode_toggle
 
 # focus the parent container
 bindsym $m+a focus parent

@@ -1,0 +1,4 @@
+{
+  "cmd": ["rvm-auto-ruby", "-S", "rubocop", "--rails", "--auto-correct", "--format", "simple", "$file"],
+  "selector": "source.ruby"
+}
