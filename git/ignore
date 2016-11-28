@@ -19,3 +19,5 @@ npm-debug.log
 # php crap
 /composer-setup.php
 /bin/composer.phar
+
+/tmp_scripts

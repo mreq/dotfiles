@@ -1,6 +1,32 @@
 {
   "spells": [
     {
+      "name": "Cleanup sprockets bower_components require",
+      "context": {
+        "scope": ["source.(coffee|sass|css|js)"],
+        "line_matches": ["require .+bower_components.+"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(require) .+bower_components/(.+)",
+        "replacement": "\\1 \\2"
+      }
+    },
+
+    {
+      "name": "Cleanup sprockets require extension",
+      "context": {
+        "scope": ["source.(coffee|sass|css|js)"],
+        "line_matches": ["require .+\\.(js|css)"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(require .+)\\.(js|css)",
+        "replacement": "\\1"
+      }
+    },
+
+    {
       "name": "Toggle *-ico-* classes.",
       "context": {
         "scope": ["source.sass"],
@@ -11,6 +37,20 @@
         "values": [".", "$sprite-height-", "$sprite-width-"]
       }
     },
+
+    {
+      "name": "Clear comment mess.",
+      "context": {
+        "scope": ["source.coffee"],
+        "line_matches": ["\\s+# TRME.*"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\s+# TRME.*",
+        "replacement": " "
+      }
+    },
+
     {
       "name": "Strip double $ characters",
       "context": {
@@ -23,6 +63,19 @@
         "replacement": "$"
       }
     },
+
+    {
+      "name": "Strip double ' characters",
+      "context": {
+        "line_matches": ["''"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "''",
+        "replacement": "'"
+      }
+    },
+
     {
       "name": "Strip double @ characters",
       "context": {
@@ -35,6 +88,7 @@
         "replacement": "@"
       }
     },
+
     {
       "name": "Strip extra whitespace",
       "context": {
@@ -46,6 +100,7 @@
         "replacement": "\\1\\2"
       }
     },
+
     {
       "name": "Add spaces around () brackets",
       "context": {
@@ -58,6 +113,7 @@
         "replacement": "(( \\1 ))"
       }
     },
+
     {
       "name": "Replace single quoted content with clipboard",
       "context": {
@@ -70,6 +126,7 @@
         "replacement": "$clipboard"
       }
     },
+
     {
       "name": "Replace double quoted content with clipboard",
       "context": {
@@ -82,6 +139,7 @@
         "replacement": "$clipboard"
       }
     },
+
     {
       "name": "Toggle CSS direction",
       "context": {
@@ -92,6 +150,7 @@
         "values": ["-top", "-bottom", "-left", "-right"]
       }
     },
+
     {
       "name": "Toggle true/false",
       "spell": "toggle_values",
@@ -99,6 +158,7 @@
         "values": ["true", "false"]
       }
     },
+
     {
       "name": "Replace content after colon with clipboard",
       "context": {
@@ -111,6 +171,7 @@
         "replacement": "$clipboard"
       }
     },
+
     {
       "name": "Add spaces around {} brackets",
       "context": {
@@ -123,6 +184,7 @@
         "replacement": "{ \\1 }"
       }
     },
+
     {
       "name": "Add spaces around [] brackets",
       "context": {

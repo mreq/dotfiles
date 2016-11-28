@@ -13,6 +13,13 @@
     // Store
     { "trigger": "sq\tstore.query", "contents": "@store.query '$1',\n\t$0" },
 
+    // Run
+    { "trigger": "erl\tEmber.run.later", "contents": "Ember.run.later(${1:(=> )}, $0)" },
+    { "trigger": "erb\tEmber.run.bind", "contents": "Ember.run.bind(this, $0)" },
+
+    // String
+    { "trigger": "esh\tEmber.String.htmlSafe", "contents": "Ember.String.htmlSafe($0)" },
+
     // Components
     { "trigger": "di\tdidInsertElement", "contents": "didInsertElement: ->\n\t$0" },
     { "trigger": "wc\twillClearRender", "contents": "willClearRender: ->\n\t$0" },

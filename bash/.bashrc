@@ -200,3 +200,6 @@ find ~/.dotfiles/ -name "*_completions.sh" -exec bash -c {} \;
 
 export FZF_DEFAULT_COMMAND='pt -g "" --hidden'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# exports
+[[ -s "$HOME/.bash_exports" ]] && source "$HOME/.bash_exports"

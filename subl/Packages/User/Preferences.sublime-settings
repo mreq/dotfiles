@@ -13,10 +13,12 @@
 		"*.zip",
 		".sass-cache/**",
 		".tags",
-		"tags",
+		"app/assets/javascripts/ember/assets/**",
 		"frontend/bower_components/**",
 		"frontend/node_modules/**",
 		"frontend/tmp/**",
+		"public/assets/**",
+		"tags",
 		"tmp/**"
 	],
 	"caret_style": "blink",

@@ -2,6 +2,8 @@
 #
 # Screenshots using xfce4-screenshooter and uploads/stores the scrot.
 
+ico=~/Dropbox/ubuntu/icons/scrotshare.png
+
 select_area() {
   echo 'normal' > /tmp/scrotshare.txt
   case $1 in
@@ -19,7 +21,7 @@ select_area() {
   if [[ $flag ]]; then
     xfce4-screenshooter $flag -o scrotshare
   else
-    notify-send -i plugin-screenshot "scrotshare" "Please use one of full/window/chrome/area."
+    notify-send -i $ico "scrotshare" "Please use one of full/window/chrome/area."
   fi
 }
 
@@ -44,16 +46,16 @@ handle_scrot() {
       nam=$( date +"%s" )
 
       push() {
-        notify-send -i plugin-screenshot "scrotshare" "Screenshot uploading to s.mreq.eu."
+        notify-send -i $ico "scrotshare" "Screenshot uploading to s.mreq.eu."
         # copy to mreq
         scp "$scr" mreq:"s.mreq.eu/$nam.$ext"
         # clipboard
         echo "http://s.mreq.eu/$nam.$ext" | xclip -sel clip
         # notify
-        notify-send -i plugin-screenshot "scrotshare" "Screenshot URL copied to clipboard."
+        notify-send -i $ico "scrotshare" "Screenshot URL copied to clipboard."
       }
       imgur() {
-        notify-send -i plugin-screenshot "scrotshare" "Not supported yet."
+        notify-send -i $ico "scrotshare" "Not supported yet."
         # curl -s -F "image=@$1" -F "key=api-key" https://imgur.com/api/upload.xml
       }
 
@@ -63,7 +65,7 @@ handle_scrot() {
           ;;
         keep)
           mv "$scr" ~/Pictures/screenshots/"$nam.$ext"
-          notify-send -i plugin-screenshot "scrotshare" "Screenshot saved to Pictures."
+          notify-send -i $ico "scrotshare" "Screenshot saved to Pictures."
           ;;
         imgur)
           imgur
@@ -79,7 +81,7 @@ handle_scrot() {
 
     rm_scrot() {
       rm "$scr"
-      notify-send -i plugin-screenshot "scrotshare" "Screenshot not saved."
+      notify-send -i $ico "scrotshare" "Screenshot not saved."
     }
 
     is_ok=$( echo -e "push\nkeep\nremove\ngimp" | rofi -dmenu -i -p '↠ ' ) && init $is_ok || rm_scrot
