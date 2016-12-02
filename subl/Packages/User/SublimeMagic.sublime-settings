@@ -27,6 +27,18 @@
     },
 
     {
+      "name": "Cleanup double dots in method chains",
+      "context": {
+        "line_matches": ["\\w\\.{2}\\w"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(\\w\\.)\\.(\\w)",
+        "replacement": "\\1\\2"
+      }
+    },
+
+    {
       "name": "Toggle *-ico-* classes.",
       "context": {
         "scope": ["source.sass"],

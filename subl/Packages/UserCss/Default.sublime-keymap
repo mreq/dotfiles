@@ -8,7 +8,7 @@
       { "key": "vi_command_mode_aware" }
     ]
   },
-  // CSS: Wrap in double brackets
+  // CSS: Color convert
   {
     "keys": ["ctrl+shift+c"],
     "command": "colorconvert",

@@ -37,5 +37,13 @@
     "args": {
       "cmd": "pt --follow -g='.*components.*/.*\\.coffee' | rofi -dmenu -fixed-num-lines 10 -p 'Coffee: Component ↠ ' | xargs subl"
     }
+  },
+
+  {
+    "caption": "Ember: open translations",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "pt --follow -g='^frontend/app/locales/\\w+/translations.coffee' | xargs subl"
+    }
   }
 ]

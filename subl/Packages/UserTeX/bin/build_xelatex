@@ -4,11 +4,12 @@ notify-send -i sublime-text 'TeX build' 'starting'
 file="$1"
 
 # Warnings
-if [[ $2 ]]; then
-  warn="$2"
-else
-  warn="refs"
-fi
+# if [[ $2 ]]; then
+#   warn="$2"
+# else
+#   warn="refs"
+# fi
+warn=all
 
 match=$( head -n1 "$file" | grep %! )
 
