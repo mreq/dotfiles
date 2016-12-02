@@ -84,6 +84,7 @@ bindsym Mod1+Tab focus right
 bindsym Mod1+Shift+Tab focus left
 bindsym $m+Tab workspace back_and_forth
 bindsym $m+Shift+Tab exec i3_focus_other_monitor
+bindsym $m+grave exec i3_focus_other_monitor
 bindsym $m+Shift+w exec i3_rename_workspace
 
 bindsym $m+o exec select_power_action
@@ -113,7 +114,7 @@ bindsym $m+Shift+u layout toggle split
 bindsym $m+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $m+grave focus mode_toggle
+# bindsym $m+grave focus mode_toggle
 
 # focus the parent container
 bindsym $m+a focus parent
