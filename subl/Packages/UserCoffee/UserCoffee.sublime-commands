@@ -43,7 +43,7 @@
     "caption": "Ember: open translations",
     "command": "run_cmd",
     "args": {
-      "cmd": "pt --follow -g='^frontend/app/locales/\\w+/translations.coffee' | xargs subl"
+      "cmd": "pt --follow -g='^frontend/app/locales/\\w+/translations.coffee' | grep -v en_us | grep -v pl | xargs subl"
     }
   }
 ]
