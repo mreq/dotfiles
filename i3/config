@@ -87,6 +87,8 @@ bindsym $m+Shift+Tab exec i3_focus_other_monitor
 bindsym $m+grave exec i3_focus_other_monitor
 bindsym $m+Shift+w exec i3_rename_workspace
 
+bindsym Mod1+BackSpace exec switch_keyboard_layout
+
 bindsym $m+o exec select_power_action
 bindsym $m+Shift+o exec "select_power_action screen"
 bindsym $m+p exec select_display
@@ -330,7 +332,7 @@ exec --no-startup-id unagi
 exec --no-startup-id feh --bg-fill ~/Dropbox/Pictures/hovering-fog-3440x1440.jpg
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start -i
-exec --no-startup-id capslock_escape
+exec --no-startup-id switch_keyboard_layout
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid

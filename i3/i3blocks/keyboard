@@ -1,0 +1,6 @@
+#!/bin/sh
+if setxkbmap -query | grep -q -E 'layout: +us'; then
+  echo '   EN '
+else
+  echo '<span background="#ac4142">   CZ </span>'
+fi

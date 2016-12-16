@@ -1,0 +1,7 @@
+#!/bin/sh
+if setxkbmap -query | grep -q -E 'layout: +us'; then
+  setxkbmap -layout cz -variant qwerty -option caps:escape
+else
+  setxkbmap -layout us -option caps:escape
+fi
+pkill -SIGRTMIN+11 i3blocks
