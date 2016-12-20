@@ -203,3 +203,15 @@ export FZF_DEFAULT_COMMAND='pt -g "" --hidden'
 
 # exports
 [[ -s "$HOME/.bash_exports" ]] && source "$HOME/.bash_exports"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if [ -d ~/Android/Sdk ]; then
+  export ANDROID_HOME=~/Android/Sdk
+  export PATH=${PATH}:${ANDROID_HOME}/tools
+  export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+fi
+
+if [ -d ~/Applications/android-studio/jre ]; then
+  export JAVA_HOME=~/Applications/android-studio/jre
+fi

@@ -60,6 +60,7 @@ for_window [class="Gdebi-gtk"] floating enable
 for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
+for_window [title="Android Emulator -.+"] floating enable
 for_window [class="Wine"] floating enable
 
 # drag floating windows
@@ -332,7 +333,7 @@ exec --no-startup-id unagi
 exec --no-startup-id feh --bg-fill ~/Dropbox/Pictures/hovering-fog-3440x1440.jpg
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start -i
-exec --no-startup-id switch_keyboard_layout
+exec --no-startup-id setxkbmap -layout us -option caps:escape
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid
