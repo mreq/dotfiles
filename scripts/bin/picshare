@@ -7,7 +7,7 @@ else
 fi
 
 # copy
-scp "$file_name" mreq:"screenshots/$target_name"
+scp "$file_name" mreq:"s.mreq.eu/$target_name"
 # clipboard
 echo "http://s.mreq.eu/$target_name" | xclip -sel clip
 # notify
