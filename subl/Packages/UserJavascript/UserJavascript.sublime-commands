@@ -1,0 +1,9 @@
+[
+  {
+    "caption": "Standard: Fix current file",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "standard --fix $file_name"
+    }
+  }
+]

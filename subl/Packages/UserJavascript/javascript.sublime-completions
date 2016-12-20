@@ -1,0 +1,9 @@
+{
+  "scope": "source.js",
+  "completions":
+  [
+    { "trigger": "c\tconsole.log", "contents": "console.log($0)" },
+    { "trigger": "bp\tdebugger", "contents": "debugger" },
+    { "trigger": "f\tfunction", "contents": "function ($1) {\n\t$0\n}" }
+  ]
+}

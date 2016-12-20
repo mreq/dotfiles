@@ -71,7 +71,7 @@
             },
             "standard": {
                 "@disable": false,
-                "args": [],
+                "args": ["--parser", "babel-eslint"],
                 "excludes": []
             }
         },

@@ -3,6 +3,7 @@ Packages/*
 !Packages/UserCoffee
 !Packages/UserCss
 !Packages/UserCzech
+!Packages/UserJavascript
 !Packages/UserGit
 !Packages/UserTeX
 !Packages/UserOrigami
