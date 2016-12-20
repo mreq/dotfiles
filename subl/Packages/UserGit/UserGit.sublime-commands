@@ -6,6 +6,7 @@
       "cmd": "gitk \"$file_name\""
     }
   },
+
   {
     "caption": "Git: Push Tags",
     "command": "git_custom",
@@ -15,6 +16,7 @@
       "async": true
     }
   },
+
   {
     "caption": "Git: Rebase",
     "command": "git_custom",
@@ -24,6 +26,7 @@
       "async": false
     }
   },
+
   {
     "caption": "Git: Rebase continue",
     "command": "git_custom",
@@ -33,6 +36,7 @@
       "async": false
     }
   },
+
   {
     "caption": "Git: Pull --rebase",
     "command": "git_custom",
@@ -42,6 +46,7 @@
       "async": true
     }
   },
+
   {
     "caption": "Git: Undo last commit",
     "command": "git_custom",
@@ -51,26 +56,22 @@
       "async": false
     }
   },
+
   {
     "caption": "Git: Delete Branch",
     "command": "git_delete_branch"
   },
+
   {
     "caption": "Git: Diff Branches",
     "command": "git_diff_branches"
   },
+
   {
     "caption": "Git: Bitbucket commits",
     "command": "run_cmd",
     "args": {
-      "cmd": "xdg-open https://$( git config --get remote.origin.url | sed 's/:/\\//' | sed 's/\\.git//' )/commits/all && ~/scripts/wmctile/python/wmctile.py switch_to_running 'google-chrome.google-chrome' 'google-chrome'"
-    }
-  },
-  {
-    "caption": "Git: Bitbucket commits current branch",
-    "command": "run_cmd",
-    "args": {
-      "cmd": "xdg-open https://$( git config --get remote.origin.url | sed 's/:/\\//' | sed 's/\\.git//' )/commits/branch/$( git branch | grep \\* | awk '{ print $2 }' ) && ~/scripts/wmctile/python/wmctile.py switch_to_running 'google-chrome.google-chrome' 'google-chrome'"
+      "cmd": "git_show_commits_on_remote"
     }
   }
 ]

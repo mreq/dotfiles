@@ -1,7 +1,9 @@
 import sublime
 import sublime_plugin
 
+
 class GitDeleteBranch(sublime_plugin.EventListener):
+
     def on_activated(self, view):
         (row, col) = view.rowcol(view.selection[0].begin())
         point = view.text_point(row, col)

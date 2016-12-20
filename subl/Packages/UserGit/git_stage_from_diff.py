@@ -2,7 +2,9 @@ import os
 import sublime
 import sublime_plugin
 
+
 class GitStageFromDiff(sublime_plugin.WindowCommand):
+
     def run(self):
         view = self.window.active_view()
         point = view.text_point(2, 0)
