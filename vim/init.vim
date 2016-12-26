@@ -16,7 +16,9 @@ call dein#add('terryma/vim-multiple-cursors')
 call dein#add('maxbrunsfeld/vim-yankstack')
 call dein#add('tpope/vim-sleuth')
 call dein#add('tpope/vim-unimpaired')
-call dein#add('fntlnz/atags.vim')
+call dein#add('tpope/vim-abolish')
+call dein#add('tpope/vim-repeat')
+" call dein#add('fntlnz/atags.vim')
 call dein#add('tsukkee/unite-tag')
 call dein#add('christoomey/vim-tmux-navigator')
 call dein#add('ap/vim-buftabline')
@@ -32,6 +34,7 @@ call dein#add('glts/vim-textobj-comment')
 call dein#add('kana/vim-textobj-line')
 call dein#add('lucapette/vim-textobj-underscore')
 call dein#add('jasonlong/vim-textobj-css')
+call dein#add('nelstrom/vim-textobj-rubyblock')
 " Git
 call dein#add('tpope/vim-fugitive')
 " File nav
@@ -48,6 +51,8 @@ call dein#add('lukaszkorecki/CoffeeTags', { 'on_ft': 'coffee' })
 call dein#add('tpope/vim-markdown', { 'on_ft': 'markdown' })
 call dein#add('vim-scripts/vim-emblem')
 call dein#add('slim-template/vim-slim')
+call dein#add('pangloss/vim-javascript')
+call dein#add('mxw/vim-jsx')
 "----------------------------------------
 call dein#end()
 "----------------------------------------
@@ -114,8 +119,8 @@ set showmatch
 " Auto-trim trailing whitespace
 autocmd BufWritePre * :silent! %s/\s\+$//e
 
-" Auto tag generation
-autocmd BufWritePost * call atags#generate()
+" " Auto tag generation
+" autocmd BufWritePost * call atags#generate()
 
 " mkdir -p when saving
 au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
@@ -171,6 +176,9 @@ nnoremap <Leader>k :bnext<CR>
 nnoremap <Leader>s :w<CR>
 nnoremap <Leader>x :b#<bar>bd#<CR>
 nnoremap <Leader>q :q<CR>
+
+nnoremap j gj
+nnoremap k gk
 
 " Insert mode movement
 inoremap <C-h> <Left>
