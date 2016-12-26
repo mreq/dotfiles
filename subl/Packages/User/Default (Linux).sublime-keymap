@@ -1,11 +1,6 @@
 [
   // Magic
   {
-    "keys": [" ", " "],
-    "command": "sublime_magic",
-    "context": [{ "key": "vi_command_mode_aware" }]
-  },
-  {
     "keys": ["alt+space"],
     "command": "sublime_magic",
     "context": [{ "key": "vi_command_mode_aware" }]
@@ -361,6 +356,13 @@
   // Files: save
   {
     "keys": [" ", "s"],
+    "command": "save",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: save
+  {
+    "keys": [" ", " "],
     "command": "save",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
