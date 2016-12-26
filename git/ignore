@@ -1,5 +1,6 @@
 # Sublime project and workspace files
-/*.sublime-*
+*.sublime-project
+*.sublime-workspace
 
 # Node stuff
 npm-debug.log

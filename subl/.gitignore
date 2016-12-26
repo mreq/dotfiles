@@ -23,6 +23,7 @@ Packages/*
 !Packages/SublimeLogMagic
 !Packages/SublimeLinter-rubocop
 !Packages/yardgen
+!Packages/YAML Nav
 
 Packages/User/GitSavvy/GitSavvy.active-diff-view.*
 
