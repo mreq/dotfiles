@@ -18,5 +18,4 @@ class GitShowCommitsOnRemote(sublime_plugin.WindowCommand):
         run_cmd_parts = ["i3_focus_or_run 'Google-chrome' 'google-chrome'",
                          'xdg-open ' + url]
         run_cmd = '; '.join(run_cmd_parts)
-        print(run_cmd)
         subprocess.call(run_cmd, shell=True)
