@@ -159,7 +159,7 @@
       },
       "spell": "toggle_values",
       "args": {
-        "values": ["-top", "-bottom", "-left", "-right"]
+        "values": ["top:", "bottom:", "left:", "right:"]
       }
     },
 

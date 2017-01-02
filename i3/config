@@ -6,6 +6,7 @@ set $right l
 
 set $ico_battery 
 set $ico_calendar 
+set $ico_camera 
 set $ico_clock 
 set $ico_folder 
 set $ico_hexchat 
@@ -62,6 +63,8 @@ for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
 for_window [title="Android Emulator -.+"] floating enable
 for_window [class="Wine"] floating enable
+for_window [workspace=$ico_camera] floating enable
+for_window [class="Sublime_text" workspace=$ico_camera] resize shrink width 10000px; resize shrink height 10000px; resize grow height 300px; resize grow width 500px
 
 # drag floating windows
 floating_modifier $m
