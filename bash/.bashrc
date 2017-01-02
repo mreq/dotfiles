@@ -131,6 +131,7 @@ alias rmux="tmux new 'R --no-save'"
 alias nette-fix="[ -d temp/cache/ ] && [ -f composer.json ] && rm -rf temp/cache/* && composer install"
 alias be="bundle exec"
 alias bi="bundle install"
+alias bo="bundle open"
 alias bs="bin/server"
 alias fs="foreman start"
 alias mpc="mina production console"
@@ -187,6 +188,7 @@ e() {
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+export BUNDLER_EDITOR="subl -n"
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 # Override NODE_PATH for yeoman
