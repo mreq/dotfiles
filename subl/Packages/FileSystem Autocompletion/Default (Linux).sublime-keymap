@@ -1,0 +1,3 @@
+[
+  { "keys": ["alt+f"], "command": "file_system_comp_trigger" }
+]

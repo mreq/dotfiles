@@ -14,6 +14,7 @@ Packages/*
 !Packages/Base16
 !Packages/BetterFindBufferFork
 !Packages/BetterCoffeescriptFork
+!Packages/FileSystem Autocompletion
 !Packages/GitSavvy
 !Packages/MaxPane
 !Packages/MreqColorScheme
