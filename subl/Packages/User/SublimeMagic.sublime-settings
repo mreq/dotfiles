@@ -1,6 +1,20 @@
 {
   "spells": [
     {
+      "name": "Change module name",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["@import 'modules/"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": "@import 'modules/",
+        "replacement": "$cursor'"
+      }
+    },
+
+    {
       "name": "Cleanup sprockets bower_components require",
       "context": {
         "scope": ["source.(coffee|sass|css|js)"],
