@@ -3,13 +3,16 @@ cmd="$1"
 args=${*:2}
 
 run_cmd() {
-  eval "$cmd"
+  if eval "$cmd"; then
+    notify-send -i terminal 'watch_run' "Run $( echo "$cmd" | awk '{ print $1 }' )."
+  else
+    notify-send -i error 'watch_run' "Failed $( echo "$cmd" | awk '{ print $1 }' )."
+  fi
 }
 
-notify-send -i terminal 'watch_run' "Watches set up. Run $( echo $cmd | awk '{ print $1 }' )."
+notify-send -i terminal 'watch_run' "Watches set up. Run $( echo "$cmd" | awk '{ print $1 }' )."
 run_cmd
 
 while inotifywait -e MODIFY $args; do
   run_cmd
-  notify-send -i terminal 'watch_run' "Run $( echo $cmd | awk '{ print $1 }' )."
 done

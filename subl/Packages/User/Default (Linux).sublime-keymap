@@ -10,6 +10,15 @@
     "command": "sublime_magic"
   },
 
+  // Keyboard layout
+  {
+    "keys": ["alt+backspace"],
+    "command": "run_cmd",
+    "args": {
+      "cmd": "switch_keyboard_layout"
+    }
+  },
+
   // Ctrl+p
   {
     "keys": [" ", "j"],

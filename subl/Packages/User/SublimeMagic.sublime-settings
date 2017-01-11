@@ -15,6 +15,20 @@
     },
 
     {
+      "name": "Change module name",
+      "context": {
+        "scope": ["source.less"],
+        "line_matches": ["@import 'modules/"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": "@import 'modules/",
+        "replacement": "_$cursor.less';"
+      }
+    },
+
+    {
       "name": "Cleanup sprockets bower_components require",
       "context": {
         "scope": ["source.(coffee|sass|css|js)"],
@@ -61,6 +75,30 @@
       "spell": "toggle_values",
       "args": {
         "values": [".", "$sprite-height-", "$sprite-width-"]
+      }
+    },
+
+    {
+      "name": "Toggle text-decoration",
+      "context": {
+        "scope": ["source.(sass|less|css)"],
+        "line_matches": ["text-decoration:"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": ["underline", "none"]
+      }
+    },
+
+    {
+      "name": "Toggle font-weight",
+      "context": {
+        "scope": ["source.(sass|less|css)"],
+        "line_matches": ["font-weight:"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": ["bold", "normal"]
       }
     },
 
@@ -128,19 +166,6 @@
     },
 
     {
-      "name": "Add spaces around () brackets",
-      "context": {
-        "scope": ["source\\.(less|sass)"],
-        "line_matches": ["\\(\\((.+)\\)\\)"]
-      },
-      "spell": "perform_line_regex",
-      "args": {
-        "pattern": "\\(\\((\\S+)\\)\\)",
-        "replacement": "(( \\1 ))"
-      }
-    },
-
-    {
       "name": "Replace single quoted content with clipboard",
       "context": {
         "scope": ["string\\.quoted\\.single"]
@@ -167,6 +192,19 @@
     },
 
     {
+      "name": "CSS add missing semicolon",
+      "context": {
+        "scope": ["source\\.(css|less)"],
+        "line_matches": ["([^;])$"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "([^;])$",
+        "replacement": "\\1;"
+      }
+    },
+
+    {
       "name": "Toggle CSS direction",
       "context": {
         "scope": ["source\\.(css|less|sass)"]
@@ -174,6 +212,34 @@
       "spell": "toggle_values",
       "args": {
         "values": ["top:", "bottom:", "left:", "right:"]
+      }
+    },
+
+    {
+      "name": "Change CSS value",
+      "context": {
+        "scope": ["source\\.(css|less)"],
+        "line_matches": [":"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": ":",
+        "replacement": " $cursor;"
+      }
+    },
+
+    {
+      "name": "Change CSS value",
+      "context": {
+        "scope": ["source\\.sass"],
+        "line_matches": [":"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": ":",
+        "replacement": " $cursor"
       }
     },
 
@@ -195,6 +261,19 @@
         "where": "after",
         "delimiter": ": ",
         "replacement": "$clipboard"
+      }
+    },
+
+    {
+      "name": "Add spaces around () brackets",
+      "context": {
+        "scope": ["source\\.(less|sass)"],
+        "line_matches": ["\\(\\((.+)\\)\\)"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\(\\((\\S+)\\)\\)",
+        "replacement": "(( \\1 ))"
       }
     },
 

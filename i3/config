@@ -91,7 +91,7 @@ bindsym $m+Shift+Tab exec i3_focus_other_monitor
 bindsym $m+grave exec i3_focus_other_monitor
 bindsym $m+Shift+w exec i3_rename_workspace
 
-bindsym Mod1+BackSpace exec switch_keyboard_layout
+bindsym $m+BackSpace exec switch_keyboard_layout
 
 bindsym $m+o exec select_power_action
 bindsym $m+Shift+o exec "select_power_action screen"
@@ -323,7 +323,6 @@ bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin"
 bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox"
 
 # Screenshots
-bindsym $m+BackSpace exec "xfce4-screenshooter -f -o gimp && i3_scratchpad_toggle -c Gimp"
 bindsym Control+Mod1+1 exec "scrotshare create full"
 bindsym Control+Mod1+2 exec "scrotshare create area"
 bindsym Control+Mod1+3 exec "scrotshare create window"
