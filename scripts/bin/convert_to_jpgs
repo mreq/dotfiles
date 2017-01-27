@@ -1,0 +1,15 @@
+#!/bin/bash
+for i in "$@"; do
+  echo "$i -> ${i%.*}.jpg"
+done
+
+read -p 'Is that ok? [Yn] ' -n 1 -r
+echo
+
+if [[ ! $REPLY =~ ^(yes|y|Y| |)$ ]]; then
+  [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+fi
+
+for i in "$@"; do
+  convert "$i" -format jpg -quality 90 "${i%.*}.jpg"
+done
