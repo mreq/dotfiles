@@ -9,7 +9,7 @@ case $- in
 esac
 
 # Use emacs keybindings
-set -o emacs
+set -o vi
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
@@ -103,13 +103,7 @@ if [ -x /usr/bin/dircolors ]; then
   alias grep='grep --color=auto'
 fi
 
-# fix xfce4-terminal colors (256)
-if [ "$COLORTERM" == "xfce4-terminal" ]; then
-  export TERM=xterm-256color
-  # if [[ -f "$HOME/.dotfiles/bash/base16-shell/base16-default.dark.sh" ]]; then
-  #   source "$HOME/.dotfiles/bash/base16-shell/base16-default.dark.sh"
-  # fi
-fi
+export TERM=screen-256color
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -195,14 +189,12 @@ export EDITOR="$VISUAL"
 export BUNDLER_EDITOR="subl -n"
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
 # Override NODE_PATH for yeoman
 export NODE_PATH=$N_PREFIX:"$N_PREFIX/lib/node_modules"
 
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# Bash completions
-find ~/.dotfiles/ -name "*_completions.sh" -exec bash -c {} \;
 
 export FZF_DEFAULT_COMMAND='pt -g "" --hidden'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

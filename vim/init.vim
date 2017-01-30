@@ -6,9 +6,11 @@ endif
 set runtimepath^=~/.config/nvim/dein.vim/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.config/nvim/dein.vim'))
 call dein#add('Shougo/dein.vim')
+
 "----------------------------------------
 " Utility
 call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/neoyank.vim')
 call dein#add('Shougo/vimproc.vim', { 'build': 'make' })
 call dein#add('tpope/vim-surround')
 call dein#add('tomtom/tcomment_vim')
@@ -18,15 +20,18 @@ call dein#add('tpope/vim-sleuth')
 call dein#add('tpope/vim-unimpaired')
 call dein#add('tpope/vim-abolish')
 call dein#add('tpope/vim-repeat')
+
 " call dein#add('fntlnz/atags.vim')
 call dein#add('tsukkee/unite-tag')
 call dein#add('christoomey/vim-tmux-navigator')
 call dein#add('ap/vim-buftabline')
 call dein#add('vim-scripts/ReplaceWithRegister')
 call dein#add('tpope/vim-eunuch')
+
 " Autocomplete
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('SirVer/ultisnips')
+
 " Text objects
 call dein#add('kana/vim-textobj-user')
 call dein#add('michaeljsmith/vim-indent-object')
@@ -35,16 +40,21 @@ call dein#add('kana/vim-textobj-line')
 call dein#add('lucapette/vim-textobj-underscore')
 call dein#add('jasonlong/vim-textobj-css')
 call dein#add('nelstrom/vim-textobj-rubyblock')
+
 " Git
 call dein#add('tpope/vim-fugitive')
+
 " File nav
 call dein#add('scrooloose/nerdtree')
 call dein#add('junegunn/fzf')
+
 " Linters, etc.
 call dein#add('benekastah/neomake')
+
 " Colors
 call dein#add('chriskempson/base16-vim')
 call dein#add('w0ng/vim-hybrid')
+
 " Syntax specific
 call dein#add('kchmck/vim-coffee-script', { 'on_ft': 'coffee' })
 call dein#add('lukaszkorecki/CoffeeTags', { 'on_ft': 'coffee' })
@@ -53,6 +63,7 @@ call dein#add('vim-scripts/vim-emblem')
 call dein#add('slim-template/vim-slim')
 call dein#add('pangloss/vim-javascript')
 call dein#add('mxw/vim-jsx')
+
 "----------------------------------------
 call dein#end()
 "----------------------------------------
@@ -138,6 +149,7 @@ let g:html_indent_tags = 'li\|p'
 " Autocomplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#tag#cache_limit_size = 50000000
+
 " Tab for autocomplete
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
@@ -174,6 +186,7 @@ command! ZoomToggle call s:ZoomToggle()
 nnoremap <Leader>j :bprevious<CR>
 nnoremap <Leader>k :bnext<CR>
 nnoremap <Leader>s :w<CR>
+nnoremap <Leader><Leader> :w<CR>
 nnoremap <Leader>x :b#<bar>bd#<CR>
 nnoremap <Leader>q :q<CR>
 
@@ -223,6 +236,7 @@ nnoremap <Leader>wj <C-w>S<C-w>j
 nnoremap <Leader>wl <C-w>v<C-w>l
 nnoremap <Leader>z :ZoomToggle<CR>
 nnoremap <Leader>bx :%bd<CR>
+nnoremap <M-d> :Unite buffer<CR>
 
 " tags
 nnoremap <Leader>e :Unite -start-insert tag:%<CR>
@@ -232,6 +246,8 @@ nnoremap <Leader>t :Unite -start-insert tag<CR>
 nmap <silent> <M-y> "+y
 vmap <silent> <M-y> "+y
 map Y y$
+let g:unite_source_history_yank_enable = 1
+nnoremap <Leader>y :Unite history/yank<cr>
 
 " abbreviations
 cabbr <expr> %% expand('%:p:h')

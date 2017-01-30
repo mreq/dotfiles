@@ -10,6 +10,7 @@ set $ico_camera 
 set $ico_clock 
 set $ico_folder 
 set $ico_hexchat 
+set $ico_game 
 set $ico_gimp 
 set $ico_light 
 set $ico_mail 
@@ -89,6 +90,7 @@ bindsym Mod1+Shift+Tab focus left
 bindsym $m+Tab workspace back_and_forth
 bindsym $m+Shift+Tab exec i3_focus_other_monitor
 bindsym $m+grave exec i3_focus_other_monitor
+bindsym $m+Shift+grave exec i3_move_workspace_to_other_monitor
 bindsym $m+Shift+w exec i3_rename_workspace
 
 bindsym $m+BackSpace exec switch_keyboard_layout
@@ -312,6 +314,7 @@ bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
+bindsym $m+b workspace $ico_game
 bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
 bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp"
