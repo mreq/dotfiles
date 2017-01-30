@@ -1,0 +1,18 @@
+#!/bin/bash
+if grep 'base00 #151515' ~/.dotfiles/i3/config; then
+  # dark is active
+  target_version=light
+else
+  # light is active
+  target_version=dark
+fi
+
+sublime_theme="Packages/MreqColorScheme/mreq_$target_version.tmTheme"
+sublime_path=~/.dotfiles/subl/Packages/User/Preferences.sublime-settings
+
+cat ~/.dotfiles/i3/"config_$target_version" ~/.dotfiles/i3/config_base > ~/.dotfiles/i3/config
+cat ~/.dotfiles/xfce4/terminal/"terminalrc_$target_version" ~/.dotfiles/xfce4/terminal/terminalrc_base > ~/.dotfiles/xfce4/terminal/terminalrc
+jq ".color_scheme = \"$sublime_theme\"" $sublime_path > $sublime_path.tmp; mv $sublime_path.tmp $sublime_path
+
+i3-msg restart
+sleep 1 && touch ~/.dotfiles/xfce4/terminal/terminalrc

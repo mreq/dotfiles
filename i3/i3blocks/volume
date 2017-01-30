@@ -7,7 +7,7 @@ if [[ $percent ]]; then
 else
   icon=' '
   percent='OFF'
-  color=$( i3_get_color base03 )
+  color='#505050'
 fi
 
 echo "$icon $percent"
