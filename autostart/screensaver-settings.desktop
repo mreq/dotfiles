@@ -1,4 +1,0 @@
-[Desktop Entry]
-Name=Screensaver
-Comment=Set screensaver timeouts
-Exec=xset s 0 dpms 0 0 0

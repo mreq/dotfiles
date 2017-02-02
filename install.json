@@ -13,7 +13,6 @@
     "~/.atom"
   ],
   "link": {
-    "autostart": "~/.config/autostart",
     "atom/config.cson": "~/.atom/config.cson",
     "atom/init.coffee": "~/.atom/init.coffee",
     "atom/keymap.cson": "~/.atom/keymap.cson",
