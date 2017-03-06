@@ -193,6 +193,8 @@ export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PR
 # Override NODE_PATH for yeoman
 export NODE_PATH=$N_PREFIX:"$N_PREFIX/lib/node_modules"
 
+export WORKON_HOME="$HOME/virtualenvs"
+
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 

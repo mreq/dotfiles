@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+else
+  echo "No /usr/local/bin/virtualenvwrapper.sh"
+fi

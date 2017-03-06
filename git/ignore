@@ -15,10 +15,12 @@ npm-debug.log
 /tags.tmp
 
 # .todo files
-/*.todo
+/TODO
 
 # php crap
 /composer-setup.php
 /bin/composer.phar
 
 /tmp_scripts
+
+composer.phar

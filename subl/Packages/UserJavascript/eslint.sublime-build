@@ -1,0 +1,5 @@
+{
+  "cmd": ["frontend/web/node_modules/eslint/bin/eslint.js", "--fix", "$file"],
+  "selector": "source.js",
+  "working_dir": "${project_path:${folder}}"
+}

@@ -152,6 +152,12 @@
     { "trigger": "br\tbottomright", "contents": "+bottomright(${1:0}, ${0:0})" },
     { "trigger": "cf\tclearfix", "contents": "+clearfix" },
 
+    { "trigger": "df\tdisplay: flex", "contents": "display: flex" },
+    { "trigger": "jc\tjustify-content", "contents": "justify-content: ${0:center}" },
+    { "trigger": "ai\talign-items", "contents": "align-items: ${0:center}" },
+    { "trigger": "fd\tflex-direction", "contents": "flex-direction: ${0:column}" },
+    { "trigger": "c\tcentered", "contents": "display: flex\nalign-items: center" },
+
     // Bootstrap
     { "trigger": "ggw\tgrid-gutter-width", "contents": "\\$grid-gutter-width" },
     { "trigger": "ggh\tgrid-gutter-half", "contents": "\\$grid-gutter-half" }

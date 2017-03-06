@@ -12,6 +12,11 @@
                 "args": [],
                 "excludes": []
             },
+            "eslint": {
+                "@disable": false,
+                "args": [],
+                "excludes": []
+            },
             "json": {
                 "@disable": false,
                 "args": [],
@@ -71,7 +76,10 @@
             },
             "standard": {
                 "@disable": false,
-                "args": ["--parser", "babel-eslint"],
+                "args": [
+                    "--parser",
+                    "babel-eslint"
+                ],
                 "excludes": []
             }
         },
