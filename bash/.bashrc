@@ -138,6 +138,9 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias xfce4-terminal-tmux="xfce4-terminal --maximize --command=tmux"
 alias htop="TERM=screen htop"
 
+alias bl="bin/lint"
+alias bt="bin/test"
+
 alias gc="git clone"
 alias gs="git status"
 alias ga="git add -p"

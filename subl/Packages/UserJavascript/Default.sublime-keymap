@@ -1,0 +1,7 @@
+[
+  // Javascript: Copy file path as test
+  {
+    "keys": [" ", "f", "t"],
+    "command": "copy_file_path_as_react_test",
+  }
+]

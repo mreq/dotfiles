@@ -10,8 +10,7 @@ class CopyFilePath(sublime_plugin.TextCommand):
         sublime.set_clipboard(self.get_path())
 
     def get_path(self):
-        return self.view.file_name().replace(
-            self.view.window().folders()[0] + '/', '')
+        return self.view.file_name().replace(self.view.window().folders()[0] + '/', '')
 
 
 class CopyFilePathWithLineNumber(CopyFilePath):
@@ -27,6 +26,12 @@ class CopyFilePathAsRailsTest(CopyFilePath):
     def get_path(self):
         path = super().get_path()
         return 'r t ' + path
+
+class CopyFilePathAsReactTest(CopyFilePath):
+
+    def get_path(self):
+        path = super().get_path()
+        return 'bin/test ' + path.replace('frontend/web/', '')
 
 # wip
 # class CopyFilePathOnGitRepo(CopyFilePath):
