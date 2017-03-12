@@ -235,8 +235,8 @@ bar {
 
 bar {
   status_command i3blocks
-  tray_output LVDS1
-  output LVDS1
+  tray_output LVDS-1
+  output LVDS-1
   position top
   colors {
     background $base00

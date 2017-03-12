@@ -28,7 +28,6 @@
     "fontconfig": "~/.config/fontconfig",
     "git/.gitconfig": "~/.gitconfig",
     "git/ignore": "~/.config/git/ignore",
-    "i3/config": "~/.config/i3/config",
     "i3/i3status": "~/.config/i3status/config",
     "i3/.i3blocks.conf": "~/.i3blocks.conf",
     "i3/i3blocks": "~/.config/i3blocks",

@@ -9,3 +9,7 @@ scripts/wmctile/python/*
 vim/.vim/.netrwhist
 
 /vim/.vim/dein.vim/
+
+/xfce4/panel/whiskermenu-1.rc
+
+/xfce4/terminal/accels.scm

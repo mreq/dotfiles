@@ -191,11 +191,6 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export BUNDLER_EDITOR="subl -n"
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
-# Override NODE_PATH for yeoman
-export NODE_PATH=$N_PREFIX:"$N_PREFIX/lib/node_modules"
-
 export WORKON_HOME="$HOME/virtualenvs"
 
 # Load RVM into a shell session *as a function*
@@ -217,4 +212,9 @@ fi
 
 if [ -d ~/Applications/android-studio/jre ]; then
   export JAVA_HOME=~/Applications/android-studio/jre
+fi
+
+if [[ -f "$HOME/.nvm" ]]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 fi
