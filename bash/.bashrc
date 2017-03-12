@@ -214,7 +214,7 @@ if [ -d ~/Applications/android-studio/jre ]; then
   export JAVA_HOME=~/Applications/android-studio/jre
 fi
 
-if [[ -f "$HOME/.nvm" ]]; then
+if [[ -d "$HOME/.nvm" ]]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 fi
