@@ -1,5 +1,5 @@
 #!/bin/bash
-if grep 'base00 #151515' ~/.dotfiles/i3/config; then
+if grep 'base00 #151515' ~/.config/i3/config; then
   # dark is active
   target_version=light
 else
