@@ -56,7 +56,7 @@
 	],
 	"index_files": true,
 	"line_numbers": true,
-	"line_padding_bottom": 2,
+	"line_padding_bottom": 3,
 	"polyfill.experimental_features": true,
 	"remember_open_files": true,
 	"shift_tab_unindent": true,

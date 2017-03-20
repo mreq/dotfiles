@@ -22,5 +22,6 @@ npm-debug.log
 /bin/composer.phar
 
 /tmp_scripts
+/git-ignored
 
 composer.phar
