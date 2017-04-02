@@ -217,8 +217,8 @@ bar {
 
 bar {
   status_command i3blocks
-  tray_output VGA1
-  output VGA1
+  tray_output VGA-1
+  output VGA-1
   position top
   colors {
     background $base00
