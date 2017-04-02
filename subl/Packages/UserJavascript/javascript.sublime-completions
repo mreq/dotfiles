@@ -2,8 +2,9 @@
   "scope": "source.js",
   "completions":
   [
-    { "trigger": "im\timport", "contents": "import $1 from '$0';" },
     { "trigger": "st\tstyled", "contents": "styled.${1:div}`\n\t$0\n`;" },
+    { "trigger": "im\timport", "contents": "import $1 from '$0';" },
+    { "trigger": "imc\timport component", "contents": "import $0 from 'components/$0';" },
 
     { "trigger": "c\tconsole.log", "contents": "console.log($0)" },
     { "trigger": "bp\tdebugger", "contents": "debugger" },

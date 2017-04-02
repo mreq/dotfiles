@@ -1,7 +1,7 @@
 {
   "scope": "source.css.less, source.less",
   "completions":
-  [ 
+  [
     // syntax
     { "trigger": "q", "contents": "&.$1 {\n\t$0\n}" },
     { "trigger": "e", "contents": ".${1:fsize}($0);" },
@@ -9,7 +9,7 @@
 
     // classes
     { "trigger": "ac\tactive", "contents": "&.active {\n\t$0\n}" },
-    
+
     // LESS
     { "trigger": "3", "contents": "&.$1 {\n\t$0\n}" },
     { "trigger": "h\thover", "contents": "&:hover {\n\t$0\n}" },
@@ -17,6 +17,9 @@
     { "trigger": "af\tafter", "contents": "&:after {\n\t$0\n}" },
     { "trigger": "lc\tlast-child", "contents": "&:last-child {\n\t$0\n}" },
     { "trigger": "fc\tfirst-child", "contents": "&:first-child {\n\t$0\n}" },
+    { "trigger": "nth", "contents": "&:nth-child($1) {\n\t$0\n}" },
+    { "trigger": "odd", "contents": "&:nth-child(odd) {\n\t$0\n}" },
+    { "trigger": "even", "contents": "&:nth-child(even) {\n\t$0\n}" },
 
     { "trigger": "cc\tclass-contains", "contents": "$1[class*=\"$2\"] {\n\t$0\n}" },
 
