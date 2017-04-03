@@ -3,14 +3,32 @@
     autoBuildTagsWhenActive: true
   atomatigit: {}
   "autocomplete-ctags": {}
-  "base16-syntax":
-    scheme: "Eighties"
+  "autocomplete-js-import":
+    fileRelativePaths: false
+    fuzzy:
+      enabled: true
+      fileTypes: [
+        "*"
+      ]
+  "base16-syntax": {}
   core:
     autoHideMenuBar: true
+    customFileTypes:
+      "source.ini": [
+        ".buckconfig"
+        ".hgrc"
+      ]
+      "source.json": [
+        "BUCK.autodeps"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
     disabledPackages: [
       "autoflow"
       "background-tips"
       "atom-ctags"
+      "tree-view"
     ]
     ignoredNames: [
       ".git"
@@ -19,9 +37,10 @@
       "tmp"
     ]
     projectHome: "/home/petr/work"
+    telemetryConsent: "no"
     themes: [
-      "atom-dark-ui"
-      "hybrid-next-syntax"
+      "one-dark-ui"
+      "base16-syntax"
     ]
   "disable-keybindings":
     prefixKeys: [
@@ -39,6 +58,8 @@
     userId: "d11a1e59-99c5-f8ff-e1df-4c527560c43f"
   "git-plus":
     pullBeforePush: "pull --rebase"
+  "linter-ui-default":
+    showPanel: true
   "one-dark-ui": {}
   "relative-numbers": {}
   "vim-mode-plus":

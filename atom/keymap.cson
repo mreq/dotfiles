@@ -3,6 +3,10 @@
     'ctrl-j': 'core:move-down'
     'ctrl-k': 'core:move-up'
     'ctrl-l': 'core:move-right'
+    'ctrl-tab': 'pane:show-next-item'
+    'ctrl-tab ^ctrl': 'unset!'
+    'ctrl-shift-tab': 'pane:show-previous-item'
+    'ctrl-shift-tab ^ctrl': 'unset!'
 
 'atom-workspace atom-text-editor:not([mini])':
     'ctrl-h': 'core:move-left'
@@ -35,17 +39,19 @@
     'space k': 'command-palette:toggle'
     'scape escape': 'vim-mode-plus:clear-highlight-search'
     'space l': 'tree-view:toggle'
+
     # Pane creation
     'space o l': 'pane:split-right-and-copy-active-item'
     'space o j': 'pane:split-down-and-copy-active-item'
     'space o x': 'pane:close'
+
     # Pane switch
     'shift-l': 'pane:show-next-item'
     'shift-h': 'pane:show-previous-item'
+
     # Close all
     'space q': 'custom:close-panes'
-    # Git
-    'space g s': 'git-control:toggle'
+
     # Change surround
     'space c s': 'vim-mode-plus:change-surround'
     'space d s': 'vim-mode-plus:delete-surround'

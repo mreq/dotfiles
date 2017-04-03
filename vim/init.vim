@@ -61,7 +61,7 @@ call dein#add('lukaszkorecki/CoffeeTags', { 'on_ft': 'coffee' })
 call dein#add('tpope/vim-markdown', { 'on_ft': 'markdown' })
 call dein#add('vim-scripts/vim-emblem')
 call dein#add('slim-template/vim-slim')
-call dein#add('pangloss/vim-javascript')
+call dein#add('othree/yajs.vim')
 call dein#add('mxw/vim-jsx')
 
 "----------------------------------------
@@ -82,6 +82,9 @@ set history=10000
 
 " 256 color terminal
 let &t_Co=256
+
+" Fix garbage characters appearing in xfce4-terminal
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 
 " Change leader key
 let mapleader=" "
@@ -160,6 +163,9 @@ let g:switch_mapping = 'gs'
 " fzf setup
 set rtp+=~/.fzf
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.sass-cache/*
+
+" run vim-jsx for *.js as well
+let g:jsx_ext_required = 0
 
 " Unite settings
 if executable('pt')

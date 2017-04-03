@@ -29,14 +29,14 @@ xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
 
 ! xterm ---------------------------------------------------------------
 xterm*VT100*geometry: 130x40
-xterm*faceName: DejaVu Sans Mono:style=Book:antialias=false
+xterm*faceName: Consolas:style=Regular:antialias=false
 xterm*faceNameDoublesize: WenQuanYi Bitmap Song
-xterm*faceSize: 10
-xterm*background: #002b36
-xterm*foreground: #eee8d5
+xterm*faceSize: 14
+xterm*background: #181818
+xterm*foreground: #d8d8d8
 xterm*loginShell: true
-xterm*scrollBar: true
-xterm*rightScrollBar: true
+xterm*scrollBar: false
+xterm*rightScrollBar: false
 xterm*title: XTerm
 xterm*iconName: XTerm
 xterm*saveLines: 50000

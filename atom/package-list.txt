@@ -1,13 +1,9 @@
 atomatigit@1.5.5
-base16-syntax@1.7.0
+base16-syntax@1.8.0
 disable-keybindings@0.6.0
-git-plus@5.13.4
-language-diff@0.4.0
+language-diff@0.7.0
 language-emblem@0.2.0
 language-slim@0.5.0
-merge-conflicts@1.4.1
-rails-i18n-autocomplete@0.3.0
-relative-numbers@0.5.1
-vim-mode-plus@0.32.1
-vim-mode-plus-ex-mode@0.2.0
+relative-numbers@0.7.1
+vim-mode-plus@0.86.2
 
