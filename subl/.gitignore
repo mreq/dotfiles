@@ -12,6 +12,7 @@ Packages/*
 !Packages/UserYaml
 
 !Packages/Base16
+!Packages/Babel
 !Packages/BetterFindBufferFork
 !Packages/BetterCoffeescriptFork
 !Packages/FileSystem Autocompletion

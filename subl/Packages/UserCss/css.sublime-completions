@@ -29,10 +29,6 @@
     { "trigger": "td", "contents": "td {\n\t$0\n}" },
     { "trigger": "th", "contents": "th {\n\t$0\n}" },
 
-    // element sets
-    { "trigger": "ula", "contents": "> ul {\n\t$0\n\t> li {\n\t\t> a {\n\t\t}\n\t}\n}" },
-
-
     // positions
     { "trigger": "le\tleft", "contents": "left: $0;" },
     { "trigger": "ri\tright", "contents": "right: $0;" },
@@ -80,7 +76,6 @@
     { "trigger": "ovxv\toverflow-x-visible", "contents": "overflow-x: visible;$0" },
     { "trigger": "ovyh\toverflow-y-hidden", "contents": "overflow-y: hidden;$0" },
     { "trigger": "ovyv\toverflow-y-visible", "contents": "overflow-y: visible;$0" },
-
 
     // dimensions
     { "trigger": "h", "contents": "height: $0;" },
@@ -142,6 +137,7 @@
 
     // lists
     { "trigger": "ls", "contents": "list-style: ${0:none}${1:disc}${2:decimal};" },
+
     // various & unsorted
     { "trigger": "wo\twebkit-overflow", "contents": "-webkit-overflow-scrolling: touch;$0" },
     { "trigger": "ou\toutline", "contents": "outline: ${0:none};" },

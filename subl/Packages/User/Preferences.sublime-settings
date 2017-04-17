@@ -43,7 +43,6 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
-		"All Autocomplete",
 		"SublimeLinter-contrib-standard",
 		"Vintage",
 		"VintageLines"
