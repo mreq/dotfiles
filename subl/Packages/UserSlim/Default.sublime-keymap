@@ -1,0 +1,8 @@
+[
+	// insert <br> in text
+	{ "keys": ["alt+b"], "command": "insert", "args": { "characters": "<br>" }, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.slim" }
+		]
+	}
+]
