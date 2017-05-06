@@ -1,12 +1,14 @@
 #!/home/petr/.rvm/rubies/default/bin/ruby
 memory = `cat /proc/meminfo`.chomp
+
 output = [
   ['MemAvailable', 'MemTotal'],
-  ['SwapFree', 'SwapTotal']
+  # ['SwapFree', 'SwapTotal']
 ].map do |keys|
   free = memory[/#{keys[0]}.+\n/][/\d+/].to_i
   max = memory[/#{keys[1]}.+\n/][/\d+/].to_i
   used = 100*(1-free/max.to_f)
   "#{used.round}%"
 end
+
 puts "  #{output.join(' ')}"
