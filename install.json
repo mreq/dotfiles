@@ -1,6 +1,7 @@
 {
   "directories": [
     "~/.config/doublecmd",
+    "~/.config/dunst",
     "~/.config/git",
     "~/.config/gtk-3.0",
     "~/.config/i3",
@@ -25,6 +26,7 @@
     "ctags/.ctags": "~/.ctags",
     "doublecmd/doublecmd.xml": "~/.config/doublecmd/doublecmd.xml",
     "doublecmd/shortcuts.scf": "~/.config/doublecmd/shortcuts.scf",
+    "dunst/dunstrc": "~/.config/dunst/dunstrc",
     "fontconfig": "~/.config/fontconfig",
     "git/.gitconfig": "~/.gitconfig",
     "git/ignore": "~/.config/git/ignore",

@@ -152,7 +152,7 @@ alias gp="git push"
 alias gu="git pull --rebase"
 
 if [[ -f ~/Applications/sinfin-tools/bin/sinfin ]]; then
-  alias sinfin="rvm 2.3.0 do ~/Applications/sinfin-tools/bin/sinfin"
+  alias sinfin="rvm default do ~/Applications/sinfin-tools/bin/sinfin"
 fi
 
 terminal-colors() {

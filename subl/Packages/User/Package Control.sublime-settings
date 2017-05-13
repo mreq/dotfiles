@@ -58,6 +58,7 @@
 		"ShellScriptImproved",
 		"SideBarEnhancements",
 		"Slugify",
+		"StringEncode",
 		"SublimeLinter",
 		"SublimeLinter-coffeelint",
 		"SublimeLinter-contrib-eslint",

@@ -195,6 +195,9 @@ bindsym $m+KP_Multiply exec --no-startup-id "amixer -D pulse set Master 1+ toggl
 bindsym Pause exec "play_pause_spotify"
 bindsym Shift+Pause exec "play_pause_spotify next"
 bindsym Control+Shift+Pause exec "play_pause_spotify prev"
+bindsym Print exec "play_pause_spotify"
+bindsym Shift+Print exec "play_pause_spotify next"
+bindsym Control+Shift+Print exec "play_pause_spotify prev"
 
 bar {
   status_command i3blocks
@@ -253,8 +256,8 @@ bar {
 
 bar {
   status_command i3blocks
-  tray_output eDP-1
-  output eDP-1
+  tray_output eDP1
+  output eDP1
   position top
   colors {
     background $base00
@@ -329,6 +332,7 @@ bindsym Control+Mod1+3 exec "scrotshare create window"
 bindsym Control+Mod1+4 exec "scrotshare create chrome"
 
 # Startup
+exec --no-startup-id i3-msg rename workspace to 1
 exec --no-startup-id xsetroot -solid "$base00"
 exec --no-startup-id select_display guess
 exec --no-startup-id nm-applet

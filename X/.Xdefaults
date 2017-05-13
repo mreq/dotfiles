@@ -69,3 +69,5 @@ rofi.hide-scrollbar: true
 rofi.width: -50
 rofi.lines: 7
 rofi.fixed-num-lines: true
+
+Xft.dpi: 100
