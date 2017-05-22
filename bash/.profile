@@ -16,11 +16,11 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
-PATH="$PATH:$HOME/scripts/bin"
-PATH="$PATH:$HOME/.local/bin"
-
 # Add RVM and ruby to PATH for scripting
 PATH="$PATH:$HOME/.rvm/bin"
+
+PATH="$PATH:$HOME/scripts/bin"
+PATH="$PATH:$HOME/.local/bin"
 
 export EDITOR=vim
 

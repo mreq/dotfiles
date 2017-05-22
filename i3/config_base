@@ -150,8 +150,8 @@ bindsym $m+Shift+F9 move container to workspace number 9
 
 # reload the configuration file
 #bindsym $m+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $m+Shift+r restart
+## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+#bindsym $m+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $m+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -287,7 +287,6 @@ for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 # Assigns
 assign [class="VirtualBox"] → $ico_virtualbox
 assign [class="chromium-browser"] → $ico_calendar
-assign [class="Google-chrome" instance="crx_nfjdjopfnbnkmfldmeffmhgodmlhdnei"] → $ico_whatsapp
 assign [class="Spotify"] → $ico_music
 assign [class="Gimp"] → $ico_gimp
 assign [class="Hexchat"] → $ico_hexchat
@@ -319,10 +318,10 @@ bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
 bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp"
 bindsym $m+n exec "i3_focus_pinned -w $ico_hexchat -c hexchat"
-bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c 'nfjdjopfnbnkmfldmeffmhgodmlhdnei' -x 'google-chrome --profile-directory=Default --app-id=nfjdjopfnbnkmfldmeffmhgodmlhdnei'"
+bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c google-chrome"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c chromium-browser"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c spotify"
-bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin"
+bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin -c google-chrome"
 bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox"
 
 # Screenshots

@@ -1,11 +1,17 @@
 #!/bin/bash
-if grep 'base00 #151515' ~/.config/i3/config; then
-  # dark is active
-  target_version=light
+if [ $1 ]; then
+  target_version=$1
 else
-  # light is active
-  target_version=dark
+  if grep 'base00 #151515' ~/.config/i3/config; then
+    # dark is active
+    target_version=light
+  else
+    # light is active
+    target_version=dark
+  fi
 fi
+
+notify-send 'i3 Switching colors' $target_version
 
 sublime_theme="Packages/MreqColorScheme/mreq_$target_version.tmTheme"
 sublime_path=~/.dotfiles/subl/Packages/User/Preferences.sublime-settings

@@ -2,8 +2,12 @@
 paths="work/**/*.sublime-project uni/**/*.sublime-project .dotfiles/*.sublime-project Applications/**/*.sublime-project"
 
 handle_selection() {
-  if [[ $1 ]]; then
+  if [ $1 ]; then
     project=$( cd ~/; ls -t $paths | grep "/$1.sublime" )
+    if [ ! $project ]; then
+      notify-send "$1" "project doesn't exist"
+      exit 1
+    fi
     touch "$project"
     subl -n "$project"
   fi

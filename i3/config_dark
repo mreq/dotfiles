@@ -16,3 +16,5 @@ set $base0E #aa759f
 set $base0F #8f5536
 
 set $focusc #4592B1
+
+bindsym $m+Shift+r exec "i3_switch_colors dark"
