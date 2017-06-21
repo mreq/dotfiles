@@ -2,11 +2,21 @@
   "scope": "source.js",
   "completions":
   [
-    { "trigger": "st\tstyled", "contents": "styled.${1:div}`\n\t$0\n`;" },
-    { "trigger": "im\timport", "contents": "import $1 from '$0';" },
-    { "trigger": "imm\timport named", "contents": "import { $1 } from '$0';" },
-    { "trigger": "imc\timport component", "contents": "import $0 from 'components/$0';" },
-    { "trigger": "imt\timport type", "contents": "import type { $1 } from '${0:./types}';" },
+    { "trigger": "st\tstyled", "contents": "styled.${1:div}`\n\t$0\n`" },
+    { "trigger": "im\timport", "contents": "import $1 from '$0'" },
+    { "trigger": "imm\timport named", "contents": "import { $1 } from '$0'" },
+    { "trigger": "imc\timport component", "contents": "import $0 from 'components/$0'" },
+    { "trigger": "imt\timport type", "contents": "import type { $1 } from '${0:./types}'" },
+    { "trigger": "ime\timport React", "contents": "import React from 'react'$0" },
+    { "trigger": "ims\timport styled", "contents": "import styled from 'styled-components'$0" },
+    { "trigger": "iml\timport Link", "contents": "import { Link } from 'react-router'$0" },
+    { "trigger": "imr\timport relative", "contents": "import $1 from './${0:$1}'" },
+    { "trigger": "imf\timport FormattedMessage", "contents": "import { FormattedMessage } from 'react-intl'$0" },
+    { "trigger": "imk\timport key", "contents": "import { key } from 'styled-theme'$0" },
+    { "trigger": "imp\timport prop", "contents": "import { prop } from 'styled-tools'$0" },
+    { "trigger": "imu\timport utils", "contents": "import $1 from 'utils/${0:$1}'" },
+
+    { "trigger": "fs\tblank function", "contents": "() => {}$0" },
 
     { "trigger": "c\tconsole.log", "contents": "console.log($0)" },
     { "trigger": "bp\tdebugger", "contents": "debugger" },

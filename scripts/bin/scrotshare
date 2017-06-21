@@ -33,11 +33,7 @@ handle_scrot() {
   if grep 'chrome' /tmp/scrotshare.txt > /dev/null; then
     # Trim the image - remove top 187px
     size=$( identify -format "%[w]x%[h]" "$scr" )
-    if wmctrl -m | grep i3; then
-      convert "$scr" -gravity South -crop "$size+0-80" -shave 5x5 "$scr"
-    else
-      convert "$scr" -gravity South -crop "$size+0-85" "$scr"
-    fi
+    convert "$scr" -gravity South -crop "$size+0-90" +repage "$scr"
   fi
 
   if [[ $scr ]]; then

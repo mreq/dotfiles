@@ -1,0 +1,7 @@
+{
+  "scope": "meta.styled-components.js",
+  "completions":
+  [
+    { "trigger": "k\tkey", "contents": "${key('$0')}" }
+  ]
+}

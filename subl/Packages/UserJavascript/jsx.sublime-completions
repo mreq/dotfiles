@@ -1,0 +1,7 @@
+{
+  "scope": "meta.jsx.js",
+  "completions":
+  [
+    { "trigger": "fm\tFormattedMessage", "contents": "<FormattedMessage {...messages.$0} />" }
+  ]
+}

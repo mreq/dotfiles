@@ -22,8 +22,8 @@ PATH="$PATH:$HOME/.rvm/bin"
 PATH="$PATH:$HOME/scripts/bin"
 PATH="$PATH:$HOME/.local/bin"
 
-export EDITOR=vim
+PATH="$PATH:$HOME/.nvm/versions/node/v6.10.3/bin"
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export EDITOR=nvim
 
 export PYTHONPATH="$HOME/.local/lib/python2.7/site-packages"

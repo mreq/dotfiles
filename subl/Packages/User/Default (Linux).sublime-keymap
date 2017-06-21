@@ -494,7 +494,7 @@
 
   // Generic: submit replace all panel
   {
-    "keys": ["ctrl+enter"],
+    "keys": ["ctrl+alt+enter"],
     "command": "replace_all",
     "args": { "close_panel": true },
     "context": [

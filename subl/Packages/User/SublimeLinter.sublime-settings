@@ -87,7 +87,9 @@
         "no_column_highlights_line": false,
         "passive_warnings": false,
         "paths": {
-            "linux": [],
+            "linux": [
+                "~/.nvm/versions/node/v6.10.3/bin"
+            ],
             "osx": [],
             "windows": []
         },
