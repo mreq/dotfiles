@@ -15,6 +15,7 @@
     { "trigger": "imk\timport key", "contents": "import { key } from 'styled-theme'$0" },
     { "trigger": "imp\timport prop", "contents": "import { prop } from 'styled-tools'$0" },
     { "trigger": "imu\timport utils", "contents": "import $1 from 'utils/${0:$1}'" },
+    { "trigger": "imtf\timport tests/factories", "contents": "import { $0 } from 'tests/factories'" },
 
     { "trigger": "fs\tblank function", "contents": "() => {}$0" },
 

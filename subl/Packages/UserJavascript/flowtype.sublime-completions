@@ -1,0 +1,7 @@
+{
+  "scope": "meta.type.flowtype.js",
+  "completions":
+  [
+    { "trigger": "ch\tchildren", "contents": "children?: React\\$Element<any>,$0" },
+  ]
+}
