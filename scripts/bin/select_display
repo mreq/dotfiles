@@ -5,6 +5,7 @@ options=(
   'HDMI-DVI'
   'VGA'
   'notebook'
+  'notebook-HDMI'
 )
 
 notebook_output=$( xrandr | head -n2 | tail -n1 | awk '{ print $1 }' )
@@ -29,6 +30,8 @@ select_display() {
       guess_display ;;
     notebook )
       xrandr --output $notebook_output --auto --output $hdmi_output --off --output $vga_output --off ;;
+    notebook-HDMI )
+      xrandr --output $hdmi_output --auto --primary --output $vga_output --off --output $dvi_output --off --output $notebook_output --auto --left-of $hdmi_output ;;
     HDMI )
       xrandr --output $hdmi_output --auto --primary --output $vga_output --off --output $dvi_output --off --output $notebook_output --off ;;
     HDMI-DVI )
