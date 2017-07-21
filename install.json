@@ -9,7 +9,6 @@
     "~/.config/nvim",
     "~/.config/sublime-text-3/Local",
     "~/.config/synapse",
-    "~/.config/terminator",
     "~/.config/xfce4",
     "~/.atom"
   ],
@@ -45,7 +44,6 @@
     "slim/.slim-lint.yml": "~/.slim-lint.yml",
     "subl/Packages": "~/.config/sublime-text-3/Packages",
     "synapse/config.json": "~/.config/synapse/config.json",
-    "terminator/config": "~/.config/terminator/config",
     "tmux/.tmux.conf": "~/.tmux.conf",
     "vim/.vim": "~/.vim",
     "vim/.vimrc": "~/.vimrc",

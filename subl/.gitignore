@@ -22,6 +22,7 @@ Packages/*
 !Packages/Origami
 !Packages/Open-Include
 !Packages/SendTextPlus
+!Packages/SublimeMagic
 !Packages/SublimeLogMagic
 !Packages/SublimeLinter-rubocop
 !Packages/yardgen

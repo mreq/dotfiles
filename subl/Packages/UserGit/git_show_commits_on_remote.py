@@ -17,9 +17,9 @@ class GitShowCommitsOnRemote(sublime_plugin.WindowCommand):
 
         url = 'https://' + url_base + '/commits'
 
-        if 'gitlab.' in url_base:
-            branch = subprocess.check_output('git branch 2> /dev/null',
-                                             shell=True, cwd=cwd).decode('utf8').strip()
+        branch = subprocess.check_output('git branch 2> /dev/null | grep \*',
+                                         shell=True, cwd=cwd).decode('utf8').strip().replace('* ', '')
+        if 'gitlab.' in url_base or 'github.' in url_base:
             url = url + '/' + branch.replace('* ', '')
 
         run_cmd_parts = ["i3_focus_or_run 'Google-chrome' 'google-chrome'",
