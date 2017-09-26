@@ -195,9 +195,6 @@ export BUNDLER_EDITOR="subl -n"
 
 export WORKON_HOME="$HOME/virtualenvs"
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 export FZF_DEFAULT_COMMAND='pt -g "" --hidden'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -208,8 +205,8 @@ export FZF_DEFAULT_COMMAND='pt -g "" --hidden'
 
 if [ -d ~/Android/Sdk ]; then
   export ANDROID_HOME=~/Android/Sdk
-  export PATH=${PATH}:${ANDROID_HOME}/tools
-  export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+  PATH=${PATH}:${ANDROID_HOME}/tools
+  PATH=${PATH}:${ANDROID_HOME}/platform-tools
 fi
 
 if [ -d ~/Applications/android-studio/jre ]; then
@@ -221,3 +218,8 @@ if [[ -d "$HOME/.nvm" ]]; then
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH

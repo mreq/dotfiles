@@ -2,8 +2,7 @@
   "scope": "source.ruby",
   "completions":
   [
-    { "trigger": "br\tbinding.remote_pry", "contents": "binding.remote_pry$0" },
-    { "trigger": "bp\tbinding.pry", "contents": "binding.pry$0" },
+    { "trigger": "bp\tbinding.pry", "contents": "require 'pry'; binding.pry$0" },
 
     { "trigger": "ai\tadd_index", "contents": "add_index :$1, :$0" },
 

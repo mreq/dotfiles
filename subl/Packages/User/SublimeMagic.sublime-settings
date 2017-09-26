@@ -1,5 +1,18 @@
 {
   "spells": [
+    // {
+    //   "name": "Change multiple imports style",
+    //   "context": {
+    //     "scope": ["source.js"],
+    //     "line_matches": ["import { [^,]+, .+ }"]
+    //   },
+    //   "spell": "perform_line_regex",
+    //   "args": {
+    //     "pattern": "(require .+)\\.(js|css)",
+    //     "replacement": "\\1"
+    //   }
+    // },
+
     {
       "name": "Change module name",
       "context": {
@@ -11,6 +24,19 @@
         "where": "after",
         "delimiter": "@import 'modules/",
         "replacement": "$cursor'"
+      }
+    },
+
+    {
+      "name": "Convert slim classes to className",
+      "context": {
+        "scope": ["meta.jsx"],
+        "line_matches": ["className='.*\\..*'"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\.",
+        "replacement": " "
       }
     },
 
@@ -51,6 +77,19 @@
       "args": {
         "pattern": "(require .+)\\.(js|css)",
         "replacement": "\\1"
+      }
+    },
+
+    {
+      "name": "Cleanup double this in js",
+      "context": {
+        "scope": ["source.(coffee|js)"],
+        "line_matches": ["this\\.this"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "this\\.this",
+        "replacement": "this"
       }
     },
 

@@ -39,8 +39,8 @@
     projectHome: "/home/petr/work"
     telemetryConsent: "no"
     themes: [
-      "one-dark-ui"
-      "base16-syntax"
+      "atom-dark-ui"
+      "gruvbox-plus-syntax"
     ]
   "disable-keybindings":
     prefixKeys: [
@@ -58,11 +58,13 @@
     userId: "d11a1e59-99c5-f8ff-e1df-4c527560c43f"
   "git-plus":
     pullBeforePush: "pull --rebase"
+  "gruvbox-plus-syntax": {}
   "linter-ui-default":
     showPanel: true
   "one-dark-ui": {}
   "relative-numbers": {}
   "vim-mode-plus":
+    keymapYToYankToLastCharacterOfLine: true
     useClipboardAsDefaultRegister: true
   welcome:
     showOnStartup: false

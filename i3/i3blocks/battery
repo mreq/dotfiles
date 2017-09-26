@@ -8,7 +8,7 @@ if acpi is '':
 
 is_charging = re.search('Charging|Full', acpi)
 percentages = []
-for percentage in re.findall(',\s([^%]+)%', acpi):
+for percentage in re.findall('(\d+)%', acpi):
     percentages.append(percentage)
 
 icon = ''
