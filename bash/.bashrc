@@ -145,11 +145,8 @@ alias bt="bin/test"
 alias g="tig status"
 alias gc="git clone"
 alias gs="git status"
-alias ga="git add -p"
 alias gd="git diff"
 alias gdc="git diff --cached"
-alias gp="git push"
-alias gu="git pull --rebase"
 
 if [[ -f ~/Applications/sinfin-tools/bin/sinfin ]]; then
   alias sinfin="rvm default do ~/Applications/sinfin-tools/bin/sinfin"
