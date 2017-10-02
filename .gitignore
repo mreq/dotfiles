@@ -4,8 +4,6 @@ xfce4/xfconf/xfce-perchannel-xml/*.xml
 !xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 !xfce4/xfconf/xfce-perchannel-xml/keyboard-layout.xml
 
-scripts/wmctile/python/*
-!scripts/wmctile/python/wmctile.py
 vim/.vim/.netrwhist
 
 /vim/.vim/dein.vim/

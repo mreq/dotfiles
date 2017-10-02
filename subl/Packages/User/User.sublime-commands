@@ -18,17 +18,6 @@
   },
 
   {
-    "caption": "rmux",
-    "command": "run_cmd",
-    "args": {
-      "cmd": [
-        "terminator --working-directory=\"$file_dir\" -x /usr/bin/tmux new \"R --no-save\"",
-        "sleep 1 && /home/petr/scripts/wmctile/python/wmctile.py tile_two horz 0.57 sublime_text.Sublime_text terminator.Terminator"
-      ]
-    }
-  },
-
-  {
     "caption": "Select sprite",
     "command": "select_sprite"
   },

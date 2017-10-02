@@ -40,7 +40,6 @@
     "ruby/.rubocop.yml": "~/.rubocop.yml",
     "ruby/.gemrc": "~/.gemrc",
     "sass/.sass-lint.yml": "~/.sass-lint.yml",
-    "scripts": "~/scripts",
     "slim/.slim-lint.yml": "~/.slim-lint.yml",
     "subl/Packages": "~/.config/sublime-text-3/Packages",
     "synapse/config.json": "~/.config/synapse/config.json",

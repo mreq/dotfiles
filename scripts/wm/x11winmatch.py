@@ -14,7 +14,7 @@ class X11WinWatch:
 		self.activeWindow = self.root.get_full_property(self.ACTIVE, 0).value[0]
 		self.doActiveWindow()
 		self.run()
-		
+
 	def doActiveWindow(self):
 		active = self.root.get_full_property(self.ACTIVE, 0).value[0]
 		if active != self.activeWindow:
@@ -22,13 +22,12 @@ class X11WinWatch:
 			self.activeWindow = active
 			os.system('~/scripts/wm/on_window_change.sh ' + str(active))
 
-		
 	def run(self):
 		while 1:
 			while self.display.pending_events():
 				e = self.display.next_event()
 				if e.type == X.PropertyNotify:
-					self.doActiveWindow()                    
+					self.doActiveWindow()
 			time.sleep(0.1)
 
 X11WinWatch()

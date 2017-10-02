@@ -2,10 +2,6 @@
 	path = dotty
 	url = git@github.com:vibhavp/dotty.git
 	ignore = all
-[submodule "wmctile"]
-	path = wmctile
-	url = git@github.com:mreq/wmctile.git
-	ignore = all
 [submodule "subl/Packages/SublimeLinter"]
 	path = subl/Packages/SublimeLinter
 	url = git@github.com:mreq/SublimeLinter3.git
