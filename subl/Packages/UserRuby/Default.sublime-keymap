@@ -6,5 +6,74 @@
       { "key": "selector", "operator": "equal", "operand": "source.ruby" },
       { "key": "vi_command_mode_aware" }
     ]
+  },
+
+  {
+    "keys": [" ", "g", "e"],
+    "command": "cell_open_all",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.ruby" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  {
+    "keys": ["shift+space"],
+    "command": "cell_open",
+    "args": { "target": "slim" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.ruby" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  {
+    "keys": ["shift+space"],
+    "command": "cell_open",
+    "args": { "target": "ruby" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.slim" },
+      { "key": "vi_command_mode_aware" }
+    ]
   }
+
+  // {
+  //   "keys": [" ", "c", "r"],
+  //   "command": "cell_open",
+  //   "args": { "target": "ruby" },
+  //   "context": [
+  //     { "key": "selector", "operator": "regex_contains", "operand": "(text.slim|source.ruby|source.sass|source.coffee)" },
+  //     { "key": "vi_command_mode_aware" }
+  //   ]
+  // },
+
+  // {
+  //   "keys": [" ", "c", "s"],
+  //   "command": "cell_open",
+  //   "args": { "target": "sass" },
+  //   "context": [
+  //     { "key": "selector", "operator": "regex_contains", "operand": "(text.slim|source.ruby|source.sass|source.coffee)" },
+  //     { "key": "vi_command_mode_aware" }
+  //   ]
+  // },
+
+  // {
+  //   "keys": [" ", "c", "c"],
+  //   "command": "cell_open",
+  //   "args": { "target": "coffee" },
+  //   "context": [
+  //     { "key": "selector", "operator": "regex_contains", "operand": "(text.slim|source.ruby|source.sass|source.coffee)" },
+  //     { "key": "vi_command_mode_aware" }
+  //   ]
+  // },
+
+  // {
+  //   "keys": [" ", "c", "v"],
+  //   "command": "cell_open",
+  //   "args": { "target": "slim" },
+  //   "context": [
+  //     { "key": "selector", "operator": "regex_contains", "operand": "(text.slim|source.ruby|source.sass|source.coffee)" },
+  //     { "key": "vi_command_mode_aware" }
+  //   ]
+  // }
 ]
