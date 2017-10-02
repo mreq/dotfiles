@@ -309,7 +309,7 @@ assign [class="Spotify"] → $ico_music
 assign [class="Gimp"] → $ico_gimp
 assign [class="Hexchat"] → $ico_hexchat
 assign [class="Thunderbird"] → $ico_mail
-assign [class="Slack"] → $ico_slack
+assign [class="Scudcloud"] → $ico_slack
 assign [class="Doublecmd"] → $ico_folder
 assign [class="Google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] → $ico_trello
 
@@ -332,7 +332,7 @@ bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
 bindsym $m+b workspace $ico_game
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c ScudCloud -x '/usr/bin/python3 ~/.local/bin/scudcloud'"
 bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp"
 bindsym $m+n exec "i3_focus_pinned -w $ico_hexchat -c hexchat"
