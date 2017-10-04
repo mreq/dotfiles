@@ -16,9 +16,10 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
-for dir in $PATH:$HOME/.dotfiles/*/bin; do
+for dir in $HOME/.dotfiles/*/bin; do
   PATH="$PATH:$dir"
 done
+
 PATH="$PATH:$HOME/.local/bin"
 
 PATH="$PATH:$HOME/.nvm/versions/node/v6.10.3/bin"

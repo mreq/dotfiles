@@ -1,9 +1,0 @@
-#!/bin/bash
-# Helper script for synapse.
-# Opens folders using doublecmd, rest using system's Thunar.
-
-if [ -d "$1" ]; then
-  (doublecmd -T -L "$1") &
-else
-  (Thunar "$1") &
-fi
