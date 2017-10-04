@@ -40,6 +40,7 @@
 		"MarkdownHighlighting",
 		"MaxPane",
 		"MoveTab",
+		"NeoVintageous",
 		"Open-Include",
 		"Origami",
 		"Package Control",
@@ -74,8 +75,6 @@
 		"Text Pastry",
 		"UnitTesting",
 		"VintageLines",
-		"Vintageous",
-		"VintageousPluginSurround",
 		"yardgen"
 	]
 }
