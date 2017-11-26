@@ -11,7 +11,7 @@
 
   // Ember: Go to component
   {
-    "keys": [" ", "g", "e"],
+    "keys": ["shift+space"],
     "command": "run_cmd",
     "args": {
       "cmd": "fn=$file_name; fn=${fn##*/}; pt --follow -g=\".*${fn%.*}\\.(coffee|em).*\" | grep -v $fn | grep -v tests | xargs subl"
@@ -24,7 +24,7 @@
 
   // Ember: Go to component
   {
-    "keys": [" ", "g", "e"],
+    "keys": ["shift+space"],
     "command": "run_cmd",
     "args": {
       "cmd": "fn=$file_name; fn=${fn##*/}; pt --follow -g=\".*${fn%.*}\\.(coffee|em).*\" | grep -v $fn | grep -v tests | xargs subl"

@@ -195,6 +195,9 @@ export WORKON_HOME="$HOME/virtualenvs"
 export FZF_DEFAULT_COMMAND='pt -g "" --hidden'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# manpages colors
+[ -f ~/.dotfiles/bash/manpages_colors ] && source ~/.dotfiles/bash/manpages_colors
+
 # exports
 [[ -s "$HOME/.bash_exports" ]] && source "$HOME/.bash_exports"
 

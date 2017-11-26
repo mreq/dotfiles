@@ -14,6 +14,19 @@
     // },
 
     {
+      "name": "Clear rails image path",
+      "context": {
+        "scope": ["(source.sass|text.slim)"],
+        "line_matches": ["/home/.+/app/assets/images/(.+\\.\\w+)"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "/home/.+/app/assets/images/(.+\\.\\w+)",
+        "replacement": "\\1"
+      }
+    },
+
+    {
       "name": "Change module name",
       "context": {
         "scope": ["source.sass"],
@@ -58,12 +71,12 @@
       "name": "Cleanup sprockets bower_components require",
       "context": {
         "scope": ["source.(coffee|sass|css|js)"],
-        "line_matches": ["require .+bower_components.+"]
+        "line_matches": ["(require |@import ').+bower_components.+"]
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": "(require) .+bower_components/(.+)",
-        "replacement": "\\1 \\2"
+        "pattern": "(require |@import ').+bower_components/(.+)",
+        "replacement": "\\1\\2"
       }
     },
 
@@ -71,12 +84,12 @@
       "name": "Cleanup sprockets require extension",
       "context": {
         "scope": ["source.(coffee|sass|css|js)"],
-        "line_matches": ["require .+\\.(js|css)"]
+        "line_matches": ["(require |@import ')(.+)\\.(js|css)"]
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": "(require .+)\\.(js|css)",
-        "replacement": "\\1"
+        "pattern": "(require |@import ')(.+)\\.(js|css)",
+        "replacement": "\\1\\2"
       }
     },
 
@@ -319,8 +332,8 @@
     {
       "name": "Add spaces around {} brackets",
       "context": {
-        "scope": ["source\\.ruby"],
-        "line_matches": ["\\{(.+)\\}"]
+        "scope": ["source\\.(ruby|js)"],
+        "line_matches": ["\\{(\\S.+\\S)\\}"]
       },
       "spell": "perform_line_regex",
       "args": {
@@ -332,8 +345,8 @@
     {
       "name": "Add spaces around [] brackets",
       "context": {
-        "scope": ["source\\.ruby"],
-        "line_matches": ["\\[(.+)\\]"]
+        "scope": ["source\\.(ruby|js)"],
+        "line_matches": ["\\[(\\S.+\\S)\\]"]
       },
       "spell": "perform_line_regex",
       "args": {
