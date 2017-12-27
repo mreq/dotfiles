@@ -333,7 +333,7 @@ bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
 bindsym $m+b workspace $ico_game
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c google-chrome"
 bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp"
 bindsym $m+n exec "i3_focus_pinned -w $ico_hexchat -c hexchat"

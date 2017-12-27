@@ -25,6 +25,7 @@ Packages/*
 !Packages/SublimeMagic
 !Packages/SublimeLogMagic
 !Packages/SublimeLinter-rubocop
+!Packages/Syntax-highlighting-for-Sass
 !Packages/yardgen
 !Packages/YAML Nav
 

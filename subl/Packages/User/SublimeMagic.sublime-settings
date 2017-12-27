@@ -14,6 +14,19 @@
     // },
 
     {
+      "name": "Fix border syntax",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["border.*:\\s+solid .+px"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "solid (.+px)",
+        "replacement": "\\1 solid"
+      }
+    },
+
+    {
       "name": "Clear rails image path",
       "context": {
         "scope": ["(source.sass|text.slim)"],
@@ -214,6 +227,19 @@
       "args": {
         "pattern": "(\\S)(\\s)\\s+",
         "replacement": "\\1\\2"
+      }
+    },
+
+    {
+      "name": "Replace jsx quoted content with clipboard",
+      "context": {
+        "scope": ["string\\.quoted\\.jsx"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "inside",
+        "delimiter": "'",
+        "replacement": "$clipboard"
       }
     },
 

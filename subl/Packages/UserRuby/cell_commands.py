@@ -9,12 +9,18 @@ def get_cell_name(window):
     view = window.active_view()
     path = view.file_name()
 
-    try:
-        return re.search('app/cells/' + namespaces + '(\w+)/.+\.slim', path).group(1)
-    except (IndexError, AttributeError):
-        return re.search('app/cells/' + namespaces + '(\w+)_cell\.rb', path).group(1)
-    except (IndexError, AttributeError):
-        return None
+    results = re.search('app/cells/' + namespaces + '(\w+)/.+\.(slim|sass|coffee)', path)
+    if results:
+        return results.group(1)
+    else:
+        results = re.search('app/cells/' + namespaces + '(\w+)_cell\.rb', path)
+        if results:
+            return results.group(1)
+        else:
+            results = re.search('test/cells/' + namespaces + '(\w+)_cell_test\.rb', path)
+            if results:
+                return results.group(1)
+    return None
 
 def create_view(window, extension):
     cell_name = get_cell_name(window)

@@ -3,6 +3,10 @@
 	"in_process_packages":
 	[
 	],
+	"install_prereleases":
+	[
+		"LESS"
+	],
 	"installed_packages":
 	[
 		"AdvancedNewFile",
@@ -25,16 +29,16 @@
 		"FilterPipes",
 		"FuzzyFileNav",
 		"Git blame",
+		"Git Conflict Resolver",
 		"GitSavvy",
 		"GotoDocumentation",
 		"Handlebars",
+		"HTML2Slim",
 		"i3 wm",
 		"Indent To Parenthesis",
 		"Jade",
 		"Jinja2",
 		"knitr",
-		"LessImproved",
-		"List stylesheet variables",
 		"LogMagic",
 		"Make Bookmarklet",
 		"MarkdownHighlighting",
@@ -55,6 +59,7 @@
 		"Search in Project",
 		"Select By Regex",
 		"SendCode",
+		"SendText",
 		"Shell Turtlestein",
 		"ShellScriptImproved",
 		"SideBarEnhancements",
@@ -71,10 +76,10 @@
 		"SublimeLinter-ruby",
 		"SublimeLinter-shellcheck",
 		"SublimeLinter-slim-lint",
-		"Syntax Highlighting for Sass",
 		"Text Pastry",
 		"UnitTesting",
 		"VintageLines",
+		"YAML Nav",
 		"yardgen"
 	]
 }

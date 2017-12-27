@@ -22,3 +22,6 @@
 [submodule "subl/Packages/Babel"]
 	path = subl/Packages/Babel
 	url = git@github.com:babel/babel-sublime.git
+[submodule "subl/Packages/Syntax-highlighting-for-Sass"]
+	path = subl/Packages/Syntax-highlighting-for-Sass
+	url = git@github.com:mreq/Syntax-highlighting-for-Sass.git

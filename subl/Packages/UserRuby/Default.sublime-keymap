@@ -22,6 +22,26 @@
     "command": "cell_open",
     "args": { "target": "slim" },
     "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.coffee" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  {
+    "keys": ["shift+space"],
+    "command": "cell_open",
+    "args": { "target": "slim" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.sass" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  {
+    "keys": ["shift+space"],
+    "command": "cell_open",
+    "args": { "target": "slim" },
+    "context": [
       { "key": "selector", "operator": "equal", "operand": "source.ruby" },
       { "key": "vi_command_mode_aware" }
     ]
@@ -33,6 +53,26 @@
     "args": { "target": "ruby" },
     "context": [
       { "key": "selector", "operator": "equal", "operand": "text.slim" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  {
+    "keys": ["ctrl+shift+space"],
+    "command": "cell_open",
+    "args": { "target": "sass" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.slim" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  {
+    "keys": ["ctrl+shift+space"],
+    "command": "cell_open",
+    "args": { "target": "sass" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.ruby" },
       { "key": "vi_command_mode_aware" }
     ]
   }

@@ -4,6 +4,8 @@
   [
     { "trigger": "t\ttest", "contents": "test '$1' do\n\t$0\nend" },
 
+    { "trigger": "ds\tdef setup", "contents": "def setup\n\t$0\nend" },
+
     // asserts
     { "trigger": "ae\tassert_equal", "contents": "assert_equal(${1:expected},\n             ${2:actual},\n             '$0')" },
     { "trigger": "are\tassert_response", "contents": "assert_response(:${0:success})" },

@@ -47,25 +47,33 @@
     { "trigger": "bol\tborder-left", "contents": "border-left: $0" },
     { "trigger": "bor\tborder-right", "contents": "border-right: $0" },
     { "trigger": "bow\tborder-width", "contents": "border-width: $0" },
-    { "trigger": "boc\tborder-colro", "contents": "border-color: $0" },
+    { "trigger": "boc\tborder-color", "contents": "border-color: $0" },
 
     { "trigger": "ma\tmar", "contents": "margin: $0" },
     { "trigger": "mab", "contents": "margin-bottom: $0" },
     { "trigger": "mat", "contents": "margin-top: $0" },
     { "trigger": "mal", "contents": "margin-left: $0" },
     { "trigger": "mar", "contents": "margin-right: $0" },
+    { "trigger": "marb", "contents": "margin-bottom: $0" },
+    { "trigger": "mart", "contents": "margin-top: $0" },
+    { "trigger": "marl", "contents": "margin-left: $0" },
+    { "trigger": "marr", "contents": "margin-right: $0" },
 
-    { "trigger": "pa\tpad", "contents": "padding: $0" },
     { "trigger": "pab", "contents": "padding-bottom: $0" },
     { "trigger": "pat", "contents": "padding-top: $0" },
     { "trigger": "pal", "contents": "padding-left: $0" },
     { "trigger": "par", "contents": "padding-right: $0" },
+    { "trigger": "padb", "contents": "padding-bottom: $0" },
+    { "trigger": "padt", "contents": "padding-top: $0" },
+    { "trigger": "padl", "contents": "padding-left: $0" },
+    { "trigger": "padr", "contents": "padding-right: $0" },
     { "trigger": "palr", "contents": "padding-left: $0\npadding-right: $0" },
     { "trigger": "patb", "contents": "padding-top: $0\npadding-bottom: $0" },
     { "trigger": "pmb", "contents": "padding-bottom: $0\nmargin-bottom: $0" },
     { "trigger": "pmt", "contents": "padding-top: $0\nmargin-top: $0" },
     { "trigger": "pml", "contents": "padding-left: $0\nmargin-left: $0" },
     { "trigger": "pmr", "contents": "padding-right: $0\nmargin-right: $0" },
+    { "trigger": "pad\tpadding", "contents": "padding: $0" },
 
     { "trigger": "po\tposition", "contents": "position: $0" },
     { "trigger": "poa\tabsolute", "contents": "position: absolute" },
@@ -77,15 +85,15 @@
     { "trigger": "ovx\toverflow-x", "contents": "overflow-x: $0" },
     { "trigger": "ovy\toverflow-y", "contents": "overflow-y: $0" },
 
-    { "trigger": "h", "contents": "height: $0" },
-    { "trigger": "mh", "contents": "min-height: $0" },
-    { "trigger": "mah", "contents": "max-height: $0" },
+    { "trigger": "h\theight", "contents": "height: $0" },
+    { "trigger": "mih\tmin-height", "contents": "min-height: $0" },
+    { "trigger": "mah\tmax-height", "contents": "max-height: $0" },
 
-    { "trigger": "w", "contents": "width: $0" },
-    { "trigger": "mw", "contents": "min-width: $0" },
-    { "trigger": "maw", "contents": "max-width: $0" },
+    { "trigger": "w\twidth", "contents": "width: $0" },
+    { "trigger": "miw\tmin-width", "contents": "min-width: $0" },
+    { "trigger": "maw\tmax-width", "contents": "max-width: $0" },
 
-    /* visibility & display */
+    // visibility & display
     { "trigger": "dis\tdisplay", "contents": "display: $0" },
     { "trigger": "db", "contents": "display: block" },
     { "trigger": "di", "contents": "display: inline" },
@@ -97,11 +105,11 @@
     { "trigger": "vh\tvisibilityhidden", "contents": "visibility: hidden" },
     { "trigger": "vv\tvisibilityvisible", "contents": "visibility: visible" },
 
-    /* text */
+    // text
     { "trigger": "c\tcol\tcolor", "contents": "color: $0" },
     { "trigger": "lh\tline", "contents": "line-height: $0" },
 
-    /* floats */
+    // floats
     { "trigger": "f\tfloat", "contents": "float: $0" },
     { "trigger": "fl\tfleft", "contents": "float: left" },
     { "trigger": "fr\tfright", "contents": "float: right" },
@@ -117,50 +125,61 @@
     { "trigger": "td\ttext-decoration", "contents": "text-decoration: $0" },
     { "trigger": "tdu\ttext-decoration-underline", "contents": "text-decoration: underline" },
     { "trigger": "tdn\ttext-decoration-none", "contents": "text-decoration: none" },
-    { "trigger": "tt", "contents": "text-transform: ${0:uppercase}${1:lowercase}" },
+    { "trigger": "tt", "contents": "text-transform: ${0:uppercase}" },
     { "trigger": "ti\thi", "contents": "text-indent: ${0:-9999px}" },
 
-    /* fonts */
+    // fonts
     { "trigger": "fz", "contents": "font-size: $0px" },
     { "trigger": "fst\tfont-style", "contents": "font-style: ${0:normal}${1:italic}" },
-    { "trigger": "fw", "contents": "font-weight: ${0:bold}${1:normal}" },
+    { "trigger": "fw", "contents": "font-weight: ${0:bold}" },
+    { "trigger": "ws", "contents": "white-space: nowrap" },
 
-    /* background */
+    // background
     { "trigger": "bg", "contents": "background: $0" },
     { "trigger": "bgp", "contents": "background-position: $0" },
     { "trigger": "bgi", "contents": "background-image: url(${0})" },
     { "trigger": "bgc", "contents": "background-color: $0" },
     { "trigger": "bgg", "contents": "background: url($1) ${2:0 0} ${0:no-repeat}" },
+    { "trigger": "bgs", "contents": "background-size: ${0:cover}" },
 
-    /* lists */
+    // lists
     { "trigger": "ls", "contents": "list-style: ${0:none}${1:disc}${2:decimal}" },
 
-    /* various & unsorted */
-    { "trigger": "va", "contents": "vertical-align: ${0:top}${1:middle}${2:bottom}${3:baseline}" },
-    { "trigger": "1", "contents": "!important" },
+    // pseudo
+    { "trigger": "ho", "contents": "&:hover\n\t$0" },
+    { "trigger": "nth", "contents": "&:nth-child($1)\n\t$0" },
+    { "trigger": "odd", "contents": "&:nth-child(odd)\n\t$0" },
+    { "trigger": "even", "contents": "&:nth-child(even)\n\t$0" },
 
-    { "trigger": "wo\twebkit-overflow", "contents": "-webkit-overflow-scrolling: touch$0" },
-
-    { "trigger": "ho", "contents": "&:hover\n\t$0\n" },
-    { "trigger": "nth", "contents": "&:nth-child($1)\n\t$0\n" },
-    { "trigger": "odd", "contents": "&:nth-child(odd)\n\t$0\n" },
-    { "trigger": "even", "contents": "&:nth-child(even)\n\t$0\n" },
-
+    // mixins
     { "trigger": "tl\ttopleft", "contents": "+topleft(${1:0}, ${0:0})" },
     { "trigger": "tr\ttopright", "contents": "+topright(${1:0}, ${0:0})" },
     { "trigger": "bl\tbottomleft", "contents": "+bottomleft(${1:0}, ${0:0})" },
     { "trigger": "br\tbottomright", "contents": "+bottomright(${1:0}, ${0:0})" },
     { "trigger": "cf\tclearfix", "contents": "+clearfix" },
 
+    // flex
     { "trigger": "df\tdisplay: flex", "contents": "display: flex" },
     { "trigger": "jc\tjustify-content", "contents": "justify-content: ${0:center}" },
     { "trigger": "ai\talign-items", "contents": "align-items: ${0:center}" },
     { "trigger": "fd\tflex-direction", "contents": "flex-direction: ${0:column}" },
-    { "trigger": "c\tcentered", "contents": "display: flex\nalign-items: center" },
+    { "trigger": "fp\tflex-wrap", "contents": "flex-wrap: wrap" },
 
     // Bootstrap
+    { "trigger": "fsm\tfont-size-sm", "contents": "font-size: \\$font-size-sm" },
+    { "trigger": "fsl\tfont-size-lg", "contents": "font-size: \\$font-size-lg" },
+    { "trigger": "bra\tborder-radius", "contents": "border-radius: \\$border-radius" },
+
     { "trigger": "ggw\tgrid-gutter-width", "contents": "\\$grid-gutter-width" },
-    { "trigger": "ggh\tgrid-gutter-half", "contents": "\\$grid-gutter-half" }
+    { "trigger": "ggh\tgrid-gutter-half", "contents": "\\$grid-gutter-half" },
+    { "trigger": "phf\tplain-hover-focus", "contents": "+plain-hover-focus\n\t$0" },
+
+    // various & unsorted
+    { "trigger": "va", "contents": "vertical-align: ${0:top}${1:middle}${2:bottom}${3:baseline}" },
+    { "trigger": "i", "contents": "!important" },
+    { "trigger": "cp", "contents": "cursor: pointer" },
+
+    { "trigger": "wo\twebkit-overflow", "contents": "-webkit-overflow-scrolling: touch$0" }
 
   ]
 }

@@ -71,5 +71,15 @@
       "regex": "^(\\s+)\\.([^;\\n\\{]+;)",
       "replacement": "\\1@include \\2"
     }
+  },
+
+  {
+    "caption": "Clean utf crap",
+    "command": "clean_utf_crap"
+  },
+
+  {
+    "caption": "Project: Copy file",
+    "command": "project_copy_file"
   }
 ]

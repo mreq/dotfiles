@@ -22,6 +22,8 @@
 		"frontend/node_modules/**",
 		"frontend/tmp/**",
 		"public/assets/**",
+		"public/packs/**",
+		"public/system/**",
 		"public/webpack/**",
 		"tags",
 		"tmp/**"
@@ -30,6 +32,7 @@
 	"close_windows_when_empty": false,
 	"color_scheme": "Packages/User/SublimeLinter/mreq_dark (SL).tmTheme",
 	"dpi_scale": 1,
+	"draw_white_space": "selection",
 	"ensure_newline_at_eof_on_save": true,
 	"folder_exclude_patterns":
 	[
@@ -49,9 +52,11 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
+		"Six",
 		"SublimeLinter-contrib-standard",
 		"Vintage",
-		"VintageLines"
+		"VintageLines",
+		"Vintageous"
 	],
 	"inactive_panes_dim_strength": 0.2,
 	"indent_guide_options":
