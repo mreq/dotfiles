@@ -1,41 +1,9 @@
 #!/home/petr/.rvm/rubies/default/bin/ruby
-require 'optparse'
+all_windows = `i3-msg -t get_tree | jq "recurse(.nodes[]) | select(.name == \\"__i3_scratch\\") | recurse(.floating_nodes[]) | recurse(.nodes[]) | .window"`.chomp.split("\n")
+scratchpad_windows = all_windows - ['null']
 
-options = {}
-OptionParser.new do |opts|
-  opts.banner = 'Usage: i3_focus_pinned [options]'
-  opts.on('-c [WM_CLASS]',
-          '--class [WM_CLASS]',
-          'Look for such a window.') { |o| options[:class] = o }
-  opts.on('-i [WM_INSTANCE]',
-          '--instance [WM_INSTANCE]',
-          'Look for such a window.') { |o| options[:instance] = o }
-  opts.on('-x [command]',
-          '--exec [command]',
-          'Execute this command if [WM_CLASS] is not found') { |o| options[:exec] = o }
-end.parse!
-
-return unless options[:class]
-options[:exec] = options[:class].downcase unless options[:exec]
-
-class_condition = %{select(.window_properties.class == \\"#{options[:class]}\\") }
-if options[:instance]
-  instance_condition = %{| select(.window_properties.instance == \\"#{options[:instance]}\\") }
+if scratchpad_windows.size > 0
+  `i3-msg scratchpad show`
 else
-  instance_condition = ''
-end
-
-windows = `i3-msg -t get_tree | jq "recurse(.nodes[]) | recurse(.floating_nodes[]) | recurse(.nodes[]) | #{class_condition} #{instance_condition} | .window"`.chomp.split("\n")
-scratchpad_windows = `i3-msg -t get_tree | jq "recurse(.nodes[]) | select(.name == \\"__i3_scratch\\") | recurse(.floating_nodes[]) | recurse(.nodes[]) | .window"`.chomp.split("\n")
-
-if windows.empty?
-  Process.spawn options[:exec]
-else
-  windows.each do |window|
-    if scratchpad_windows.include? window
-      `i3-msg '[id=#{window}]' scratchpad show`
-    else
-      `i3-msg '[id=#{window}]' move scratchpad`
-    end
-  end
+  `i3-msg move scratchpad`
 end

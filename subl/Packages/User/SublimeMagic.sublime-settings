@@ -294,6 +294,17 @@
     },
 
     {
+      "name": "Toggle CSS dimension",
+      "context": {
+        "scope": ["source\\.(css|less|sass)"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": ["width:", "height:"]
+      }
+    },
+
+    {
       "name": "Change CSS value",
       "context": {
         "scope": ["source\\.(css|less)"],

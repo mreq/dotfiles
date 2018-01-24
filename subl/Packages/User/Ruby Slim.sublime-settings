@@ -2,5 +2,6 @@
 	"extensions":
 	[
 		"slim"
-	]
+	],
+  "rulers": [80]
 }

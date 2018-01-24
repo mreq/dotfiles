@@ -29,12 +29,8 @@ set $ico_zeplin 
 font pango: Droid Sans Mono, FontAwesome 10
 font xft: Droid Sans Mono, FontAwesome 10
 
-gaps inner 10
-gaps outer 0
-smart_gaps on
-smart_borders on
-
 # window borders
+hide_edge_borders both
 new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
@@ -318,7 +314,7 @@ assign [class="Google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] �
 bindsym $m+space exec "launch_script"
 bindsym Control+$m+space exec "i3-dmenu-desktop --dmenu='rofi -dmenu -i -p \\"run ↠ \\"'"
 bindsym $m+Mod1+space exec "rofi -show window"
-bindsym $m+i exec "i3_controller"
+#bindsym $m+i exec "i3_controller"
 bindsym Control+$m+s exec "pick_a_subl_project"
 bindsym Control+$m+v exec "pick_a_virtualbox_machine"
 bindsym Mod1+F2 exec "xfce4-appfinder"
@@ -328,6 +324,7 @@ bindsym $m+1 exec "i3_focus_or_run 'Google-chrome' 'gtk-launch google-chrome'"
 bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
 bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\"tmux -2\\"'"
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
+bindsym $m+i exec "i3_focus_or_run 'Ristretto'"
 
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
