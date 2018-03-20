@@ -30,7 +30,7 @@
 	],
 	"caret_style": "blink",
 	"close_windows_when_empty": false,
-	"color_scheme": "Packages/User/SublimeLinter/mreq_dark (SL).tmTheme",
+	"color_scheme": "Packages/MreqColorScheme/mreq_dark.tmTheme",
 	"dpi_scale": 1,
 	"draw_white_space": "selection",
 	"ensure_newline_at_eof_on_save": true,

@@ -9,6 +9,7 @@
 	],
 	"installed_packages":
 	[
+		"AceJump",
 		"AdvancedNewFile",
 		"All Autocomplete",
 		"AutomaticPackageReloader",
@@ -71,7 +72,6 @@
 		"SublimeLinter-coffeelint",
 		"SublimeLinter-contrib-lessc",
 		"SublimeLinter-contrib-lintr",
-		"SublimeLinter-contrib-slim-lint",
 		"SublimeLinter-contrib-standard",
 		"SublimeLinter-eslint",
 		"SublimeLinter-json",

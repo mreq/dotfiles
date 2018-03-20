@@ -94,6 +94,19 @@
     },
 
     {
+      "name": "Cleanup react import statement",
+      "context": {
+        "scope": ["source.js"],
+        "line_matches": ["import .+ from 'app/.+\\.js'"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(import .+ from ')app/(.+)\\.js('.*)",
+        "replacement": "\\1\\2\\3"
+      }
+    },
+
+    {
       "name": "Cleanup sprockets require extension",
       "context": {
         "scope": ["source.(coffee|sass|css|js)"],

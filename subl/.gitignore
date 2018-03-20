@@ -11,6 +11,7 @@ Packages/*
 !Packages/UserSlim
 !Packages/UserYaml
 
+!Packages/AceJump
 !Packages/Base16
 !Packages/Babel
 !Packages/BetterFindBufferFork
