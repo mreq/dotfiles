@@ -1,0 +1,29 @@
+[
+	{
+		"keys": ["shift+space"],
+		"command": "insert_snippet",
+		"args": {
+			"contents": "\"$1\": \"$2\",$0"
+		},
+		"context": [
+			{ "key": "selector", "operator": "equal", "operand": "source.json" },
+			{ "key": "setting.command_mode", "operator": "equal", "operand": false },
+			{ "key": "preceding_text", "operator": "regex_match", "operand": "^\\s*$", "match_all": true },
+			{ "key": "following_text", "operator": "regex_match", "operand": "\\s*$", "match_all": true }
+		]
+	},
+
+	{
+		"keys": ["ctrl+shift+space"],
+		"command": "insert_snippet",
+		"args": {
+			"contents": "\"$1\": {\n\t$0\n}"
+		},
+		"context": [
+			{ "key": "selector", "operator": "equal", "operand": "source.json" },
+			{ "key": "setting.command_mode", "operator": "equal", "operand": false },
+			{ "key": "preceding_text", "operator": "regex_match", "operand": "^\\s*$", "match_all": true },
+			{ "key": "following_text", "operator": "regex_match", "operand": "\\s*$", "match_all": true }
+		]
+	}
+]

@@ -4,6 +4,7 @@ Packages/*
 !Packages/UserCss
 !Packages/UserCzech
 !Packages/UserJavascript
+!Packages/UserJSON
 !Packages/UserGit
 !Packages/UserTeX
 !Packages/UserOrigami

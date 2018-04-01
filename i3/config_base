@@ -329,15 +329,13 @@ bindsym $m+i exec "i3_focus_or_run 'Ristretto'"
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
-bindsym $m+b workspace $ico_game
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c google-chrome"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c google-chrome -x 'google-chrome --new-window https://sinfin.slack.com/'"
 bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp"
-bindsym $m+n exec "i3_focus_pinned -w $ico_hexchat -c hexchat"
-bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c google-chrome"
+bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c google-chrome -x 'google-chrome --new-window https://web.whatsapp.com/'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c chromium-browser"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c spotify"
-bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin -c google-chrome"
+bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin -c google-chrome -x 'google-chrome --new-window https://app.zeplin.io/projects'"
 bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox"
 
 # Screenshots

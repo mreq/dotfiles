@@ -2,6 +2,8 @@
   "scope": "meta.styled-components.js",
   "completions":
   [
-    { "trigger": "k\tkey", "contents": "${key('$0')}" }
+    { "trigger": "k\tkey", "contents": "\\${key('$0')}" },
+    { "trigger": "ml\tmedia.lessThan", "contents": "\\${media.lessThan('${1:sm}')`\n\t$0\n`}" },
+    { "trigger": "mm\tmedia.moreThan", "contents": "\\${media.moreThan('${1:smPlus}')`\n\t$0\n`}" }
   ]
 }
