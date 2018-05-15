@@ -75,6 +75,8 @@ bindsym $m+BackSpace exec switch_keyboard_layout
 bindsym $m+o exec select_power_action
 bindsym $m+Shift+o exec "select_power_action screen"
 bindsym $m+p exec select_display
+bindsym $m+Shift+p exec select_display notebook
+bindsym Control+$m+p exec select_display HDMI
 
 # move focused window
 bindsym $m+Shift+$left move left

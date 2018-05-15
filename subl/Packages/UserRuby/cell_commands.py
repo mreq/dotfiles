@@ -33,9 +33,13 @@ def create_view(window, extension):
 
     window.open_file(new_path)
 
+def clear_sprockets_cache(window):
+    subprocess.call('rm -r tmp/cache/assets/sprockets/*', shell = True)
+
 class CellCreateSass(sublime_plugin.WindowCommand):
     def run(self):
         create_view(self.window, 'sass')
+        clear_sprockets_cache(self.window)
 
 class CellCreateCoffee(sublime_plugin.WindowCommand):
     def run(self):

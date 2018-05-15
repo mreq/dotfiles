@@ -18,7 +18,7 @@
   },
 
   {
-    "keys": ["shift+space"],
+    "keys": ["ctrl+space"],
     "command": "cell_open",
     "args": { "target": "slim" },
     "context": [
@@ -28,7 +28,7 @@
   },
 
   {
-    "keys": ["shift+space"],
+    "keys": ["ctrl+space"],
     "command": "cell_open",
     "args": { "target": "slim" },
     "context": [
@@ -38,7 +38,7 @@
   },
 
   {
-    "keys": ["shift+space"],
+    "keys": ["ctrl+space"],
     "command": "cell_open",
     "args": { "target": "ruby" },
     "context": [

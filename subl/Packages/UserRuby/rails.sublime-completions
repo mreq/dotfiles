@@ -3,13 +3,12 @@
   "completions":
   [
     // models
-    { "trigger": "bfe\tbefore_filter_except", "contents": "before_filter :$1, :except => ['$2']" },
-    { "trigger": "bfo\tbefore_filter_only", "contents": "before_filter :$1, :only => ['$2']" },
-    { "trigger": "bt\tbelongs_to", "contents": "belongs_to :$1${2:, :foreign_key => '$3_id'}${4:, :class_name => '$5'}" },
-    { "trigger": "bt\tbelongs_to", "contents": "belongs_to :$1"},
-    { "trigger": "btf\tbelongs_to_full", "contents": "belongs_to :$1, :foreign_key => '$2_id', :class_name => '$3'" },
-    { "trigger": "hm\thas_many", "contents": "has_many :$1"},
-    { "trigger": "hmt\thas_many_through", "contents": "has_many :$1, :through => :$2${3:, :source => :$4}"},
+    { "trigger": "ba\tbefore_action", "contents": "before_action :$0" },
+    { "trigger": "bao\tbefore_action only", "contents": "before_action :$1, only: [$0]" },
+    { "trigger": "bae\tbefore_action except", "contents": "before_action :$1, except: [$0]" },
+    { "trigger": "bt\tbelongs_to", "contents": "belongs_to :$1${0:, required: true}"},
+    { "trigger": "hm\thas_many", "contents": "has_many :$1${0:, dependent: :destroy}"},
+    { "trigger": "hmt\thas_many_through", "contents": "has_many :$1, through: :$2${3:, :source => :$4}"},
     { "trigger": "va\tvalidates", "contents": "validates :$1, "},
     { "trigger": "vap\tvalidates_presence", "contents": "validates :$1,\n          presence: true"},
     { "trigger": "vau\tvalidates_uniqueness", "contents": "validates :$1,\n          uniqueness: true"},

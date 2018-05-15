@@ -25,5 +25,5 @@ PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$HOME/.nvm/versions/node/v6.10.3/bin"
 
 export EDITOR=nvim
-export PYTHONPATH="$HOME/.local/lib/python2.7/site-packages"
+export PYTHONPATH="$HOME/.local/lib/python3.5/site-packages"
 export PATH

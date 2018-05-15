@@ -146,6 +146,7 @@ alias bt="bin/test"
 alias g="tig status"
 alias gc="git clone"
 alias gs="git status"
+alias gp="git pull --rebase"
 alias gd="git diff"
 alias gdc="git diff --cached"
 

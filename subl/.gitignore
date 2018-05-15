@@ -1,16 +1,6 @@
 Packages/*
 !Packages/User
-!Packages/UserCoffee
-!Packages/UserCss
-!Packages/UserCzech
-!Packages/UserJavascript
-!Packages/UserJSON
-!Packages/UserGit
-!Packages/UserTeX
-!Packages/UserOrigami
-!Packages/UserRuby
-!Packages/UserSlim
-!Packages/UserYaml
+!Packages/User*
 
 !Packages/AceJump
 !Packages/Base16
