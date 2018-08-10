@@ -1,9 +1,0 @@
-atomatigit@1.5.5
-base16-syntax@1.8.0
-disable-keybindings@0.6.0
-language-diff@0.7.0
-language-emblem@0.2.0
-language-slim@0.5.0
-relative-numbers@0.7.1
-vim-mode-plus@0.86.2
-

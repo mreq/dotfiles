@@ -1,1 +1,0 @@
-/home/petr/.dotfiles/vim/init.vim

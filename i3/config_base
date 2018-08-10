@@ -322,7 +322,7 @@ bindsym Control+$m+v exec "pick_a_virtualbox_machine"
 bindsym Mod1+F2 exec "xfce4-appfinder"
 
 # Apps
-bindsym $m+1 exec "i3_focus_or_run 'Google-chrome' 'gtk-launch google-chrome'"
+bindsym $m+1 exec "i3_focus_or_run 'Google-chrome' 'google-chrome'"
 bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
 bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\"tmux -2\\"'"
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"

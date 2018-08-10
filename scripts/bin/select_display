@@ -3,6 +3,7 @@ options=(
   'guess'
   'HDMI'
   'HDMI-DVI'
+  'DVI'
   'VGA'
   'notebook'
   'notebook-HDMI'
@@ -33,6 +34,8 @@ select_display() {
       xrandr --output $hdmi_output --auto --primary --output $vga_output --off --output $dvi_output --off --output $notebook_output --off ;;
     HDMI-DVI )
       xrandr --output $hdmi_output --auto --primary --output $dvi_output --auto --right-of $hdmi_output --output $notebook_output --off ;;
+    DVI )
+      xrandr --output $dvi_output --auto --primary --output $vga_output --off --output $hdmi_output --off --output $notebook_output --off ;;
     VGA )
       xrandr --output $vga_output --auto --output $notebook_output --off ;;
   esac

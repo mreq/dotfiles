@@ -7,16 +7,9 @@
     "~/.config/i3status",
     "~/.config/nvim",
     "~/.config/sublime-text-3/Local",
-    "~/.config/synapse",
-    "~/.config/xfce4",
-    "~/.atom"
+    "~/.config/xfce4"
   ],
   "link": {
-    "atom/config.cson": "~/.atom/config.cson",
-    "atom/init.coffee": "~/.atom/init.coffee",
-    "atom/keymap.cson": "~/.atom/keymap.cson",
-    "atom/snippets.cson": "~/.atom/snippets.cson",
-    "atom/styles.less": "~/.atom/styles.less",
     "bash/.bashrc": "~/.bashrc",
     "bash/.dircolors": "~/.dircolors",
     "bash/.profile": "~/.profile",
@@ -25,7 +18,6 @@
     "doublecmd/doublecmd.xml": "~/.config/doublecmd/doublecmd.xml",
     "doublecmd/shortcuts.scf": "~/.config/doublecmd/shortcuts.scf",
     "dunst/dunstrc": "~/.config/dunst/dunstrc",
-    "fontconfig": "~/.config/fontconfig",
     "git/.gitconfig": "~/.gitconfig",
     "git/ignore": "~/.config/git/ignore",
     "i3/i3status": "~/.config/i3status/config",
@@ -41,17 +33,11 @@
     "sass/.sass-lint.yml": "~/.sass-lint.yml",
     "slim/.slim-lint.yml": "~/.slim-lint.yml",
     "subl/Packages": "~/.config/sublime-text-3/Packages",
-    "synapse/config.json": "~/.config/synapse/config.json",
     "tmux/.tmux.conf": "~/.tmux.conf",
     "vim/.vim": "~/.vim",
     "vim/.vimrc": "~/.vimrc",
-    "vim/init.vim": "~/.config/nvim/init.vim",
-    "vim/snippets": "~/.config/nvim/UltiSnips",
     "X/.screenrc": "~/.screenrc",
     "X/.xbindkeysrc": "~/.xbindkeysrc",
-    "X/.Xdefaults": "~/.Xdefaults",
-    "xfce4/panel": "~/.config/xfce4/panel",
-    "xfce4/terminal": "~/.config/xfce4/terminal",
-    "xfce4/xfconf": "~/.config/xfce4/xfconf"
+    "X/.Xdefaults": "~/.Xdefaults"
   }
 }
