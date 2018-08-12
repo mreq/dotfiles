@@ -1,7 +1,6 @@
 #!/bin/bash
 percent=$( amixer -D pulse sget Master | grep '\[on\]' | head -n1 | grep -o '[1-9][0-9]*%' )
 
-
 if [[ $percent ]]; then
   icon=''
 else

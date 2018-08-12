@@ -2,8 +2,9 @@
 import subprocess
 import re
 
-acpi = subprocess.check_output('acpi', shell=True).strip().decode('utf-8')
-if acpi is '':
+acpi = subprocess.check_output('acpi', shell=True, stderr=subprocess.STDOUT).strip().decode('utf-8')
+
+if acpi is '' or 'No support for device type:' in acpi:
     exit(0)
 
 is_charging = re.search('Charging|Full', acpi)

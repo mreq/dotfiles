@@ -34,10 +34,8 @@
     "slim/.slim-lint.yml": "~/.slim-lint.yml",
     "subl/Packages": "~/.config/sublime-text-3/Packages",
     "tmux/.tmux.conf": "~/.tmux.conf",
-    "vim/.vim": "~/.vim",
-    "vim/.vimrc": "~/.vimrc",
     "X/.screenrc": "~/.screenrc",
-    "X/.xbindkeysrc": "~/.xbindkeysrc",
-    "X/.Xdefaults": "~/.Xdefaults"
+    "X/.Xdefaults": "~/.Xdefaults",
+    "xfce4/terminal/terminalrc": "~/.config/xfce4/terminal/terminalrc"
   }
 }

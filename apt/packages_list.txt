@@ -1,3 +1,4 @@
+acpi
 chromium-browser
 curl
 doublecmd-gtk
@@ -8,6 +9,7 @@ gparted
 greybird-gtk-theme
 htop
 i3
+i3blocks
 jq
 libgmp3-dev
 mysql-server
@@ -18,11 +20,14 @@ postgresql-contrib
 python3-pip
 qt4-qtconfig
 r-base
+redshift
 rofi
 shellcheck
 thunderbird
 tmux
+ttf-mscorefonts-installer
 ufraw-batch
+unagi
 unrar
 virtualbox
 vlc
