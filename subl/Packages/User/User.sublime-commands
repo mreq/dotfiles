@@ -81,5 +81,10 @@
   {
     "caption": "Project: Copy file",
     "command": "project_copy_file"
+  },
+
+  {
+    "caption": "Project: Generate project file",
+    "command": "generate_project"
   }
 ]
