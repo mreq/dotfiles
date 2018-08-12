@@ -9,7 +9,6 @@ set $ico_calendar 
 set $ico_camera 
 set $ico_clock 
 set $ico_folder 
-set $ico_hexchat 
 set $ico_game 
 set $ico_gimp 
 set $ico_light 
@@ -306,11 +305,14 @@ assign [class="VirtualBox"] → $ico_virtualbox
 assign [class="chromium-browser"] → $ico_calendar
 assign [class="Spotify"] → $ico_music
 assign [class="Gimp"] → $ico_gimp
-assign [class="Hexchat"] → $ico_hexchat
 assign [class="Thunderbird"] → $ico_mail
 assign [class="Scudcloud"] → $ico_slack
 assign [class="Doublecmd"] → $ico_folder
-assign [class="Google-chrome" instance="crx_oflhioojkbelepjlnafgmgkkjhojphcg"] → $ico_trello
+assign [class="Google-chrome" instance="trello.com"] → $ico_trello
+assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
+assign [class="Google-chrome" instance="calendar.google.com__calendar"] → $ico_calendar
+assign [class="Google-chrome" instance="keep.google.com"] → $ico_calendar
+assign [class="Google-chrome" instance="new.costlocker.com__timetracking"] → $ico_calendar
 
 # Launchers
 bindsym $m+space exec "launch_script"
@@ -326,18 +328,17 @@ bindsym $m+1 exec "i3_focus_or_run 'Google-chrome' 'google-chrome'"
 bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
 bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\"tmux -2\\"'"
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
-bindsym $m+i exec "i3_focus_or_run 'Ristretto'"
 
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c google-chrome -x 'google-chrome --new-window https://sinfin.slack.com/'"
-bindsym $m+e exec "i3_focus_pinned -w $ico_trello -c 'oflhioojkbelepjlnafgmgkkjhojphcg' -x 'google-chrome --profile-directory=Default --app-id=oflhioojkbelepjlnafgmgkkjhojphcg'"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Google-chrome -x 'google-chrome --new-window $( cat ~/Dropbox/ubuntu/various_configs/slack_channels.txt )'"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp"
-bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -c google-chrome -x 'google-chrome --new-window https://web.whatsapp.com/'"
-bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c chromium-browser"
+bindsym $m+e exec "i3_focus_pinned -w $ico_trello -i trello.com -c Google-chrome -x 'google-chrome --app=https://trello.com/'"
+bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --app=https://web.whatsapp.com/'"
+bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do google-chrome --app=$url; done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c spotify"
-bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin -c google-chrome -x 'google-chrome --new-window https://app.zeplin.io/projects'"
+bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin -c Google-chrome -x 'google-chrome --new-window https://app.zeplin.io/projects'"
 bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox"
 
 # Screenshots

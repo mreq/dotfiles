@@ -1,8 +1,0 @@
-#!/bin/bash
-current_workspace=$( i3-msg -t get_workspaces | jq '.[] | select(.focused) | .num' )
-main_containers_count=$( i3-msg -t get_tree | jq "recurse(.nodes[]) | select(.type==\"workspace\") | select(.num==$current_workspace) | .nodes | length" )
-if [ "$main_containers_count" == 1 ]; then
-  i3-msg "focus $1"
-else
-  i3-msg "focus parent; focus $1; focus child"
-fi

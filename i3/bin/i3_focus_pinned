@@ -1,24 +1,35 @@
-#!/home/petr/.rvm/rubies/default/bin/ruby
-require 'optparse'
+#!/usr/bin/env python3
+import i3ipc
+import argparse
+import os
+import code
 
-options = {}
-OptionParser.new do |opts|
-  opts.banner = 'Usage: i3_focus_pinned [options]'
-  opts.on('-w [string]',
-          '--workspace-name [string]',
-          'Switch [string] workspace.') { |o| options[:workspace] = o }
-  opts.on('-c [WM_CLASS]',
-          '--class [WM_CLASS]',
-          'Look for such a window.') { |o| options[:class] = o }
-  opts.on('-x [command]',
-          '--exec [command]',
-          'Execute this command if [WM_CLASS] is not found') { |o| options[:exec] = o }
-end.parse!
+parser=argparse.ArgumentParser()
+parser.add_argument('-w', help = 'Switch [string] workspace.')
+parser.add_argument('-c', help = 'Look for such a window.')
+parser.add_argument('-i', help = 'Look for such a window.')
+parser.add_argument('-x', help = 'Execute this command if [WM_CLASS] is not found')
+args = parser.parse_args()
 
-fail 'You need to provide a workspace using the -w option.' unless options[:workspace]
-`i3-msg 'workspace #{options[:workspace]}'`
+if args.w is None:
+  os.system('notify-send "You need to provide a workspace using the -w option."')
+  exit(1)
 
-return unless options[:class]
-options[:exec] = options[:class].downcase unless options[:exec]
+i3 = i3ipc.Connection()
 
-`wmctrl -lx | grep #{options[:class]} || #{options[:exec]} &`
+i3.command('workspace ' + args.w)
+
+if args.c is None or args.x is None:
+  exit(0)
+
+tree = i3.get_tree()
+found = False
+
+for instance in tree.find_classed(args.c):
+  if instance.workspace().name == args.w:
+    if not args.i or args.i == instance.window_instance:
+      found = True
+      break
+
+if found is False:
+  os.system(args.x + " &")
