@@ -11,7 +11,7 @@
   // CSS: Color convert
   {
     "keys": ["ctrl+shift+c"],
-    "command": "colorconvert",
+    "command": "color_highlighter_next_color",
     "context": [
       { "key": "selector", "operator": "equal", "operand": "source.sass" }
     ]

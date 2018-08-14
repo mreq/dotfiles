@@ -19,9 +19,6 @@
 [submodule "subl/Packages/SublimeMagic"]
 	path = subl/Packages/SublimeMagic
 	url = git@github.com:mreq/SublimeMagic.git
-[submodule "subl/Packages/Babel"]
-	path = subl/Packages/Babel
-	url = git@github.com:babel/babel-sublime.git
-[submodule "subl/Packages/Syntax-highlighting-for-Sass"]
-	path = subl/Packages/Syntax-highlighting-for-Sass
-	url = git@github.com:mreq/Syntax-highlighting-for-Sass.git
+[submodule "subl/Packages/CaseConversion"]
+	path = subl/Packages/CaseConversion
+	url = git@github.com:mreq/CaseConversion.git

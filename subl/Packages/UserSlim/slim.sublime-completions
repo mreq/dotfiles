@@ -2,6 +2,8 @@
   "scope": "text.slim",
   "completions":
   [
-    { "trigger": "t\ttranslate", "contents": "= t('.$0')" }
+    { "trigger": "t\ttranslate", "contents": "= t('.$0')" },
+    { "trigger": "p\tpresent?", "contents": "present?" },
+    { "trigger": "b\tblank?", "contents": "blank?" }
   ]
 }

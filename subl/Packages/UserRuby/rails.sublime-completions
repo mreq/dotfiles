@@ -19,6 +19,11 @@
     { "trigger": "rt\tredirect_to", "contents": "redirect_to $0" },
     { "trigger": "fl\tflash", "contents": ":flash => { :success => '$0' }" },
 
+    { "trigger": "p\tpresent?", "contents": "present?" },
+    { "trigger": "b\tblank?", "contents": "blank?" },
+
+    { "trigger": "scope", "contents": "scope :$1, -> ${3:($2) }{ $0 }" },
+
     // translations
     { "trigger": "t\ttranslate", "contents": "t('$0')" },
 

@@ -27,3 +27,5 @@ PATH="$PATH:$HOME/.nvm/versions/node/v6.10.3/bin"
 export EDITOR=nvim
 export PYTHONPATH="$HOME/.local/lib/python3.5/site-packages"
 export PATH
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

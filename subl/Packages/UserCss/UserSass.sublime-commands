@@ -1,0 +1,9 @@
+[
+  {
+    "caption": "Bootstrap: variables",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "subl ~/.rvm/gems/*/gems/bootstrap-4.1.1/assets/stylesheets/bootstrap/_variables.scss"
+    }
+  }
+]

@@ -1,15 +1,15 @@
 #!/bin/bash
 spritesMoveAround() {
   checkDir() {
-    if [[ ! -d $1 ]]; then
-      echo "No $1, exiting."
+    if [[ ! -d "$@" ]]; then
+      echo "No $*, exiting."
       exit 1
     fi
   }
   checkDir 'sprites@1x' || exit 1
   checkDir 'sprites@2x' || exit 1
 
-  file_mask=$1
+  file_mask=$*
   if [[ ! $file_mask ]]; then
     file_mask="*.png"
   fi
@@ -32,7 +32,7 @@ spritesMoveAround() {
 }
 
 if [[ -d app/assets/images ]]; then
-  ( cd app/assets/images; spritesMoveAround "$1" )
+  ( cd app/assets/images || exit 0; spritesMoveAround "$@" )
 else
-  spritesMoveAround "$1"
+  spritesMoveAround "$@"
 fi
