@@ -1,9 +1,14 @@
 acpi
+awscli
 chromium-browser
 curl
 doublecmd-gtk
 exfat-fuse
 exfat-utils
+fonts-croscore
+fonts-crosextra-caladea
+fonts-crosextra-carlito
+fonts-firacode
 gdebi
 gparted
 greybird-gtk-theme
@@ -25,7 +30,6 @@ rofi
 shellcheck
 thunderbird
 tmux
-ttf-mscorefonts-installer
 ufraw-batch
 unagi
 unrar
@@ -33,6 +37,6 @@ virtualbox
 vlc
 wmctrl
 xbindkeys
-xdotool
 xclip
+xdotool
 xsel
