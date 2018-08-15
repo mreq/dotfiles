@@ -25,8 +25,8 @@ set $ico_whatsapp 
 set $ico_wifi 
 set $ico_zeplin 
 
-font pango: Droid Sans Mono, FontAwesome 10
-font xft: Droid Sans Mono, FontAwesome 10
+font pango: Fira Code, FontAwesome 8
+font xft: Fira Code, FontAwesome 8
 
 # window borders
 hide_edge_borders both
@@ -199,82 +199,16 @@ bindsym Control+Shift+Print exec "play_pause_spotify prev"
 
 bar {
   status_command i3blocks
-  tray_output HDMI-0
+  tray_output primary
   output HDMI-0
+  output HDMI2
+  output VGA-1
+  output LVDS-1
+  output eDP1
   output DVI-1
   position top
-  colors {
-    background $base00
-    statusline $base07
-    separator  $base02
-    # name               border   background  font_color
-    focused_workspace    $base0D  $base0D     $base07
-    active_workspace     $base00  $base00     $base0D
-    inactive_workspace   $base00  $base00     $base05
-    urgent_workspace     $base08  $base08     $base07
-    binding_mode         $base0E  $base0E     $base01
-  }
-}
-
-bar {
-  status_command i3blocks
-  tray_output HDMI2
-  output HDMI2
-  position top
-  colors {
-    background $base00
-    statusline $base07
-    separator  $base02
-    # name               border   background  font_color
-    focused_workspace    $base0D  $base0D     $base07
-    active_workspace     $base00  $base00     $base0D
-    inactive_workspace   $base00  $base00     $base05
-    urgent_workspace     $base08  $base08     $base07
-    binding_mode         $base0E  $base0E     $base01
-  }
-}
-
-bar {
-  status_command i3blocks
-  tray_output VGA-1
-  output VGA-1
-  position top
-  colors {
-    background $base00
-    statusline $base07
-    separator  $base02
-    # name               border   background  font_color
-    focused_workspace    $base0D  $base0D     $base07
-    active_workspace     $base00  $base00     $base0D
-    inactive_workspace   $base00  $base00     $base05
-    urgent_workspace     $base08  $base08     $base07
-    binding_mode         $base0E  $base0E     $base01
-  }
-}
-
-bar {
-  status_command i3blocks
-  tray_output LVDS-1
-  output LVDS-1
-  position top
-  colors {
-    background $base00
-    statusline $base07
-    separator  $base02
-    # name               border   background  font_color
-    focused_workspace    $base0D  $base0D     $base07
-    active_workspace     $base00  $base00     $base0D
-    inactive_workspace   $base00  $base00     $base05
-    urgent_workspace     $base08  $base08     $base07
-    binding_mode         $base0E  $base0E     $base01
-  }
-}
-
-bar {
-  status_command i3blocks
-  tray_output eDP1
-  output eDP1
-  position top
+  font pango: Fira Code, FontAwesome 10
+  font xft: Fira Code, FontAwesome 10
   colors {
     background $base00
     statusline $base07

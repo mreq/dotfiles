@@ -33,7 +33,7 @@ select_display() {
     HDMI )
       xrandr --output $hdmi_output --auto --primary --output $vga_output --off --output $dvi_output --off --output $notebook_output --off ;;
     HDMI-DVI )
-      xrandr --output $hdmi_output --auto --primary --output $dvi_output --auto --right-of $hdmi_output --output $notebook_output --off ;;
+      xrandr --output $hdmi_output --auto --primary --output $dvi_output --auto --left-of $hdmi_output --output $notebook_output --off ;;
     DVI )
       xrandr --output $dvi_output --auto --primary --output $vga_output --off --output $hdmi_output --off --output $notebook_output --off ;;
     VGA )

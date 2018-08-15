@@ -57,7 +57,7 @@ rofi.padding: 30
 rofi.borderwidth: 1
 rofi.separator-style: none
 rofi.opacity: 100
-rofi.font: Ubuntu Mono Bold 14
+rofi.font: Fira Code Bold 13
 rofi.location: 0
 rofi.hmode: false
 rofi.fuzzy: true
@@ -70,4 +70,4 @@ rofi.width: -50
 rofi.lines: 7
 rofi.fixed-num-lines: true
 
-Xft.dpi: 100
+Xft.dpi: 110
