@@ -271,9 +271,9 @@ bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp"
 bindsym $m+e exec "i3_focus_pinned -w $ico_trello -i trello.com -c Google-chrome -x 'google-chrome --app=https://trello.com/'"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --app=https://web.whatsapp.com/'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do google-chrome --app=$url; done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
-bindsym $m+m exec "i3_focus_pinned -w $ico_music -c spotify"
+bindsym $m+m exec "i3_focus_pinned -w $ico_music -c Spotify -x spotify"
 bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin -c Google-chrome -x 'google-chrome --new-window https://app.zeplin.io/projects'"
-bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox"
+bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox -x virtualbox"
 
 # Screenshots
 bindsym Control+Mod1+1 exec "scrotshare create full"

@@ -71,3 +71,5 @@ rofi.lines: 7
 rofi.fixed-num-lines: true
 
 Xft.dpi: 110
+
+Xcursor.theme: DMZ-White

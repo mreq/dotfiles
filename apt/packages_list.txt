@@ -5,6 +5,7 @@ curl
 doublecmd-gtk
 exfat-fuse
 exfat-utils
+faenza-icon-theme
 fonts-croscore
 fonts-crosextra-caladea
 fonts-crosextra-carlito
