@@ -12,6 +12,9 @@ Packages/*
 !Packages/SublimeLogMagic
 !Packages/YAML Nav
 
+Packages/User/Color Highlighter/
+Packages/User/GitSavvy/GitSavvy*.hidden-tmTheme
+
 Packages/User/Package Control.*
 !Packages/User/Package Control.sublime-settings
 Packages/User/ChangeList.json

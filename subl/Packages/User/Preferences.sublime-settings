@@ -78,7 +78,7 @@
 	"mdpopups.sublime_user_lang_map": null,
 	"mdpopups.use_sublime_highlighter": null,
 	"polyfill.experimental_features": true,
-	"remember_open_files": true,
+	"remember_open_files": false,
 	"shift_tab_unindent": true,
 	"show_minimap": false,
 	"tab_size": 2,
