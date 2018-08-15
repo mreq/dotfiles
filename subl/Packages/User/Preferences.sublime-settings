@@ -1,6 +1,7 @@
 {
   "atomic_save": false,
-  "binary_file_patterns": [
+  "binary_file_patterns":
+  [
     "*.dds",
     "*.eot",
     "*.ico",
@@ -12,9 +13,13 @@
     "*.zip",
     ".sass-cache/**",
     ".tags",
+    "/home/petr/work/smybox_scape/deploy/**",
     "app/assets/javascripts/ember/assets/**",
     "app/assets/javascripts/react/**",
     "build/**",
+    "deploy/apache/**",
+    "deploy/env/**",
+    "deploy/static/bower/**",
     "frontend/bower_components/**",
     "frontend/build/**",
     "frontend/node_modules/**",
@@ -26,6 +31,9 @@
     "public/system/**",
     "public/webpack/**",
     "semantic/dist/**",
+    "src/branch/static/css/**",
+    "src/branch/static/gulp_build/**",
+    "src/branch/static/gulp_css_build/**",
     "tags",
     "tmp/**"
   ],
@@ -35,7 +43,8 @@
   "dpi_scale": 1,
   "draw_white_space": "selection",
   "ensure_newline_at_eof_on_save": true,
-  "folder_exclude_patterns": [
+  "folder_exclude_patterns":
+  [
     ".git",
     ".hg",
     ".sass-cache",
@@ -50,14 +59,16 @@
   "highlight_line": true,
   "highlight_modified_tabs": true,
   "hot_exit": false,
-  "ignored_packages": [
+  "ignored_packages":
+  [
     "Six",
     "SublimeLinter-contrib-standard",
     "Vintage",
     "Vintageous"
   ],
   "inactive_panes_dim_strength": 0.2,
-  "indent_guide_options": [
+  "indent_guide_options":
+  [
     "draw_normal",
     "draw_active"
   ],
@@ -67,7 +78,7 @@
   "mdpopups.sublime_user_lang_map": null,
   "mdpopups.use_sublime_highlighter": null,
   "polyfill.experimental_features": true,
-  "remember_open_files": true,
+  "remember_open_files": false,
   "shift_tab_unindent": true,
   "show_minimap": false,
   "tab_size": 2,

@@ -592,6 +592,18 @@
       { "key": "selector", "operator": "equal", "operand": "source.emblem" },
       { "key": "vi_command_mode_aware" }
     ]
+  },
+
+  // TODO: open TODO file if present
+  {
+    "keys": [" ", "t", "o"],
+    "command": "run_cmd",
+    "context": [
+      { "key": "vi_command_mode_aware" }
+    ],
+    "args": {
+      "cmd": "[ -f $project_dir/TODO ] && subl $project_dir/TODO"
+    }
   }
 
   // //////////////////////

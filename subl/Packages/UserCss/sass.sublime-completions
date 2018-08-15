@@ -3,37 +3,13 @@
   "completions":
   [
     // syntax
-    { "trigger": "f", "contents": "#$1\n\t$0\n" },
-    { "trigger": "d", "contents": ".$1\n\t$0\n" },
-    { "trigger": "3", "contents": "&.$1\n\t$0\n" },
-    { "trigger": "e", "contents": "+${1:fsize}($0)" },
-    { "trigger": "r", "contents": "+$0" },
-    { "trigger": "4", "contents": "\\$${1:var}: $2" },
+    { "trigger": "e", "contents": "@extend .$0" },
 
     { "trigger": "h\thover", "contents": "&:hover\n\t$0" },
     { "trigger": "be\tbefore", "contents": "&:before\n\t$0" },
     { "trigger": "af\tafter", "contents": "&:after\n\t$0" },
     { "trigger": "lc\tlast-child", "contents": "&:last-child\n\t$0" },
     { "trigger": "fc\tfirst-child", "contents": "&:first-child\n\t$0" },
-
-    // html elements
-    { "trigger": "p", "contents": "p\n\t$0\n" },
-    { "trigger": "a", "contents": "a\n\t$0\n" },
-    { "trigger": "div", "contents": "div\n\t$0\n" },
-    { "trigger": "strong", "contents": "strong\n\t$0\n" },
-    { "trigger": "img", "contents": "img\n\t$0\n" },
-    { "trigger": "b", "contents": "b\n\t$0\n" },
-    { "trigger": "small", "contents": "small\n\t$0\n" },
-    { "trigger": "h1", "contents": "h1\n\t$0\n" },
-    { "trigger": "h2", "contents": "h2\n\t$0\n" },
-    { "trigger": "h3", "contents": "h3\n\t$0\n" },
-    { "trigger": "h4", "contents": "h4\n\t$0\n" },
-    { "trigger": "h5", "contents": "h5\n\t$0\n" },
-    { "trigger": "table", "contents": "table\n\t$0\n" },
-    { "trigger": "ul", "contents": "ul\n\t$0\n" },
-    { "trigger": "li", "contents": "li\n\t$0\n" },
-    { "trigger": "input", "contents": "input\n\t$0\n" },
-    { "trigger": "label", "contents": "label\n\t$0\n" },
 
     { "trigger": "le\tleft", "contents": "left: $0" },
     { "trigger": "ri\tright", "contents": "right: $0" },

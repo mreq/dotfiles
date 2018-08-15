@@ -14,6 +14,20 @@
     // },
 
     {
+      "name": "Change django translation",
+      "context": {
+        "scope": ["text.html.django"],
+        "line_matches": ["trans"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "inside",
+        "delimiter": "'",
+        "replacement": "$clipboard"
+      }
+    },
+
+    {
       "name": "Fix border syntax",
       "context": {
         "scope": ["source.sass"],

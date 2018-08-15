@@ -1,3 +1,4 @@
 :let mapleader=\
 
 :noremap Y y$
+:noremap , f_

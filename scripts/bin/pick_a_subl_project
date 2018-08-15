@@ -9,7 +9,7 @@ handle_selection() {
       exit 1
     fi
     touch "$project"
-    subl -n "$project"
+    subl "$project"
   fi
   exit 0
 }

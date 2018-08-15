@@ -1,2 +1,2 @@
 #!/bin/bash
-paplay '/usr/share/sounds/freedesktop/stereo/complete.oga'
+paplay '/usr/share/sounds/freedesktop/stereo/complete.oga' $*
