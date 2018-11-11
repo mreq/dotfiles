@@ -415,6 +415,15 @@
 				<string>#0b0b0b</string>
 			</dict>
 		</dict>
+		<dict>
+			<key>scope</key>
+			<string>punctuation.separator.continuation</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#424242</string>
+			</dict>
+		</dict>
 	<dict>
     <key>name</key>
     <string>GitSavvy Added Line</string>

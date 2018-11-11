@@ -1,6 +1,5 @@
 {
   "dev_mode": true,
-  "commit_on_close": true,
   "vintageous_friendly": true,
   "vintageous_enter_insert_mode": true
 }

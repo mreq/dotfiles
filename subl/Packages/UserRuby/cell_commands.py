@@ -19,7 +19,7 @@ def get_cell_name(window):
         else:
             results = re.search('test/cells/' + namespaces + '(\w+)_cell_test\.rb', path)
             if results:
-                return results.group(2)
+                return results.group(1)
     return None
 
 def create_view(window, extension):
@@ -49,7 +49,7 @@ class CellOpenAll(sublime_plugin.WindowCommand):
     def run(self):
         cell_name = get_cell_name(self.window)
         pwd = self.window.folders()[0]
-        files = subprocess.check_output('pt --follow -g="(app|source)/cells/' + namespaces + cell_name + '(_cell\.rb|/.+)" ' + pwd, shell = True).decode('utf-8').split('\n')
+        files = subprocess.check_output('rg --files ' + pwd + ' | rg "(app|source)/cells/' + namespaces + cell_name + '(_cell\.rb|/.+)" ', shell = True).decode('utf-8').split('\n')
         for file in files:
             if file:
                 self.window.open_file(file)
@@ -71,10 +71,11 @@ class CellOpen(sublime_plugin.WindowCommand):
 
         pattern = '(app|source)/cells/' + namespaces + pattern
         pwd = self.window.folders()[0]
-        files = subprocess.check_output('pt --follow -g="' + pattern + '" ' + pwd, shell = True).decode('utf-8').split('\n')
-        files.remove('')
 
-        if len(files) == 0:
+        try:
+            files = subprocess.check_output('rg --files ' + pwd + ' | rg "' + pattern + '" ', shell = True).decode('utf-8').split('\n')
+            files.remove('')
+        except subprocess.CalledProcessError as e:
             return self.window.status_message('No ' + target + '.')
 
         for file in files:

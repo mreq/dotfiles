@@ -25,8 +25,8 @@ set $ico_whatsapp 
 set $ico_wifi 
 set $ico_zeplin 
 
-font pango: Fira Code, FontAwesome 8
-font xft: Fira Code, FontAwesome 8
+font pango: Fira Code, FontAwesome 9
+font xft: Fira Code, FontAwesome 9
 
 # window borders
 hide_edge_borders both
@@ -201,11 +201,13 @@ bar {
   status_command i3blocks
   tray_output primary
   output HDMI-0
+  output HDMI-1
   output HDMI2
   output VGA-1
   output LVDS-1
   output eDP1
   output DVI-1
+  output DVI-D-0
   position top
   font pango: Fira Code, FontAwesome 10
   font xft: Fira Code, FontAwesome 10
@@ -242,6 +244,7 @@ assign [class="Gimp"] → $ico_gimp
 assign [class="Thunderbird"] → $ico_mail
 assign [class="Scudcloud"] → $ico_slack
 assign [class="Doublecmd"] → $ico_folder
+assign [class="Google-chrome" instance=".*.slack.com"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
 assign [class="Google-chrome" instance="calendar.google.com__calendar"] → $ico_calendar
@@ -266,11 +269,11 @@ bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Google-chrome -x 'while read url; do google-chrome --app=$url; done < ~/Dropbox/ubuntu/various_configs/slack_channels.txt'"
-bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Google-chrome -x 'while read url; do (google-chrome --app=$url &); done < ~/Dropbox/ubuntu/various_configs/slack_channels.txt'"
+bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
 bindsym $m+e exec "i3_focus_pinned -w $ico_trello -i trello.com -c Google-chrome -x 'google-chrome --app=https://trello.com/'"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --app=https://web.whatsapp.com/'"
-bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do google-chrome --app=$url; done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
+bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --app=$url &); done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c Spotify -x spotify"
 bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin -c Google-chrome -x 'google-chrome --new-window https://app.zeplin.io/projects'"
 bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox -x virtualbox"
@@ -293,3 +296,4 @@ exec --no-startup-id setxkbmap -layout us -option caps:escape
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid
+exec --no-startup-id i3_switch_colors dark

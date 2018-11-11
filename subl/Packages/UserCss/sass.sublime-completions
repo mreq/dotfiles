@@ -107,7 +107,8 @@
     // fonts
     { "trigger": "fz", "contents": "font-size: $0px" },
     { "trigger": "fst\tfont-style", "contents": "font-style: ${0:normal}${1:italic}" },
-    { "trigger": "fw", "contents": "font-weight: ${0:bold}" },
+    { "trigger": "fwb", "contents": "font-weight: ${0:\\$font-weight-bold}" },
+    { "trigger": "fwl", "contents": "font-weight: ${0:\\$font-weight-light}" },
     { "trigger": "ws", "contents": "white-space: nowrap" },
 
     // background

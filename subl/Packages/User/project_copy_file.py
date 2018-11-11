@@ -5,7 +5,7 @@ import os
 
 class ProjectCopyFile(sublime_plugin.WindowCommand):
 	def run(self):
-		a = subprocess.check_output('ls ~/work', shell=True)
+		a = subprocess.check_output('ls -t ~/work', shell=True)
 		projects = bytes.decode(a).splitlines()
 
 		file_name = self.window.active_view().file_name()
