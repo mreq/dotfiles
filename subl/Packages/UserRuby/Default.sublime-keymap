@@ -49,8 +49,7 @@
 
   {
     "keys": ["ctrl+shift+space"],
-    "command": "cell_open",
-    "args": { "target": "sass" },
+    "command": "cell_create_sass",
     "context": [
       { "key": "selector", "operator": "equal", "operand": "text.slim" },
       { "key": "vi_command_mode_aware" }
@@ -59,8 +58,7 @@
 
   {
     "keys": ["ctrl+shift+space"],
-    "command": "cell_open",
-    "args": { "target": "sass" },
+    "command": "cell_create_sass",
     "context": [
       { "key": "selector", "operator": "equal", "operand": "source.ruby" },
       { "key": "vi_command_mode_aware" }

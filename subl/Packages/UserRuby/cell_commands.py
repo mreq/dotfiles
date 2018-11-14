@@ -4,26 +4,39 @@ import re
 import subprocess
 
 namespaces = '(?:\w+/)*'
+with_namespaces = '(\w+/)*'
 
-def get_cell_name(window):
+def get_cell_name(window, include_namespaces = True):
     view = window.active_view()
     path = view.file_name()
 
-    results = re.search('(app|source)/cells/' + namespaces + '(\w+)/.+\.(slim|sass|coffee)', path)
+    namespace_part = with_namespaces if include_namespaces else namespaces
+
+    results = re.search('(app|source)/cells/' + namespace_part + '(\w+)/.+\.(slim|sass|coffee)', path)
     if results:
-        return results.group(2)
-    else:
-        results = re.search('(app|source)/cells/' + namespaces + '(\w+)_cell\.rb', path)
-        if results:
-            return results.group(2)
+        if include_namespaces:
+            return results.group(2) + results.group(3)
         else:
-            results = re.search('test/cells/' + namespaces + '(\w+)_cell_test\.rb', path)
+            return results.group(2)
+    else:
+        results = re.search('(app|source)/cells/' + namespace_part + '(\w+)_cell\.rb', path)
+        if results:
+            if include_namespaces:
+                return results.group(2) + results.group(3)
+            else:
+                return results.group(2)
+        else:
+            results = re.search('test/cells/' + namespace_part + '(\w+)_cell_test\.rb', path)
             if results:
-                return results.group(1)
+                if include_namespaces:
+                    return results.group(1) + results.group(2)
+                else:
+                    return results.group(1)
+
     return None
 
 def create_view(window, extension):
-    cell_name = get_cell_name(window)
+    cell_name = get_cell_name(window, False)
 
     if cell_name is None:
         return window.status_message('Not a cell view.')

@@ -18,6 +18,7 @@ htop
 i3
 i3blocks
 imagemagick
+inotify-tools
 jq
 libgmp3-dev
 libjpeg-progs

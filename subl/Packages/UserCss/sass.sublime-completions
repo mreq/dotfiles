@@ -137,6 +137,7 @@
 
     // flex
     { "trigger": "df\tdisplay: flex", "contents": "display: flex" },
+    { "trigger": "dif\tdisplay: inline-flex", "contents": "display: inline-flex" },
     { "trigger": "jc\tjustify-content", "contents": "justify-content: ${0:center}" },
     { "trigger": "ai\talign-items", "contents": "align-items: ${0:center}" },
     { "trigger": "fd\tflex-direction", "contents": "flex-direction: ${0:column}" },
