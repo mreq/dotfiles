@@ -10,6 +10,7 @@ fonts-croscore
 fonts-crosextra-caladea
 fonts-crosextra-carlito
 fonts-firacode
+fonts-nanum
 gdebi
 gifsicle
 gparted
@@ -39,7 +40,10 @@ r-base
 redis
 redshift
 rofi
+rubber
 shellcheck
+texlive-latex-recommended
+texlive-xetex
 thunderbird
 tmux
 ufraw-batch

@@ -3,46 +3,44 @@ import sublime_plugin
 import re
 import subprocess
 
-namespaces = '(?:\w+/)*'
-with_namespaces = '(\w+/)*'
+# because recursion is painfully slow
+namespaces = '(' + '(?:\w+/?)?' * 5 + ')'
 
-def get_cell_name(window, include_namespaces = True):
+def get_cell_name(window):
     view = window.active_view()
     path = view.file_name()
 
-    namespace_part = with_namespaces if include_namespaces else namespaces
-
-    results = re.search('(app|source)/cells/' + namespace_part + '(\w+)/.+\.(slim|sass|coffee)', path)
+    results = re.search('(?:app|source)/cells/' + namespaces + '/\w+\.(slim|sass|coffee)', path)
     if results:
-        if include_namespaces:
-            return results.group(2) + results.group(3)
-        else:
-            return results.group(2)
+        return results.group(1)
     else:
-        results = re.search('(app|source)/cells/' + namespace_part + '(\w+)_cell\.rb', path)
+        results = re.search('(?:app|source)/cells/' + namespaces + '_cell\.rb', path)
         if results:
-            if include_namespaces:
-                return results.group(2) + results.group(3)
-            else:
-                return results.group(2)
+            return results.group(1)
         else:
-            results = re.search('test/cells/' + namespace_part + '(\w+)_cell_test\.rb', path)
+            results = re.search('test/cells/' + namespaces + '_cell_test\.rb', path)
             if results:
-                if include_namespaces:
-                    return results.group(1) + results.group(2)
-                else:
-                    return results.group(1)
+                return results.group(1)
+            else:
+                results = re.search('app/models/' + namespaces + '/atom/' + namespaces + '\.rb', path)
+                if results:
+                    return results.group(1) + '/atom/' + results.group(2)
 
     return None
 
 def create_view(window, extension):
-    cell_name = get_cell_name(window, False)
+    cell_name = get_cell_name(window)
 
     if cell_name is None:
         return window.status_message('Not a cell view.')
 
+    cell_base_name = cell_name.split('/').pop()
+
     path = window.active_view().file_name()
-    new_path = re.sub('/\w+\.slim', '/' + cell_name + '.' + extension, path)
+    if '_cell.rb' in path:
+        new_path = re.sub('/_cell.rb', '/' + cell_name + '.' + extension, path)
+    else:
+        new_path = re.sub('/\w+\.slim', '/' + cell_base_name + '.' + extension, path)
 
     window.open_file(new_path)
 
@@ -58,31 +56,28 @@ class CellCreateCoffee(sublime_plugin.WindowCommand):
     def run(self):
         create_view(self.window, 'coffee')
 
-class CellOpenAll(sublime_plugin.WindowCommand):
-    def run(self):
-        cell_name = get_cell_name(self.window)
-        pwd = self.window.folders()[0]
-        files = subprocess.check_output('rg --files ' + pwd + ' | rg "(app|source)/cells/' + namespaces + cell_name + '(_cell\.rb|/.+)" ', shell = True).decode('utf-8').split('\n')
-        for file in files:
-            if file:
-                self.window.open_file(file)
-
 class CellOpen(sublime_plugin.WindowCommand):
     def run(self, target):
         cell_name = get_cell_name(self.window)
 
-        if target == 'ruby':
-            pattern = cell_name + '_cell\.rb'
-        elif target == 'slim':
-            pattern = cell_name + '/show\.slim'
-        elif target == 'sass':
-            pattern = cell_name + '/' + cell_name + '\.sass'
-        elif target == 'coffee':
-            pattern = cell_name + '/' + cell_name + '\.coffee'
-        else:
-            return self.window.status_message('Not a valid target.')
+        if cell_name:
+            cell_base_name = cell_name.split('/').pop()
 
-        pattern = '(app|source)/cells/' + namespaces + pattern
+            if target == 'ruby':
+                pattern = '(app|source)/cells/' + cell_name + '_cell\.rb'
+            elif target == 'slim':
+                pattern = '(app|source)/cells/' + cell_name + '/show\.slim'
+            elif target == 'sass':
+                pattern = '(app|source)/cells/' + cell_name + '/' + cell_base_name + '\.sass'
+            elif target == 'coffee':
+                pattern = '(app|source)/cells/' + cell_name + '/' + cell_base_name + '\.coffee'
+            elif target == 'test':
+                pattern = 'test/cells/' + cell_name + '_cell_test\.rb'
+            else:
+                return self.window.status_message('Not a valid target.')
+        else:
+            return self.window.status_message('No ' + target + '.')
+
         pwd = self.window.folders()[0]
 
         try:

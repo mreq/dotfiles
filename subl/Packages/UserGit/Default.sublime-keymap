@@ -142,17 +142,17 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
-  // Git: Git Conflict Resolver: keep ours
+  // Git: Git Conflict Resolver: keep ours / up
   {
-    "keys": [" ", "g", "o"],
+    "keys": [" ", "g", "u"],
     "command": "keep",
     "args": { "keep": "ours" },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
-  // Git: Git Conflict Resolver: keep theirs
+  // Git: Git Conflict Resolver: keep theirs / down
   {
-    "keys": [" ", "g", "t"],
+    "keys": [" ", "g", "d"],
     "command": "keep",
     "args": { "keep": "theirs" },
     "context": [{ "key": "vi_command_mode_aware" }]

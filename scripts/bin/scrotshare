@@ -44,9 +44,10 @@ handle_scrot() {
       push() {
         notify-send -i $ico "scrotshare" "Screenshot uploading to s.mreq.eu."
         # copy to mreq
+        chmod 664 "$scr"
         scp "$scr" mreq:"s.mreq.eu/$nam.$ext"
         # clipboard
-        echo "http://s.mreq.eu/$nam.$ext" | xclip -sel clip
+        echo "https://s.mreq.eu/$nam.$ext" | xclip -sel clip
         # notify
         notify-send -i $ico "scrotshare" "Screenshot URL copied to clipboard."
       }

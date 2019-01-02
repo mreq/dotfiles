@@ -1,5 +1,5 @@
 {
-  "scope": "source.ruby.rails",
+  "scope": "source.ruby.rails, source.ruby.embedded",
   "completions":
   [
     // models
@@ -21,6 +21,8 @@
 
     { "trigger": "p\tpresent?", "contents": "present?" },
     { "trigger": "b\tblank?", "contents": "blank?" },
+
+    { "trigger": "han\thuman_attribute_name", "contents": "human_attribute_name(:$0)" },
 
     { "trigger": "scope", "contents": "scope :$1, -> ${3:($2) }{ $0 }" },
 

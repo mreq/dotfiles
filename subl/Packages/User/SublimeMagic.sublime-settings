@@ -108,6 +108,32 @@
     },
 
     {
+      "name": "Cleanup coffee sprockets require",
+      "context": {
+        "scope": ["source.js"],
+        "line_matches": ["app/"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": ".*app/(?:cells/)(.+)\\.(coffee|js)",
+        "replacement": "//= require \\1"
+      }
+    },
+
+    {
+      "name": "Cleanup js sprockets require",
+      "context": {
+        "scope": ["source.coffee"],
+        "line_matches": ["app/"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": ".*app/(?:cells/)(.+)\\.(coffee|js)",
+        "replacement": "#= require \\1"
+      }
+    },
+
+    {
       "name": "Cleanup react import statement",
       "context": {
         "scope": ["source.js"],

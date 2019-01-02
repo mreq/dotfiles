@@ -20,6 +20,7 @@ set $ico_slack 
 set $ico_trello 
 set $ico_volume 
 set $ico_muted_volume 
+set $ico_steam 
 set $ico_virtualbox 
 set $ico_whatsapp 
 set $ico_wifi 
@@ -40,6 +41,8 @@ for_window [class="Godot" instance="Godot_Engine"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
 for_window [title="Android Emulator -.+"] floating enable
 for_window [class="Wine"] floating enable
+for_window [class="dota2"] fullscreen enable
+for_window [class="csgo_linux64"] fullscreen enable
 for_window [workspace=$ico_camera] floating enable
 for_window [class="Sublime_text" workspace=$ico_camera] resize shrink width 10000px; resize shrink height 10000px; resize grow height 300px; resize grow width 500px
 
@@ -244,6 +247,9 @@ assign [class="Gimp"] → $ico_gimp
 assign [class="Thunderbird"] → $ico_mail
 assign [class="Scudcloud"] → $ico_slack
 assign [class="Doublecmd"] → $ico_folder
+assign [class="dota2"] → $ico_steam
+assign [class="csgo_linux64"] → $ico_steam
+assign [class="Steam"] → $ico_steam
 assign [class="Google-chrome" instance=".*.slack.com"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp

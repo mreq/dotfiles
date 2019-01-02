@@ -13,7 +13,7 @@ class ToggleBeginRescue(sublime_plugin.TextCommand):
           'begin',
           line_text.replace(indent, '  '),
           'rescue',
-          '  binding.pry',
+          '  require pry; binding.pry',
           'end'
         ]).replace('\n', '\n' + indent)
         return view.replace(edit, line, new_text)
