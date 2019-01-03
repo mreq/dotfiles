@@ -1,6 +1,5 @@
 Packages/*
 !Packages/User
-!Packages/User*
 
 !Packages/AceJump
 !Packages/BetterCoffeescriptFork

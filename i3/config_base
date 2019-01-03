@@ -208,7 +208,7 @@ bar {
   output HDMI2
   output VGA-1
   output LVDS-1
-  output eDP1
+  output eDP-1
   output DVI-1
   output DVI-D-0
   position top

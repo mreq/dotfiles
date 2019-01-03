@@ -6,10 +6,6 @@
 	path = subl/Packages/SublimeLinter
 	url = git@github.com:mreq/SublimeLinter3.git
 	ignore = all
-[submodule "subl/Packages/MreqColorScheme"]
-	path = subl/Packages/MreqColorScheme
-	url = git@github.com:mreq/mreq-theme.git
-	ignore = all
 [submodule "subl/Packages/BetterCoffeescriptFork"]
 	path = subl/Packages/BetterCoffeescriptFork
 	url = git@github.com:mreq/sublime-better-coffeescript.git
@@ -22,3 +18,6 @@
 [submodule "subl/Packages/CaseConversion"]
 	path = subl/Packages/CaseConversion
 	url = git@github.com:mreq/CaseConversion.git
+[submodule "subl/Packages/MreqColorScheme"]
+	path = subl/Packages/MreqColorScheme
+	url = git@github.com:mreq/mreq-theme.git
