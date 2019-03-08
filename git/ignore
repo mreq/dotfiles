@@ -23,6 +23,7 @@ npm-debug.log
 
 /tmp_scripts
 /git-ignored
+.byebug_history
 
 composer.phar
 

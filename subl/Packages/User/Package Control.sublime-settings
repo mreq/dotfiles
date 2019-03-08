@@ -11,6 +11,7 @@
 	[
 		"AceJump",
 		"AdvancedNewFile",
+		"Align Arguments",
 		"All Autocomplete",
 		"AutomaticPackageReloader",
 		"Babel",
@@ -37,7 +38,6 @@
 		"Handlebars",
 		"HTML2Slim",
 		"i3 wm",
-		"Indent To Parenthesis",
 		"Jade",
 		"Jinja2",
 		"knitr",
@@ -49,6 +49,7 @@
 		"MoveTab",
 		"NeoVintageous",
 		"Nette + Latte + Neon",
+		"nginx",
 		"Origami",
 		"Package Control",
 		"PlainTasks",

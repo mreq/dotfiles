@@ -14,6 +14,19 @@
     // },
 
     {
+      "name": "Convert cell path to command",
+      "context": {
+        "scope": ["text.slim"],
+        "line_matches": ["app/cells"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "app/cells/(.+)(_cell.rb|/\\w+\\.slim)",
+        "replacement": "== cell('\\1')"
+      }
+    },
+
+    {
       "name": "Change django translation",
       "context": {
         "scope": ["text.html.django"],

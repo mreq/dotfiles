@@ -34,6 +34,7 @@
     "sass/.sass-lint.yml": "~/.sass-lint.yml",
     "slim/.slim-lint.yml": "~/.slim-lint.yml",
     "subl/Packages": "~/.config/sublime-text-3/Packages",
+    "nvim/init.vim": "~/.config/nvim/init.vim",
     "tmux/.tmux.conf": "~/.tmux.conf",
     "X/.screenrc": "~/.screenrc",
     "X/.Xdefaults": "~/.Xdefaults",

@@ -1,5 +1,5 @@
 {
-  "scope": "source.ruby.rails, source.ruby.embedded",
+  "scope": "source.ruby",
   "completions":
   [
     // models
@@ -25,6 +25,12 @@
     { "trigger": "han\thuman_attribute_name", "contents": "human_attribute_name(:$0)" },
 
     { "trigger": "scope", "contents": "scope :$1, -> ${3:($2) }{ $0 }" },
+
+    { "trigger": "rrj\tRails.root.join", "contents": "Rails.root.join('$0')" },
+
+    // folio
+    { "trigger": "ifi\tinclude Folio::ImageHelper", "contents": "include Folio::ImageHelper" },
+    { "trigger": "isf\tinclude SimpleForm FormHelper", "contents": "include SimpleForm::ActionViewExtensions::FormHelper${0:\ninclude ActionView::Helpers::FormOptionsHelper}" },
 
     // translations
     { "trigger": "t\ttranslate", "contents": "t('$0')" },

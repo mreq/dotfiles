@@ -1,6 +1,7 @@
 acpi
 awscli
 chromium-browser
+cifs-utils
 curl
 doublecmd-gtk
 exfat-fuse
@@ -25,6 +26,7 @@ libgmp3-dev
 libjpeg-progs
 libmagic-dev
 libmagickwand-dev
+libmysqlclient-dev
 libpq-dev
 libreoffice-calc
 libreoffice-writer
@@ -42,6 +44,7 @@ redshift
 rofi
 rubber
 shellcheck
+simplescreenrecorder
 texlive-latex-recommended
 texlive-xetex
 thunderbird

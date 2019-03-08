@@ -1,5 +1,6 @@
 {
   "dev_mode": true,
   "vintageous_friendly": true,
-  "vintageous_enter_insert_mode": true
+  "vintageous_enter_insert_mode": true,
+  "inline_diff_auto_scroll": true
 }

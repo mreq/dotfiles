@@ -534,6 +534,26 @@
     ]
   },
 
+  // Search: replace all
+  {
+    "keys": ["ctrl+alt+enter"],
+    "command": "replace_all",
+    "args": { "close_panel": true },
+    "context": [
+      { "key": "panel", "operand": "replace" },
+      { "key": "panel_has_focus" }
+    ]
+  },
+
+  // Search: toggle case sensitive
+  {
+    "keys": ["alt+c"],
+    "command": "toggle_case_sensitive",
+    "context": [
+      { "key": "setting.is_widget", "operator": "equal", "operand": true }
+    ]
+  },
+
   // { "keys": ["ctrl+shift+l"], "command": "list_stylesheet_variables", "context": [
   //   { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
   // ]},
@@ -602,7 +622,7 @@
       { "key": "vi_command_mode_aware" }
     ],
     "args": {
-      "cmd": "[ -f $project_dir/TODO ] && subl $project_dir/TODO"
+      "cmd": "subl $project_dir/TODO"
     }
   }
 

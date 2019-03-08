@@ -191,10 +191,10 @@ e() {
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export BUNDLER_EDITOR="subl -n"
+export FZF_DEFAULT_COMMAND="rg --files --hidden"
 
 export WORKON_HOME="$HOME/virtualenvs"
 
-export FZF_DEFAULT_COMMAND='pt -g "" --hidden'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # manpages colors

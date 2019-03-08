@@ -4,6 +4,8 @@
   [
     { "trigger": "t\ttranslate", "contents": "= t('.$0')" },
     { "trigger": "p\tpresent?", "contents": "present?" },
-    { "trigger": "b\tblank?", "contents": "blank?" }
+    { "trigger": "b\tblank?", "contents": "blank?" },
+
+    { "trigger": "sff\tsimple_form_for", "contents": "simple_form_for $1 do |f|\n\t$0" }
   ]
 }

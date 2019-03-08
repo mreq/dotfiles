@@ -41,6 +41,7 @@ for_window [class="Godot" instance="Godot_Engine"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
 for_window [title="Android Emulator -.+"] floating enable
 for_window [class="Wine"] floating enable
+for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="dota2"] fullscreen enable
 for_window [class="csgo_linux64"] fullscreen enable
 for_window [workspace=$ico_camera] floating enable
