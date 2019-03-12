@@ -1,0 +1,29 @@
+#!/home/petr/.rvm/rubies/default/bin/ruby
+
+fail 'No app/assets/fonts directory!' unless File.directory?('app/assets/fonts')
+
+icomoon_zip = `ls -t ~/Downloads/icomoon*.zip | head -n1`.chomp
+fail 'No icomoon zip!' unless icomoon_zip
+
+require 'tmpdir'
+require 'pathname'
+
+Dir.mktmpdir do |tmp_dir|
+  tmp_path = Pathname.new(tmp_dir)
+  pwd = Pathname.new(Dir.pwd)
+
+  puts "Unzipping files to #{tmp_dir}"
+  `unzip '#{icomoon_zip}' -d '#{tmp_dir}'`
+
+  puts 'Copying fonts'
+  FileUtils.cp_r tmp_path.join('fonts'), pwd.join('app/assets')
+
+  puts 'Copying selection.json'
+  FileUtils.cp_r tmp_path.join('selection.json'), pwd.join('app/assets/fonts')
+
+  puts 'Copying css'
+  css = File.open(tmp_path.join('style.css')).to_a[26..-1].join('')
+  File.open(pwd.join('app/assets/stylesheets/_icons_data.scss'), 'w') { |file| file.write(css) }
+
+  puts "\nDone!\n\n"
+end
