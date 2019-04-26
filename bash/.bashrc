@@ -188,6 +188,10 @@ e() {
   fi
 }
 
+wrg() {
+  ( cd ~/work; rg -g *.$1 ${*:2} )
+}
+
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export BUNDLER_EDITOR="subl -n"

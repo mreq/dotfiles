@@ -4,7 +4,7 @@ import re
 import subprocess
 
 # because recursion is painfully slow
-namespaces = '(' + '(?:\w+/?)?' * 5 + ')'
+namespaces = '(' + '(?:\w+/?)?' * 6 + ')'
 
 
 def get_cell_name(window):

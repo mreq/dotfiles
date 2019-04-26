@@ -6,9 +6,9 @@ set history=10000
 
 " 256 color terminal
 let &t_Co=256
-
-" Fix garbage characters appearing in xfce4-terminal
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+set termguicolors
+set background=dark
+colorscheme gruvbox
 
 " Enable syntax highlight
 syntax on
@@ -28,11 +28,25 @@ set laststatus=2
 " Disable swap file
 set noswapfile
 
+" Add fzf to runtime path
+set rtp+=~/.fzf
+
+" Load plugins
+packloadall
+
 " Splits/window management
-nnoremap <silent> <M-h> :<C-w>h
-nnoremap <silent> <M-j> :<C-w>j
-nnoremap <silent> <M-k> :<C-w>k
-nnoremap <silent> <M-l> :<C-w>l
+" nnoremap <silent> <M-h> :<C-w>h
+" nnoremap <silent> <M-j> :<C-w>j
+" nnoremap <silent> <M-k> :<C-w>k
+" nnoremap <silent> <M-l> :<C-w>l
+
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-x> <C-w>q
+
+nnoremap <silent> <C-p> :FZF<cr>
 
 " yanking
 nmap <silent> <M-y> "+y

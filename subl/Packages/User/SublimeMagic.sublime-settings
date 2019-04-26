@@ -27,6 +27,19 @@
     },
 
     {
+      "name": "Drop dot from class name",
+      "context": {
+        "scope": ["text.slim"],
+        "line_matches": ["class=\"\\."]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "class=\"\\.",
+        "replacement": "class=\""
+      }
+    },
+
+    {
       "name": "Change django translation",
       "context": {
         "scope": ["text.html.django"],

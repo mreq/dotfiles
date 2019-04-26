@@ -59,7 +59,7 @@
     "no_clig",
     "no_calt"
   ],
-  "font_size": 13,
+  "font_size": 11,
   "hide_minimap": true,
   "highlight_line": true,
   "highlight_modified_tabs": true,
@@ -80,7 +80,7 @@
   "line_padding_bottom": 3,
   "mdpopups.sublime_user_lang_map": null,
   "mdpopups.use_sublime_highlighter": null,
-  "neovintageous_build_version": 11000,
+  "neovintageous_build_version": 11100,
   "polyfill.experimental_features": true,
   "remember_open_files": false,
   "shift_tab_unindent": true,

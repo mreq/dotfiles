@@ -23,6 +23,7 @@
     { "trigger": "b\tblank?", "contents": "blank?" },
 
     { "trigger": "han\thuman_attribute_name", "contents": "human_attribute_name(:$0)" },
+    { "trigger": "mnh\tmodel_name.human", "contents": "model_name.human${1:(count: ${0:2})}" },
 
     { "trigger": "scope", "contents": "scope :$1, -> ${3:($2) }{ $0 }" },
 

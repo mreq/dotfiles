@@ -22,8 +22,14 @@ Dir.mktmpdir do |tmp_dir|
   FileUtils.cp_r tmp_path.join('selection.json'), pwd.join('app/assets/fonts')
 
   puts 'Copying css'
-  css = File.open(tmp_path.join('style.css')).to_a[26..-1].join('')
-  File.open(pwd.join('app/assets/stylesheets/_icons_data.scss'), 'w') { |file| file.write(css) }
+  vars = File.open(tmp_path.join('variables.scss')).to_a[3..-1].join('')
+  css = File.open(tmp_path.join('style.scss')).to_a[27..-1].join('')
+
+  FileUtils.mkdir_p pwd.join('app/assets/stylesheets/icons')
+
+  File.open(pwd.join('app/assets/stylesheets/icons/_data.scss'), 'w') do |file|
+    file.write([vars, css].join(''))
+  end
 
   puts "\nDone!\n\n"
 end

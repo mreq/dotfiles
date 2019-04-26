@@ -221,6 +221,13 @@
 
   // Tabs: next
   {
+    "keys": ["tab"],
+    "command": "next_view",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Tabs: next
+  {
     "keys": ["ctrl+tab"],
     "command": "next_view"
   },
@@ -568,12 +575,6 @@
     }
   },
 
-  // UnitTesting: test current project
-  {
-    "keys": ["f10"],
-    "command": "unit_testing_current_project_reload"
-  },
-
   // Sidebar: toggle
   {
     "keys": [" ", "l"],
@@ -614,7 +615,6 @@
     ]
   },
 
-  // TODO: open TODO file if present
   {
     "keys": [" ", "t", "o"],
     "command": "run_cmd",
@@ -624,7 +624,27 @@
     "args": {
       "cmd": "subl $project_dir/TODO"
     }
+  },
+
+  {
+    "keys": ["f10"],
+    "command": "sort_lines",
+    "args": {
+      "case_sensitive": false
+    }
+  },
+
+  {
+    "keys": ["g", "s"],
+    "command": "sort_lines",
+    "context": [
+      { "key": "vi_command_mode_aware" }
+    ],
+    "args": {
+      "case_sensitive": false
+    }
   }
+
 
   // //////////////////////
   // // SublimeTODO
