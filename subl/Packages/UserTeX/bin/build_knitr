@@ -17,16 +17,17 @@ fi
 
 # Is it a child document?
 isChild=$( head -n1 "$file" | grep '%!' | awk -F'!' '{ print $2 }' )
-isBeamer=$( head -n2 "$file" | grep "documentclass.*beamer" )
 
 cd "$( dirname "$file" )"
 
 if [[ $isChild ]]; then
   target=$( basename "$isChild" )
-  cd "$( dirname "$isChild" )"
+  cd $( dirname $isChild )
 else
   target=$file
 fi
+
+isBeamer=$( head -n2 "$target" | grep "documentclass.*beamer" )
 
 if [[ "$cleanBuild" == true ]]; then
   # Remove garbage

@@ -62,7 +62,7 @@
 		"no_clig",
 		"no_calt"
 	],
-	"font_size": 11,
+	"font_size": 12,
 	"hide_minimap": true,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,

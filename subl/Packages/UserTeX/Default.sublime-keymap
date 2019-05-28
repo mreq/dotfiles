@@ -56,7 +56,7 @@
       ]
     },
     "context": [
-      { "key": "selector", "operator": "equal", "operand": "text.tex.latex.knitr" }
+      { "key": "selector", "operator": "equal", "operand": "text.tex.latex.rsweave" }
     ]
   }
 ]

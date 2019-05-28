@@ -206,7 +206,7 @@ bar {
   tray_output primary
   output HDMI-0
   output HDMI-1
-  output HDMI2
+  output HDMI-2
   output VGA-1
   output LVDS-1
   output eDP-1

@@ -32,6 +32,7 @@ libreoffice-calc
 libreoffice-writer
 libsodium-dev
 mysql-server
+ncdu
 neovim
 postgresql
 postgresql-client
