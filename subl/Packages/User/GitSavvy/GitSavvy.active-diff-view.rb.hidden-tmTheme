@@ -12,6 +12,8 @@
 			<dict>
 				<key>background</key>
 				<string>#181818</string>
+				<key>block_caret</key>
+				<string>#C4C4C466</string>
 				<key>bracketContentsOptions</key>
 				<string>underline</string>
 				<key>bracketsOptions</key>

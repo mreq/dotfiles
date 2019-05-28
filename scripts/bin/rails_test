@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+RAILS_ENV=test bundle exec rails db:environment:set 2>/dev/null || echo 'Not setting env.'
 RAILS_ENV=test bundle exec rails db:drop 2>/dev/null || echo 'No database to drop.'
 RAILS_ENV=test bundle exec rails db:create
 RAILS_ENV=test bundle exec rails db:schema:load
