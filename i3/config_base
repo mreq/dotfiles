@@ -251,6 +251,8 @@ assign [class="Doublecmd"] → $ico_folder
 assign [class="dota2"] → $ico_steam
 assign [class="csgo_linux64"] → $ico_steam
 assign [class="Steam"] → $ico_steam
+assign [class="Wine" instance="battle.net.exe"] → $ico_game
+assign [class="Wine" instance="wow.exe"] → $ico_game
 assign [class="Google-chrome" instance=".*.slack.com"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
@@ -284,6 +286,7 @@ bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while r
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c Spotify -x spotify"
 bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin -c Google-chrome -x 'google-chrome --new-window https://app.zeplin.io/projects'"
 bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox -x virtualbox"
+bindsym $m+b exec "i3_focus_pinned -w $ico_game"
 
 # Screenshots
 bindsym Control+Mod1+1 exec "scrotshare create full"

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for file in ~/Downloads/baseline*.svg; do
+  name=${file/baseline-/}
+  final=${name/-24px/}
+  mv $file $final
+  echo "$( basename $file ) -> $( basename $final )"
+done

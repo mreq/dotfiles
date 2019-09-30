@@ -11,6 +11,7 @@
     { "trigger": "hmt\thas_many_through", "contents": "has_many :$1, through: :$2${3:, :source => :$4}"},
     { "trigger": "va\tvalidates", "contents": "validates :$1, "},
     { "trigger": "vap\tvalidates_presence", "contents": "validates :$1,\n          presence: true"},
+    { "trigger": "vai\tvalidates_inclusion", "contents": "validates :$1,\n          inclusion: { in: $0 }"},
     { "trigger": "vau\tvalidates_uniqueness", "contents": "validates :$1,\n          uniqueness: true"},
     { "trigger": "vapu\tvalidates_presence_uniqueness", "contents": "validates :$1, :presence => true, :uniqueness => \\{:case_sensitive => ${2:true}${3:false}\\}"},
 

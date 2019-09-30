@@ -31,5 +31,7 @@ Dir.mktmpdir do |tmp_dir|
     file.write([vars, css].join(''))
   end
 
+  File.delete(icomoon_zip)
+
   puts "\nDone!\n\n"
 end

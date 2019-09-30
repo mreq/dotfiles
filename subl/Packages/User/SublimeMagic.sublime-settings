@@ -30,12 +30,12 @@
       "name": "Drop dot from class name",
       "context": {
         "scope": ["text.slim"],
-        "line_matches": ["class=\"\\."]
+        "line_matches": ["class=\".*\\."]
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": "class=\"\\.",
-        "replacement": "class=\""
+        "pattern": "\\.",
+        "replacement": " "
       }
     },
 
@@ -50,6 +50,19 @@
         "where": "inside",
         "delimiter": "'",
         "replacement": "$clipboard"
+      }
+    },
+
+    {
+      "name": "Use nested rule",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["\\w*\\.[^_]+__"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\.[^_]+__",
+        "replacement": "&__"
       }
     },
 

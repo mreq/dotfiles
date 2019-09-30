@@ -1,0 +1,6 @@
+// These settings override both User and Default settings for the YAML-ng syntax
+{
+  "detect_indentation": false,
+  "tab_size": 2,
+  "translate_tabs_to_spaces": true,
+}

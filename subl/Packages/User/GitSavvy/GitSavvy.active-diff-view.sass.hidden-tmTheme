@@ -12,6 +12,8 @@
 			<dict>
 				<key>background</key>
 				<string>#181818</string>
+				<key>block_caret</key>
+				<string>#C4C4C466</string>
 				<key>bracketContentsOptions</key>
 				<string>underline</string>
 				<key>bracketsOptions</key>
@@ -415,6 +417,15 @@
 				<string>#0b0b0b</string>
 			</dict>
 		</dict>
+		<dict>
+			<key>scope</key>
+			<string>punctuation.separator.continuation</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#424242</string>
+			</dict>
+		</dict>
 	<dict>
     <key>name</key>
     <string>GitSavvy Added Line</string>
@@ -423,11 +434,11 @@
     <key>settings</key>
     <dict>
 
-        <key>background</key>
-        <string>#37A832</string>
-
         <key>foreground</key>
         <string>#F9F9F4</string>
+
+        <key>background</key>
+        <string>#37A832</string>
 
     </dict>
 </dict><dict>
@@ -438,11 +449,11 @@
     <key>settings</key>
     <dict>
 
-        <key>background</key>
-        <string>#A83732</string>
-
         <key>foreground</key>
         <string>#F9F9F4</string>
+
+        <key>background</key>
+        <string>#A83732</string>
 
     </dict>
 </dict><dict>
@@ -453,11 +464,11 @@
     <key>settings</key>
     <dict>
 
-        <key>background</key>
-        <string>#287020</string>
-
         <key>foreground</key>
         <string>#F9F9F4</string>
+
+        <key>background</key>
+        <string>#287020</string>
 
     </dict>
 </dict><dict>
@@ -468,11 +479,11 @@
     <key>settings</key>
     <dict>
 
-        <key>background</key>
-        <string>#702820</string>
-
         <key>foreground</key>
         <string>#F9F9F4</string>
+
+        <key>background</key>
+        <string>#702820</string>
 
     </dict>
 </dict></array>

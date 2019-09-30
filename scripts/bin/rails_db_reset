@@ -2,5 +2,6 @@
 rm -rf db/schema.rb db/structure.sql
 
 RAILS_ENV=development rails db:environment:set || :
-RAILS_ENV=development rails db:drop db:create db:migrate
+RAILS_ENV=development rails db:drop || :
+RAILS_ENV=development db:create db:migrate
 RAILS_ENV=development rails db:seed
