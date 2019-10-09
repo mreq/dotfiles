@@ -253,6 +253,7 @@ assign [class="csgo_linux64"] → $ico_steam
 assign [class="Steam"] → $ico_steam
 assign [class="Wine" instance="battle.net.exe"] → $ico_game
 assign [class="Wine" instance="wow.exe"] → $ico_game
+assign [class="Wine" instance="explorer.exe"] → $ico_game
 assign [class="Google-chrome" instance=".*.slack.com"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
@@ -299,7 +300,7 @@ exec --no-startup-id i3-msg rename workspace to 1
 exec --no-startup-id xsetroot -solid "$base00"
 exec --no-startup-id select_display guess
 exec --no-startup-id nm-applet
-exec --no-startup-id unagi
+exec --no-startup-id compton
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start -i
 exec --no-startup-id setxkbmap -layout us -option caps:escape

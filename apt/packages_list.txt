@@ -2,6 +2,7 @@ acpi
 awscli
 chromium-browser
 cifs-utils
+compton
 curl
 doublecmd-gtk
 exfat-fuse
@@ -51,7 +52,6 @@ texlive-xetex
 thunderbird
 tmux
 ufraw-batch
-unagi
 unrar
 virtualbox
 vlc
