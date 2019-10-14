@@ -1,68 +1,68 @@
 {
     "globals": {
-        "active_guide": "#545454",
-        "background": "#181818",
-        "bracket_contents_options": "underline",
-        "caret": "#c4c4c4",
-        "find_highlight": "#ffe792",
-        "find_highlight_foreground": "#000000",
-        "foreground": "#c4c4c4",
-        "invisibles": "#424242",
-        "line_highlight": "#2b2b2b",
-        "misspelling": "#ff0000",
-        "selection": "#c4c4c4",
-        "selection_border": "#dedede",
+        "active_guide": "#545454", 
+        "background": "#181818", 
+        "bracket_contents_options": "underline", 
+        "caret": "#c4c4c4", 
+        "find_highlight": "#ffe792", 
+        "find_highlight_foreground": "#000000", 
+        "foreground": "#c4c4c4", 
+        "invisibles": "#424242", 
+        "line_highlight": "#2b2b2b", 
+        "misspelling": "#ff0000", 
+        "selection": "#c4c4c4", 
+        "selection_border": "#dedede", 
         "tags_options": "stippled_underline"
-    },
+    }, 
     "rules": [
         {
-            "foreground": "#E6194B",
-            "name": "rainbow csv rainbow1",
+            "foreground": "#E6194B", 
+            "name": "rainbow csv rainbow1", 
             "scope": "rainbow1"
-        },
+        }, 
         {
-            "foreground": "#3CB44B",
-            "name": "rainbow csv rainbow2",
+            "foreground": "#3CB44B", 
+            "name": "rainbow csv rainbow2", 
             "scope": "keyword.rainbow2"
-        },
+        }, 
         {
-            "foreground": "#FFE119",
-            "name": "rainbow csv rainbow3",
+            "foreground": "#FFE119", 
+            "name": "rainbow csv rainbow3", 
             "scope": "entity.name.rainbow3"
-        },
+        }, 
         {
-            "foreground": "#0082C8",
-            "name": "rainbow csv rainbow4",
+            "foreground": "#0082C8", 
+            "name": "rainbow csv rainbow4", 
             "scope": "comment.rainbow4"
-        },
+        }, 
         {
-            "foreground": "#FABEBE",
-            "name": "rainbow csv rainbow5",
+            "foreground": "#FABEBE", 
+            "name": "rainbow csv rainbow5", 
             "scope": "string.rainbow5"
-        },
+        }, 
         {
-            "foreground": "#46F0F0",
-            "name": "rainbow csv rainbow6",
+            "foreground": "#46F0F0", 
+            "name": "rainbow csv rainbow6", 
             "scope": "entity.name.tag.rainbow6"
-        },
+        }, 
         {
-            "foreground": "#F032E6",
-            "name": "rainbow csv rainbow7",
+            "foreground": "#F032E6", 
+            "name": "rainbow csv rainbow7", 
             "scope": "storage.type.rainbow7"
-        },
+        }, 
         {
-            "foreground": "#008080",
-            "name": "rainbow csv rainbow8",
+            "foreground": "#008080", 
+            "name": "rainbow csv rainbow8", 
             "scope": "support.rainbow8"
-        },
+        }, 
         {
-            "foreground": "#F58231",
-            "name": "rainbow csv rainbow9",
+            "foreground": "#F58231", 
+            "name": "rainbow csv rainbow9", 
             "scope": "constant.language.rainbow9"
-        },
+        }, 
         {
-            "foreground": "#FFFFFF",
-            "name": "rainbow csv rainbow10",
+            "foreground": "#FFFFFF", 
+            "name": "rainbow csv rainbow10", 
             "scope": "variable.language.rainbow10"
         }
     ]

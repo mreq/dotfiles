@@ -1,7 +1,6 @@
 {
 	"atomic_save": false,
-	"binary_file_patterns":
-	[
+	"binary_file_patterns": [
 		"*.dds",
 		"*.eot",
 		"*.ico",
@@ -45,8 +44,7 @@
 	"dpi_scale": 1,
 	"draw_white_space": "selection",
 	"ensure_newline_at_eof_on_save": true,
-	"folder_exclude_patterns":
-	[
+	"folder_exclude_patterns": [
 		".git",
 		".hg",
 		".sass-cache",
@@ -56,27 +54,24 @@
 		"tmp"
 	],
 	"font_face": "Fira Code",
-	"font_options":
-	[
+	"font_options": [
 		"no_liga",
 		"no_clig",
 		"no_calt"
 	],
-	"font_size": 12,
+	"font_size": 11,
 	"hide_minimap": true,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"hot_exit": false,
-	"ignored_packages":
-	[
+	"ignored_packages": [
 		"Six",
 		"SublimeLinter-contrib-standard",
 		"Vintage",
 		"Vintageous"
 	],
 	"inactive_panes_dim_strength": 0.2,
-	"indent_guide_options":
-	[
+	"indent_guide_options": [
 		"draw_normal",
 		"draw_active"
 	],
