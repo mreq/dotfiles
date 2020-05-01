@@ -4,6 +4,8 @@
   [
     { "trigger": "bp\tbinding.pry", "contents": "require 'pry'; binding.pry$0" },
 
+    { "trigger": "dd\tdef show", "contents": "def show\n\trender if model.present?$0\nend" },
+
     { "trigger": "ai\tadd_index", "contents": "add_index :$1, :$0" },
 
     { "trigger": "if", "contents": "if $1\n\t$0\nend" },

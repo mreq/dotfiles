@@ -14,6 +14,32 @@
     // },
 
     {
+      "name": "Wrap javascript imports 1",
+      "context": {
+        "scope": ["source.js", ""],
+        "line_matches": ["import {.*} from"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": " } from",
+        "replacement": "\n} from"
+      }
+    },
+
+    {
+      "name": "Wrap javascript imports 2",
+      "context": {
+        "scope": ["source.js", ""],
+        "line_matches": ["import {.*"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "({ |, )",
+        "replacement": "\\1\n\t"
+      }
+    },
+
+    {
       "name": "Convert cell path to command",
       "context": {
         "scope": ["text.slim"],

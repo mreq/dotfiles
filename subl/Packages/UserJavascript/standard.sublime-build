@@ -1,4 +1,4 @@
 {
-  "cmd": ["standard", "--parser", "babel-eslint", "--fix", "$file"],
+  "cmd": ["/home/petr/.nvm/versions/node/v12.16.1/bin/standard", "--parser", "babel-eslint", "--fix", "$file"],
   "selector": "source.js"
 }

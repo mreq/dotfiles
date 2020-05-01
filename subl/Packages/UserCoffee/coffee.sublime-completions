@@ -56,7 +56,7 @@
 
     // turbolinks
     { "trigger": "tl|turbolinks:load", "contents": "\\$(document).on 'turbolinks:load', ->\n\t$0" },
-    { "trigger": "tb|turbolinks:before-cache", "contents": "\\$(document).on 'turbolinks:before-cache', ->\n\t$0" },
+    { "trigger": "tb|turbolinks:before-render", "contents": "\\$(document).on 'turbolinks:before-render', ->\n\t$0" },
 
     // window resize
     { "trigger": "res\tresize", "contents": "${1:fixLayout}()\n\\$(window).on 'resize', $1" },

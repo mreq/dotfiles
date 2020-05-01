@@ -30,7 +30,7 @@ handle_scrot() {
   fnm="$( basename "$scr" )"
   ext="${fnm##*.}"
 
-  if grep 'chrome' /tmp/scrotshare.txt > /dev/null; then
+  if [ -e /tmp/scrotshare.txt ] && grep 'chrome' /tmp/scrotshare.txt > /dev/null; then
     # Trim the image - remove top 187px
     size=$( identify -format "%[w]x%[h]" "$scr" )
     convert "$scr" -gravity South -crop "$size+0-104" +repage "$scr"
@@ -61,8 +61,8 @@ handle_scrot() {
           push
           ;;
         keep)
-          mv "$scr" ~/Pictures/screenshots/"$nam.$ext"
-          notify-send -i $ico "scrotshare" "Screenshot saved to Pictures."
+          mv "$scr" ~/Downloads/"$nam.$ext"
+          notify-send -i $ico "scrotshare" "Screenshot saved to Downloads."
           ;;
         imgur)
           imgur

@@ -24,8 +24,10 @@
 		"ChannelRepositoryTools",
 		"Cheatsheet",
 		"Chmod",
+		"Color Convert",
 		"Color Highlighter",
 		"CSScheme",
+		"EasyMotion",
 		"EditorConfig",
 		"Emblem.js Syntax Highlighting",
 		"Emoji",
@@ -51,6 +53,7 @@
 		"NeoVintageous",
 		"Nette + Latte + Neon",
 		"nginx",
+		"Nord",
 		"Origami",
 		"Package Control",
 		"PlainTasks",
@@ -80,6 +83,7 @@
 		"TabsExtra",
 		"Text Pastry",
 		"UnitTesting",
+		"VintageLines",
 		"YAML Nav"
 	]
 }

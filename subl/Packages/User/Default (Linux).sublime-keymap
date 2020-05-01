@@ -168,6 +168,22 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
+  // Generic: wrap in brackets
+  {
+    "keys": [" ", "y", "("],
+    "command": "run_macro_file",
+    "args": {"file": "res://Packages/User/Wrap in Brackets.sublime-macro"},
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Generic: wrap in brackets
+  {
+    "keys": [" ", "y", "y"],
+    "command": "run_macro_file",
+    "args": {"file": "res://Packages/User/Wrap in Brackets.sublime-macro"},
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
   // Generic: add line above
   {
     "keys": ["alt+shift+o"],
@@ -223,6 +239,13 @@
   {
     "keys": ["tab"],
     "command": "next_view",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Tabs: next
+  {
+    "keys": ["shift+tab"],
+    "command": "prev_view",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 

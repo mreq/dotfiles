@@ -51,9 +51,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-  xterm-color) color_prompt=yes;;
-esac
+color_prompt=yes
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -104,6 +102,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 export TERM=screen-256color
+# export TERM=tmux-256color
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -119,21 +118,11 @@ alias clipboard='xclip -sel clip'
 alias peg='ps -aux | grep '
 alias R='R --no-save -q'
 alias sudo='sudo '
-alias connect_android='adb forward tcp:9222 localabstract:chrome_devtools_remote'
 alias dmenu_custom="dmenu -i -b -l 10 -nb '#242424' -nf white -sb '#2e557e' -fn 'Ubuntu Mono-12'"
-alias rmux="tmux new 'R --no-save'"
-alias nette-fix="[ -d temp/cache/ ] && [ -f composer.json ] && rm -rf temp/cache/* && composer install"
 alias be="bundle exec"
 alias bi="bundle install"
 alias bo="bundle open"
 alias bs="bin/server"
-alias nr="npm run"
-alias mpc="mina production console"
-alias mpd="mina production deploy"
-alias mps="mina production ssh"
-alias msc="mina staging console"
-alias msd="mina staging deploy"
-alias mss="mina staging ssh"
 alias tmux="TERM=screen-256color-bce tmux"
 alias xfce4-terminal-tmux="xfce4-terminal --maximize --command=tmux"
 alias htop="TERM=screen htop"
@@ -143,12 +132,7 @@ alias h="htop"
 alias bl="bin/lint"
 alias bt="bin/test"
 
-alias g="tig status"
-alias gc="git clone"
-alias gs="git status"
-alias gp="git pull --rebase"
-alias gd="git diff"
-alias gdc="git diff --cached"
+alias g="lazygit"
 
 if [[ -f ~/Applications/sinfin-tools/bin/sinfin ]]; then
   alias sinfin="rvm default do ~/Applications/sinfin-tools/bin/sinfin"
@@ -229,3 +213,5 @@ fi
 PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH
+
+source /home/petr/.config/broot/launcher/bash/br

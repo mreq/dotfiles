@@ -1,0 +1,18 @@
+{
+	"clients":
+	{
+		"ruby":
+		{
+			"command":
+			[
+				"/home/petr/.rvm/gems/ruby-2.4.1/bin/solargraph",
+				"socket"
+			],
+			"enabled": true,
+			"initializationOptions":
+			{
+				"diagnostics": true
+			}
+		}
+	}
+}

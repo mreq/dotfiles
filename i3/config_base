@@ -8,6 +8,7 @@ set $ico_battery 
 set $ico_calendar 
 set $ico_camera 
 set $ico_clock 
+set $ico_code 
 set $ico_folder 
 set $ico_game 
 set $ico_gimp 
@@ -15,16 +16,15 @@ set $ico_light 
 set $ico_mail 
 set $ico_move "  "
 set $ico_music 
+set $ico_muted_volume 
 set $ico_resize "  "
 set $ico_slack 
-set $ico_trello 
-set $ico_volume 
-set $ico_muted_volume 
 set $ico_steam 
+set $ico_trello 
 set $ico_virtualbox 
+set $ico_volume 
 set $ico_whatsapp 
 set $ico_wifi 
-set $ico_zeplin 
 
 font pango: Fira Code, FontAwesome 9
 font xft: Fira Code, FontAwesome 9
@@ -40,10 +40,7 @@ for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [class="Godot" instance="Godot_Engine"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
 for_window [title="Android Emulator -.+"] floating enable
-for_window [class="Wine"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
-for_window [class="dota2"] fullscreen enable
-for_window [class="csgo_linux64"] fullscreen enable
 for_window [workspace=$ico_camera] floating enable
 for_window [class="Sublime_text" workspace=$ico_camera] resize shrink width 10000px; resize shrink height 10000px; resize grow height 300px; resize grow width 500px
 
@@ -103,9 +100,6 @@ bindsym $m+Shift+u layout toggle split
 # toggle tiling / floating
 bindsym $m+Shift+space floating toggle
 
-# change focus between tiling / floating windows
-# bindsym $m+grave focus mode_toggle
-
 # focus the parent container
 bindsym $m+a focus parent
 
@@ -149,11 +143,8 @@ bindsym $m+Shift+F6 move container to workspace number 6
 bindsym $m+Shift+F7 move container to workspace number 7
 bindsym $m+Shift+F8 move container to workspace number 8
 bindsym $m+Shift+F9 move container to workspace number 9
+bindsym $m+Shift+b move container to workspace $ico_game
 
-# reload the configuration file
-#bindsym $m+Shift+c reload
-## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-#bindsym $m+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $m+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -170,29 +161,16 @@ mode $ico_resize {
 }
 bindsym $m+r mode $ico_resize
 
-## move window
-#mode $ico_move {
-#  bindsym $left       move left  10 px
-#  bindsym $down       move down  10 px
-#  bindsym $up         move up    10 px
-#  bindsym $right      move right 10 px
-
-#  # back to normal: Enter or Escape
-#  bindsym Return mode "default"
-#  bindsym Escape mode "default"
-#}
-#bindsym $m+u mode $ico_move
-
 # brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # sound
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master 5%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master 5%- unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master 2%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master 2%- unmute; pkill -SIGRTMIN+10 i3blocks;"
 bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 1+ toggle; pkill -SIGRTMIN+10 i3blocks;"
-bindsym $m+KP_Add exec --no-startup-id "amixer -D pulse sset Master 5%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
-bindsym $m+KP_Subtract exec --no-startup-id "amixer -D pulse sset Master 5%- unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym $m+KP_Add exec --no-startup-id "amixer -D pulse sset Master 2%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym $m+KP_Subtract exec --no-startup-id "amixer -D pulse sset Master 2%- unmute; pkill -SIGRTMIN+10 i3blocks;"
 bindsym $m+KP_Multiply exec --no-startup-id "amixer -D pulse set Master 1+ toggle; pkill -SIGRTMIN+10 i3blocks;"
 bindsym Pause exec "play_pause_spotify"
 bindsym Shift+Pause exec "play_pause_spotify next"
@@ -248,18 +226,17 @@ assign [class="Gimp"] → $ico_gimp
 assign [class="Thunderbird"] → $ico_mail
 assign [class="Scudcloud"] → $ico_slack
 assign [class="Doublecmd"] → $ico_folder
-assign [class="dota2"] → $ico_steam
-assign [class="csgo_linux64"] → $ico_steam
-assign [class="Steam"] → $ico_steam
-assign [class="Wine" instance="battle.net.exe"] → $ico_game
-assign [class="Wine" instance="wow.exe"] → $ico_game
-assign [class="Wine" instance="explorer.exe"] → $ico_game
+assign [class="dota2"] → $ico_game
+assign [class="csgo_linux64"] → $ico_game
+assign [class="Steam"] → $ico_game
+assign [class="Wine"] → $ico_game
 assign [class="Google-chrome" instance=".*.slack.com"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
 assign [class="Google-chrome" instance="calendar.google.com__calendar"] → $ico_calendar
 assign [class="Google-chrome" instance="keep.google.com"] → $ico_calendar
 assign [class="Google-chrome" instance="new.costlocker.com__timetracking"] → $ico_calendar
+assign [class="discord"] → dsc
 
 # Launchers
 bindsym $m+space exec "launch_script"
@@ -267,7 +244,6 @@ bindsym Control+$m+space exec "i3-dmenu-desktop --dmenu='rofi -dmenu -i -p \\"ru
 bindsym $m+Mod1+space exec "rofi -show window"
 #bindsym $m+i exec "i3_controller"
 bindsym Control+$m+s exec "pick_a_subl_project"
-bindsym Control+$m+v exec "pick_a_virtualbox_machine"
 bindsym Mod1+F2 exec "xfce4-appfinder"
 
 # Apps
@@ -281,13 +257,14 @@ bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
 bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Google-chrome -x 'while read url; do (google-chrome --app=$url &); done < ~/Dropbox/ubuntu/various_configs/slack_channels.txt'"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
-bindsym $m+e exec "i3_focus_pinned -w $ico_trello -i trello.com -c Google-chrome -x 'google-chrome --app=https://trello.com/'"
+# bindsym $m+e exec "i3_focus_pinned -w $ico_trello -i trello.com -c Google-chrome -x 'google-chrome --app=https://trello.com/'"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --app=https://web.whatsapp.com/'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --app=$url &); done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c Spotify -x spotify"
-bindsym $m+z exec "i3_focus_pinned -w $ico_zeplin -c Google-chrome -x 'google-chrome --new-window https://app.zeplin.io/projects'"
-bindsym $m+v exec "i3_focus_pinned -w $ico_virtualbox -c VirtualBox -x virtualbox"
+bindsym $m+z exec "i3_focus_pinned -w $ico_code -c Google-chrome -x 'google-chrome --new-window https://bitbucket.org/dashboard/issues'"
 bindsym $m+b exec "i3_focus_pinned -w $ico_game"
+
+bindsym --release $m+Shift+Escape exec "xkill"
 
 # Screenshots
 bindsym Control+Mod1+1 exec "scrotshare create full"

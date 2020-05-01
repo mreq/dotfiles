@@ -14,7 +14,7 @@
     "keys": ["ctrl+space"],
     "command": "run_cmd",
     "args": {
-      "cmd": "fn=$file_name; fn=${fn##*/}; rg --files | rg \".*${fn%.*}\\.(coffee|em).*\" | grep -v $fn | grep -v tests | xargs subl"
+      "cmd": "fn=$file_name; fn=${fn##*/}; rg --files | rg \".*components.*${fn%.*}\\.(coffee|em).*\" | grep -v $fn | grep -v tests | xargs subl"
     },
     "context": [
       { "key": "selector", "operator": "equal", "operand": "source.coffee" },
@@ -27,7 +27,7 @@
     "keys": ["ctrl+space"],
     "command": "run_cmd",
     "args": {
-      "cmd": "fn=$file_name; fn=${fn##*/}; rg --files | rg \".*${fn%.*}\\.(coffee|em).*\" | grep -v $fn | grep -v tests | xargs subl"
+      "cmd": "fn=$file_name; fn=${fn##*/}; rg --files | rg \".*components.*${fn%.*}\\.(coffee|em).*\" | grep -v $fn | grep -v tests | xargs subl"
     },
     "context": [
       { "key": "selector", "operator": "equal", "operand": "source.emblem" },

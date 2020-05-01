@@ -6,7 +6,6 @@ import subprocess
 # because recursion is painfully slow
 namespaces = '(' + '(?:\w+/?)?' * 6 + ')'
 
-
 def get_cell_name(window):
     view = window.active_view()
     path = view.file_name()
@@ -35,6 +34,14 @@ def get_cell_name(window):
 
     return None
 
+def get_controller_name(window):
+    view = window.active_view()
+    path = view.file_name()
+    results = re.search('controllers/(.+_controller)(?:_test)?.rb', path)
+    if results and results.group(1):
+        return results.group(1)
+    else:
+        return None
 
 def create_view(window, extension):
     cell_name = get_cell_name(window)
@@ -89,7 +96,16 @@ class CellOpen(sublime_plugin.WindowCommand):
             else:
                 return self.window.status_message('Not a valid target.')
         else:
-            return self.window.status_message('No ' + target + '.')
+            controller_name = get_controller_name(self.window)
+            if controller_name:
+                if target == 'slim':
+                    pattern = 'app/controllers/' + controller_name + '\.rb'
+                elif target == 'test':
+                    pattern = 'test/controllers/' + controller_name + '_test\.rb'
+                else:
+                    return self.window.status_message('Not a valid target.')
+            else:
+                return self.window.status_message('Not a cell/controller.')
 
         pwd = self.window.folders()[0]
 

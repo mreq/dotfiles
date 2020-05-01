@@ -1,0 +1,53 @@
+[
+	{
+		"args":
+		{
+			"commands":
+			[
+				[
+					"_vi_c",
+					{
+						"count": 1,
+						"mode": "mode_visual",
+						"register": "\""
+					}
+				],
+				[
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					}
+				],
+				[
+					"paste",
+					null
+				]
+			]
+		},
+		"command": "sequence"
+	},
+	{
+		"args":
+		{
+			"mode": "mode_insert"
+		},
+		"command": "_enter_normal_mode"
+	},
+	{
+		"args":
+		{
+			"mode": "mode_internal_normal"
+		},
+		"command": "_enter_visual_mode"
+	},
+	{
+		"args":
+		{
+			"count": 1,
+			"inclusive": false,
+			"mode": "mode_visual",
+			"text_object": "("
+		},
+		"command": "_vi_select_text_object"
+	}
+]
