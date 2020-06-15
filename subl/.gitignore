@@ -1,5 +1,6 @@
 Packages/*
 !Packages/User
+!Packages/User*
 Packages/User/rbql_table_index
 
 !Packages/AceJump

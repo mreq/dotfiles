@@ -143,6 +143,7 @@ bindsym $m+Shift+F6 move container to workspace number 6
 bindsym $m+Shift+F7 move container to workspace number 7
 bindsym $m+Shift+F8 move container to workspace number 8
 bindsym $m+Shift+F9 move container to workspace number 9
+bindsym $m+Shift+z move container to workspace $ico_code
 bindsym $m+Shift+b move container to workspace $ico_game
 
 # exit i3 (logs you out of your X session)

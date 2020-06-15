@@ -84,6 +84,11 @@
   },
 
   {
+    "caption": "Project: Copy cell",
+    "command": "project_copy_cell"
+  },
+
+  {
     "caption": "Project: Generate project file",
     "command": "generate_project"
   }

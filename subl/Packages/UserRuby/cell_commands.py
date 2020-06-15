@@ -2,83 +2,22 @@ import sublime
 import sublime_plugin
 import re
 import subprocess
-
-# because recursion is painfully slow
-namespaces = '(' + '(?:\w+/?)?' * 6 + ')'
-
-def get_cell_name(window):
-    view = window.active_view()
-    path = view.file_name()
-
-    results = re.search(
-        '(?:app|source)/cells/' + namespaces + '/\w+\.(slim|sass|coffee)',
-        path)
-    if results:
-        return results.group(1)
-    else:
-        results = re.search('(?:app|source)/cells/' + namespaces + '_cell\.rb',
-                            path)
-        if results:
-            return results.group(1)
-        else:
-            results = re.search('test/cells/' + namespaces + '_cell_test\.rb',
-                                path)
-            if results:
-                return results.group(1)
-            else:
-                results = re.search(
-                    'app/models/' + namespaces + '/atom/' + namespaces +
-                    '\.rb', path)
-                if results:
-                    return results.group(1) + '/atom/' + results.group(2)
-
-    return None
-
-def get_controller_name(window):
-    view = window.active_view()
-    path = view.file_name()
-    results = re.search('controllers/(.+_controller)(?:_test)?.rb', path)
-    if results and results.group(1):
-        return results.group(1)
-    else:
-        return None
-
-def create_view(window, extension):
-    cell_name = get_cell_name(window)
-
-    if cell_name is None:
-        return window.status_message('Not a cell view.')
-
-    cell_base_name = cell_name.split('/').pop()
-
-    path = window.active_view().file_name()
-    if '_cell.rb' in path:
-        new_path = re.sub('/_cell.rb', '/' + cell_name + '.' + extension, path)
-    else:
-        new_path = re.sub('/\w+\.slim', '/' + cell_base_name + '.' + extension,
-                          path)
-
-    window.open_file(new_path)
-
-
-def clear_sprockets_cache(window):
-    subprocess.call('rm -r tmp/cache/assets/sprockets/*', shell=True)
-
+from . import ruby_cell_utils
 
 class CellCreateSass(sublime_plugin.WindowCommand):
     def run(self):
-        create_view(self.window, 'sass')
-        clear_sprockets_cache(self.window)
+        ruby_cell_utils.create_view(self.window, 'sass')
+        ruby_cell_utils.clear_sprockets_cache(self.window)
 
 
 class CellCreateCoffee(sublime_plugin.WindowCommand):
     def run(self):
-        create_view(self.window, 'coffee')
+        ruby_cell_utils.create_view(self.window, 'coffee')
 
 
 class CellOpen(sublime_plugin.WindowCommand):
     def run(self, target):
-        cell_name = get_cell_name(self.window)
+        cell_name = ruby_cell_utils.get_cell_name(self.window)
 
         if cell_name:
             cell_base_name = cell_name.split('/').pop()
@@ -96,7 +35,7 @@ class CellOpen(sublime_plugin.WindowCommand):
             else:
                 return self.window.status_message('Not a valid target.')
         else:
-            controller_name = get_controller_name(self.window)
+            controller_name = ruby_cell_utils.get_controller_name(self.window)
             if controller_name:
                 if target == 'slim':
                     pattern = 'app/controllers/' + controller_name + '\.rb'

@@ -2,12 +2,13 @@
   // Git: git status
   {
     "keys": [" ", "g", "s"],
-    "command": "chain",
-     "args": {
-       "commands": [
-         ["gs_show_status"]
-       ]
-     },
+    "command": "gs_show_status",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  {
+    "keys": [" ", "g", "i"],
+    "command": "gs_inline_diff",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -76,13 +77,10 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
-  // Git: gitk current file
+  // Git: list issues
   {
-    "keys": [" ", "g", "k"],
-    "command": "run_cmd",
-    "args": {
-      "cmd": "gitk $file_name"
-    },
+    "keys": [" ", "g", "i"],
+    "command": "git_show_issues_on_remote",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
