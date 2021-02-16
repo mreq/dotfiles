@@ -584,6 +584,24 @@
     ]
   },
 
+  // Align arguments: format
+  {
+    "keys": [" ", "a", "a"],
+    "command": "format_arguments",
+    "context": [
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  // Align arguments: align
+  {
+    "keys": [" ", "a", "i"],
+    "command": "align_arguments",
+    "context": [
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
   // { "keys": ["ctrl+shift+l"], "command": "list_stylesheet_variables", "context": [
   //   { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
   // ]},
@@ -666,8 +684,38 @@
     "args": {
       "case_sensitive": false
     }
-  }
+  },
 
+  // slim: ctrl+shift+space BEM__
+  {
+    "keys": ["ctrl+shift+space"],
+    "command": "add_slim_bem_prefix",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.slim" },
+      { "key": "vi_insert_mode_aware" }
+    ]
+  },
+
+  // sass: ctrl+shift+space &__
+  {
+    "keys": ["ctrl+shift+space"],
+    "command": "insert_snippet",
+    "args": { "contents": "&__$1\n  $0" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.sass" }
+    ]
+  },
+
+
+  // scss: ctrl+shift+space &__
+  {
+    "keys": ["ctrl+shift+space"],
+    "command": "insert_snippet",
+    "args": { "contents": "&__$1 {\n  $0\n}" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.scss" }
+    ]
+  }
 
   // //////////////////////
   // // SublimeTODO

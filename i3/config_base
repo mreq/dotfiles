@@ -40,6 +40,7 @@ for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [class="Godot" instance="Godot_Engine"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
 for_window [title="Android Emulator -.+"] floating enable
+for_window [class="Thunar"] floating enable, resize set 1400 850, move absolute position center
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [workspace=$ico_camera] floating enable
 for_window [class="Sublime_text" workspace=$ico_camera] resize shrink width 10000px; resize shrink height 10000px; resize grow height 300px; resize grow width 500px
@@ -218,6 +219,8 @@ bindsym $m+F12 exec "i3_switch_colors"
 
 # Window rules
 for_window [class="Thunderbird" instance="Msgcompose"] floating enable
+for_window [class="Wine" instance="mtga.exe"] floating disable
+for_window [class="dota2"] fullscreen enable
 
 # Assigns
 assign [class="VirtualBox"] → $ico_virtualbox
@@ -228,6 +231,9 @@ assign [class="Thunderbird"] → $ico_mail
 assign [class="Scudcloud"] → $ico_slack
 assign [class="Doublecmd"] → $ico_folder
 assign [class="dota2"] → $ico_game
+assign [class="Lutris"] → $ico_game
+assign [class="battle.net.exe"] → $ico_game
+assign [class="wowclassic.exe"] → $ico_game
 assign [class="csgo_linux64"] → $ico_game
 assign [class="Steam"] → $ico_game
 assign [class="Wine"] → $ico_game
@@ -248,7 +254,7 @@ bindsym Control+$m+s exec "pick_a_subl_project"
 bindsym Mod1+F2 exec "xfce4-appfinder"
 
 # Apps
-bindsym $m+1 exec "i3_focus_or_run 'Google-chrome' 'google-chrome'"
+bindsym $m+1 exec "i3_focus_or_run 'Google-chrome' 'google-chrome --force-device-scale-factor=1'"
 bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
 bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\"tmux -2\\"'"
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
@@ -256,13 +262,13 @@ bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar'"
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Google-chrome -x 'while read url; do (google-chrome --app=$url &); done < ~/Dropbox/ubuntu/various_configs/slack_channels.txt'"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/slack_channels.txt'"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
-# bindsym $m+e exec "i3_focus_pinned -w $ico_trello -i trello.com -c Google-chrome -x 'google-chrome --app=https://trello.com/'"
-bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --app=https://web.whatsapp.com/'"
-bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --app=$url &); done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
+# bindsym $m+e exec "i3_focus_pinned -w $ico_trello -i trello.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://trello.com/'"
+bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://web.whatsapp.com/'"
+bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c Spotify -x spotify"
-bindsym $m+z exec "i3_focus_pinned -w $ico_code -c Google-chrome -x 'google-chrome --new-window https://bitbucket.org/dashboard/issues'"
+bindsym $m+z exec "i3_focus_pinned -w $ico_code -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --new-window https://github.com/issues?q=is%3Aissue+assignee%3Amreq+is%3Aopen'"
 bindsym $m+b exec "i3_focus_pinned -w $ico_game"
 
 bindsym --release $m+Shift+Escape exec "xkill"

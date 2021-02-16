@@ -55,6 +55,11 @@ handle_scrot() {
         notify-send -i $ico "scrotshare" "Not supported yet."
         # curl -s -F "image=@$1" -F "key=api-key" https://imgur.com/api/upload.xml
       }
+      clipboard() {
+        xclip -selection clipboard -t image/png -i $scr
+        rm $scr
+        notify-send -i $ico "scrotshare" "Screenshot contents copied to clipboard."
+      }
 
       case $action in
         push)
@@ -63,6 +68,9 @@ handle_scrot() {
         keep)
           mv "$scr" ~/Downloads/"$nam.$ext"
           notify-send -i $ico "scrotshare" "Screenshot saved to Downloads."
+          ;;
+        clipboard)
+          clipboard
           ;;
         imgur)
           imgur
@@ -81,7 +89,7 @@ handle_scrot() {
       notify-send -i $ico "scrotshare" "Screenshot not saved."
     }
 
-    is_ok=$( echo -e "push\nkeep\nremove\ngimp" | rofi -dmenu -i -p '↠ ' ) && init $is_ok || rm_scrot
+    is_ok=$( echo -e "push\nclipboard\nkeep\nremove\ngimp" | rofi -dmenu -i -p '↠ ' ) && init $is_ok || rm_scrot
   fi
 }
 

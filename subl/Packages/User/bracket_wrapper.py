@@ -2,19 +2,8 @@ import sublime
 import sublime_plugin
 import re
 import subprocess
-from . import ruby_cell_utils
 
-class CellCreateSass(sublime_plugin.WindowCommand):
-    def run(self):
-        ruby_cell_utils.create_view(self.window, 'sass', 'scss')
-
-
-class CellCreateCoffee(sublime_plugin.WindowCommand):
-    def run(self):
-        ruby_cell_utils.create_view(self.window, 'coffee')
-
-
-class CellOpen(sublime_plugin.WindowCommand):
+class BracketWrapper(sublime_plugin.WindowCommand):
     def run(self, target):
         cell_name = ruby_cell_utils.get_cell_name(self.window)
 

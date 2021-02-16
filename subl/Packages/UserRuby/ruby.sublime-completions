@@ -2,7 +2,7 @@
   "scope": "source.ruby",
   "completions":
   [
-    { "trigger": "bp\tbinding.pry", "contents": "require 'pry'; binding.pry$0" },
+    { "trigger": "bp\tbinding.pry", "contents": "require \"pry\"; binding.pry$0" },
 
     { "trigger": "dd\tdef show", "contents": "def show\n\trender if model.present?$0\nend" },
 
@@ -16,6 +16,6 @@
 
     { "trigger": "ivg\tinstance_variable_get", "contents": "instance_variable_get(:@$0)" },
     { "trigger": "do\tdo..end", "contents": "do\n\t$0\nend" },
-    { "trigger": "it\tI18n.t", "contents": "I18n.t('$0')" }
+    { "trigger": "it\tI18n.t", "contents": "I18n.t(\"$0\")" }
   ]
 }

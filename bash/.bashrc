@@ -173,7 +173,7 @@ e() {
 }
 
 wrg() {
-  ( cd ~/work; rg -g *.$1 ${*:2} )
+  ( cd ~/work; rg -g *.$1 "${*:2}" )
 }
 
 export VISUAL=nvim

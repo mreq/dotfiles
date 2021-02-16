@@ -17,6 +17,8 @@ Dir.mktmpdir do |tmp_dir|
 
   puts 'Copying fonts'
   FileUtils.cp_r tmp_path.join('fonts'), pwd.join('app/assets')
+  File.delete(pwd.join('app/assets/fonts/icomoon.svg'))
+  File.delete(pwd.join('app/assets/fonts/icomoon.ttf'))
 
   puts 'Copying selection.json'
   FileUtils.cp_r tmp_path.join('selection.json'), pwd.join('app/assets/fonts')
@@ -28,6 +30,7 @@ Dir.mktmpdir do |tmp_dir|
   FileUtils.mkdir_p pwd.join('app/assets/stylesheets/icons')
 
   File.open(pwd.join('app/assets/stylesheets/icons/_data.scss'), 'w') do |file|
+    file.write("// This file is generated via a script. Don't edit by hand.\n\n")
     file.write([vars, css].join(''))
   end
 

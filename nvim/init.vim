@@ -35,11 +35,6 @@ set rtp+=~/.fzf
 packloadall
 
 " Splits/window management
-" nnoremap <silent> <M-h> :<C-w>h
-" nnoremap <silent> <M-j> :<C-w>j
-" nnoremap <silent> <M-k> :<C-w>k
-" nnoremap <silent> <M-l> :<C-w>l
-
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <M-k> :TmuxNavigateUp<cr>

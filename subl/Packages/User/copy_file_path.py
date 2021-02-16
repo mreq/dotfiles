@@ -25,7 +25,7 @@ class CopyFilePathAsRailsTest(CopyFilePath):
 
     def get_path(self):
         path = super().get_path()
-        return 'r t ' + path
+        return 'PARALLEL_WORKERS=1 r t ' + path
 
 class CopyFilePathAsReactTest(CopyFilePath):
 

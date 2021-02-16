@@ -8,6 +8,7 @@ npm-debug.log
 # Dumps
 /dump.sql
 /db/*_*.sql
+/db/*_*.sql.gz
 
 # ctags
 /.tags*

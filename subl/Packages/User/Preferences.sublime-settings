@@ -1,4 +1,8 @@
 {
+  "align_arguments": {
+    "line_length": 1,
+    "one_per_line": true
+  },
   "atomic_save": false,
   "binary_file_patterns": [
     "*.dds",

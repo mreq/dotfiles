@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for file in ~/Downloads/baseline*.svg; do
+for file in ~/Downloads/*-24px.svg; do
   name=${file/baseline-/}
   final=${name/-24px/}
   mv $file $final

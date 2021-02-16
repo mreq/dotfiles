@@ -14,6 +14,18 @@
     // },
 
     {
+      "name": "Method alignment",
+      "context": {
+        "scope": ["source.ruby"],
+        "line_matches": ["\\s+\\.\\w"]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "method_alignment"
+      }
+    },
+
+    {
       "name": "Wrap javascript imports 1",
       "context": {
         "scope": ["source.js", ""],

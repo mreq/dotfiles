@@ -9,7 +9,6 @@ options=(
   'notebook-HDMI'
 )
 
-notebook_output=$( xrandr | grep -v DVI | grep -v HDMI | head -n2 | tail -n1 | awk '{ print $1 }' )
 hdmi_output=$( xrandr | grep 'HDMI.* connected' | head -n1 | awk '{ print $1 }' )
 dvi_output=$( xrandr | grep 'DVI.* connected' | head -n1 | awk '{ print $1 }' )
 vga_output=VGA1
@@ -26,19 +25,14 @@ select_display() {
   case $1 in
     guess )
       guess_display ;;
-    notebook )
-      xrandr --output $notebook_output --auto --output $hdmi_output --off --output $vga_output --off ;;
-    notebook-HDMI )
-      xrandr --output $hdmi_output --auto --primary --output $vga_output --off --output $dvi_output --off --output $notebook_output --auto --below $hdmi_output ;;
     HDMI )
-      xrandr --output $hdmi_output --auto --primary --output $vga_output --off --output $dvi_output --off --output $notebook_output --off ;;
+      xrandr --output $hdmi_output --auto --primary --output $dvi_output --off ;;
     HDMI-DVI )
-      echo "xrandr --output $hdmi_output --auto --primary --output $dvi_output --auto --left-of $hdmi_output --output $notebook_output --off"
-      xrandr --output $hdmi_output --auto --primary --output $dvi_output --auto --left-of $hdmi_output --output $notebook_output --off ;;
+      xrandr --output $hdmi_output --auto --primary --output $dvi_output --auto --left-of $hdmi_output ;;
     DVI )
-      xrandr --output $dvi_output --auto --primary --output $vga_output --off --output $hdmi_output --off --output $notebook_output --off ;;
+      xrandr --output $dvi_output --auto --primary --output $hdmi_output --off ;;
     VGA )
-      xrandr --output $vga_output --auto --output $notebook_output --off ;;
+      xrandr --output $vga_output --auto ;;
   esac
 }
 

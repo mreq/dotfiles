@@ -79,6 +79,11 @@
   },
 
   {
+    "caption": "Move open files",
+    "command": "move_open_files"
+  },
+
+  {
     "caption": "Project: Copy file",
     "command": "project_copy_file"
   },
