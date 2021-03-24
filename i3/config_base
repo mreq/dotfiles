@@ -184,6 +184,7 @@ bindsym Control+Shift+Print exec "play_pause_spotify prev"
 bar {
   status_command i3blocks
   tray_output primary
+  output DP-0
   output HDMI-0
   output HDMI-1
   output HDMI-2

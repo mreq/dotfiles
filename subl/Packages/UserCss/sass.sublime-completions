@@ -56,6 +56,10 @@
     { "trigger": "por\trelative", "contents": "position: relative" },
     { "trigger": "pos\tstatic", "contents": "position: static" },
 
+    { "trigger": "aa\tabsolute", "contents": "position: absolute\ntop: 0\nright: 0\nbottom: 0\nleft: 0" },
+    { "trigger": "dfa\tflex-alilgned", "contents": "display: flex\nalign-items: center\njustify-content: center" },
+    { "trigger": "wh\twidth-height", "contents": "width: $0\nheight: $0" },
+
     { "trigger": "ovh\toverflow-hidden", "contents": "overflow: hidden" },
     { "trigger": "ovv\toverflow-visible", "contents": "overflow: visible" },
     { "trigger": "ovx\toverflow-x", "contents": "overflow-x: $0" },
@@ -135,6 +139,7 @@
     { "trigger": "ai\talign-items", "contents": "align-items: ${0:center}" },
     { "trigger": "fd\tflex-direction", "contents": "flex-direction: ${0:column}" },
     { "trigger": "fp\tflex-wrap", "contents": "flex-wrap: wrap" },
+    { "trigger": "ff\tflex", "contents": "flex: ${1:0} ${2:0} ${0:auto}" },
 
     // Bootstrap
     { "trigger": "fsm\tfont-size-sm", "contents": "font-size: \\$font-size-sm" },
