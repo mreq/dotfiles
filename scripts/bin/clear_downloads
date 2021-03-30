@@ -1,2 +1,0 @@
-#!/bin/bash
-find /home/petr/Downloads -mtime +14 -delete

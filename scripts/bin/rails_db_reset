@@ -1,7 +1,0 @@
-#!/bin/bash
-rm -rf db/schema.rb db/structure.sql
-
-RAILS_ENV=development bin/rails db:environment:set || :
-RAILS_ENV=development bin/rails db:drop || :
-RAILS_ENV=development bin/rails db:migrate
-RAILS_ENV=development bin/rails db:seed

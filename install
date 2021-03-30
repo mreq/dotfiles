@@ -1,27 +1,29 @@
 #!/bin/bash
 
-# Pull submodules
-git submodule update --init --recursive
-git submodule foreach "(git checkout master; git pull)"
-( cd subl/Packages/GitSavvy; git checkout vintageous-friendly-new )
+create_symlink() {
+  test -h $2 || ( rm -rf $2 && mkdir -p $( dirname $2 ) && ln -s ~/.dotfiles/$1 $2 )
+}
 
-# Clean some folders
-rm -rf ~/.config/doublecmd/doublecmd.xml ~/.config/doublecmd/shortcuts.scf
-rm -rf ~/.config/xfce4/panel ~/.config/xfce4/xfconf
+create_symlink git/.gitconfig ~/.gitconfig
 
-# Dropbox symlinks
-if [[ -d ~/Dropbox/ubuntu ]]; then
-  rm -rf ~/.fonts
-  ln -s ~/Dropbox/ubuntu/fonts ~/.fonts
-  rm -rf ~/texmf
-  ln -s ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
-  rm -rf ~/sublime_projects
-  ln -s ~/Dropbox/ubuntu/sublime_projects ~/sublime_projects
-  rm -rf ~/.ssh/config
-  ln -s ~/Dropbox/ubuntu/ssh/config ~/.ssh/config
-  rm -rf ~/.ssh/known_hosts
-  ln -s ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
-fi
+create_symlink git/ignore ~/.config/git/ignore
 
-# Run dotty
-dotty/dotty.py install.json
+create_symlink bash/.bashrc ~/.bashrc
+
+create_symlink bash/.profile ~/.profile
+
+create_symlink X/.Xdefaults ~/.Xdefaults
+
+create_symlink doublecmd/doublecmd.xml ~/.config/doublecmd/doublecmd.xml
+
+create_symlink doublecmd/shortcuts.scf ~/.config/doublecmd/shortcuts.scf
+
+create_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
+
+create_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
+
+create_symlink X/.inputrc ~/.inputrc
+
+create_symlink X/.screenrc ~/.screenrc
+
+create_symlink tmux/.tmux.conf ~/.tmux.conf

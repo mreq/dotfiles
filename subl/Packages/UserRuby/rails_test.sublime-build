@@ -1,6 +1,0 @@
-{
-  "cmd": ["rvm-auto-ruby", "-S", "bundle", "exec", "bin/rails", "test", "$file"],
-  "working_dir": "$project_path",
-  "file_regex": ".+_test.rb",
-  "selector": "source.ruby.rails"
-}

@@ -1,6 +1,0 @@
-#!/bin/bash
-if pgrep synergys > /dev/null; then
-  echo "<txt><span background=\"#0081F2\" foreground=\"white\"> QS </span></txt>"
-else
-  echo "<txt><span foreground=\"#767f7f\">QS</span></txt>"
-fi

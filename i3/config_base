@@ -76,7 +76,7 @@ bindsym $m+BackSpace exec switch_keyboard_layout
 bindsym $m+o exec select_power_action
 bindsym $m+Shift+o exec "select_power_action screen"
 bindsym $m+p exec select_display
-bindsym $m+Shift+p exec select_display notebook
+bindsym $m+Shift+p exec select_display guess
 bindsym Control+$m+p exec select_display HDMI
 
 # move focused window
@@ -85,18 +85,8 @@ bindsym $m+Shift+$down move down
 bindsym $m+Shift+$up move up
 bindsym $m+Shift+$right move right
 
-# split in horizontal orientation
-bindsym $m+bracketleft split h
-
-# split in vertical orientation
-bindsym $m+bracketright split v
-
 # enter fullscreen mode for the focused container
 bindsym $m+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $m+u layout tabbed
-bindsym $m+Shift+u layout toggle split
 
 # toggle tiling / floating
 bindsym $m+Shift+space floating toggle
@@ -108,12 +98,6 @@ bindsym $m+a focus parent
 bindsym $m+c focus child
 
 bindsym $m+Shift+s exec i3_scratchpad_toggle
-# move the currently focused window to the scratchpad
-#bindsym $m+Shift+minus move scratchpad
-
-## Show the next scratchpad window or hide the focused scratchpad window.
-## If there are multiple scratchpad windows, this command cycles through them.
-#bindsym $m+minus scratchpad show
 
 # Smart workspaces
 workspace_auto_back_and_forth yes
@@ -150,19 +134,6 @@ bindsym $m+Shift+b move container to workspace $ico_game
 # exit i3 (logs you out of your X session)
 bindsym $m+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode $ico_resize {
-  bindsym $left       resize shrink width  10 px or 1 ppt
-  bindsym $down       resize grow   height 10 px or 1 ppt
-  bindsym $up         resize shrink height 10 px or 1 ppt
-  bindsym $right      resize grow   width  10 px or 1 ppt
-
-  # back to normal: Enter or Escape
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $m+r mode $ico_resize
-
 # brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
@@ -184,15 +155,8 @@ bindsym Control+Shift+Print exec "play_pause_spotify prev"
 bar {
   status_command i3blocks
   tray_output primary
-  output DP-0
-  output HDMI-0
-  output HDMI-1
-  output HDMI-2
-  output VGA-1
-  output LVDS-1
-  output eDP-1
-  output DVI-1
-  output DVI-D-0
+  output DisplayPort-1
+  output HDMI-A-0
   position top
   font pango: Fira Code, FontAwesome 10
   font xft: Fira Code, FontAwesome 10
@@ -216,43 +180,25 @@ client.focused_inactive  $base00  $base00     $base07
 client.unfocused         $base00  $base00     $base07
 client.urgent            $base08  $base08     $base00
 
-bindsym $m+F12 exec "i3_switch_colors"
-
 # Window rules
 for_window [class="Thunderbird" instance="Msgcompose"] floating enable
-for_window [class="Wine" instance="mtga.exe"] floating disable
-for_window [class="dota2"] fullscreen enable
 
 # Assigns
 assign [class="VirtualBox"] → $ico_virtualbox
-assign [class="chromium-browser"] → $ico_calendar
 assign [class="Spotify"] → $ico_music
 assign [class="Gimp"] → $ico_gimp
 assign [class="Thunderbird"] → $ico_mail
-assign [class="Scudcloud"] → $ico_slack
 assign [class="Doublecmd"] → $ico_folder
-assign [class="dota2"] → $ico_game
-assign [class="Lutris"] → $ico_game
-assign [class="battle.net.exe"] → $ico_game
-assign [class="wowclassic.exe"] → $ico_game
-assign [class="csgo_linux64"] → $ico_game
-assign [class="Steam"] → $ico_game
-assign [class="Wine"] → $ico_game
 assign [class="Google-chrome" instance=".*.slack.com"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
 assign [class="Google-chrome" instance="calendar.google.com__calendar"] → $ico_calendar
 assign [class="Google-chrome" instance="keep.google.com"] → $ico_calendar
 assign [class="Google-chrome" instance="new.costlocker.com__timetracking"] → $ico_calendar
-assign [class="discord"] → dsc
 
 # Launchers
-bindsym $m+space exec "launch_script"
-bindsym Control+$m+space exec "i3-dmenu-desktop --dmenu='rofi -dmenu -i -p \\"run ↠ \\"'"
-bindsym $m+Mod1+space exec "rofi -show window"
-#bindsym $m+i exec "i3_controller"
+bindsym $m+space exec "i3-dmenu-desktop --dmenu='rofi -dmenu -i -p \\"run ↠ \\"'"
 bindsym Control+$m+s exec "pick_a_subl_project"
-bindsym Mod1+F2 exec "xfce4-appfinder"
 
 # Apps
 bindsym $m+1 exec "i3_focus_or_run 'Google-chrome' 'google-chrome --force-device-scale-factor=1'"
@@ -265,14 +211,13 @@ bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
 bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/slack_channels.txt'"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
-# bindsym $m+e exec "i3_focus_pinned -w $ico_trello -i trello.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://trello.com/'"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://web.whatsapp.com/'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c Spotify -x spotify"
 bindsym $m+z exec "i3_focus_pinned -w $ico_code -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --new-window https://github.com/issues?q=is%3Aissue+assignee%3Amreq+is%3Aopen'"
 bindsym $m+b exec "i3_focus_pinned -w $ico_game"
 
-bindsym --release $m+Shift+Escape exec "xkill"
+# bindsym --release $m+Shift+Escape exec "xkill"
 
 # Screenshots
 bindsym Control+Mod1+1 exec "scrotshare create full"
@@ -281,15 +226,13 @@ bindsym Control+Mod1+3 exec "scrotshare create window"
 bindsym Control+Mod1+4 exec "scrotshare create chrome"
 
 # Startup
-exec --no-startup-id i3-msg rename workspace to 1
-exec --no-startup-id xsetroot -solid "$base00"
-exec --no-startup-id select_display guess
+# exec --no-startup-id select_display guess
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start -i
 exec --no-startup-id setxkbmap -layout us -option caps:escape
-exec --no-startup-id xrdb -merge ~/.Xdefaults
-exec --no-startup-id xmodmap ~/.Xmodmap
-exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid
-exec --no-startup-id i3_switch_colors dark
+# exec --no-startup-id xrdb -merge ~/.Xdefaults
+# exec --no-startup-id xmodmap ~/.Xmodmap
+# exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid
+# exec --no-startup-id i3_switch_colors dark

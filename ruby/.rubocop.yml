@@ -1,4 +1,0 @@
-AllCops:
-  Exclude:
-    - 'db/schema.rb'
-  TargetRubyVersion: 2.6.6

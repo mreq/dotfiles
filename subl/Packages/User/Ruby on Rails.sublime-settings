@@ -1,8 +1,0 @@
-{
-	"extensions":
-	[
-		"rb"
-	],
-  "rulers": [80],
-  "detect_indentation": false,
-}

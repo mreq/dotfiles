@@ -10,22 +10,31 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-  # include .bashrc if it exists
-  if [ -f "$HOME/.bashrc" ]; then
-    source "$HOME/.bashrc"
-  fi
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
 
 for dir in $HOME/.dotfiles/*/bin; do
   PATH="$PATH:$dir"
 done
 
-PATH="$PATH:$HOME/.local/bin"
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export BUNDLER_EDITOR="subl -n"
 
-PATH="$PATH:$HOME/.nvm/versions/node/v6.10.3/bin"
-
-export EDITOR=nvim
-export PYTHONPATH="$HOME/.local/lib/python3.5/site-packages"
-export PATH
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

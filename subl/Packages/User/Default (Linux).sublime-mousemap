@@ -1,6 +1,0 @@
-[
-  // Disable ctrl+scroll wheel size modifier
-  { "button": "scroll_down", "modifiers": ["ctrl"], "command": "null" },
-  // Disable ctrl+scroll wheel size modifier
-  { "button": "scroll_up", "modifiers": ["ctrl"], "command": "null" }
-]

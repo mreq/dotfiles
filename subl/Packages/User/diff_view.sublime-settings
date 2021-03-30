@@ -1,4 +1,0 @@
-// These settings override both User and Default settings for the diff_view syntax
-{
-  "vintage_lines.force_mode": false
-}

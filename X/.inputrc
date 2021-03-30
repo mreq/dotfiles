@@ -29,7 +29,7 @@ set mark-symlinked-directories on
 "\e[A": history-search-backward
 
 # Do not autocomplete hidden files unless the pattern explicitly begins with a dot
-set match-hidden-files off
+set match-hidden-files on
 
 # Show all autocomplete results at once
 set page-completions off
