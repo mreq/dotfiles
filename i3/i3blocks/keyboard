@@ -1,6 +1,6 @@
 #!/bin/sh
 if setxkbmap -query | grep -q -E 'layout: +us'; then
-  echo '   EN '
+  echo '  EN '
 else
-  echo '<span background="#ac4142" foreground="#151515">   CZ </span>'
+  echo '<span background="#ac4142" foreground="#151515">  CZ </span>'
 fi

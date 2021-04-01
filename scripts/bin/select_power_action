@@ -1,0 +1,33 @@
+#!/bin/bash
+actions=(
+  'suspend'
+  'screen'
+  'reboot'
+  'shutdown'
+  'logout'
+  'restart'
+  'poweroff'
+)
+
+select_action() {
+  case $1 in
+    screen )
+      sleep 1 && xset dpms force off ;;
+    suspend )
+      # x=$(( $(  wmctrl -d | head -n1 | awk '{ print $4 }' | awk -F'x' '{ print $1 }' ) - 40 ))
+      # xdotool mousemove $x 10 && xdotool click 1 && xdotool mousemove $x 37 && sleep 0.5s && xdotool click 1
+      systemctl suspend ;;
+    reboot|restart )
+      systemctl reboot ;;
+    shutdown|poweroff )
+      systemctl poweroff ;;
+    logout )
+      i3-msg exit ;;
+  esac
+}
+
+if [[ $1 ]]; then
+  select_action "$1"
+else
+  select_action "$( printf "%s\n" "${actions[@]}" | rofi -dmenu -i -p '↠ ' -hlbg '#4F5A0B' -bc '#4F5A0B' )"
+fi

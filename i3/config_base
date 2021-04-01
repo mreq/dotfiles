@@ -34,16 +34,11 @@ hide_edge_borders both
 new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
-for_window [class="Gdebi-gtk"] floating enable
-for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="Wine"] floating disable
 for_window [class="Gtk-recordmydesktop"] floating enable
-for_window [class="Godot" instance="Godot_Engine"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
-for_window [title="Android Emulator -.+"] floating enable
 for_window [class="Thunar"] floating enable, resize set 1400 850, move absolute position center
 for_window [class="SimpleScreenRecorder"] floating enable
-for_window [workspace=$ico_camera] floating enable
-for_window [class="Sublime_text" workspace=$ico_camera] resize shrink width 10000px; resize shrink height 10000px; resize grow height 300px; resize grow width 500px
 
 # drag floating windows
 floating_modifier $m
@@ -155,11 +150,9 @@ bindsym Control+Shift+Print exec "play_pause_spotify prev"
 bar {
   status_command i3blocks
   tray_output primary
-  output DisplayPort-1
-  output HDMI-A-0
   position top
-  font pango: Fira Code, FontAwesome 10
-  font xft: Fira Code, FontAwesome 10
+  font pango: Fira Code, FontAwesome 11
+  font xft: Fira Code, FontAwesome 11
   colors {
     background $base00
     statusline $base07
@@ -226,13 +219,12 @@ bindsym Control+Mod1+3 exec "scrotshare create window"
 bindsym Control+Mod1+4 exec "scrotshare create chrome"
 
 # Startup
-# exec --no-startup-id select_display guess
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start -i
 exec --no-startup-id setxkbmap -layout us -option caps:escape
-# exec --no-startup-id xrdb -merge ~/.Xdefaults
-# exec --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id xrdb -merge ~/.Xdefaults
+exec --no-startup-id i3_switch_colors dark
+# exec --no-startup-id select_display guess
 # exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid
-# exec --no-startup-id i3_switch_colors dark

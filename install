@@ -1,29 +1,49 @@
 #!/bin/bash
 
 create_symlink() {
-  test -h $2 || ( rm -rf $2 && mkdir -p $( dirname $2 ) && ln -s ~/.dotfiles/$1 $2 )
+  test -h $2 || ( rm -rf $2 && mkdir -p $( dirname $2 ) && ln -s $1 $2 )
 }
 
-create_symlink git/.gitconfig ~/.gitconfig
+create_dotfiles_symlink() {
+  create_symlink ~/.dotfiles/$1 $2
+}
 
-create_symlink git/ignore ~/.config/git/ignore
+mkdir -p ~/.config/i3
 
-create_symlink bash/.bashrc ~/.bashrc
+create_dotfiles_symlink git/.gitconfig ~/.gitconfig
 
-create_symlink bash/.profile ~/.profile
+create_dotfiles_symlink git/ignore ~/.config/git/ignore
 
-create_symlink X/.Xdefaults ~/.Xdefaults
+create_dotfiles_symlink bash/.bashrc ~/.bashrc
 
-create_symlink doublecmd/doublecmd.xml ~/.config/doublecmd/doublecmd.xml
+create_dotfiles_symlink bash/.bash_aliases ~/.bash_aliases
 
-create_symlink doublecmd/shortcuts.scf ~/.config/doublecmd/shortcuts.scf
+create_dotfiles_symlink bash/.profile ~/.profile
 
-create_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
+create_dotfiles_symlink X/.Xdefaults ~/.Xdefaults
 
-create_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
+create_dotfiles_symlink doublecmd/doublecmd.xml ~/.config/doublecmd/doublecmd.xml
 
-create_symlink X/.inputrc ~/.inputrc
+create_dotfiles_symlink doublecmd/shortcuts.scf ~/.config/doublecmd/shortcuts.scf
 
-create_symlink X/.screenrc ~/.screenrc
+create_dotfiles_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
 
-create_symlink tmux/.tmux.conf ~/.tmux.conf
+create_dotfiles_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
+
+create_dotfiles_symlink X/.inputrc ~/.inputrc
+
+create_dotfiles_symlink X/.screenrc ~/.screenrc
+
+create_dotfiles_symlink tmux/.tmux.conf ~/.tmux.conf
+
+create_dotfiles_symlink i3/.i3blocks.conf ~/.i3blocks.conf
+
+create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
+
+# Dropbox symlinks
+if [[ -d ~/Dropbox/ubuntu ]]; then
+  create_symlink ~/Dropbox/ubuntu/fonts ~/.fonts
+  create_symlink ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
+  create_symlink ~/Dropbox/ubuntu/ssh/config ~/.ssh/config
+  create_symlink ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
+fi

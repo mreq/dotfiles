@@ -2,7 +2,7 @@
 memory = `cat /proc/meminfo`.chomp
 
 output = [
-  ['MemAvailable', 'MemTotal'],
+  ['MemAvailable'],
   # ['SwapFree', 'SwapTotal']
 ].map do |keys|
   free = memory[/#{keys[0]}.+\n/][/\d+/].to_i
@@ -11,4 +11,4 @@ output = [
   "#{used.round}%"
 end
 
-puts "  #{output.join(' ')}"
+puts " #{output.join('')}"

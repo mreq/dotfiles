@@ -1,2 +1,3 @@
 FontName=Fira Code 11
 MiscMenubarDefault=FALSE
+MiscShowUnsafePasteDialog=FALSE

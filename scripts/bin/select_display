@@ -1,0 +1,52 @@
+#!/bin/bash
+options=(
+  'guess'
+  'DP-HDMI'
+  'DP'
+  'HDMI'
+  'HDMI-DVI'
+  'DVI'
+  'VGA'
+  'notebook'
+  'notebook-HDMI'
+)
+
+dp_output=$( xrandr | grep 'DP.* connected' | head -n1 | awk '{ print $1 }' )
+hdmi_output=$( xrandr | grep 'HDMI.* connected' | head -n1 | awk '{ print $1 }' )
+dvi_output=$( xrandr | grep 'DVI.* connected' | head -n1 | awk '{ print $1 }' )
+vga_output=VGA1
+
+guess_display() {
+  if xrandr | grep 'DP.* connected'; then
+    select_display DP
+  elif xrandr | grep 'VGA.* connected'; then
+    select_display VGA
+  elif xrandr | grep 'HDMI.* connected'; then
+    select_display HDMI
+  fi
+}
+
+select_display() {
+  case $1 in
+    guess )
+      guess_display ;;
+    DP )
+      xrandr --output $dp_output --auto --primary --output $hdmi_output --off ;;
+    DP-HDMI )
+      xrandr --output $dp_output --auto --primary --output $hdmi_output --auto --left-of $dp_output ;;
+    HDMI )
+      xrandr --output $hdmi_output --auto --primary --output $dvi_output --off ;;
+    HDMI-DVI )
+      xrandr --output $hdmi_output --auto --primary --output $dvi_output --auto --left-of $hdmi_output ;;
+    DVI )
+      xrandr --output $dvi_output --auto --primary --output $hdmi_output --off ;;
+    VGA )
+      xrandr --output $vga_output --auto ;;
+  esac
+}
+
+if [[ $1 ]]; then
+  select_display "$1"
+else
+  select_display "$( printf "%s\n" "${options[@]}" | rofi -dmenu -i -p '↠ ' )"
+fi
