@@ -39,6 +39,7 @@ for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
 for_window [class="Thunar"] floating enable, resize set 1400 850, move absolute position center
 for_window [class="SimpleScreenRecorder"] floating enable
+for_window [window_role="ssh-askpass-xfce4-terminal"] floating enable, resize set 900 100, move absolute position center
 
 # drag floating windows
 floating_modifier $m
@@ -190,7 +191,7 @@ assign [class="Google-chrome" instance="keep.google.com"] → $ico_calendar
 assign [class="Google-chrome" instance="new.costlocker.com__timetracking"] → $ico_calendar
 
 # Launchers
-bindsym $m+space exec "i3-dmenu-desktop --dmenu='rofi -dmenu -i -p \\"run ↠ \\"'"
+bindsym Control+$m+space exec "i3-dmenu-desktop --dmenu='rofi -dmenu -i -p \\"run ↠ \\"'"
 bindsym Control+$m+s exec "pick_a_subl_project"
 
 # Apps
@@ -226,5 +227,5 @@ exec --no-startup-id dropbox start -i
 exec --no-startup-id setxkbmap -layout us -option caps:escape
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id i3_switch_colors dark
-# exec --no-startup-id select_display guess
+exec --no-startup-id select_display guess
 # exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid

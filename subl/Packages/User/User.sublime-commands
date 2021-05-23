@@ -1,0 +1,29 @@
+[
+  {
+    "caption": "doublecmd",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "doublecmd $file_dir"
+    }
+  },
+
+  {
+    "caption": "Move open files",
+    "command": "move_open_files"
+  },
+
+  {
+    "caption": "Project: Copy file",
+    "command": "project_copy_file"
+  },
+
+  {
+    "caption": "Project: Copy cell",
+    "command": "project_copy_cell"
+  },
+
+  {
+    "caption": "Project: Generate project file",
+    "command": "generate_project"
+  }
+]

@@ -11,13 +11,13 @@ options=(
   'notebook-HDMI'
 )
 
-dp_output=$( xrandr | grep 'DP.* connected' | head -n1 | awk '{ print $1 }' )
+dp_output=$( xrandr | grep --extended-regexp '(DP|DisplayPort).* connected' | head -n1 | awk '{ print $1 }' )
 hdmi_output=$( xrandr | grep 'HDMI.* connected' | head -n1 | awk '{ print $1 }' )
 dvi_output=$( xrandr | grep 'DVI.* connected' | head -n1 | awk '{ print $1 }' )
 vga_output=VGA1
 
 guess_display() {
-  if xrandr | grep 'DP.* connected'; then
+  if xrandr | grep --extended-regexp '(DP|DisplayPort).* connected'; then
     select_display DP
   elif xrandr | grep 'VGA.* connected'; then
     select_display VGA
@@ -50,3 +50,5 @@ if [[ $1 ]]; then
 else
   select_display "$( printf "%s\n" "${options[@]}" | rofi -dmenu -i -p '↠ ' )"
 fi
+
+feh --bg-fill ~/Dropbox/ubuntu/wallpapers/milky_way.jpg --bg-fill ~/Dropbox/ubuntu/wallpapers/milky_way.jpg

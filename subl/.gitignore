@@ -1,0 +1,7 @@
+Packages/User/Package Control.*
+!Packages/User/Package Control.sublime-settings
+
+Packages/User/GitSavvy.sublime-settings
+Packages/User/GitSavvy/*
+
+Packages/User/ChangeList.json

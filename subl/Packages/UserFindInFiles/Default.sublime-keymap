@@ -1,0 +1,39 @@
+[
+  // Find in files: open
+  {
+    "keys": ["o"],
+    "command": "find_in_files_open_file",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+    ]
+  },
+
+  // Find in files: open all
+  {
+    "keys": [" ", "o"],
+    "command": "find_in_files_open_all_files",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
+    ]
+  },
+
+  // Find in files: navigate down
+  {
+    "keys": ["j"],
+    "command": "find_in_files_jump_file", "args": { "forward": true },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.find-in-files" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  // Find in files: navigate up
+  {
+    "keys": ["k"],
+    "command": "find_in_files_jump_file", "args": { "forward": false },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.find-in-files" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+]

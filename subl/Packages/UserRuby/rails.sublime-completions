@@ -1,0 +1,40 @@
+{
+  "scope": "source.ruby",
+  "completions":
+  [
+    // models
+    { "trigger": "ba\tbefore_action", "contents": "before_action :$0" },
+    { "trigger": "bao\tbefore_action only", "contents": "before_action :$1, only: [$0]" },
+    { "trigger": "bae\tbefore_action except", "contents": "before_action :$1, except: [$0]" },
+    { "trigger": "va\tvalidates", "contents": "validates :$1, "},
+    { "trigger": "vap\tvalidates_presence", "contents": "validates :$1,\n          presence: true"},
+    { "trigger": "vai\tvalidates_inclusion", "contents": "validates :$1,\n          inclusion: { in: $0 }"},
+    { "trigger": "vau\tvalidates_uniqueness", "contents": "validates :$1,\n          uniqueness: true"},
+
+    { "trigger": "han\thuman_attribute_name", "contents": "human_attribute_name(:$0)" },
+    { "trigger": "mnh\tmodel_name.human", "contents": "model_name.human${1:(count: ${0:2})}" },
+
+    { "trigger": "rrj\tRails.root.join", "contents": "Rails.root.join('$0')" },
+    { "trigger": "cn\tclass_name", "contents": "class_name \"$1\", :$0" },
+
+    { "trigger": "dd\tdef show", "contents": "def show\n\trender if model.present?$0\nend" },
+
+    { "trigger": "p\tpresent?", "contents": "present?" },
+    { "trigger": "b\tblank?", "contents": "blank?" },
+
+    // cells
+    { "trigger": "o\toptions", "contents": "options[:$0]" },
+
+    { "trigger": "t\ttranslate", "contents": "t('$0')" },
+
+    { "trigger": "isf\tinclude SimpleForm FormHelper", "contents": "include SimpleForm::ActionViewExtensions::FormHelper${0:\ninclude ActionView::Helpers::FormOptionsHelper}" },
+
+    // translations
+    { "trigger": "t\ttranslate", "contents": "t('$0')" },
+
+    // migrations
+    { "trigger": "ac\tadd_column", "contents": "add_column :${1:table}, :${2:field}, :${0:integer}" },
+    { "trigger": "rc\tremove_column", "contents": "remove_column :${1:table}, :${0:field}" },
+    { "trigger": "ai\tadd_index", "contents": "add_index :$1, :$0" }
+  ]
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "caption": "texmf: mreq",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "subl ~/texmf/tex/latex/local/mreq.sty"
+    }
+  },
+
+  {
+    "caption": "texmf: biblio",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "subl ~/texmf/bibtex/bib/local/biblio.bib"
+    }
+  },
+
+  {
+    "caption": "knitr: cleanup",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "fn=\"$file_name\"; rm -f ${fn%.Rnw}.aux ${fn%.Rnw}.bbl ${fn%.Rnw}.blg ${fn%.Rnw}.lof ${fn%.Rnw}.log ${fn%.Rnw}.lot ${fn%.Rnw}.out ${fn%.Rnw}.tex ${fn%.Rnw}.toc"
+    }
+  },
+
+  {
+    "caption": "knitr: open tex",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "n=$file_name; subl ${n%.Rnw}.tex"
+    }
+  },
+
+  {
+    "caption": "knitr: build clean",
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["save"],
+        ["run_cmd", { "cmd": "~/.config/sublime-text-3/Packages/UserTeX/bin/build_knitr '$file_name' 'all'" }]
+      ]
+    }
+  },
+
+  {
+    "caption": "tex: cleanup",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "fn=\"$file_name\"; rm -f ${fn%.tex}.aux ${fn%.tex}.bbl ${fn%.tex}.blg ${fn%.tex}.lof ${fn%.tex}.log ${fn%.tex}.lot ${fn%.tex}.out ${fn%.tex}.toc"
+    }
+  },
+
+  {
+    "caption": "tex: open parent",
+    "command": "run_cmd",
+    "args": {
+      "cmd": "cd $file_dir; a=$( head -n1 $file_name | grep '%! ' ); [[ $a ]] && subl $( head -n1 $file_name | grep '%! ' | sed 's/%! //' )"
+    }
+  },
+
+  {
+    "caption": "tex: build clean",
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["save"],
+        ["run_cmd", { "cmd": "~/.config/sublime-text-3/Packages/UserTeX/bin/build_xelatex '$file_name' 'all'" }]
+      ]
+    }
+  }
+]

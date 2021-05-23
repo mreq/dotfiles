@@ -1,0 +1,33 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"Align Arguments",
+		"Babel",
+		"BetterFindBuffer",
+		"Chain of Command",
+		"ChangeList",
+		"ChangeQuotes",
+		"FileDiffs",
+		"FuzzyFileNav",
+		"Git blame",
+		"GitSavvy",
+		"i3 wm",
+		"Mreq Color Scheme",
+		"NeoVintageous",
+		"nginx",
+		"Origami",
+		"Package Control",
+		"PlainTasks",
+		"rainbow_csv",
+		"Ruby Slim",
+		"Sass",
+		"SideBarTools",
+		"SublimeMagic",
+		"Text Pastry"
+	]
+}

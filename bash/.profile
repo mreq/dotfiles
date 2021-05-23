@@ -34,7 +34,18 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export BUNDLER_EDITOR="subl -n"
 
+export FZF_DEFAULT_COMMAND="rg --files --hidden -g !.git/"
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Manage ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+  ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+  source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi

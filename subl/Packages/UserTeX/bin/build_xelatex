@@ -1,0 +1,36 @@
+#!/bin/bash
+start=$( date +%s%N )
+notify-send -i sublime-text 'TeX build' 'starting'
+file="$1"
+
+# Warnings
+# if [[ $2 ]]; then
+#   warn="$2"
+# else
+#   warn="refs"
+# fi
+warn=all
+
+match=$( head -n1 "$file" | grep %! )
+
+if [[ $match ]]
+  then
+    if [ "${match:2:3}" = ../ ]
+      then
+        cd .. &&
+        target="${match:5:100}"
+      else
+        target="${match:2:100}"
+    fi
+  else
+    target="$file"
+fi
+output=$( (cd "$( dirname "$target" )" && rubber -qsf --warn $warn -m xelatex "$target") 2>&1 )
+if [[ $output ]]
+  then
+    notify-send -i ~/Dropbox/ubuntu/icons/failure.svg -t 5000 'TeX error' 'There was a build error.'
+    echo "$output" > /tmp/subl_build_error; subl /tmp/subl_build_error
+  else
+    end=$( date +%s%N )
+    notify-send -i ~/Dropbox/ubuntu/icons/success.svg 'TeX build' "$( echo "$end" "$start" | awk '{ printf "%.2f", ($1-$2)/1000000000 }' )s"
+fi

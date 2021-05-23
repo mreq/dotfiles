@@ -1,0 +1,137 @@
+[
+  // Git: git status
+  {
+    "keys": [" ", "g", "s"],
+    "command": "gs_show_status",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  {
+    "keys": [" ", "g", "i"],
+    "command": "gs_inline_diff",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  {
+    "keys": [" ", "g", "l"],
+    "command": "blame",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: git pull --rebase
+  {
+    "keys": [" ", "g", "p"],
+    "command": "gs_custom",
+    "args": {
+      "args": ["pull", "--rebase"],
+      "output_to_panel": true,
+      "start_msg": "Starting pull (rebase)...",
+      "complete_msg": "Pull complete."
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: close status
+  {
+    "keys": ["x"],
+    "command": "close_file",
+    "context": [
+      { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Git: git push
+  {
+    "keys": ["P"],
+    "command": "gs_push",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Git: git pull --rebase
+  {
+    "keys": ["p"],
+    "command": "gs_custom",
+    "args": {
+      "args": ["pull", "--rebase"],
+      "output_to_panel": true,
+      "start_msg": "Starting pull (rebase)...",
+      "complete_msg": "Pull complete."
+    },
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Git: git pull --rebase / branch_view override
+  {
+    "keys": ["p"],
+    "command": "gs_custom",
+    "args": {
+      "args": ["pull", "--rebase"],
+      "output_to_panel": true,
+      "start_msg": "Starting pull (rebase)...",
+      "complete_msg": "Pull complete."
+    },
+    "context": [
+      { "key": "setting.git_savvy.branch_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Git: graph
+  {
+    "keys": [" ", "g", "g"],
+    "command": "gs_graph",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: branches
+  {
+    "keys": [" ", "g", "b"],
+    "command": "gs_show_branch",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: branches
+  {
+    "keys": ["b"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["close_file"],
+        ["gs_show_branch"]
+      ]
+    },
+    "context": [{ "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }]
+  },
+
+  // Git: status
+  {
+    "keys": ["s"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["close_file"],
+        ["gs_show_status"]
+      ]
+    },
+    "context": [{ "key": "setting.git_savvy.branch_view", "operator": "equal", "operand": true }]
+  },
+
+  // Git: xdg-open commits page
+  {
+    "keys": [" ", "g", "o"],
+    "command": "git_show_commits_on_remote",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git diff: close
+  {
+    "keys": ["x"],
+    "command": "close_file",
+    "context": [{ "key": "selector", "operand": "git-savvy.diff" }]
+  },
+]

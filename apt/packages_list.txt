@@ -12,6 +12,7 @@ fonts-crosextra-caladea
 fonts-crosextra-carlito
 fonts-firacode
 fonts-nanum
+fzf
 gdebi
 gifsicle
 gparted
@@ -21,6 +22,7 @@ imagemagick
 inotify-tools
 jq
 libgmp3-dev
+libimage-exiftool-perl
 libjpeg-progs
 libmagic-dev
 libmagickwand-dev
@@ -31,6 +33,7 @@ libreoffice-writer
 libsodium-dev
 ncdu
 neovim
+nfs-common
 postgresql
 postgresql-client
 postgresql-contrib
@@ -46,9 +49,11 @@ texlive-latex-recommended
 texlive-xetex
 thunderbird
 tmux
+ubuntu-restricted-extras
 unrar
 virtualbox
 vlc
+webp
 wmctrl
 xclip
 xdotool

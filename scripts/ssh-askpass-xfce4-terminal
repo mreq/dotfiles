@@ -1,0 +1,2 @@
+#!/bin/bash
+xfce4-terminal --role ssh-askpass-xfce4-terminal -x ssh-add

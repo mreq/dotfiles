@@ -1,0 +1,11 @@
+[
+  {
+    "caption": "Git: Pull --rebase",
+    "command": "git_custom",
+    "args": {
+      "cmd": "pull --rebase",
+      "output": "panel",
+      "async": true
+    }
+  }
+]

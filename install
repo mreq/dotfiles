@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${0%/*}" || exit 0
+
 create_symlink() {
   test -h $2 || ( rm -rf $2 && mkdir -p $( dirname $2 ) && ln -s $1 $2 )
 }
@@ -39,6 +41,18 @@ create_dotfiles_symlink tmux/.tmux.conf ~/.tmux.conf
 create_dotfiles_symlink i3/.i3blocks.conf ~/.i3blocks.conf
 
 create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
+
+create_dotfiles_symlink nvim/init.vim ~/.config/nvim/init.vim
+
+create_dotfiles_symlink ruby/.gemrc ~/.gemrc
+
+(
+  cd subl || exit 0
+
+  for dir in Packages/User*; do
+    create_dotfiles_symlink subl/$dir ~/.config/sublime-text-3/$dir
+  done
+)
 
 # Dropbox symlinks
 if [[ -d ~/Dropbox/ubuntu ]]; then

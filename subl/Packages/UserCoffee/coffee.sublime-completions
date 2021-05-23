@@ -1,0 +1,58 @@
+{
+  "scope": "source.coffee",
+  "completions":
+  [
+
+    { "trigger": "c\tconsole.log", "contents": "console.log $0" },
+
+    { "trigger": "bp", "contents": "debugger" },
+
+    // jQuery
+    { "trigger": "t\tthis", "contents": "\\$(this)" },
+    { "trigger": "th\tthisequal", "contents": "\\$this = \\$(this)" },
+    { "trigger": "jw\twindow", "contents": "\\$(window)" },
+    { "trigger": "jd\tdocument", "contents": "\\$(document)" },
+    { "trigger": "jb\tbody", "contents": "\\$('body')" },
+
+    { "trigger": "pd\tpreventDefault", "contents": "preventDefault()" },
+    { "trigger": "sp\tstopPropagation", "contents": "stopPropagation()" },
+    { "trigger": "sip\tstopImmediatePropagation", "contents": "stopImmediatePropagation()" },
+
+    { "trigger": "ea\teach", "contents": "each ->\n\t$0" },
+
+    { "trigger": "h\theight", "contents": "height($0)" },
+    { "trigger": "w\twidth", "contents": "width($0)" },
+    { "trigger": "d\tdata", "contents": "data('$0')" },
+    { "trigger": "dd\tddata", "contents": "data('$1', '$0')" },
+    { "trigger": "n\tnot", "contents": "not('$0')" },
+    { "trigger": "fi\tfind", "contents": "find('$0')" },
+    { "trigger": "ch\tchildren", "contents": "children('$0')" },
+    { "trigger": "pa\tparent", "contents": "parent('$0')" },
+    { "trigger": "ps\tparents", "contents": "parents('$0')" },
+    { "trigger": "ne\tnext", "contents": "next('$0')" },
+    { "trigger": "pr\tprev", "contents": "prev('$0')" },
+    { "trigger": "fl\tfilter", "contents": "filter('$0')" },
+    { "trigger": "tr\ttrigger", "contents": "trigger('$0')" },
+    { "trigger": "hc\thasClass", "contents": "hasClass('$0')" },
+    { "trigger": "ac\taddClass", "contents": "addClass('$0')" },
+    { "trigger": "rc\tremoveClass", "contents": "removeClass('$0')" },
+    { "trigger": "tc\ttoggleClass", "contents": "toggleClass('$0')" },
+
+    // jQuery on
+    { "trigger": "on", "contents": "on '$1', ->\n\t$2" },
+    { "trigger": "onn", "contents": "on '$1', '$2', ->\n\t$3" },
+
+    // turbolinks
+    { "trigger": "tu|turbolinks", "contents": "\\$(document)\n\t.on 'turbolinks:load', ->\n\t\t$0\n\n\t.on 'turbolinks:before-render', ->\n" },
+    { "trigger": "tl|turbolinks:load", "contents": "\\$(document).on 'turbolinks:load', ->\n\t$0" },
+    { "trigger": "tb|turbolinks:before-render", "contents": "\\$(document).on 'turbolinks:before-render', ->\n\t$0" },
+
+    // others
+    { "trigger": "pi\tparseInt", "contents": "parseInt($0)" },
+    { "trigger": "pf\tparseFloat", "contents": "parseFloat($0)" },
+
+    // timeouts
+    { "trigger": "st\tsetTimeout", "contents": "setTimeout (${0:->}\n), $1" },
+    { "trigger": "ct\tclearTimeout", "contents": "clearTimeout $0" },
+  ]
+}

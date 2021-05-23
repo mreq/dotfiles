@@ -45,6 +45,13 @@ handle_scrot() {
         notify-send -i $ico "scrotshare" "Screenshot uploading to s.mreq.eu."
         # copy to mreq
         chmod 664 "$scr"
+
+        # if [ "$ext" = "png" ]; then
+        #   cwebp "$scr" -o "$scr.webp"
+        #   scr="$scr.webp"
+        #   ext="webp"
+        # fi
+
         scp "$scr" mreq:"s.mreq.eu/$nam.$ext"
         # clipboard
         echo "https://s.mreq.eu/$nam.$ext" | xclip -sel clip

@@ -1,0 +1,7 @@
+{
+  "scope": "source.ruby",
+  "completions":
+  [
+    { "trigger": "cp\tcover_placement", "contents": "cover_placement" },
+  ]
+}

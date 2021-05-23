@@ -1,0 +1,160 @@
+[
+  // Files: new
+  {
+     "keys": [" ", "f", "n"],
+    "command": "side_bar_copy_name",
+    "args": { "paths": [] },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: delete
+  {
+    "keys": [" ", "f", "x"],
+    "command": "advanced_new_file_delete",
+    "args": { "current": true },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: move
+  {
+    "keys": [" ", "f", "m"],
+    "command": "side_bar_move",
+    "args": { "paths": [] },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: rename
+  {
+    "keys": [" ", "f", "r"],
+    "command": "side_bar_rename",
+    "args": { "paths": [] },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: reopen last closed
+  {
+    "keys": [" ", "f", "o"],
+    "command": "reopen_last_file",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: copy path
+  {
+    "keys": [" ", "f", "p"],
+    "command": "copy_file_path",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: copy path with line number
+  {
+    "keys": [" ", "f", "l"],
+    "command": "copy_file_path_with_line_number",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: copy git path
+  {
+    "keys": [" ", "f", "g"],
+    "command": "copy_file_path_on_git_repo",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: copy test command
+  {
+    "keys": [" ", "f", "t"],
+    "command": "copy_file_path_as_rails_test",
+    "context": [
+      { "key": "vi_command_mode_aware" },
+      { "key": "selector", "operator": "equal", "operand": "source.ruby" }
+    ]
+  },
+
+  // Files: close
+  {
+    "keys": [" ", "x"],
+    "command": "close_file",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: save
+  {
+    "keys": [" ", "s"],
+    "command": "save",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Files: duplicate file
+  {
+    "keys": [" ", "f", "u"],
+    "command": "side_bar_duplicate",
+    "args": { "paths": [] },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Tabs: next
+  {
+    "keys": ["tab"],
+    "command": "next_view",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Tabs: next / gitsavvy override
+  {
+    "keys": ["tab"],
+    "command": "next_view",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  { "keys": ["ctrl+tab"], "command": "next_view" },
+
+  // Tabs: previous / gitsavvy override
+  {
+    "keys": ["shift+tab"],
+    "command": "prev_view",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Tabs: previous
+  {
+    "keys": ["shift+tab"],
+    "command": "prev_view",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+
+  // Ctrl+p
+  {
+    "keys": [" ", "j"],
+    "command": "show_overlay",
+    "args": {
+      "overlay": "goto",
+      "show_files": true
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Ctrl+Shift+p
+  {
+    "keys": [" ", "k"],
+
+    "command": "show_overlay",
+    "args": {
+      "overlay": "command_palette"
+    },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // FuzzyFileNav - same folder
+  {
+    "keys": [" ", "i"],
+    "command": "fuzzy_start_from_file",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+]

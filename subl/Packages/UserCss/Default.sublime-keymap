@@ -1,0 +1,21 @@
+[
+  // sass: ctrl+shift+space &__
+  {
+    "keys": ["ctrl+shift+space"],
+    "command": "insert_snippet",
+    "args": { "contents": "&__$1\n  $0" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.sass" }
+    ]
+  },
+
+  // scss: ctrl+shift+space &__
+  {
+    "keys": ["ctrl+shift+space"],
+    "command": "insert_snippet",
+    "args": { "contents": "&__$1 {\n  $0\n}" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.scss" }
+    ]
+  },
+]

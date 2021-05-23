@@ -1,0 +1,14 @@
+{
+  "scope": "source.ruby",
+  "completions":
+  [
+    { "trigger": "bp\tbinding.pry", "contents": "require \"pry\"; binding.pry$0" },
+
+    { "trigger": "pr\tprivate", "contents": "private\n\t$0" },
+
+    { "trigger": "if", "contents": "if $1\n\t$0\nend" },
+    { "trigger": "unless", "contents": "unless $1\n\t$0\nend" },
+
+    { "trigger": "ead\teach do", "contents": "each do |$1|\n\t$0\nend" }
+  ]
+}

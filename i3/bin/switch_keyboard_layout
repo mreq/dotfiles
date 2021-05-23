@@ -4,4 +4,5 @@ if setxkbmap -query | grep -q -E 'layout: +us'; then
 else
   setxkbmap -layout us -option caps:escape
 fi
+
 pkill -SIGRTMIN+11 i3blocks

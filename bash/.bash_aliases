@@ -1,10 +1,12 @@
 alias R='R --no-save -q'
 
 alias be="bundle exec"
-alias bi="bundle install"
+alias bi="bundle install --jobs $( nproc )"
 alias bo="bundle open"
 
 alias n="nvim"
+
+alias g="lazygit"
 
 r() {
   if [[ -f bin/rails ]]; then

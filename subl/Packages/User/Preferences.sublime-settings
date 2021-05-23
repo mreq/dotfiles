@@ -1,0 +1,47 @@
+{
+	"align_arguments":
+	{
+		"line_length": 1,
+		"one_per_line": true
+	},
+	"color_scheme": "Packages/Mreq Color Scheme/mreq_dark.tmTheme",
+	"ensure_newline_at_eof_on_save": true,
+	"fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		".git",
+		"log",
+		"node_modules",
+		"tmp"
+	],
+	"font_face": "Fira Code",
+	"font_options":
+	[
+		"no_liga",
+		"no_clig",
+		"no_calt"
+	],
+	"font_size": 12,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"hot_exit": false,
+	"ignored_packages":
+	[
+		"Six",
+		"Vintage",
+		"Vintageous"
+	],
+	"indent_to_bracket": true,
+	"line_padding_bottom": 3,
+	"neovintageous_build_version": 11100,
+	"show_tab_close_buttons": false,
+	"tab_size": 2,
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"vintageous_reset_mode_when_switching_tabs": true,
+	"vintageous_use_ctrl_keys": false,
+	"vintageous_use_super_keys": null,
+	"vintageous_use_sys_clipboard": true,
+	"word_wrap": true
+}

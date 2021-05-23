@@ -1,0 +1,525 @@
+{
+  "spells": [
+    {
+      "name": "Drop dot from class name",
+      "context": {
+        "scope": ["text.slim"],
+        "line_matches": ["class=\"\\..*"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\"\\.",
+        "replacement": "\""
+      }
+    },
+
+    {
+      "name": "Split slim class names",
+      "context": {
+        "scope": ["text.slim"],
+        "line_matches": ["class=\".*\\."]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\.",
+        "replacement": "\"\nclass=\""
+      }
+    },
+
+    {
+      "name": "Method alignment",
+      "context": {
+        "scope": ["source.ruby"],
+        "line_matches": ["\\s+\\.\\w"]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "method_alignment"
+      }
+    },
+
+    {
+      "name": "Wrap javascript imports 1",
+      "context": {
+        "scope": ["source.js", ""],
+        "line_matches": ["import {.*} from"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": " } from",
+        "replacement": "\n} from"
+      }
+    },
+
+    {
+      "name": "Wrap javascript imports 2",
+      "context": {
+        "scope": ["source.js", ""],
+        "line_matches": ["import {.*"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "({ |, )",
+        "replacement": "\\1\n\t"
+      }
+    },
+
+    {
+      "name": "Convert cell path to command",
+      "context": {
+        "scope": ["text.slim"],
+        "line_matches": ["app/cells"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "app/cells/(.+)(_cell.rb|/\\w+\\.slim)",
+        "replacement": "== cell('\\1')"
+      }
+    },
+
+    {
+      "name": "Change django translation",
+      "context": {
+        "scope": ["text.html.django"],
+        "line_matches": ["trans"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "inside",
+        "delimiter": "'",
+        "replacement": "$clipboard"
+      }
+    },
+
+    {
+      "name": "Use nested rule",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["\\w*\\.[^_]+__"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\.[^_]+__",
+        "replacement": "&__"
+      }
+    },
+
+    {
+      "name": "Fix border syntax",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["border.*:\\s+solid .+px"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "solid (.+px)",
+        "replacement": "\\1 solid"
+      }
+    },
+
+    {
+      "name": "Clear rails image path",
+      "context": {
+        "scope": ["(source.sass|text.slim)"],
+        "line_matches": ["/home/.+/app/assets/images/(.+\\.\\w+)"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "/home/.+/app/assets/images/(.+\\.\\w+)",
+        "replacement": "\\1"
+      }
+    },
+
+    {
+      "name": "Change module name",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["@import 'modules/"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": "@import 'modules/",
+        "replacement": "$cursor'"
+      }
+    },
+
+    {
+      "name": "Convert slim classes to className",
+      "context": {
+        "scope": ["meta.jsx"],
+        "line_matches": ["className='.*\\..*'"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\.",
+        "replacement": " "
+      }
+    },
+
+    {
+      "name": "Change module name",
+      "context": {
+        "scope": ["source.less"],
+        "line_matches": ["@import 'modules/"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": "@import 'modules/",
+        "replacement": "_$cursor.less';"
+      }
+    },
+
+    {
+      "name": "Cleanup sprockets bower_components require",
+      "context": {
+        "scope": ["source.(coffee|sass|css|js)"],
+        "line_matches": ["(require |@import ').+bower_components.+"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(require |@import ').+bower_components/(.+)",
+        "replacement": "\\1\\2"
+      }
+    },
+
+    {
+      "name": "Cleanup coffee sprockets require",
+      "context": {
+        "scope": ["source.js"],
+        "line_matches": ["app/"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": ".*app/(?:cells/)(.+)\\.(coffee|js)",
+        "replacement": "//= require \\1"
+      }
+    },
+
+    {
+      "name": "Cleanup js sprockets require",
+      "context": {
+        "scope": ["source.coffee"],
+        "line_matches": ["app/"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": ".*app/(?:cells/)(.+)\\.(coffee|js)",
+        "replacement": "#= require \\1"
+      }
+    },
+
+    {
+      "name": "Cleanup react import statement",
+      "context": {
+        "scope": ["source.js"],
+        "line_matches": ["import .+ from 'app/.+\\.js'"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(import .+ from ')app/(.+)\\.js('.*)",
+        "replacement": "\\1\\2\\3"
+      }
+    },
+
+    {
+      "name": "Cleanup sprockets require extension",
+      "context": {
+        "scope": ["source.(coffee|sass|css|js)"],
+        "line_matches": ["(require |@import ')(.+)\\.(js|css)"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(require |@import ')(.+)\\.(js|css)",
+        "replacement": "\\1\\2"
+      }
+    },
+
+    {
+      "name": "Cleanup double this in js",
+      "context": {
+        "scope": ["source.(coffee|js)"],
+        "line_matches": ["this\\.this"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "this\\.this",
+        "replacement": "this"
+      }
+    },
+
+    {
+      "name": "Cleanup double dots in method chains",
+      "context": {
+        "line_matches": ["\\w\\.{2}\\w"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(\\w\\.)\\.(\\w)",
+        "replacement": "\\1\\2"
+      }
+    },
+
+    {
+      "name": "Toggle *-ico-* classes.",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["\\w+-ico-\\w+"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": [".", "$sprite-height-", "$sprite-width-"]
+      }
+    },
+
+    {
+      "name": "Toggle text-decoration",
+      "context": {
+        "scope": ["source.(sass|less|css)"],
+        "line_matches": ["text-decoration:"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": ["underline", "none"]
+      }
+    },
+
+    {
+      "name": "Toggle font-weight",
+      "context": {
+        "scope": ["source.(sass|less|css)"],
+        "line_matches": ["font-weight:"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": ["bold", "normal"]
+      }
+    },
+
+    {
+      "name": "Clear comment mess.",
+      "context": {
+        "scope": ["source.coffee"],
+        "line_matches": ["\\s+# TRME.*"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\s+# TRME.*",
+        "replacement": " "
+      }
+    },
+
+    {
+      "name": "Strip double $ characters",
+      "context": {
+        "scope": ["source.sass"],
+        "line_matches": ["\\${2}"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\${2}",
+        "replacement": "$"
+      }
+    },
+
+    {
+      "name": "Strip double ' characters",
+      "context": {
+        "line_matches": ["''"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "''",
+        "replacement": "'"
+      }
+    },
+
+    {
+      "name": "Strip double @ characters",
+      "context": {
+        "scope": ["source.coffee"],
+        "line_matches": ["@{2}"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "@{2}",
+        "replacement": "@"
+      }
+    },
+
+    {
+      "name": "Strip extra whitespace",
+      "context": {
+        "line_matches": ["\\S\\s\\s+"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(\\S)(\\s)\\s+",
+        "replacement": "\\1\\2"
+      }
+    },
+
+    {
+      "name": "Replace jsx quoted content with clipboard",
+      "context": {
+        "scope": ["string\\.quoted\\.jsx"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "inside",
+        "delimiter": "'",
+        "replacement": "$clipboard"
+      }
+    },
+
+    {
+      "name": "Replace single quoted content with clipboard",
+      "context": {
+        "scope": ["string\\.quoted\\.single"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "inside",
+        "delimiter": "'",
+        "replacement": "$clipboard"
+      }
+    },
+
+    {
+      "name": "Replace double quoted content with clipboard",
+      "context": {
+        "scope": ["string\\.quoted\\.double"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "inside",
+        "delimiter": "\"",
+        "replacement": "$clipboard"
+      }
+    },
+
+    {
+      "name": "CSS add missing semicolon",
+      "context": {
+        "scope": ["source\\.(css|less)"],
+        "line_matches": ["([^;])$"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "([^;])$",
+        "replacement": "\\1;"
+      }
+    },
+
+    {
+      "name": "Toggle CSS direction",
+      "context": {
+        "scope": ["source\\.(css|less|sass)"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": ["top:", "bottom:", "left:", "right:"]
+      }
+    },
+
+    {
+      "name": "Toggle CSS dimension",
+      "context": {
+        "scope": ["source\\.(css|less|sass)"]
+      },
+      "spell": "toggle_values",
+      "args": {
+        "values": ["width:", "height:"]
+      }
+    },
+
+    {
+      "name": "Change CSS value",
+      "context": {
+        "scope": ["source\\.(css|less)"],
+        "line_matches": [":"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": ":",
+        "replacement": " $cursor;"
+      }
+    },
+
+    {
+      "name": "Change CSS value",
+      "context": {
+        "scope": ["source\\.sass"],
+        "line_matches": [":"]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": ":",
+        "replacement": " $cursor"
+      }
+    },
+
+    {
+      "name": "Toggle true/false",
+      "spell": "toggle_values",
+      "args": {
+        "values": ["true", "false"]
+      }
+    },
+
+    {
+      "name": "Replace content after colon with clipboard",
+      "context": {
+        "line_matches": [": "]
+      },
+      "spell": "replace_text",
+      "args": {
+        "where": "after",
+        "delimiter": ": ",
+        "replacement": "$clipboard"
+      }
+    },
+
+    {
+      "name": "Add spaces around () brackets",
+      "context": {
+        "scope": ["source\\.(less|sass)"],
+        "line_matches": ["\\(\\((.+)\\)\\)"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\(\\((\\S+)\\)\\)",
+        "replacement": "(( \\1 ))"
+      }
+    },
+
+    {
+      "name": "Add spaces around {} brackets",
+      "context": {
+        "scope": ["source\\.(ruby|js)"],
+        "line_matches": ["\\{(\\S.+\\S)\\}"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\{(.+)\\}",
+        "replacement": "{ \\1 }"
+      }
+    },
+
+    {
+      "name": "Add spaces around [] brackets",
+      "context": {
+        "scope": ["source\\.(ruby|js)"],
+        "line_matches": ["\\[(\\S.+\\S)\\]"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "\\[(.+)\\]",
+        "replacement": "[ \\1 ]"
+      }
+    }
+  ]
+}
