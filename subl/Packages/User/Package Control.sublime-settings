@@ -7,9 +7,7 @@
 	[
 		"AdvancedNewFile",
 		"Align Arguments",
-		"Babel",
 		"BetterFindBuffer",
-		"Chain of Command",
 		"ChangeList",
 		"ChangeQuotes",
 		"FileDiffs",
@@ -17,7 +15,6 @@
 		"Git blame",
 		"GitSavvy",
 		"i3 wm",
-		"Mreq Color Scheme",
 		"NeoVintageous",
 		"nginx",
 		"Origami",
@@ -28,6 +25,6 @@
 		"Sass",
 		"SideBarTools",
 		"SublimeMagic",
-		"Text Pastry"
-	]
+		"Text Pastry",
+	],
 }

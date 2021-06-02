@@ -50,7 +50,7 @@ create_dotfiles_symlink ruby/.gemrc ~/.gemrc
   cd subl || exit 0
 
   for dir in Packages/User*; do
-    create_dotfiles_symlink subl/$dir ~/.config/sublime-text-3/$dir
+    create_dotfiles_symlink subl/$dir ~/.config/sublime-text/$dir
   done
 )
 

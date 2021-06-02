@@ -1,0 +1,77 @@
+// Documentation at https://www.sublimetext.com/docs/color_schemes.html
+{
+  "variables":
+  {
+  },
+  "globals":
+  {
+  },
+  "rules":
+  [
+    {
+      "scope": "keyword.control",
+      "foreground": "var(red)",
+    },
+    {
+      "scope": "keyword.declaration",
+      "foreground": "var(red)",
+    },
+    {
+      "scope": "variable.language",
+      "font_style": "normal"
+    },
+    {
+      "scope": "keyword.other.git-savvy.section.header.untracked, keyword.other.git-savvy.section.header.unstaged",
+      "foreground": "var(red)",
+    },
+    {
+      "scope": "constant.other.git-savvy.summary-header.branch-name",
+      "foreground": "var(pink)",
+    },
+    {
+      "scope": "meta.git-savvy.status.section.staged",
+      "foreground": "var(orange3)",
+    },
+    {
+      "scope": "meta.git-savvy.entity.stash, keyword.other.git-savvy.section.header.stashes",
+      "foreground": "var(blue4)",
+    },
+    {
+      "scope": "support.type.git-savvy.key-bindings-header-text, punctuation.definition.git-savvy.section",
+      "foreground": "var(blue3)",
+    },
+    {
+      "scope": "variable.other.readwrite",
+      "foreground": "var(blue5)",
+    },
+    {
+      "scope": "entity.name.function",
+      "foreground": "var(orange3)",
+    },
+    {
+      "name": "Library class/type",
+      "scope": "support.type, support.class",
+      "foreground": "var(orange)",
+      "font_style": "normal",
+    },
+    {
+      "scope": "constant.other.symbol.ruby, punctuation.definition.constant.ruby",
+      "foreground": "var(pink)",
+    },
+    {
+      "scope": "entity.other.attribute-name",
+      "foreground": "var(orange)",
+    },
+    {
+      "name": "Library function",
+      "scope": "support.function, support.macro",
+      "foreground": "var(blue)",
+      "font_style": "normal"
+    },
+    {
+      "scope": "text.slim support.function.actionpack.rails",
+      "foreground": "var(blue5)",
+      "font_style": "normal",
+    },
+  ]
+}

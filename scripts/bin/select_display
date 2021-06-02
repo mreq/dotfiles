@@ -31,9 +31,9 @@ select_display() {
     guess )
       guess_display ;;
     DP )
-      xrandr --output $dp_output --auto --primary --output $hdmi_output --off ;;
+      xrandr --output $dp_output --auto --rate 60 --primary --output $hdmi_output --off ;;
     DP-HDMI )
-      xrandr --output $dp_output --auto --primary --output $hdmi_output --auto --left-of $dp_output ;;
+      xrandr --output $dp_output --auto --rate 60 --primary --output $hdmi_output --auto --left-of $dp_output ;;
     HDMI )
       xrandr --output $hdmi_output --auto --primary --output $dvi_output --off ;;
     HDMI-DVI )
