@@ -10,7 +10,7 @@
 
   // Find in files: open all
   {
-    "keys": [" ", "o"],
+    "keys": ["O"],
     "command": "find_in_files_open_all_files",
     "context": [
       { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }

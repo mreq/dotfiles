@@ -21,7 +21,7 @@
       "font_style": "normal"
     },
     {
-      "scope": "keyword.other.git-savvy.section.header.untracked, keyword.other.git-savvy.section.header.unstaged",
+      "scope": "keyword.other.git-savvy.section.header.untracked, keyword.other.git-savvy.section.header.unstaged,  keyword.other.git-savvy.summary-header.ahead-behind",
       "foreground": "var(red)",
     },
     {

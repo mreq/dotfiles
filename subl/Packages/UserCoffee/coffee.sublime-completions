@@ -2,9 +2,6 @@
   "scope": "source.coffee",
   "completions":
   [
-
-    { "trigger": "c\tconsole.log", "contents": "console.log $0" },
-
     { "trigger": "bp", "contents": "debugger" },
 
     // jQuery

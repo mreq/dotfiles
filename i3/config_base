@@ -135,8 +135,10 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # sound
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master 2%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master 2%- unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master 1%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master 1%- unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master 10%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master 10%- unmute; pkill -SIGRTMIN+10 i3blocks;"
 bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 1+ toggle; pkill -SIGRTMIN+10 i3blocks;"
 bindsym $m+KP_Add exec --no-startup-id "amixer -D pulse sset Master 2%+ unmute; pkill -SIGRTMIN+10 i3blocks;"
 bindsym $m+KP_Subtract exec --no-startup-id "amixer -D pulse sset Master 2%- unmute; pkill -SIGRTMIN+10 i3blocks;"
@@ -208,7 +210,6 @@ bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://web.whatsapp.com/'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c Spotify -x spotify"
-bindsym $m+z exec "i3_focus_pinned -w $ico_code -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --new-window https://github.com/issues?q=is%3Aissue+assignee%3Amreq+is%3Aopen'"
 bindsym $m+b exec "i3_focus_pinned -w $ico_game"
 
 # bindsym --release $m+Shift+Escape exec "xkill"
