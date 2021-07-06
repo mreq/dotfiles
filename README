@@ -1,0 +1,11 @@
+```
+~/.dotfiles/install
+
+sudo apt install $( cat apt/packages_list.txt )
+
+pip3 install -r ~/.dotfiles/python/requirements.txt
+
+sudo ln -s ~/.dotfiles/scripts/ssh-askpass-xfce4-terminal /usr/bin/ssh-askpass
+
+sudo ln -s ~/.dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_downloads
+```
