@@ -1,0 +1,7 @@
+// Settings in here override those in "GitSavvy/GitSavvy.sublime-settings",
+
+{
+  "vintageous_friendly": true,
+  "vintageous_enter_insert_mode": true,
+  "inline_diff_auto_scroll": true
+}
