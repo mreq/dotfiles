@@ -12,6 +12,9 @@ npm-debug.log
 /db/*_*.sql
 /db/*_*.sql.gz
 
+# ruby core dump
+/core
+
 # .todo files
 /TODO
 

@@ -7,6 +7,7 @@ doublecmd-gtk
 exfat-fuse
 exfat-utils
 faenza-icon-theme
+ffmpegthumbnailer
 fonts-croscore
 fonts-crosextra-caladea
 fonts-crosextra-carlito
@@ -31,6 +32,7 @@ libpq-dev
 libreoffice-calc
 libreoffice-writer
 libsodium-dev
+libssl-dev
 ncdu
 neovim
 nfs-common

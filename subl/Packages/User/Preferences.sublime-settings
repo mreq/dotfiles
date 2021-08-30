@@ -34,6 +34,7 @@
 	"line_padding_bottom": 3,
 	"neovintageous_build_version": 11100,
 	"show_tab_close_buttons": false,
+	"reveal_menu": false,
 	"tab_size": 2,
 	"theme": "Adaptive.sublime-theme",
 	"translate_tabs_to_spaces": true,
