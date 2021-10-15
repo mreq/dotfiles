@@ -72,7 +72,7 @@
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": "app/cells/(.+)(_cell.rb|/\\w+\\.slim)",
+        "pattern": "(?:test/dummy/)?app/cells/(.+)(_cell.rb|/\\w+\\.slim)",
         "replacement": "== cell('\\1')"
       }
     },

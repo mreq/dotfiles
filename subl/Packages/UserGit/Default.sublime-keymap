@@ -134,4 +134,21 @@
     "command": "close_file",
     "context": [{ "key": "selector", "operand": "git-savvy.diff" }]
   },
+
+  // Git diff: stage and close
+  {
+    "keys": ["e"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["gs_diff_stage_or_reset_hunk", { "whole_file": true }],
+        ["close_file"]
+      ]
+    },
+    "context": [
+      { "key": "setting.git_savvy.diff_view", "operator": "equal", "operand": true },
+      { "key": "setting.git_savvy.diff_view.in_cached_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.diff_view.disable_stage", "operator": "equal", "operand": false }
+    ]
+  }
 ]

@@ -2,7 +2,7 @@
   "clients": {
     "ruby": {
       "enabled": true,
-      "command": ["rvm", ".", "do", "solargraph", "stdio"],
+      "command": ["rvm", "default", "do", "solargraph", "stdio"],
       "selector": "source.ruby | text.html.ruby",
       "initializationOptions": {
         "diagnostics": false

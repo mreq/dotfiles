@@ -11,6 +11,7 @@
 		".git",
 		"log",
 		"node_modules",
+		"public/system/dragonfly",
 		"tmp"
 	],
 	"font_face": "Fira Code",

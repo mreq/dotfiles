@@ -12,6 +12,9 @@ npm-debug.log
 /db/*_*.sql
 /db/*_*.sql.gz
 
+# Exiftool
+/tmp/exiftool_tags_*
+
 # ruby core dump
 /core
 
