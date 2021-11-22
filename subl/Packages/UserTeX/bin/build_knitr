@@ -51,7 +51,9 @@ output=$( (cd "$( dirname "$out" )" && rubber -qsf --warn $warn -m xelatex "$out
 if [[ "$output" ]]; then
   notify-send -i process-error-symbolic -t 5000 'knitr error' 'There was a build error.'
   echo "$output" > /tmp/subl_build_error; subl /tmp/subl_build_error
+  exit 1
 else
   end=$( date +%s%N )
   notify-send -i process-completed-symbolic 'knitr build' "$( echo "$end" "$start" | awk '{ printf "%.2f", ($1-$2)/1000000000 }' )s"
+  exit 0
 fi

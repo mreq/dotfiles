@@ -5,6 +5,7 @@
 		"one_per_line": true,
 	},
 	"ensure_newline_at_eof_on_save": true,
+	"file_exclude_patterns": ["*.pyc", "*.pyo", "*.exe", "*.dll", "*.obj","*.o", "*.a", "*.lib", "*.so", "*.dylib", "*.ncb", "*.sdf", "*.suo", "*.pdb", "*.idb", ".DS_Store", ".directory", "desktop.ini", "*.class", "*.psd", "*.db", "*.sublime-workspace", "*.key", "*.pem"],
 	"fold_buttons": false,
 	"folder_exclude_patterns":
 	[
