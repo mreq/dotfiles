@@ -128,6 +128,13 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
+  // Git: xdg-open gitlab pipelines page
+  {
+    "keys": [" ", "g", "p"],
+    "command": "git_show_gitlab_pipelines",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
   // Git diff: close
   {
     "keys": ["x"],
