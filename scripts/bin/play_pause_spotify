@@ -13,7 +13,8 @@ else
   else
     notify-send -i 'spotify-client' 'Spotify' 'Launching spotify.'
     if wmctrl -m | grep i3; then
-      i3_focus_pinned -w  -c spotify &
+      ico_music=$( cat ~/.config/i3/config | grep "set \$ico_music" | awk '{ print $3 }' )
+      i3_focus_pinned -w $ico_music -c Spotify -x spotify &
     else
       spotify &
     fi

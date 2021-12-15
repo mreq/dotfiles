@@ -2,6 +2,7 @@
 options=(
   'guess'
   'DP-HDMI'
+  'DP-144'
   'DP'
   'HDMI'
   'HDMI-DVI'
@@ -32,6 +33,8 @@ select_display() {
       guess_display ;;
     DP )
       xrandr --output $dp_output --auto --rate 60 --primary --output $hdmi_output --off ;;
+    DP-144 )
+      xrandr --output $dp_output --mode 2560x1440 --rate 144.0 --primary --output $hdmi_output --off ;;
     DP-HDMI )
       xrandr --output $dp_output --auto --rate 60 --primary --output $hdmi_output --auto --left-of $dp_output ;;
     HDMI )
