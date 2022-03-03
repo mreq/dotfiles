@@ -11,8 +11,9 @@ class GitShowCommitsOnRemote(sublime_plugin.WindowCommand):
         output = subprocess.check_output('git config --get remote.origin.url',
                                          shell=True, cwd=cwd)
         url_base = output.decode('utf8').strip()
-        url_base = re.sub('ssh://git@', '', url_base)
-        url_base = re.sub('.git', '', url_base)
+        url_base = re.sub('git@', '', url_base)
+        url_base = re.sub('ssh://', '', url_base)
+        url_base = re.sub('\\.git', '', url_base)
         url_base = re.sub(':', '/', url_base)
 
         url = 'https://' + url_base + '/commits'

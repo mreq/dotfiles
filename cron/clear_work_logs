@@ -1,0 +1,2 @@
+#!/bin/bash
+rm -rf /home/petr/work/*/log/*.log

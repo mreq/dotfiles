@@ -35,5 +35,10 @@
   {
     "caption": "Cells: create coffee",
     "command": "cell_create_coffee"
+  },
+
+  {
+    "caption": "Cells: create js",
+    "command": "cell_create_js"
   }
 ]

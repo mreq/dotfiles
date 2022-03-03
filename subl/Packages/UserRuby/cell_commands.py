@@ -13,6 +13,9 @@ class CellCreateCoffee(sublime_plugin.WindowCommand):
     def run(self):
         ruby_cell_utils.create_view(self.window, 'coffee')
 
+class CellCreateJs(sublime_plugin.WindowCommand):
+    def run(self):
+        ruby_cell_utils.create_view(self.window, 'js')
 
 class CellOpen(sublime_plugin.WindowCommand):
     def run(self, target):
