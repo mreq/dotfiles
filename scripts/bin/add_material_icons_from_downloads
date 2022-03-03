@@ -1,0 +1,33 @@
+#!/home/petr/.rvm/rubies/default/bin/ruby
+
+fail 'No data/icons directory!' unless File.directory?('data/icons')
+
+icons_paths = `ls -d ~/Downloads/* | grep '_black_24dp.svg'`.chomp.split("\n")
+
+unless icons_paths.size > 0
+  puts "\nNo icons!\n\n"
+  exit 1
+end
+
+require 'pathname'
+require 'fileutils'
+
+pwd = Pathname.new(Dir.pwd)
+
+puts "\n"
+
+icons_paths.each do |icon_path|
+  icon_name = File.basename(icon_path)
+  new_icon_name = icon_name.gsub('_black_24dp', '')
+  contents = File.read(icon_path).gsub('fill="#000000"', 'fill="currentColor"')
+
+  File.open(pwd.join("data/icons", new_icon_name), 'w', 0644) do |file|
+    file.write(contents)
+  end
+
+  FileUtils.rm(icon_path)
+
+  puts "Added #{new_icon_name}"
+end
+
+puts "\nDone!\n\n"
