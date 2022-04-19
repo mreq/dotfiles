@@ -23,6 +23,9 @@
     { "trigger": "fs\tblank function", "contents": "() => {}" },
 
     { "trigger": "bp\tdebugger", "contents": "debugger" },
-    { "trigger": "f\tfunction", "contents": "function ($1) {\n\t$0\n}" }
+    { "trigger": "f\tfunction", "contents": "function ($1) {\n\t$0\n}" },
+
+    // turbolinks
+    { "trigger": "tu|turbolinks", "contents": "\\$(document)\n\t.on('turbolinks:load', ${1:() => {\n\t$0\n\\}})\n\t.on('turbolinks:before-render', () => {})" }
   ]
 }
