@@ -220,7 +220,7 @@
 
   // Replace in file
   {
-    "keys": ["ctrl+alt+f"],
+    "keys": ["alt+f"],
     "command": "show_panel",
     "args": {
       "panel": "replace",

@@ -25,7 +25,9 @@
     { "trigger": "bp\tdebugger", "contents": "debugger" },
     { "trigger": "f\tfunction", "contents": "function ($1) {\n\t$0\n}" },
 
+    { "trigger": "dc|document-click", "contents": "\\$(document)\n\t.on('click', '$1', (e) => {\n\t\t$0\n\t})" },
+
     // turbolinks
-    { "trigger": "tu|turbolinks", "contents": "\\$(document)\n\t.on('turbolinks:load', ${1:() => {\n\t$0\n\\}})\n\t.on('turbolinks:before-render', () => {})" }
+    { "trigger": "tu|turbolinks", "contents": "\\$(document)\n\t.on('turbolinks:load', () => {\n\t\t$0\n\t})\n\t.on('turbolinks:before-render', () => {})" }
   ]
 }

@@ -4,7 +4,7 @@ import sublime
 import time
 
 # because recursion is painfully slow
-namespaces = '(' + '(?:\w+/?)?' * 6 + ')'
+namespaces = '(' + '(?:\w+/?)?' * 7 + ')'
 
 def get_cell_name(window):
     view = window.active_view()
@@ -51,7 +51,8 @@ def create_view(window, extension, alt_extension = None):
 
     cell_base_name = cell_name.split('/').pop()
 
-    path = window.active_view().file_name()
+    source_view = window.active_view()
+    path = source_view.file_name()
     new_path = None
 
     for ext in [alt_extension, extension]:
@@ -76,8 +77,18 @@ def create_view(window, extension, alt_extension = None):
         new_view = window.open_file(new_path)
 
         if ext is 'sass' or ext is 'scss':
-            def append():
+            class_name = None
+
+            if path.endswith('.slim'):
+                first_line = source_view.substr(source_view.line(0))
+                if '[' not in first_line:
+                    if len(re.findall('\.', first_line)) == 1:
+                        class_name = first_line  + "\n  "
+
+            if not class_name:
                 class_name = re.sub(r"[\/_]", "-", re.sub(r"^(\w)\w+\/", ".\\1/", cell_name)) + "\n  "
+
+            def append():
                 new_view.run_command("append", { "characters": class_name })
                 new_view.sel().clear()
                 new_view.sel().add(sublime.Region(len(class_name)))

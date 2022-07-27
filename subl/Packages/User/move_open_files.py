@@ -18,8 +18,9 @@ class MoveOpenFiles(sublime_plugin.WindowCommand):
     def perform(self, user_input_from, user_input_to):
         for view in self.window.views():
             old_filename = view.file_name()
-            new_filename = old_filename.replace(user_input_from, user_input_to)
-            self.fileMove(view, old_filename, new_filename)
+            if old_filename:
+                new_filename = old_filename.replace(user_input_from, user_input_to)
+                self.fileMove(view, old_filename, new_filename)
 
     # adopted and modified from
     # https://github.com/wulftone/sublime-text-quick-file-move/blob/master/QuickFileMove.py

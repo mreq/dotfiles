@@ -8,7 +8,6 @@ class CellCreateSass(sublime_plugin.WindowCommand):
     def run(self):
         ruby_cell_utils.create_view(self.window, 'sass', 'scss')
 
-
 class CellCreateCoffee(sublime_plugin.WindowCommand):
     def run(self):
         ruby_cell_utils.create_view(self.window, 'coffee')

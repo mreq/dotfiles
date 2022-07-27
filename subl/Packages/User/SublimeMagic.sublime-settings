@@ -1,6 +1,19 @@
 {
   "spells": [
     {
+      "name": "Use currentColor for SVG fill",
+      "context": {
+        "scope": ["text.xml"],
+        "line_matches": ["fill=[\"'][^\"']+[\"']"],
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "fill=[\"'][^\"']+[\"']",
+        "replacement": "fill=\"currentColor\""
+      }
+    },
+
+    {
       "name": "Drop dot from class name",
       "context": {
         "scope": ["text.slim"],
@@ -14,15 +27,41 @@
     },
 
     {
-      "name": "Split slim class names",
+      "name": "Split 2 slim class names",
       "context": {
         "scope": ["text.slim"],
-        "line_matches": ["class=\".*\\."]
+        "line_matches": ["(\\s*)class=[\"']([\\w-]+)\\.([\\w-]+)[\"']"]
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": "\\.",
-        "replacement": "\"\nclass=\""
+        "pattern": "(\\s*)class=[\"']([\\w-]+)\\.([\\w-]+)[\"']",
+        "replacement": "\\1class=\"\\2\"\n\\1class=\"\\2\""
+      }
+    },
+
+    {
+      "name": "Split 3 slim class names",
+      "context": {
+        "scope": ["text.slim"],
+        "line_matches": ["(\\s*)class=[\"']([\\w-]+)\\.([\\w-]+)\\.([\\w-]+)[\"']"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(\\s*)class=[\"']([\\w-]+)\\.([\\w-]+)\\.([\\w-]+)[\"']",
+        "replacement": "\\1class=\"\\2\"\n\\1class=\"\\3\"\n\\1class=\"\\4\""
+      }
+    },
+
+    {
+      "name": "Split 4 slim class names",
+      "context": {
+        "scope": ["text.slim"],
+        "line_matches": ["(\\s*)class=[\"']([\\w-]+)\\.([\\w-]+)\\.([\\w-]+)\\.([\\w-]+)[\"']"]
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(\\s*)class=[\"']([\\w-]+)\\.([\\w-]+)\\.([\\w-]+)\\.([\\w-]+)[\"']",
+        "replacement": "\\1class=\"\\2\"\n\\1class=\"\\3\"\n\\1class=\"\\4\"\n\\1class=\"\\5\""
       }
     },
 

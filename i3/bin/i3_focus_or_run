@@ -7,8 +7,9 @@ import re
 target_class = sys.argv[1]
 focused_workspace_name = i3.filter(focused=True, tree=i3.get_workspaces())[0]['name']
 focused_workspace = i3.filter(name=focused_workspace_name, type='workspace')[0]
+skip_workspace_check = len(sys.argv) > 3 and sys.argv[3] == "float"
 
-if not re.match('\d+', focused_workspace['name']):
+if not skip_workspace_check and not re.match('\d+', focused_workspace['name']):
   subprocess.call('i3-msg "workspace back_and_forth"', shell=True)
   focused_workspace_name = i3.filter(focused=True, tree=i3.get_workspaces())[0]['name']
   focused_workspace = i3.filter(name=focused_workspace_name, type='workspace')[0]
