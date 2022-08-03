@@ -107,12 +107,12 @@
       "name": "Convert cell path to command",
       "context": {
         "scope": ["text.slim"],
-        "line_matches": ["app/cells"]
+        "line_matches": ["(app|source)/cells"]
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": "(?:test/dummy/)?app/cells/(.+)(_cell.rb|/\\w+\\.slim)",
-        "replacement": "== cell('\\1')"
+        "pattern": "(?:test/dummy/)?(app|source)/cells/(.+)(_cell.rb|/\\w+\\.slim)",
+        "replacement": "== cell('\\2')"
       }
     },
 
