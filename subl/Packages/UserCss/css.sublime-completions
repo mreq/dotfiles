@@ -5,6 +5,7 @@
     { "trigger": "i\timportant", "contents": "!important" },
 
     // syntax
+    { "trigger": "hf\tregular-hover-focus", "contents": "&, &:hover, &:focus\n\t$0" },
     { "trigger": "h\thover", "contents": "&:hover\n\t$0" },
     { "trigger": "be\tbefore", "contents": "&::before\n\t$0" },
     { "trigger": "af\tafter", "contents": "&::after\n\t$0" },

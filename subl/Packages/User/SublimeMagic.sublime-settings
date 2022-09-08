@@ -1,15 +1,15 @@
 {
   "spells": [
     {
-      "name": "Use currentColor for SVG fill",
+      "name": "Use currentColor for SVG fill/stroke",
       "context": {
         "scope": ["text.xml"],
-        "line_matches": ["fill=[\"'][^\"']+[\"']"],
+        "line_matches": ["(fill|stroke)=[\"'][^\"']+[\"']"],
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": "fill=[\"'][^\"']+[\"']",
-        "replacement": "fill=\"currentColor\""
+        "pattern": "(fill|stroke)=[\"'][^\"']+[\"']",
+        "replacement": "\\1=\"currentColor\""
       }
     },
 

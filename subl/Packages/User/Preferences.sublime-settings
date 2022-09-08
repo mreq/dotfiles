@@ -11,6 +11,7 @@
 	[
 		".git",
 		"log",
+		"build",
 		"node_modules",
 		"public/system/dragonfly",
 		"tmp"
