@@ -1,7 +1,9 @@
+# Installation
+
 ```
 ~/.dotfiles/install
 
-sudo apt install $( cat apt/packages_list.txt )
+sudo apt install $( cat apt/*.txt )
 
 pip3 install -r ~/.dotfiles/python/requirements.txt
 
@@ -11,3 +13,19 @@ sudo ln -s ~/.dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_down
 
 sudo ln -s ~/.dotfiles/cron/clear_work_logs /etc/cron.daily/clear_home_petr_work_logs
 ```
+
+## rbenv
+
+```
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+rbenv install -l
+```
+
+## Neovim
+
+```
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
+
+open `nvim` and run `:PlugInstall` and `:UpdateRemotePlugins`

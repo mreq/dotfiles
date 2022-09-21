@@ -5,7 +5,6 @@ compton
 curl
 doublecmd-gtk
 exfat-fuse
-exfat-utils
 faenza-icon-theme
 ffmpegthumbnailer
 fonts-croscore
@@ -19,6 +18,7 @@ gifsicle
 gparted
 htop
 i3
+i3blocks
 imagemagick
 inotify-tools
 jq
