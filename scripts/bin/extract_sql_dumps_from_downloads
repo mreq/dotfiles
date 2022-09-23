@@ -1,0 +1,8 @@
+#!/bin/bash
+mkdir -p ~/Documents/SQL
+
+for f in ~/Downloads/*.sql.gz; do
+  gunzip "$f"
+  mv ~/Downloads/$( basename "$f" .gz ) ~/Documents/SQL/$( basename "$f" .gz )
+  echo "Extracted $( basename "$f" .gz )"
+done
