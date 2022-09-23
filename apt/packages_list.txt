@@ -33,6 +33,8 @@ libreoffice-calc
 libreoffice-writer
 libsodium-dev
 libssl-dev
+libvips-dev
+libvips-tools
 ncdu
 neovim
 nfs-common

@@ -60,4 +60,7 @@ if [[ -d ~/Dropbox/ubuntu ]]; then
   create_symlink ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
   create_symlink ~/Dropbox/ubuntu/ssh/config ~/.ssh/config
   create_symlink ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
+  create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
+  create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
+
 fi
