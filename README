@@ -21,6 +21,12 @@ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer
 rbenv install -l
 ```
 
+## nvm
+
+```
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+```
+
 ## Neovim
 
 ```
