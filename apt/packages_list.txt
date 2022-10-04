@@ -15,6 +15,7 @@ fonts-nanum
 fzf
 gdebi
 gifsicle
+gimp
 gparted
 htop
 i3
