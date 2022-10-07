@@ -1,5 +1,8 @@
 acpi
+apache2-utils
+atril
 awscli
+cairosvg
 cifs-utils
 compton
 curl
@@ -39,6 +42,7 @@ libvips-tools
 ncdu
 neovim
 nfs-common
+nomacs
 postgresql
 postgresql-client
 postgresql-contrib
