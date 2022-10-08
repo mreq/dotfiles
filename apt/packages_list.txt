@@ -50,6 +50,7 @@ python3-pip
 r-base
 redis
 redshift
+ripgrep
 rofi
 rubber
 shellcheck
