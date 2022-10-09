@@ -46,6 +46,8 @@ create_dotfiles_symlink nvim/init.vim ~/.config/nvim/init.vim
 
 create_dotfiles_symlink ruby/.gemrc ~/.gemrc
 
+create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
+
 (
   cd subl || exit 0
 
