@@ -9,6 +9,7 @@ curl
 doublecmd-gtk
 exfat-fuse
 faenza-icon-theme
+ffmpeg
 ffmpegthumbnailer
 fonts-croscore
 fonts-crosextra-caladea
