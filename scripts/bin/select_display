@@ -3,6 +3,7 @@ options=(
   'guess'
   'DP-HDMI'
   'DP-165'
+  'DP-HDMI-165'
   'DP'
   'HDMI'
   'HDMI-DVI'
@@ -38,6 +39,8 @@ select_display() {
       xrandr --output $dp_output --mode 2560x1440 --rate 165.0 --primary --output $hdmi_output --off ;;
     DP-HDMI )
       xrandr --output $dp_output --auto --rate 60 --primary --output $hdmi_output --auto --left-of $dp_output ;;
+    DP-HDMI-165 )
+      xrandr --output $dp_output --mode 2560x1440 --rate 165.0 --primary --output $hdmi_output --auto --left-of $dp_output ;;
     HDMI )
       xrandr --output $hdmi_output --auto --primary --output $dvi_output --off --output $notebook_output --off ;;
     HDMI-DVI )
