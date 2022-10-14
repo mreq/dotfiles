@@ -35,3 +35,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 ```
 
 open `nvim` and run `:PlugInstall` and `:UpdateRemotePlugins`
+
+## Double commander
+
+Download qt-latest from https://download.opensuse.org/repositories/home:/Alexx2000:/doublecmd-svn/AppImage to `~/Applications`

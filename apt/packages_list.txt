@@ -6,7 +6,6 @@ cairosvg
 cifs-utils
 compton
 curl
-doublecmd-gtk
 exfat-fuse
 faenza-icon-theme
 ffmpeg
