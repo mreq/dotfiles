@@ -227,4 +227,13 @@
       "reverse": false,
     }
   },
+
+  // Pretty json
+  {
+    "keys": [" ", "o", "p"],
+    "command": "pretty_json",
+    "context": [
+      { "key": "vi_command_mode_aware" },
+    ]
+  },
 ]

@@ -11,6 +11,8 @@ sudo ln -s ~/.dotfiles/scripts/ssh-askpass-xfce4-terminal /usr/bin/ssh-askpass
 
 sudo ln -s ~/.dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_downloads
 
+sudo ln -s ~/.dotfiles/cron/clear_dropbox /etc/cron.daily/clear_home_petr_dropbox
+
 sudo ln -s ~/.dotfiles/cron/clear_work_logs /etc/cron.daily/clear_home_petr_work_logs
 ```
 

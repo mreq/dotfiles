@@ -79,6 +79,7 @@
     { "trigger": "td\ttext-decoration", "contents": "text-decoration: $0" },
     { "trigger": "tdu\ttext-decoration-underline", "contents": "text-decoration: underline" },
     { "trigger": "tdn\ttext-decoration-none", "contents": "text-decoration: none" },
+    { "trigger": "tdt\ttext-decoration-thickness", "contents": "text-decoration-thickness: from-font" },
     { "trigger": "ttu", "contents": "text-transform: uppercase" },
     { "trigger": "ttn", "contents": "text-transform: none" },
 

@@ -14,6 +14,7 @@ fonts-croscore
 fonts-crosextra-caladea
 fonts-crosextra-carlito
 fonts-firacode
+fonts-font-awesome
 fonts-nanum
 fzf
 gdebi
