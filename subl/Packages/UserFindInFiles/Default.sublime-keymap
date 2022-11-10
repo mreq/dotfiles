@@ -2,7 +2,7 @@
   // Find in files: open
   {
     "keys": ["o"],
-    "command": "find_in_files_open_file",
+    "command": "fixed_find_in_files_open_file",
     "context": [
       { "key": "selector", "operator": "equal", "operand": "text.find-in-files" }
     ]
