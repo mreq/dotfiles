@@ -8,7 +8,7 @@
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": "(fill|stroke)=[\"'][^\"']+[\"']",
+        "pattern": "(fill|stroke)=[\"'](?!none)[^\"']+[\"']",
         "replacement": "\\1=\"currentColor\""
       }
     },

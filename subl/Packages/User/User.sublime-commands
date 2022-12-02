@@ -25,5 +25,10 @@
   {
     "caption": "Project: Generate project file",
     "command": "generate_project"
+  },
+
+  {
+    "caption": "Icons: Add icon from downloads",
+    "command": "add_icon_from_downloads"
   }
 ]

@@ -39,9 +39,9 @@ for_window [class="Double Commander" title="Copying$"] floating enable; border n
 for_window [class="Wine"] floating disable
 for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
-for_window [class="Thunar"] floating enable, resize set 1400 850, move absolute position center
+for_window [class="Thunar"] floating enable, resize set 1400 850, move position center
 for_window [class="SimpleScreenRecorder"] floating enable
-for_window [window_role="ssh-askpass-xfce4-terminal"] floating enable, resize set 900 100, move absolute position center
+for_window [window_role="ssh-askpass-xfce4-terminal"] floating enable, resize set 900 100, move position center
 
 # drag floating windows
 floating_modifier $m
