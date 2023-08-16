@@ -193,7 +193,7 @@ assign [class="Spotify"] → $ico_music
 assign [class="Gimp"] → $ico_gimp
 assign [class="thunderbird"] → $ico_mail
 assign [class="Double Commander"] → $ico_folder
-assign [class="Google-chrome" instance=".*.slack.com"] → $ico_slack
+assign [class="Slack"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
 assign [class="Google-chrome" instance="calendar.google.com__calendar"] → $ico_calendar
@@ -213,7 +213,7 @@ bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar' 'float'"
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c 'Double Commander' -x ~/Applications/doublecmd-qt-latest-x86_64.AppImage"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c thunderbird -x thunderbird"
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/slack_channels.txt'"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://web.whatsapp.com/'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"

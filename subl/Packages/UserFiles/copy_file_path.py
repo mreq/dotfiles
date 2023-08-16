@@ -19,4 +19,4 @@ class CopyFilePathWithLineNumber(CopyFilePath):
 class CopyFilePathAsRailsTest(CopyFilePath):
     def get_path(self):
         path = super().get_path()
-        return 'PARALLEL_WORKERS=1 r t ' + path
+        return 'r t ' + path

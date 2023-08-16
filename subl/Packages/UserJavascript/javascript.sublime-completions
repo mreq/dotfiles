@@ -2,7 +2,7 @@
   "scope": "source.js, source.jsx",
   "completions":
   [
-    { "trigger": "st\tstyled", "contents": "styled.${1:div}`\n\t$0\n`" },
+    { "trigger": "std\tstyled", "contents": "styled.${1:div}`\n\t$0\n`" },
     { "trigger": "im\timport", "contents": "import $1 from '$0';" },
     { "trigger": "imn\timport named", "contents": "import { $1 } from '$0';" },
     { "trigger": "imm\timport messages", "contents": "import messages from './messages';" },
@@ -19,6 +19,10 @@
     { "trigger": "imu\timport utils", "contents": "import $1 from 'utils/${0:$1}';" },
     { "trigger": "imcf\timport commons/factories", "contents": "import { $0 } from 'commons/factories';" },
     { "trigger": "ed\texport default", "contents": "export default $0;" },
+
+    { "trigger": "st\tstimulus", "contents": "window.Folio.Stimulus.register('$1', class extends window.Stimulus.Controller {\n\t$0\n})" },
+
+    { "trigger": "for", "contents": "for (let ${1:i} = 0; ${1:i} < ${2:ary}.length; ${1:i} += 1) {\n\t${0}\n}" },
 
     { "trigger": "fs\tblank function", "contents": "() => {}" },
 

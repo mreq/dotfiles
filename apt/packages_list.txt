@@ -36,10 +36,12 @@ libmysqlclient-dev
 libpq-dev
 libreoffice-calc
 libreoffice-writer
+librsvg2-bin
 libsodium-dev
 libssl-dev
 libvips-dev
 libvips-tools
+libyaml-dev
 ncdu
 neovim
 nfs-common
