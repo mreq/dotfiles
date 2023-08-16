@@ -1,11 +1,11 @@
 #!/bin/bash
 options=(
   'guess'
+  'DP'
+  'HDMI'
   'DP-HDMI'
   'DP-165'
   'DP-HDMI-165'
-  'DP'
-  'HDMI'
   'HDMI-DVI'
   'DVI'
   'VGA'
@@ -20,7 +20,9 @@ notebook_output=$( xrandr | grep 'eDP.* connected' | head -n1 | awk '{ print $1 
 vga_output=VGA1
 
 guess_display() {
-  if xrandr | grep --extended-regexp '(DP|DisplayPort).* connected'; then
+  if xrandr | grep --extended-regexp '(eDP).* connected'; then
+    select_display notebook
+  elif xrandr | grep --extended-regexp '(DP|DisplayPort).* connected'; then
     select_display DP
   elif xrandr | grep 'VGA.* connected'; then
     select_display VGA
