@@ -38,8 +38,10 @@ class CellOpen(sublime_plugin.WindowCommand):
         else:
             controller_name = ruby_cell_utils.get_controller_name(self.window)
             if controller_name:
-                if target == 'slim':
-                    pattern = 'app/controllers/' + controller_name + '\.rb'
+                if target == 'ruby':
+                    pattern = 'app/controllers/' + controller_name + '_controller\.rb'
+                elif target == 'slim':
+                    pattern = 'app/views/' + controller_name + '/(index|show)\.slim'
                 elif target == 'test':
                     pattern = 'test/controllers/' + controller_name + '_test\.rb'
                 else:

@@ -37,11 +37,16 @@ def get_cell_name(window):
 def get_controller_name(window):
     view = window.active_view()
     path = view.file_name()
-    results = re.search('controllers/(.+_controller)(?:_test)?\.rb', path)
+    results = re.search('controllers/(.+)_controller(?:_test)?\.rb', path)
     if results and results.group(1):
         return results.group(1)
     else:
-        return None
+        results = re.search('views/(.+)/\w+\.slim', path)
+
+        if results and results.group(1):
+            return results.group(1)
+        else:
+            return None
 
 def get_component_name(window):
     view = window.active_view()
