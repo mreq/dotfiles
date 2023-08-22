@@ -45,7 +45,22 @@ class CellOpen(sublime_plugin.WindowCommand):
                 else:
                     return self.window.status_message('Not a valid target.')
             else:
-                return self.window.status_message('Not a cell/controller.')
+                component_name = ruby_cell_utils.get_component_name(self.window)
+                if component_name:
+                    if target == 'ruby':
+                        pattern = 'app/components/' + component_name + '.rb'
+                    elif target == 'slim':
+                        pattern = 'app/components/' + component_name + '.slim'
+                    elif target == 'test':
+                        pattern = 'test/components/' + component_name + '_test.rb'
+                    elif target == 'sass':
+                        pattern = 'app/components/' + component_name + '.sass'
+                    elif target == 'js':
+                        pattern = 'app/components/' + component_name + '.js'
+                    else:
+                        return self.window.status_message('Not a valid target.')
+                else:
+                    return self.window.status_message('Not a cell/controller/component.')
 
         pwd = self.window.folders()[0]
 

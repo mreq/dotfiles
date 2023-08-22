@@ -37,19 +37,31 @@ def get_cell_name(window):
 def get_controller_name(window):
     view = window.active_view()
     path = view.file_name()
-    results = re.search('controllers/(.+_controller)(?:_test)?.rb', path)
+    results = re.search('controllers/(.+_controller)(?:_test)?\.rb', path)
+    if results and results.group(1):
+        return results.group(1)
+    else:
+        return None
+
+def get_component_name(window):
+    view = window.active_view()
+    path = view.file_name()
+    results = re.search('components/(.+_component)(?:_test)?\.(rb|slim|sass|js)', path)
     if results and results.group(1):
         return results.group(1)
     else:
         return None
 
 def create_view(window, extension, alt_extension = None):
-    cell_name = get_cell_name(window)
+    name = get_cell_name(window)
 
-    if cell_name is None:
-        return window.status_message('Not a cell view.')
+    if name is None:
+        name = get_component_name(window)
 
-    cell_base_name = cell_name.split('/').pop()
+        if name is None:
+            return window.status_message('Not a cell/component view.')
+
+    base_name = name.split('/').pop()
 
     source_view = window.active_view()
     path = source_view.file_name()
@@ -58,10 +70,13 @@ def create_view(window, extension, alt_extension = None):
     for ext in [alt_extension, extension]:
         if ext:
             if '_cell.rb' in path:
-                new_path = re.sub('_cell.rb', '/' + cell_base_name + '.' + ext,
+                new_path = re.sub('_cell.rb', '/' + base_name + '.' + ext,
+                                  path)
+            elif '_component.' in path:
+                new_path = re.sub(base_name + '\.\w+', base_name + '.' + ext,
                                   path)
             else:
-                new_path = re.sub('/\w+\.slim', '/' + cell_base_name + '.' + ext,
+                new_path = re.sub('/\w+\.slim', '/' + base_name + '.' + ext,
                                   path)
 
             if os.path.isfile(new_path):
@@ -86,7 +101,7 @@ def create_view(window, extension, alt_extension = None):
                         class_name = first_line  + "\n  "
 
             if not class_name:
-                class_name = re.sub(r"[\/_]", "-", re.sub(r"^(\w)\w+\/", ".\\1/", cell_name)) + "\n  "
+                class_name = re.sub(r"[\/_]", "-", re.sub(r"^(\w)\w+\/", ".\\1/", name)) + "\n  "
 
             def append():
                 new_view.run_command("append", { "characters": class_name })
