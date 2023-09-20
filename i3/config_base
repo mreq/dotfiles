@@ -192,7 +192,7 @@ assign [class="VirtualBox"] → $ico_virtualbox
 assign [class="Spotify"] → $ico_music
 assign [class="Gimp"] → $ico_gimp
 assign [class="thunderbird"] → $ico_mail
-assign [class="Double Commander"] → $ico_folder
+assign [class="Doublecmd"] → $ico_folder
 assign [class="Slack"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
@@ -211,7 +211,7 @@ bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar' 'float'"
 
 # Back and forth
-bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c 'Double Commander' -x ~/Applications/doublecmd-qt-latest-x86_64.AppImage"
+bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c 'Doublecmd' -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c thunderbird -x thunderbird"
 bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
