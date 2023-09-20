@@ -104,7 +104,19 @@
     },
 
     {
-      "name": "Convert cell path to command",
+      "name": "Convert component path to render",
+      "context": {
+        "scope": ["text.slim"],
+        "line_matches": ["app/components"]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "convert_ruby_component_path_to_render",
+      }
+    },
+
+    {
+      "name": "Convert cell path to render",
       "context": {
         "scope": ["text.slim"],
         "line_matches": ["(app|source)/cells"]
@@ -231,7 +243,7 @@
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": ".*app/(?:cells/)(.+)\\.(coffee|js)",
+        "pattern": ".*app/(?:cells/|components/)(.+)\\.(coffee|js)",
         "replacement": "//= require \\1"
       }
     },

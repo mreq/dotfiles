@@ -106,7 +106,7 @@ def create_view(window, extension, alt_extension = None):
                         class_name = first_line  + "\n  "
 
             if not class_name:
-                class_name = re.sub(r"[\/_]", "-", re.sub(r"^(\w)\w+\/", ".\\1/", name)) + "\n  "
+                class_name = re.sub(r"-component", "", re.sub(r"[\/_]", "-", re.sub(r"^(\w)\w+\/", ".\\1/", name))) + "\n  "
 
             def append():
                 new_view.run_command("append", { "characters": class_name })
