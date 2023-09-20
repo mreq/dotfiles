@@ -29,7 +29,7 @@ class convert_ruby_component_path_to_render(sublime_plugin.TextCommand):
 
         parts = parts.split("/")
         parts = [part[0].upper() + part[1:] for part in parts]
-        component_name = "::".join(parts)
+        component_name = "::".join(parts) + "Component"
 
         new_line_text = leading_whitespace + "= render(" + component_name + ".new())"
 
