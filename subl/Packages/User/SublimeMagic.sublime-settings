@@ -107,7 +107,7 @@
       "name": "Convert component path to render",
       "context": {
         "scope": ["text.slim"],
-        "line_matches": ["app/components"]
+        "line_matches": ["(app|test)/components"]
       },
       "spell": "sublime_command",
       "args": {

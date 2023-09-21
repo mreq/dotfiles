@@ -20,8 +20,8 @@ class convert_ruby_component_path_to_render(sublime_plugin.TextCommand):
         else:
             leading_whitespace = ""
 
-        component_path = re.sub(r"\s+app/components/", "", line_text)
-        component_path = re.sub(r"_component\.\w+", "", component_path)
+        component_path = re.sub(r"\s+(app|test)/components/", "", line_text)
+        component_path = re.sub(r"_component(_test)?\.\w+", "", component_path)
 
         parts = component_path.split("_")
         parts = [part[0].upper() + part[1:] for part in parts]
