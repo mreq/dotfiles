@@ -104,6 +104,18 @@
     },
 
     {
+      "name": "create component initialize method",
+      "context": {
+        "scope": ["source.ruby"],
+        "line_matches": ["\\s+i\\s+\\w"]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "ruby_component_create_initialize_method",
+      }
+    },
+
+    {
       "name": "Convert component path to render",
       "context": {
         "scope": ["text.slim"],
@@ -111,7 +123,7 @@
       },
       "spell": "sublime_command",
       "args": {
-        "command": "convert_ruby_component_path_to_render",
+        "command": "ruby_component_convert_path_to_render",
       }
     },
 
