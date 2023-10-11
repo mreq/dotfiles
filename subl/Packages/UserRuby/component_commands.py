@@ -18,7 +18,7 @@ class ruby_component_convert_path_to_render(sublime_plugin.TextCommand):
         else:
             leading_whitespace = ""
 
-        component_path = re.sub(r"\s+(app|test)/components/", "", line_text)
+        component_path = re.sub(r"\s*(app|test)/components/", "", line_text)
         component_path = re.sub(r"_component(_test)?\.\w+", "", component_path)
 
         parts = component_path.split("_")
@@ -55,7 +55,7 @@ class ruby_component_create_initialize_method(sublime_plugin.TextCommand):
         else:
             leading_whitespace = ""
 
-        argument_matches = re.sub(r"\s+i\s+", "", line_text).split(" ")
+        argument_matches = re.sub(r"\s*i\s+", "", line_text).split(" ")
 
         arguments = [argument + ":" for argument in argument_matches]
         arguments_line = leading_whitespace + "def initialize(" + ", ".join(arguments) + ")"
