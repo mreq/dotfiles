@@ -1,8 +1,6 @@
 import sublime
 import sublime_plugin
 import re
-import subprocess
-from . import ruby_cell_utils
 
 class ruby_component_convert_path_to_render(sublime_plugin.TextCommand):
     def run(self, edit):

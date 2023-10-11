@@ -66,6 +66,18 @@
     },
 
     {
+      "name": "Ruby bracket-less alignment",
+      "context": {
+        "scope": ["source.ruby"],
+        "line_matches": [".+,.+,"]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "ruby_bracket_less_alignment"
+      }
+    },
+
+    {
       "name": "Method alignment",
       "context": {
         "scope": ["source.ruby"],
