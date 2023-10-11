@@ -66,6 +66,18 @@
     },
 
     {
+      "name": "Ruby dot chain alignment",
+      "context": {
+        "scope": ["source.ruby"],
+        "line_matches": [".+\\..+\\."]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "ruby_dot_chain_alignment"
+      }
+    },
+
+    {
       "name": "Ruby bracket-less alignment",
       "context": {
         "scope": ["source.ruby"],
