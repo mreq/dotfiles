@@ -59,7 +59,7 @@ select_display() {
 if [[ $1 ]]; then
   select_display "$1"
 else
-  select_display "$( printf "%s\n" "${options[@]}" | rofi -dmenu -i -p '↠ ' )"
+  select_display "$( printf "%s\n" "${options[@]}" | rofi -dmenu -i -theme base16-mreq-purple )"
 fi
 
 feh --bg-fill ~/Dropbox/ubuntu/wallpapers/milky_way.jpg --bg-fill ~/Dropbox/ubuntu/wallpapers/milky_way.jpg

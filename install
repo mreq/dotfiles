@@ -48,6 +48,8 @@ create_dotfiles_symlink ruby/.gemrc ~/.gemrc
 
 create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
 
+create_dotfiles_symlink rofi ~/.config/rofi
+
 (
   cd subl || exit 0
 

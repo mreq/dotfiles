@@ -1,26 +1,3 @@
-! rofi ----------------------------------------------------------------
-!                 'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-rofi.color-normal: #151515,  #F5F5F5,  #151515,  #6A9FB5,  #F5F5F5
-rofi.color-urgent: #151515,  #F5F5F5,  #151515,  #6A9FB5,  #F5F5F5
-rofi.color-active: #151515,  #F5F5F5,  #151515,  #6A9FB5,  #F5F5F5
-rofi.color-window: #151515,  #6A9FB5
-rofi.padding: 30
-rofi.borderwidth: 1
-rofi.separator-style: none
-rofi.opacity: 100
-rofi.font: Fira Code Bold 12
-rofi.location: 0
-rofi.hmode: false
-rofi.fuzzy: true
-rofi.fullscreen: false
-rofi.eh: 1
-rofi.line-margin: 0
-rofi.line-padding: 15
-rofi.hide-scrollbar: true
-rofi.width: -50
-rofi.lines: 7
-rofi.fixed-num-lines: true
-
 Xft.dpi: 96
 
 ! xscreensaver ---------------------------------------------------------------
