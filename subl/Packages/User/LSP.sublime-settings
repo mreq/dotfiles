@@ -2,11 +2,8 @@
   "clients": {
     "ruby": {
       "enabled": true,
-      "command": ["rvm", "default", "do", "solargraph", "stdio"],
-      "selector": "source.ruby | text.html.ruby",
-      "initializationOptions": {
-        "diagnostics": false
-      }
-    }
-  }
+      "command": ["/home/petr/.rbenv/shims/solargraph", "stdio"],
+      "selector": "source.ruby | text.html.ruby"
+    },
+  },
 }

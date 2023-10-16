@@ -1,26 +1,31 @@
-! rofi ----------------------------------------------------------------
-!                 'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-rofi.color-normal: #151515,  #F5F5F5,  #151515,  #6A9FB5,  #F5F5F5
-rofi.color-urgent: #151515,  #F5F5F5,  #151515,  #6A9FB5,  #F5F5F5
-rofi.color-active: #151515,  #F5F5F5,  #151515,  #6A9FB5,  #F5F5F5
-rofi.color-window: #151515,  #6A9FB5
-rofi.padding: 30
-rofi.borderwidth: 1
-rofi.separator-style: none
-rofi.opacity: 100
-rofi.font: Fira Code Bold 12
-rofi.location: 0
-rofi.hmode: false
-rofi.fuzzy: true
-rofi.fullscreen: false
-rofi.eh: 1
-rofi.line-margin: 0
-rofi.line-padding: 15
-rofi.hide-scrollbar: true
-rofi.width: -50
-rofi.lines: 7
-rofi.fixed-num-lines: true
-
 Xft.dpi: 96
 
-Xcursor.theme: DMZ-White
+! xscreensaver ---------------------------------------------------------------
+
+!font settings
+xscreensaver.Dialog.headingFont:        -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #EDEDED
+xscreensaver.Dialog.background:         #202020
+xscreensaver.Dialog.topShadowColor:     #202024
+xscreensaver.Dialog.bottomShadowColor:  #202024
+xscreensaver.Dialog.Button.foreground:  #EDEDFF
+xscreensaver.Dialog.Button.background:  #444
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #EDEDFF
+xscreensaver.Dialog.text.background:    #444
+xscreensaver.Dialog.internalBorderWidth:24
+xscreensaver.Dialog.borderWidth:        0
+xscreensaver.Dialog.shadowThickness:    2
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #A9B7C4
+xscreensaver.passwd.thermometer.background:  #202020
+xscreensaver.passwd.thermometer.width:       8
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y

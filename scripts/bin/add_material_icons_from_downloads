@@ -1,4 +1,4 @@
-#!/home/petr/.rvm/rubies/default/bin/ruby
+#!/home/petr/.rbenv/shims/ruby
 
 fail 'No data/icons directory!' unless File.directory?('data/icons')
 

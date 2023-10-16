@@ -6,7 +6,7 @@ function renameWorkspace {
     fi
   }
   original=$( i3-msg -t get_workspaces | jq '.[] | select(.focused) | .num' )
-  handleInput "$( echo "$original" | rofi -dmenu -i -p 'rename ↠ ' )"
+  handleInput "$( echo "$original" | rofi -dmenu -i -theme base16-mreq-red )"
 }
 
 renameWorkspace

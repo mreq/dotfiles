@@ -26,7 +26,7 @@
     { "trigger": "bw\tborder-width", "contents": "border-width: $0" },
     { "trigger": "bc\tborder-color", "contents": "border-color: $0" },
 
-    { "trigger": "ma\tmargin", "contents": "margin: $0" },
+    { "trigger": "m\tmargin", "contents": "margin: $0" },
     { "trigger": "mab", "contents": "margin-bottom: $0" },
     { "trigger": "mat", "contents": "margin-top: $0" },
     { "trigger": "mal", "contents": "margin-left: $0" },
@@ -36,7 +36,7 @@
     { "trigger": "pat", "contents": "padding-top: $0" },
     { "trigger": "pal", "contents": "padding-left: $0" },
     { "trigger": "par", "contents": "padding-right: $0" },
-    { "trigger": "pad\tpadding", "contents": "padding: $0" },
+    { "trigger": "p\tpadding", "contents": "padding: $0" },
 
     { "trigger": "po\tposition", "contents": "position: $0" },
     { "trigger": "poa\tabsolute", "contents": "position: absolute" },
@@ -79,12 +79,16 @@
     { "trigger": "td\ttext-decoration", "contents": "text-decoration: $0" },
     { "trigger": "tdu\ttext-decoration-underline", "contents": "text-decoration: underline" },
     { "trigger": "tdn\ttext-decoration-none", "contents": "text-decoration: none" },
-    { "trigger": "tt", "contents": "text-transform: ${0:uppercase}" },
+    { "trigger": "tdt\ttext-decoration-thickness", "contents": "text-decoration-thickness: from-font" },
+    { "trigger": "ttu", "contents": "text-transform: uppercase" },
+    { "trigger": "ttn", "contents": "text-transform: none" },
 
     // fonts
     { "trigger": "fs", "contents": "font-size: $0px" },
     { "trigger": "lh\tline-height", "contents": "line-height: $0" },
-    { "trigger": "fw", "contents": "font-weight: ${0:\\$font-weight-${1:bold}}" },
+    { "trigger": "fw", "contents": "font-weight: \\$font-weight-${0}" },
+    { "trigger": "fwb", "contents": "font-weight: \\$font-weight-bold" },
+    { "trigger": "fwn", "contents": "font-weight: \\$font-weight-normal" },
     { "trigger": "ws", "contents": "white-space: nowrap" },
 
     // background

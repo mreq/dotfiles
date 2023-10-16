@@ -1,8 +1,37 @@
-#!/bin/bash
-mkdir -p ~/Documents/SQL
+#!/home/petr/.rbenv/shims/ruby
+require 'fileutils'
+require 'open3'
 
-for f in ~/Downloads/*.sql.gz; do
-  gunzip "$f"
-  mv ~/Downloads/$( basename "$f" .gz ) ~/Documents/SQL/$( basename "$f" .gz )
-  echo "Extracted $( basename "$f" .gz )"
-done
+FileUtils.mkdir_p File.expand_path("~/Documents/SQL")
+
+paths = Dir[File.expand_path("~/Downloads/*.sql.gz")]
+if paths.size > 0
+  paths.each do |path|
+    Open3.capture2e('gunzip', path, chdir: File.expand_path("~/Downloads"))
+
+    basename = File.basename(path.delete_suffix('.gz'))
+
+    FileUtils.mv(path.delete_suffix('.gz'), File.expand_path("~/Documents/SQL/#{basename}"))
+
+    puts "Extracted #{basename}"
+  end
+else
+  puts "No *.sql.gz to extract"
+end
+
+projects = []
+cleared = []
+
+Dir[File.expand_path("~/Documents/SQL/*.sql")].map { |path| File.basename(path) }.reverse.each do |sql_file_name|
+  project = sql_file_name.gsub(/-\d{4}-\d{2}-\d{2}.*\.sql/, '')
+  if projects.include?(project)
+    FileUtils.rm(File.expand_path("~/Documents/SQL/#{sql_file_name}"))
+    cleared << project unless cleared.include?(project)
+  else
+    projects << project
+  end
+end
+
+cleared.each do |project|
+  puts "Cleared duplicate sql dumps for #{project}"
+end

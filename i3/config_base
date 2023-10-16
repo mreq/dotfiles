@@ -34,14 +34,14 @@ hide_edge_borders both
 new_window pixel 5
 new_float pixel 5
 for_window [class="Xfce4-notifyd"] floating enable; border none
-for_window [class="Doublecmd" title="Moving$"] floating enable; border none
-for_window [class="Doublecmd" title="Copying$"] floating enable; border none
+for_window [class="Double Commander" title="Moving$"] floating enable; border none
+for_window [class="Double Commander" title="Copying$"] floating enable; border none
 for_window [class="Wine"] floating disable
 for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
-for_window [class="Thunar"] floating enable, resize set 1400 850, move absolute position center
+for_window [class="Thunar"] floating enable, resize set 1400 850, move position center
 for_window [class="SimpleScreenRecorder"] floating enable
-for_window [window_role="ssh-askpass-xfce4-terminal"] floating enable, resize set 900 100, move absolute position center
+for_window [window_role="ssh-askpass-xfce4-terminal"] floating enable, resize set 900 100, move position center
 
 # drag floating windows
 floating_modifier $m
@@ -185,15 +185,15 @@ client.unfocused         $base00  $base00     $base07
 client.urgent            $base08  $base08     $base00
 
 # Window rules
-for_window [class="Thunderbird" instance="Msgcompose"] floating enable
+for_window [class="thunderbird" instance="Msgcompose"] floating enable
 
 # Assigns
 assign [class="VirtualBox"] → $ico_virtualbox
 assign [class="Spotify"] → $ico_music
 assign [class="Gimp"] → $ico_gimp
-assign [class="Thunderbird"] → $ico_mail
+assign [class="thunderbird"] → $ico_mail
 assign [class="Doublecmd"] → $ico_folder
-assign [class="Google-chrome" instance=".*.slack.com"] → $ico_slack
+assign [class="Slack"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
 assign [class="Google-chrome" instance="calendar.google.com__calendar"] → $ico_calendar
@@ -211,9 +211,9 @@ bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar' 'float'"
 
 # Back and forth
-bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c Doublecmd -x doublecmd"
-bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c Thunderbird -x thunderbird"
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/slack_channels.txt'"
+bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c 'Doublecmd' -x doublecmd"
+bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c thunderbird -x thunderbird"
+bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://web.whatsapp.com/'"
 bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"

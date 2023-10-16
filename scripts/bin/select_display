@@ -1,10 +1,11 @@
 #!/bin/bash
 options=(
   'guess'
-  'DP-HDMI'
-  'DP-165'
   'DP'
   'HDMI'
+  'DP-HDMI'
+  'DP-60'
+  'DP-HDMI-60'
   'HDMI-DVI'
   'DVI'
   'VGA'
@@ -12,13 +13,16 @@ options=(
   'notebook-HDMI'
 )
 
-dp_output=$( xrandr | grep --extended-regexp '(DP|DisplayPort).* connected' | head -n1 | awk '{ print $1 }' )
+dp_output=$( xrandr | grep --extended-regexp '^(DP|DisplayPort).* connected' | head -n1 | awk '{ print $1 }' )
 hdmi_output=$( xrandr | grep 'HDMI.* connected' | head -n1 | awk '{ print $1 }' )
 dvi_output=$( xrandr | grep 'DVI.* connected' | head -n1 | awk '{ print $1 }' )
+notebook_output=$( xrandr | grep 'eDP.* connected' | head -n1 | awk '{ print $1 }' )
 vga_output=VGA1
 
 guess_display() {
-  if xrandr | grep --extended-regexp '(DP|DisplayPort).* connected'; then
+  if xrandr | grep --extended-regexp '(eDP).* connected'; then
+    select_display notebook
+  elif xrandr | grep --extended-regexp '(DP|DisplayPort).* connected'; then
     select_display DP
   elif xrandr | grep 'VGA.* connected'; then
     select_display VGA
@@ -32,15 +36,19 @@ select_display() {
     guess )
       guess_display ;;
     DP )
-      xrandr --output $dp_output --auto --rate 60 --primary --output $hdmi_output --off ;;
-    DP-165 )
-      xrandr --output $dp_output --mode 2560x1440 --rate 165.0 --primary --output $hdmi_output --off ;;
+      xrandr --output $dp_output --auto --rate 165.0 --primary --output $hdmi_output --off ;;
+    DP-60 )
+      xrandr --output $dp_output --mode 2560x1440 --rate 60 --primary --output $hdmi_output --off ;;
     DP-HDMI )
-      xrandr --output $dp_output --auto --rate 60 --primary --output $hdmi_output --auto --left-of $dp_output ;;
+      xrandr --output $dp_output --auto --rate 165.0 --primary --output $hdmi_output --auto --left-of $dp_output ;;
+    DP-HDMI-60 )
+      xrandr --output $dp_output --mode 2560x1440 --rate 60 --primary --output $hdmi_output --auto --left-of $dp_output ;;
     HDMI )
-      xrandr --output $hdmi_output --auto --primary --output $dvi_output --off ;;
+      xrandr --output $hdmi_output --auto --primary --output $dvi_output --off --output $notebook_output --off ;;
     HDMI-DVI )
       xrandr --output $hdmi_output --auto --primary --output $dvi_output --auto --left-of $hdmi_output ;;
+    notebook )
+      xrandr --output $notebook_output --auto --output $dvi_output --off --output $hdmi_output --off ;;
     DVI )
       xrandr --output $dvi_output --auto --primary --output $hdmi_output --off ;;
     VGA )
@@ -51,7 +59,7 @@ select_display() {
 if [[ $1 ]]; then
   select_display "$1"
 else
-  select_display "$( printf "%s\n" "${options[@]}" | rofi -dmenu -i -p '↠ ' )"
+  select_display "$( printf "%s\n" "${options[@]}" | rofi -dmenu -i -theme base16-mreq-purple )"
 fi
 
 feh --bg-fill ~/Dropbox/ubuntu/wallpapers/milky_way.jpg --bg-fill ~/Dropbox/ubuntu/wallpapers/milky_way.jpg

@@ -1,4 +1,4 @@
-#!/home/petr/.rvm/rubies/default/bin/ruby
+#!/home/petr/.rbenv/shims/ruby
 mpstat = `mpstat | tail -n1`.chomp
 load = (100-mpstat[/\d+[\.,]\d+$/].to_f).round
 puts " #{load}%"

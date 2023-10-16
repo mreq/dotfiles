@@ -37,7 +37,7 @@
     "args": {
       "commands": [
         ["save"],
-        ["run_cmd", { "cmd": "~/.config/sublime-text-3/Packages/UserTeX/bin/build_knitr '$file_name' 'all'" }]
+        ["run_cmd", { "cmd": "~/.config/sublime-text/Packages/UserTeX/bin/build_knitr '$file_name' 'all'" }]
       ]
     }
   },
@@ -64,7 +64,7 @@
     "args": {
       "commands": [
         ["save"],
-        ["run_cmd", { "cmd": "~/.config/sublime-text-3/Packages/UserTeX/bin/build_xelatex '$file_name' 'all'" }]
+        ["run_cmd", { "cmd": "~/.config/sublime-text/Packages/UserTeX/bin/build_xelatex '$file_name' 'all'" }]
       ]
     }
   }

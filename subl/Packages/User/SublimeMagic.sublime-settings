@@ -8,7 +8,7 @@
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": "(fill|stroke)=[\"'][^\"']+[\"']",
+        "pattern": "(fill|stroke)=[\"'](?!none)[^\"']+[\"']",
         "replacement": "\\1=\"currentColor\""
       }
     },
@@ -66,6 +66,30 @@
     },
 
     {
+      "name": "Ruby dot chain alignment",
+      "context": {
+        "scope": ["source.ruby"],
+        "line_matches": [".+\\..+\\."]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "ruby_dot_chain_alignment"
+      }
+    },
+
+    {
+      "name": "Ruby bracket-less alignment",
+      "context": {
+        "scope": ["source.ruby"],
+        "line_matches": [".+,.+,"]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "ruby_bracket_less_alignment"
+      }
+    },
+
+    {
       "name": "Method alignment",
       "context": {
         "scope": ["source.ruby"],
@@ -104,7 +128,31 @@
     },
 
     {
-      "name": "Convert cell path to command",
+      "name": "create component initialize method",
+      "context": {
+        "scope": ["source.ruby"],
+        "line_matches": ["\\s+i\\s+\\w"]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "ruby_component_create_initialize_method",
+      }
+    },
+
+    {
+      "name": "Convert component path to render",
+      "context": {
+        "scope": ["text.slim"],
+        "line_matches": ["(app|test)/components"]
+      },
+      "spell": "sublime_command",
+      "args": {
+        "command": "ruby_component_convert_path_to_render",
+      }
+    },
+
+    {
+      "name": "Convert cell path to render",
       "context": {
         "scope": ["text.slim"],
         "line_matches": ["(app|source)/cells"]
@@ -231,7 +279,7 @@
       },
       "spell": "perform_line_regex",
       "args": {
-        "pattern": ".*app/(?:cells/)(.+)\\.(coffee|js)",
+        "pattern": ".*app/(?:cells/|components/)(.+)\\.(coffee|js)",
         "replacement": "//= require \\1"
       }
     },

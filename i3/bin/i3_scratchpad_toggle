@@ -1,4 +1,4 @@
-#!/home/petr/.rvm/rubies/default/bin/ruby
+#!/home/petr/.rbenv/shims/ruby
 all_windows = `i3-msg -t get_tree | jq "recurse(.nodes[]) | select(.name == \\"__i3_scratch\\") | recurse(.floating_nodes[]) | recurse(.nodes[]) | .window"`.chomp.split("\n")
 scratchpad_windows = all_windows - ['null']
 

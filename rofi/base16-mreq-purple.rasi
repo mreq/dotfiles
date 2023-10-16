@@ -1,0 +1,7 @@
+@import "_base16-mreq-variables"
+
+* {
+  primary: @purple;
+}
+
+@import "_base16-mreq-styles"

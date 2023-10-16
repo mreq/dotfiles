@@ -1,0 +1,12 @@
+* {
+  blackey: #181818;
+  blue: #7cafc2;
+  dark-gray: #585858;
+  green: #a1b56c;
+  light-gray: #d8d8d8;
+  purple: #ba8baf;
+  red: #ab4642;
+  turqoise: #86c1b9;
+  whitey: #f8f8f8;
+  yellow: #f7ca88;
+}

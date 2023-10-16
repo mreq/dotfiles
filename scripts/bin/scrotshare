@@ -96,7 +96,7 @@ handle_scrot() {
       notify-send -i $ico "scrotshare" "Screenshot not saved."
     }
 
-    is_ok=$( echo -e "push\nclipboard\nkeep\nremove\ngimp" | rofi -dmenu -i -p '↠ ' ) && init $is_ok || rm_scrot
+    is_ok=$( echo -e "push\nclipboard\nkeep\nremove\ngimp" | rofi -dmenu -i -theme base16-mreq-green ) && init $is_ok || rm_scrot
   fi
 }
 

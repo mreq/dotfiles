@@ -11,7 +11,9 @@ else
   fi
 fi
 
-notify-send 'i3 Switching colors' $target_version
+if uptime | grep -v "up 0 min"; then
+  notify-send 'i3 Switching colors' $target_version
+fi
 
 # sublime_theme="Packages/MreqColorScheme/mreq_$target_version.tmTheme"
 # sublime_path=~/.dotfiles/subl/Packages/User/Preferences.sublime-settings
