@@ -203,6 +203,7 @@ textbox-prompt-colon {
 window {
   border: 0;
   padding: 0;
+  width: 33%;
 }
 
 element {
@@ -241,6 +242,7 @@ listview {
   border: 0;
   padding: 0;
   scrollbar: false;
+  lines: 9;
 }
 
 inputbar {
