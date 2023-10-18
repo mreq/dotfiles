@@ -1,8 +1,7 @@
 @import "_base16-mreq-variables"
 
 * {
-  primary: @red;
-  foreground-on-primary: @whitey;
+  primary: @orange;
 }
 
 @import "_base16-mreq-styles"

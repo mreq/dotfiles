@@ -13,7 +13,7 @@
   urgent-background: @normal-background;
   urgent-foreground: @normal-foreground;
   active-background: @primary;
-  active-foreground: @blackey;
+  active-foreground: @foreground-on-primary;
 
   alternate-normal-background: @normal-background;
   alternate-normal-foreground: @normal-foreground;
@@ -236,6 +236,7 @@ entry {
   background-color: @background;
   placeholder: "";
   padding: 15px 10px;
+  blink: false;
 }
 
 listview {
