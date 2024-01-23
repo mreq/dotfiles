@@ -120,6 +120,7 @@
 
     { "trigger": "ggw\tgrid-gutter-width", "contents": "\\$grid-gutter-width" },
     { "trigger": "ggh\tgrid-gutter-half", "contents": "\\$grid-gutter-half" },
+    { "trigger": "ggb\tgrid-gutter-base", "contents": "\\$grid-gutter-base" },
     { "trigger": "phf\tplain-hover-focus", "contents": "+plain-hover-focus\n\t$0" },
 
     { "trigger": "md\tmedia-breakpoint-down", "contents": "+media-breakpoint-down(${1:md})\n\t$0" },

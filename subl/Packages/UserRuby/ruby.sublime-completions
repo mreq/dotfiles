@@ -9,6 +9,8 @@
     { "trigger": "if", "contents": "if $1\n\t$0\nend" },
     { "trigger": "unless", "contents": "unless $1\n\t$0\nend" },
 
+    { "trigger": "sc\tstimulus_controller", "contents": "stimulus_controller(\"$0\")" },
+
     { "trigger": "ead\teach do", "contents": "each do |$1|\n\t$0\nend" }
   ]
 }

@@ -14,4 +14,4 @@ handle_selection() {
   exit 0
 }
 
-handle_selection "$( cd ~/; ls -t $paths | sed -re 's/.+\/([^\/]+)\.sublime-project/\1/' | rofi -dmenu -i -theme base16-mreq-orange )"
+handle_selection "$( cd ~/; ls -t $paths | sed -re 's/.+\/([^\/]+)\.sublime-project/\1/' | rofi -dmenu -i -theme base16-mreq-yellow )"

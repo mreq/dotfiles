@@ -12,6 +12,8 @@
     { "trigger": "vau\tvalidates_uniqueness", "contents": "validates :$1,\n          uniqueness: true"},
     { "trigger": "van\tvalidates_numericality", "contents": "validates :$1,\n          numericality: { only_integer: true, in: 1..10$0 }"},
 
+    { "trigger": "bi\tinitialize (blank)", "contents": "def initialize\nend" },
+
     { "trigger": "han\thuman_attribute_name", "contents": "human_attribute_name(:$0)" },
     { "trigger": "mnh\tmodel_name.human", "contents": "model_name.human${1:(count: ${0:2})}" },
 
