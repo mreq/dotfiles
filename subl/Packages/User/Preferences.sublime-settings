@@ -45,6 +45,6 @@
 	"vintageous_use_super_keys": false,
 	"vintageous_use_sys_clipboard": true,
 	"word_wrap": true,
-	"color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
+	"color_scheme": "Mariana.sublime-color-scheme",
 	"index_files": true,
 }
