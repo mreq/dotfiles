@@ -36,7 +36,15 @@ select_display() {
     guess )
       guess_display ;;
     DP )
-      xrandr --output $dp_output --auto --rate 165.0 --primary --output $hdmi_output --off ;;
+      modeline=$( cvt -r 2560 1440 120 | tail -n1 | cut --characters=10- )
+      mode_name=$( echo $modeline | awk '{ print $1 }' )
+
+      if ! (xrandr | grep $mode_name); then
+        xrandr --newmode $modeline
+        xrandr --addmode $dp_output $mode_name
+      fi
+
+      xrandr --output $dp_output --mode $mode_name --rate 120.0 --primary --output $hdmi_output --off ;;
     DP-60 )
       xrandr --output $dp_output --mode 2560x1440 --rate 60 --primary --output $hdmi_output --off ;;
     DP-HDMI )
