@@ -1,5 +1,5 @@
 // Settings in here override those in "LSP-copilot/LSP-copilot.sublime-settings"
 
 {
-  "selector": "source.jsx | source.ruby | source.yaml | source.python | text | embedding"
+  "selector": "source.jsx | source.ruby | source.yaml | source.json | source.python | text | embedding"
 }

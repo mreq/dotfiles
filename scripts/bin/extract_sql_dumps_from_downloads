@@ -22,7 +22,7 @@ end
 projects = []
 cleared = []
 
-Dir[File.expand_path("~/Documents/SQL/*.sql")].map { |path| File.basename(path) }.reverse.each do |sql_file_name|
+Dir[File.expand_path("~/Documents/SQL/*.sql")].map { |path| File.basename(path) }.sort.reverse.each do |sql_file_name|
   project = sql_file_name.gsub(/-\d{4}-\d{2}-\d{2}.*\.sql/, '')
   if projects.include?(project)
     FileUtils.rm(File.expand_path("~/Documents/SQL/#{sql_file_name}"))
