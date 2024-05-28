@@ -5,13 +5,14 @@ require 'open3'
 FileUtils.mkdir_p File.expand_path("~/Documents/SQL")
 
 paths = Dir[File.expand_path("~/Downloads/*.sql.gz")]
+
 if paths.size > 0
   paths.each do |path|
     Open3.capture2e('gunzip', path, chdir: File.expand_path("~/Downloads"))
 
-    basename = File.basename(path.delete_suffix('.gz'))
+    basename = File.basename(path.gsub(/\.gz$/, ''))
 
-    FileUtils.mv(path.delete_suffix('.gz'), File.expand_path("~/Documents/SQL/#{basename}"))
+    FileUtils.mv(path.gsub(/\.gz$/, ''), File.expand_path("~/Documents/SQL/#{basename}"))
 
     puts "Extracted #{basename}"
   end
