@@ -8,13 +8,24 @@ case $- in
       *) return;;
 esac
 
-# History setup
-# Don't put duplicate lines or lines starting with space in the history.
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
 HISTCONTROL=ignoreboth
 HISTSIZE=100000
 HISTFILESIZE=5000000
 
-# Use emacs keybindings
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# vi keybinds
 set -o vi
 
 # Case-insensitive globbing (used in pathname expansion)
@@ -33,6 +44,10 @@ shopt -s checkwinsize
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -54,12 +69,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+  # We have color support; assume it's compliant with Ecma-48
+  # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+  # a case would tend to support setf rather than setaf.)
+  color_prompt=yes
     else
-	color_prompt=
+  color_prompt=
     fi
 fi
 
@@ -131,16 +146,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# fzf setup
-if [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then
-  source /usr/share/doc/fzf/examples/key-bindings.bash
-fi
-
-if [ -f /usr/share/doc/fzf/examples/completion.bash ]; then
-  source /usr/share/doc/fzf/examples/completion.bash
-fi
-
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-
-export PATH="$HOME/.local/bin:$PATH"

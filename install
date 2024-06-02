@@ -20,35 +20,37 @@ create_dotfiles_symlink bash/.bashrc ~/.bashrc
 
 create_dotfiles_symlink bash/.bash_aliases ~/.bash_aliases
 
-create_dotfiles_symlink bash/.profile ~/.profile
+# create_dotfiles_symlink bash/.profile ~/.profile
 
-create_dotfiles_symlink X/.Xdefaults ~/.Xdefaults
+# create_dotfiles_symlink X/.Xdefaults ~/.Xdefaults
 
 create_dotfiles_symlink doublecmd/doublecmd.xml ~/.config/doublecmd/doublecmd.xml
 
 create_dotfiles_symlink doublecmd/shortcuts.scf ~/.config/doublecmd/shortcuts.scf
 
-create_dotfiles_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
+# create_dotfiles_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
 
-create_dotfiles_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
+# create_dotfiles_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
 
-create_dotfiles_symlink X/.inputrc ~/.inputrc
+# create_dotfiles_symlink X/.inputrc ~/.inputrc
 
-create_dotfiles_symlink X/.screenrc ~/.screenrc
+# create_dotfiles_symlink X/.screenrc ~/.screenrc
 
 create_dotfiles_symlink tmux/.tmux.conf ~/.tmux.conf
+
+create_dotfiles_symlink sway/config.in ~/.config/sway/config
 
 create_dotfiles_symlink i3/.i3blocks.conf ~/.i3blocks.conf
 
 create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
 
-create_dotfiles_symlink nvim/init.vim ~/.config/nvim/init.vim
+# create_dotfiles_symlink nvim/init.vim ~/.config/nvim/init.vim
 
-create_dotfiles_symlink ruby/.gemrc ~/.gemrc
+# create_dotfiles_symlink ruby/.gemrc ~/.gemrc
 
-create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
+# create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
 
-create_dotfiles_symlink rofi ~/.config/rofi
+# create_dotfiles_symlink rofi ~/.config/rofi
 
 (
   cd subl || exit 0
@@ -66,5 +68,4 @@ if [[ -d ~/Dropbox/ubuntu ]]; then
   create_symlink ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
   create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
   create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
-
 fi
