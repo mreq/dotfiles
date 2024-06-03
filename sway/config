@@ -1,6 +1,4 @@
 include ~/.config/sway/config.d/*.conf
 
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-
 floating_modifier $mod normal
+workspace_layout tabbed

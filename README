@@ -5,7 +5,7 @@
 
 sudo apt install $( cat apt/*.txt )
 
-pip3 install -r ~/.dotfiles/python/requirements.txt
+pip3 install --break-system-packages -r ~/.dotfiles/python/requirements.txt
 
 sudo ln -s ~/.dotfiles/scripts/ssh-askpass-xfce4-terminal /usr/bin/ssh-askpass
 

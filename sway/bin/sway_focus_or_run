@@ -1,44 +1,35 @@
 #!/usr/bin/env python3
-import i3
-import sys
-import subprocess
-import re
+import argparse, sys
+from i3ipc import Connection
 
-target_class = sys.argv[1]
-focused_workspace_name = i3.filter(focused=True, tree=i3.get_workspaces())[0]['name']
-focused_workspace = i3.filter(name=focused_workspace_name, type='workspace')[0]
-skip_workspace_check = len(sys.argv) > 3 and sys.argv[3] == "float"
+sway = Connection()
 
-if not skip_workspace_check and not re.match('\d+', focused_workspace['name']):
-  subprocess.call('i3-msg "workspace back_and_forth"', shell=True)
-  focused_workspace_name = i3.filter(focused=True, tree=i3.get_workspaces())[0]['name']
-  focused_workspace = i3.filter(name=focused_workspace_name, type='workspace')[0]
+executable = sys.argv[1]
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("executable")
+parser.add_argument("--app-id",
+                    help="app_id if it's different from command")
+parser.add_argument("--float",
+                    help="use for floating windows, skips filtering by workspace",
+                    action=argparse.BooleanOptionalAction)
+
+args = parser.parse_args()
+
+app_id = args.app_id or args.executable
+
+focused = sway.get_tree().find_focused()
+focused_workspace = focused.workspace()
+
+target = None
+
+for c in focused_workspace:
+  if c.app_id == app_id:
+    target = c
+    break
+
+if target:
+  sway.command("[con_id={}] focus".format(target.id))
 else:
-  windows = i3.filter(tree=focused_workspace, nodes=[])
-  target_ids = []
-  focused_id = -1
-  i = 0
-  if len(windows):
-    for window in windows:
-      if 'window_properties' in window:
-        class_name = window['window_properties']['class']
-        if class_name == target_class:
-          target_ids.append(window['window'])
-          if window['focused']:
-            focused_id = i
-          i += 1
-
-    if len(target_ids):
-      if focused_id == -1:
-        i = 0
-      else:
-        print(focused_id, len(target_ids))
-        if focused_id + 1 == len(target_ids):
-          i = 0
-        else:
-          i = focused_id + 1
-      i3.focus(id=target_ids[i])
-      sys.exit()
-
-  if len(sys.argv) > 2:
-    subprocess.call(sys.argv[2] + ' &', shell=True)
+  print("not found")

@@ -18,7 +18,7 @@ create_dotfiles_symlink git/ignore ~/.config/git/ignore
 
 # create_dotfiles_symlink bash/.bash_aliases ~/.bash_aliases
 
-# create_dotfiles_symlink bash/.profile ~/.profile
+create_dotfiles_symlink bash/.profile ~/.profile
 
 # create_dotfiles_symlink X/.Xdefaults ~/.Xdefaults
 
@@ -33,6 +33,8 @@ create_dotfiles_symlink git/ignore ~/.config/git/ignore
 # create_dotfiles_symlink X/.inputrc ~/.inputrc
 
 # create_dotfiles_symlink X/.screenrc ~/.screenrc
+
+create_dotfiles_symlink alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 
 create_dotfiles_symlink tmux/.tmux.conf ~/.tmux.conf
 
@@ -60,12 +62,12 @@ create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
   done
 )
 
-# # Dropbox symlinks
-# if [[ -d ~/Dropbox/ubuntu ]]; then
-#   create_symlink ~/Dropbox/ubuntu/fonts ~/.fonts
-#   create_symlink ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
-#   create_symlink ~/Dropbox/ubuntu/ssh/config ~/.ssh/config
-#   create_symlink ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
-#   create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
-#   create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
-# fi
+# Dropbox symlinks
+if [[ -d ~/Dropbox/ubuntu ]]; then
+  create_symlink ~/Dropbox/ubuntu/fonts ~/.fonts
+  create_symlink ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
+  create_symlink ~/Dropbox/ubuntu/ssh/config ~/.ssh/config
+  create_symlink ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
+  create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
+  create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
+fi

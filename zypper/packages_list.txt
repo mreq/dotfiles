@@ -1,3 +1,13 @@
+automake
 dropbox-cli
+fira-code-fonts
+gcc
+gdbm-devel
 git
 htop
+libopenssl-devel
+libqt5-qtwayland
+libyaml-devel
+ncurses-devel
+readline-devel
+zlib-devel
