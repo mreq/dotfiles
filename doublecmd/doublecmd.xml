@@ -1,35 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<doublecmd DCVersion="0.6.6 beta" ConfigVersion="7">
-  <Configuration Save="True" SortOrder="0">
-    <UseConfigInProgramDir>False</UseConfigInProgramDir>
+<?xml version="1.0" encoding="UTF-8"?>
+<doublecmd DCVersion="1.1.14 gamma" ConfigVersion="15">
+  <Configuration Save="True" SortOrder="0" TreeType="0">
+    <FolderTabs Save="True"/>
   </Configuration>
   <Colors>
-    <FileFilters>
-      <Filter>
-        <Name>Pascal sources</Name>
-        <FileMasks>*.pas;*.pp</FileMasks>
-        <Color>32768</Color>
-        <Attributes/>
-      </Filter>
-      <Filter>
-        <Name>Pascal binaries</Name>
-        <FileMasks>*.ppu;*.o;*.dcu</FileMasks>
-        <Color>16711680</Color>
-        <Attributes/>
-      </Filter>
-      <Filter>
-        <Name>Specified Executables</Name>
-        <FileMasks>*</FileMasks>
-        <Color>1345409</Color>
-        <Attributes>-rwxrwxr*x</Attributes>
-      </Filter>
-      <Filter>
-        <Name>Executables</Name>
-        <FileMasks>*</FileMasks>
-        <Color>1533975</Color>
-        <Attributes>-*x*</Attributes>
-      </Filter>
-    </FileFilters>
     <Foreground>536870912</Foreground>
     <Background>16777215</Background>
     <Background2>16777215</Background2>
@@ -44,6 +18,10 @@
       <BackColor>16777215</BackColor>
       <UseGradient>True</UseGradient>
     </FreeSpaceIndicator>
+    <UseCursorBorder>False</UseCursorBorder>
+    <UseInactiveSelColor>False</UseInactiveSelColor>
+    <AllowOverColor>True</AllowOverColor>
+    <gBorderFrameWidth>1</gBorderFrameWidth>
   </Colors>
   <Plugins>
     <DsxPlugins/>
@@ -51,7 +29,7 @@
       <WcxPlugin Enabled="True">
         <ArchiveExt>zip</ArchiveExt>
         <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
-        <Flags>607</Flags>
+        <Flags>735</Flags>
       </WcxPlugin>
       <WcxPlugin Enabled="True">
         <ArchiveExt>lzma</ArchiveExt>
@@ -61,7 +39,7 @@
       <WcxPlugin Enabled="True">
         <ArchiveExt>tar</ArchiveExt>
         <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
-        <Flags>95</Flags>
+        <Flags>223</Flags>
       </WcxPlugin>
       <WcxPlugin Enabled="True">
         <ArchiveExt>bz2</ArchiveExt>
@@ -101,7 +79,7 @@
       <WcxPlugin Enabled="True">
         <ArchiveExt>rar</ArchiveExt>
         <Path>%commander_path%/plugins/wcx/unrar/unrar.wcx</Path>
-        <Flags>68</Flags>
+        <Flags>607</Flags>
       </WcxPlugin>
       <WcxPlugin Enabled="True">
         <ArchiveExt>tlz</ArchiveExt>
@@ -121,7 +99,22 @@
       <WcxPlugin Enabled="True">
         <ArchiveExt>zipx</ArchiveExt>
         <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
-        <Flags>84</Flags>
+        <Flags>223</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>jar</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>990</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>zst</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>91</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>b64</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/base64/base64.wcx</Path>
+        <Flags>1</Flags>
       </WcxPlugin>
     </WcxPlugins>
     <WdxPlugins>
@@ -134,6 +127,11 @@
         <Name>deb_wdx</Name>
         <Path>%COMMANDER_PATH%/plugins/wdx/deb_wdx/deb_wdx.wdx</Path>
         <DetectString>EXT="DEB"</DetectString>
+      </WdxPlugin>
+      <WdxPlugin>
+        <Name>audioinfo</Name>
+        <Path>%commander_path%/plugins/wdx/audioinfo/audioinfo.wdx</Path>
+        <DetectString>(EXT="MP3") | (EXT="MP2") | (EXT="MP1") | (EXT="OGG") | (EXT="WMA") | (EXT="WAV") | (EXT="VQF") | (EXT="AAC") | (EXT="APE") | (EXT="MPC") | (EXT="FLAC") | (EXT="CDA") | (EXT="TTA") | (EXT="AC3") | (EXT="DTS") | (EXT="WV") | (EXT="WVC") | (EXT="OFR") | (EXT="OFS") | (EXT="M4A") | (EXT="MP4") | (EXT="OPUS")</DetectString>
       </WdxPlugin>
     </WdxPlugins>
     <WfxPlugins>
@@ -149,35 +147,73 @@
     <WlxPlugins>
       <WlxPlugin Enabled="True">
         <Name>wlxMplayer</Name>
-        <Path>%COMMANDER_PATH%/plugins/wlx/wlxmplayer/wlxmplayer.wlx</Path>
+        <Path>%commander_path%/plugins/wlx/wlxmplayer/wlxmplayer.wlx</Path>
         <DetectString>(EXT="MPG")|(EXT="AVI")|(EXT="MPEG")|(EXT="FLV")</DetectString>
       </WlxPlugin>
     </WlxPlugins>
+    <TweakPluginWidth0>0</TweakPluginWidth0>
+    <TweakPluginHeight0>0</TweakPluginHeight0>
+    <TweakPluginWidth1>0</TweakPluginWidth1>
+    <TweakPluginHeight1>0</TweakPluginHeight1>
+    <TweakPluginWidth2>0</TweakPluginWidth2>
+    <TweakPluginHeight2>0</TweakPluginHeight2>
+    <TweakPluginWidth3>0</TweakPluginWidth3>
+    <TweakPluginHeight3>0</TweakPluginHeight3>
+    <TweakPluginWidth4>0</TweakPluginWidth4>
+    <TweakPluginHeight4>0</TweakPluginHeight4>
+    <AutoTweak>False</AutoTweak>
+    <WCXConfigViewMode>0</WCXConfigViewMode>
+    <PluginFilenameStyle>0</PluginFilenameStyle>
+    <PluginPathToBeRelativeTo>%COMMANDER_PATH%</PluginPathToBeRelativeTo>
   </Plugins>
   <Language>
-    <POFileName>doublecmd.en.po</POFileName>
+    <POFileName>doublecmd.pot</POFileName>
   </Language>
   <Behaviours>
     <GoToRoot>False</GoToRoot>
-    <RunInTerminal>terminator -e sh -c</RunInTerminal>
-    <RunTerminal>terminator</RunTerminal>
+    <ShowCurDirTitleBar>False</ShowCurDirTitleBar>
+    <ActiveRight>False</ActiveRight>
+    <RunInTerminalStayOpenCmd>xterm</RunInTerminalStayOpenCmd>
+    <RunInTerminalStayOpenParams>-e sh -c '{command}; echo -n Press ENTER to exit... ; read a'</RunInTerminalStayOpenParams>
+    <RunInTerminalCloseCmd>xterm</RunInTerminalCloseCmd>
+    <RunInTerminalCloseParams>-e sh -c '{command}'</RunInTerminalCloseParams>
+    <JustRunTerminal>xterm</JustRunTerminal>
+    <JustRunTermParams/>
     <OnlyOneAppInstance>True</OnlyOneAppInstance>
     <LynxLike>True</LynxLike>
     <FileSizeFormat>0</FileSizeFormat>
+    <OperationSizeFormat>0</OperationSizeFormat>
+    <HeaderSizeFormat>0</HeaderSizeFormat>
+    <FooterSizeFormat>0</FooterSizeFormat>
+    <FileSizeDigits>1</FileSizeDigits>
+    <HeaderDigits>1</HeaderDigits>
+    <FooterDigits>1</FooterDigits>
+    <OperationSizeDigits>1</OperationSizeDigits>
+    <PersonalizedByte>B</PersonalizedByte>
+    <PersonalizedKilo>KB</PersonalizedKilo>
+    <PersonalizedMega>MB</PersonalizedMega>
+    <PersonalizedGiga>GB</PersonalizedGiga>
+    <PersonalizedTera>TB</PersonalizedTera>
+    <ConfirmQuit>False</ConfirmQuit>
     <MinimizeToTray>False</MinimizeToTray>
     <AlwaysShowTrayIcon>False</AlwaysShowTrayIcon>
     <Mouse>
       <Selection Enabled="True">
         <Button>0</Button>
+        <IconClick>0</IconClick>
       </Selection>
+      <SingleClickStart>0</SingleClickStart>
       <ScrollMode>1</ScrollMode>
       <WheelScrollLines>3</WheelScrollLines>
     </Mouse>
     <AutoFillColumns>True</AutoFillColumns>
     <AutoSizeColumn>0</AutoSizeColumn>
+    <CustomColumnsChangeAllColumns>False</CustomColumnsChangeAllColumns>
     <BriefViewFileExtAligned>False</BriefViewFileExtAligned>
     <DateTimeFormat>yy-mm-dd hh:mm</DateTimeFormat>
+    <ColumnsTitleLikeValues>False</ColumnsTitleLikeValues>
     <CutTextToColumnWidth>False</CutTextToColumnWidth>
+    <ExtendCellWidth>False</ExtendCellWidth>
     <ShowSystemFiles>True</ShowSystemFiles>
     <ListFilesInThread>True</ListFilesInThread>
     <LoadIconsSeparately>True</LoadIconsSeparately>
@@ -212,31 +248,74 @@
       <Name>Ubuntu</Name>
       <Size>11</Size>
       <Style>0</Style>
+      <Quality>0</Quality>
     </Main>
     <Editor>
       <Name>Monospace</Name>
       <Size>14</Size>
       <Style>0</Style>
+      <Quality>0</Quality>
     </Editor>
     <Viewer>
       <Name>Monospace</Name>
       <Size>14</Size>
       <Style>0</Style>
+      <Quality>0</Quality>
     </Viewer>
     <Log>
       <Name>Monospace</Name>
       <Size>12</Size>
       <Style>0</Style>
+      <Quality>0</Quality>
     </Log>
     <ViewerBook>
       <Name>default</Name>
       <Size>16</Size>
       <Style>1</Style>
+      <Quality>0</Quality>
     </ViewerBook>
+    <Console>
+      <Name>Source Code Pro</Name>
+      <Size>12</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </Console>
+    <PathEdit>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </PathEdit>
+    <FunctionButtons>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </FunctionButtons>
+    <SearchResults>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </SearchResults>
+    <TreeViewMenu>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </TreeViewMenu>
+    <StatusBar>
+      <Name>default</Name>
+      <Size>0</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </StatusBar>
   </Fonts>
   <ToolTips>
-    <ShowToolTipMode>1</ShowToolTipMode>
+    <ShowToolTipMode>True</ShowToolTipMode>
     <CustomFields/>
+    <ActualToolTipMode>0</ActualToolTipMode>
+    <ToolTipHideTimeOut>0</ToolTipHideTimeOut>
   </ToolTips>
   <Layout>
     <MainMenu>True</MainMenu>
@@ -244,8 +323,19 @@
       <FlatIcons>True</FlatIcons>
       <ButtonHeight>24</ButtonHeight>
       <IconSize>16</IconSize>
+      <ShowCaptions>False</ShowCaptions>
       <ReportErrorWithCommands>False</ReportErrorWithCommands>
+      <FilenameStyle>0</FilenameStyle>
+      <PathToBeRelativeTo>%COMMANDER_PATH%</PathToBeRelativeTo>
+      <PathModifierElements>0</PathModifierElements>
     </ButtonBar>
+    <MiddleBar Enabled="False">
+      <FlatIcons>True</FlatIcons>
+      <ButtonHeight>24</ButtonHeight>
+      <IconSize>16</IconSize>
+      <ShowCaptions>False</ShowCaptions>
+      <ReportErrorWithCommands>False</ReportErrorWithCommands>
+    </MiddleBar>
     <DriveBar1>True</DriveBar1>
     <DriveBar2>True</DriveBar2>
     <DriveBarFlat>True</DriveBarFlat>
@@ -254,6 +344,7 @@
       <ShowFileSystem>True</ShowFileSystem>
       <ShowFreeSpace>True</ShowFreeSpace>
     </DrivesListButton>
+    <SeparateTree>False</SeparateTree>
     <DirectoryTabs>True</DirectoryTabs>
     <CurrentDirectory>True</CurrentDirectory>
     <TabHeader>True</TabHeader>
@@ -269,6 +360,8 @@
     <PanelOfOperationsInBackground>True</PanelOfOperationsInBackground>
     <HorizontalFilePanels>False</HorizontalFilePanels>
     <ShortFormatDriveInfo>True</ShortFormatDriveInfo>
+    <UppercaseDriveLetter>False</UppercaseDriveLetter>
+    <ShowColonAfterDrive>False</ShowColonAfterDrive>
   </Layout>
   <FileOperations>
     <BufferSize>524288</BufferSize>
@@ -294,6 +387,11 @@
       <CopyAttributes>True</CopyAttributes>
       <CopyTime>True</CopyTime>
       <CopyOwnership>True</CopyOwnership>
+      <CopyOnWrite>2</CopyOnWrite>
+      <CopyXattributes>True</CopyXattributes>
+      <Verify>False</Verify>
+      <CopyPermissions>False</CopyPermissions>
+      <ExcludeEmptyTemplateDirectories>True</ExcludeEmptyTemplateDirectories>
     </Options>
     <ProgressKind>0</ProgressKind>
     <Confirmations>15</Confirmations>
@@ -306,511 +404,35 @@
     <DragAndDropTextAutoFilename>False</DragAndDropTextAutoFilename>
     <DragAndDropSaveUnicodeTextInUFT8>True</DragAndDropSaveUnicodeTextInUFT8>
     <NtfsHourTimeDelay>False</NtfsHourTimeDelay>
+    <LongNameAlert>True</LongNameAlert>
+    <HashBufferSize>8388608</HashBufferSize>
+    <InitiallyClearFileMask>True</InitiallyClearFileMask>
+    <NewSearchClearFiltersAction>0</NewSearchClearFiltersAction>
+    <ShowMenuBarInFindFiles>True</ShowMenuBarInFindFiles>
+    <AutoExtractOpenMask/>
+    <SearchDefaultTemplate/>
+    <Extract>
+      <Overwrite>False</Overwrite>
+    </Extract>
+    <MultiRename>
+      <MulRenShowMenuBarOnTop>True</MulRenShowMenuBarOnTop>
+      <MulRenInvalidCharReplacement>.</MulRenInvalidCharReplacement>
+      <MulRenLaunchBehavor>0</MulRenLaunchBehavor>
+      <MulRenExitModifiedPreset>0</MulRenExitModifiedPreset>
+      <MulRenSaveRenamingLog>0</MulRenSaveRenamingLog>
+      <MulRenLogFilename>%DC_CONFIG_PATH%/multirename.log</MulRenLogFilename>
+      <MultRenDailyIndividualDirLog>True</MultRenDailyIndividualDirLog>
+      <MulRenFilenameWithFullPathInLog>False</MulRenFilenameWithFullPathInLog>
+      <MulRenPathRangeSeparator>- </MulRenPathRangeSeparator>
+    </MultiRename>
   </FileOperations>
   <Tabs>
-    <Options>913</Options>
+    <Options>54161</Options>
     <CharacterLimit>32</CharacterLimit>
     <Position>0</Position>
-    <OpenedTabs>
-      <Left>
-        <ActiveTab>2</ActiveTab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="work">/home/petr/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-          <Options>3</Options>
-          <LockPath>/home/petr/</LockPath>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="wall">/home/petr/work/vyvolejto/app/assets/images/homepage/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/homepage/wall/</Path>
-                  <Path Filename="instagram-feed">/home/petr/work/vyvolejto/app/assets/images/homepage/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/homepage/instagram-feed/</Path>
-                  <Path Filename="instagram-feed">/home/petr/work/vyvolejto/app/assets/images/homepage/</Path>
-                  <Path Filename="photos">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="vyvolejtocestuje.jpg">/home/petr/work/vyvolejto/app/assets/images/photos/</Path>
-                  <Path Filename="sprites">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/sprites/</Path>
-                  <Path Filename="arrow-separator.png">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="public">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/public/</Path>
-                  <Path Filename="emails">/home/petr/work/vyvolejto/public/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/public/images/emails/</Path>
-                  <Path Filename="homepage">/home/petr/work/vyvolejto/public/images/</Path>
-                  <Path Filename="web3">/home/petr/work/vyvolejto/public/images/homepage/</Path>
-                  <Path Filename="sprites">/home/petr/work/vyvolejto/public/images/homepage/web3/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/public/images/homepage/web3/sprites/</Path>
-                  <Path Filename="sprites">/home/petr/work/vyvolejto/public/images/homepage/web3/</Path>
-                  <Path Filename="web3">/home/petr/work/vyvolejto/public/images/homepage/</Path>
-                  <Path Filename="emails">/home/petr/work/vyvolejto/public/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/public/images/emails/</Path>
-                  <Path Filename="sprites@1x.png">/home/petr/work/vyvolejto/public/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/public/</Path>
-                  <Path Filename="app">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="stylesheets">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="modules">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/stylesheets/modules/</Path>
-                  <Path Filename="vendor">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="bootstrap">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/bootstrap/</Path>
-                  <Path Filename="mreq">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="mreq.scss">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/mreq/</Path>
-                  <Path Filename="mreq">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="vendor">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="fonts.css.scss">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="bower_components">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/bower_components/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="photos">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="homepage">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="mobil">/home/petr/work/vyvolejto/app/assets/images/homepage/</Path>
-                  <Path Filename="photos">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/photos/</Path>
-                  <Path Filename="sprites">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="images">/home/petr/work/vyvolejto/public/</Path>
-                  <Path Filename="app">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="stylesheets">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="modules">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/stylesheets/modules/</Path>
-                  <Path Filename="vendor">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="bootstrap">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/bootstrap/</Path>
-                  <Path Filename="mreq">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="mreq.scss">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/mreq/</Path>
-                  <Path Filename="mreq">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="vendor">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="fonts.css.scss">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="bower_components">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/bower_components/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="photos">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="homepage">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="mobil">/home/petr/work/vyvolejto/app/assets/images/homepage/</Path>
-                  <Path Filename="photos">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/photos/</Path>
-                  <Path Filename="sprites">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="db">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/db/</Path>
-                  <Path Filename="db">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/db/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/db/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/db/</Path>
-                  <Path Filename="app">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="db">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/db/</Path>
-                  <Path Filename="collections">/home/petr/work/vyvolejto/db/images/</Path>
-                  <Path Filename="magnety.jpg">/home/petr/work/vyvolejto/db/images/collections/</Path>
-                  <Path Filename="collections">/home/petr/work/vyvolejto/db/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/db/</Path>
-                  <Path Filename="data">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/data/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/data/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/data/</Path>
-                  <Path Filename="data">/home/petr/work/vyvolejto/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="..">/home/petr/tmp/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="masters-thesis">/home/petr/work/</Path>
-                  <Path Filename="text">/home/petr/work/masters-thesis/</Path>
-                  <Path Filename="">/home/petr/work/masters-thesis/text/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="masters-thesis">/home/petr/work/</Path>
-                  <Path Filename="text">/home/petr/work/masters-thesis/</Path>
-                  <Path Filename="masters-thesis.Rnw">/home/petr/work/masters-thesis/text/</Path>
-                  <Path Filename="text">/home/petr/work/masters-thesis/</Path>
-                  <Path Filename="masters-thesis">/home/petr/work/</Path>
-                  <Path Filename="virtualbox">/home/petr/</Path>
-                  <Path Filename="..">/home/petr/virtualbox/</Path>
-                  <Path Filename="work">/home/petr/</Path>
-                  <Path Filename="vse.petrmarek.eu">/home/petr/work/</Path>
-                  <Path Filename="4ST201">/home/petr/work/vse.petrmarek.eu/</Path>
-                  <Path Filename="files">/home/petr/work/vse.petrmarek.eu/4ST201/</Path>
-                  <Path Filename="04">/home/petr/work/vse.petrmarek.eu/4ST201/files/</Path>
-                  <Path Filename="..">/home/petr/work/vse.petrmarek.eu/4ST201/files/04/</Path>
-                  <Path Filename="03">/home/petr/work/vse.petrmarek.eu/4ST201/files/</Path>
-                  <Path Filename="..">/home/petr/work/vse.petrmarek.eu/4ST201/files/03/</Path>
-                  <Path Filename="04">/home/petr/work/vse.petrmarek.eu/4ST201/files/</Path>
-                  <Path Filename="">/home/petr/work/vse.petrmarek.eu/4ST201/files/04/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="Downloads">/home/petr/</Path>
-                  <Path Filename="LL Replica-Bold WebPro">/home/petr/Downloads/</Path>
-                  <Path Filename="specimen_files">/home/petr/Downloads/LL Replica-Bold WebPro/</Path>
-                  <Path Filename="..">/home/petr/Downloads/LL Replica-Bold WebPro/specimen_files/</Path>
-                  <Path Filename="css">/home/petr/Downloads/LL Replica-Bold WebPro/</Path>
-                  <Path Filename="fonts">/home/petr/Downloads/LL Replica-Bold WebPro/css/</Path>
-                  <Path Filename="..">/home/petr/Downloads/LL Replica-Bold WebPro/css/fonts/</Path>
-                  <Path Filename="fonts_subsetted">/home/petr/Downloads/LL Replica-Bold WebPro/css/</Path>
-                  <Path Filename="lineto-replica-pro-bold.eot">/home/petr/Downloads/LL Replica-Bold WebPro/css/fonts_subsetted/</Path>
-                  <Path Filename="fonts">/home/petr/Downloads/LL Replica-Bold WebPro/css/</Path>
-                  <Path Filename="..">/home/petr/Downloads/LL Replica-Bold WebPro/css/fonts/</Path>
-                  <Path Filename="fonts_subsetted">/home/petr/Downloads/LL Replica-Bold WebPro/css/</Path>
-                  <Path Filename="lineto-replica-pro-bold.eot">/home/petr/Downloads/LL Replica-Bold WebPro/css/fonts_subsetted/</Path>
-                  <Path Filename="">/home/petr/Downloads/LL Replica-Bold WebPro/css/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="Downloads">/home/petr/</Path>
-                  <Path Filename="Sylvia Frühwirth-Schnatter - Finite Mixture and Markov Switching Models - Springer (2006)_k2opt.pdf">/home/petr/Downloads/</Path>
-                  <Path Filename="scripts">/home/petr/</Path>
-                  <Path Filename="..">/home/petr/scripts/</Path>
-                  <Path Filename=".config">/home/petr/</Path>
-                  <Path Filename="awesome">/home/petr/.config/</Path>
-                  <Path Filename="themes">/home/petr/.config/awesome/</Path>
-                  <Path Filename="..">/home/petr/.config/awesome/themes/</Path>
-                  <Path Filename="themes">/home/petr/.config/awesome/</Path>
-                  <Path Filename="awesome">/home/petr/.config/</Path>
-                  <Path Filename=".ssh">/home/petr/</Path>
-                  <Path Filename="..">/home/petr/.ssh/</Path>
-                  <Path Filename="work">/home/petr/</Path>
-                  <Path Filename="vyvolejto">/home/petr/work/</Path>
-                  <Path Filename="app">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="views">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="">/home/petr/work/vyvolejto/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename=".config">/home/petr/</Path>
-                  <Path Filename="awesome">/home/petr/.config/</Path>
-                  <Path Filename="themes">/home/petr/.config/awesome/</Path>
-                  <Path Filename="..">/home/petr/.config/awesome/themes/</Path>
-                  <Path Filename="themes">/home/petr/.config/awesome/</Path>
-                  <Path Filename="awesome">/home/petr/.config/</Path>
-                  <Path Filename=".ssh">/home/petr/</Path>
-                  <Path Filename="..">/home/petr/.ssh/</Path>
-                  <Path Filename="work">/home/petr/</Path>
-                  <Path Filename="vyvolejto">/home/petr/work/</Path>
-                  <Path Filename="app">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="views">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="app">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="stylesheets">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="vendor">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="mreq">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/mreq/</Path>
-                  <Path Filename="mreq">/home/petr/work/vyvolejto/app/assets/stylesheets/vendor/</Path>
-                  <Path Filename="vendor">/home/petr/work/vyvolejto/app/assets/stylesheets/</Path>
-                  <Path Filename="stylesheets">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="javascripts">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="vendor">/home/petr/work/vyvolejto/app/assets/javascripts/</Path>
-                  <Path Filename="spectrum.js">/home/petr/work/vyvolejto/app/assets/javascripts/vendor/</Path>
-                  <Path Filename="vendor">/home/petr/work/vyvolejto/app/assets/javascripts/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="homepage">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/homepage/</Path>
-                  <Path Filename="o-nas">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/o-nas/</Path>
-                  <Path Filename="photos">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/photos/</Path>
-                  <Path Filename="sprites">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/sprites/</Path>
-                  <Path Filename="photos">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="vyvolejtocestuje.jpg">/home/petr/work/vyvolejto/app/assets/images/photos/</Path>
-                  <Path Filename="sprites">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="sprites@1x">/home/petr/work/vyvolejto/app/assets/images/sprites/</Path>
-                  <Path Filename="arrow-separator.png">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="errors">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="..">/home/petr/work/vyvolejto/app/assets/images/errors/</Path>
-                  <Path Filename="errors">/home/petr/work/vyvolejto/app/assets/images/</Path>
-                  <Path Filename="images">/home/petr/work/vyvolejto/app/assets/</Path>
-                  <Path Filename="assets">/home/petr/work/vyvolejto/app/</Path>
-                  <Path Filename="public">/home/petr/work/vyvolejto/</Path>
-                  <Path Filename="apple-touch-icon-114x114-precomposed.png">/home/petr/work/vyvolejto/public/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-      </Left>
-      <Right>
-        <ActiveTab>1</ActiveTab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="tmp">/home/petr/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-          <Options>3</Options>
-          <LockPath>/home/petr/</LockPath>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="Informace pro bankovní loupež - Herbert Lichtenfeld.mp3">/home/petr/tmp/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="Vyvolejto web">/home/petr/Dropbox/</Path>
-                  <Path Filename="Web-presentation">/home/petr/Dropbox/Vyvolejto web/</Path>
-                  <Path Filename="_assets">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="..">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_assets/</Path>
-                  <Path Filename="_assets-doplneni">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="@1x">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_assets-doplneni/</Path>
-                  <Path Filename="..">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_assets-doplneni/@1x/</Path>
-                  <Path Filename="@1x">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_assets-doplneni/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="Vyvolejto web">/home/petr/Dropbox/</Path>
-                  <Path Filename="Web-presentation">/home/petr/Dropbox/Vyvolejto web/</Path>
-                  <Path Filename="_images">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="..">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_images/</Path>
-                  <Path Filename="_grid preview">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="..">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_grid preview/</Path>
-                  <Path Filename="_assets">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="claim-cs.png">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_assets/</Path>
-                  <Path Filename="_grid preview">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_grid preview/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-        <Tab>
-          <FileView Type="columns">
-            <History>
-              <Entry Active="True">
-                <FileSource Type="FileSystem"/>
-                <Paths>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/</Path>
-                  <Path Filename="">/home/</Path>
-                  <Path Filename="">/home/petr/</Path>
-                  <Path Filename="Vyvolejto web">/home/petr/Dropbox/</Path>
-                  <Path Filename="Web-presentation">/home/petr/Dropbox/Vyvolejto web/</Path>
-                  <Path Filename="_assets">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="ico-home-usability@2x.png">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_assets/</Path>
-                  <Path Filename="_assets">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="ico-logo-payu@2x.png">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_assets/</Path>
-                  <Path Filename="_images">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="..">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_images/</Path>
-                  <Path Filename="_grid preview">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="..">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_grid preview/</Path>
-                  <Path Filename="_assets">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="..">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_assets/</Path>
-                  <Path Filename="_images">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="..">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_images/</Path>
-                  <Path Filename="_assets">/home/petr/Dropbox/Vyvolejto web/Web-presentation/</Path>
-                  <Path Filename="">/home/petr/Dropbox/Vyvolejto web/Web-presentation/_assets/</Path>
-                </Paths>
-              </Entry>
-            </History>
-            <ColumnsView>
-              <ColumnsSet>Default</ColumnsSet>
-            </ColumnsView>
-          </FileView>
-        </Tab>
-      </Right>
-    </OpenedTabs>
+    <ActionOnDoubleClick>1</ActionOnDoubleClick>
   </Tabs>
-  <Log Enabled="False" LogFileWithDateInName="False">
+  <Log Enabled="False" LogFileWithDateInName="False" Count="0">
     <FileName>/home/petr/.config/doublecmd/doublecmd.log</FileName>
     <Options>255</Options>
   </Log>
@@ -819,6 +441,8 @@
     <DirHistory Save="True"/>
     <CmdLineHistory Save="True"/>
     <FileMaskHistory Save="True"/>
+    <VolumeSizeHistory Save="True"/>
+    <CreateDirectoriesHistory Save="True"/>
   </History>
   <QuickSearch Enabled="True">
     <Mode>0</Mode>
@@ -830,6 +454,7 @@
   <QuickFilter Enabled="False">
     <Mode>0</Mode>
     <AutoHide>True</AutoHide>
+    <SaveSessionModifications>False</SaveSessionModifications>
   </QuickFilter>
   <Miscellaneous>
     <GridVertLine>False</GridVertLine>
@@ -843,6 +468,15 @@
     <ShowPathInPopup>False</ShowPathInPopup>
     <ShowOnlyValidEnv>True</ShowOnlyValidEnv>
     <WhereToAddNewHotDir>2</WhereToAddNewHotDir>
+    <InplaceRenameButton>True</InplaceRenameButton>
+    <DblClickToParent>False</DblClickToParent>
+    <DoubleClickEditPath>False</DoubleClickEditPath>
+    <FilenameStyle>0</FilenameStyle>
+    <PathToBeRelativeTo>%COMMANDER_PATH%</PathToBeRelativeTo>
+    <PathModifierElements>0</PathModifierElements>
+    <DefaultTextEncoding>none</DefaultTextEncoding>
+    <SystemItemProperties>False</SystemItemProperties>
+    <DecimalSeparator>�</DecimalSeparator>
   </Miscellaneous>
   <AutoRefresh>
     <Options>3</Options>
@@ -853,20 +487,27 @@
     <ShowMode>3</ShowMode>
     <ShowOverlays>False</ShowOverlays>
     <Size>16</Size>
-    <CustomDriveIcons>False</CustomDriveIcons>
     <Exclude>False</Exclude>
     <ExcludeDirs/>
     <ShowInMenus Enabled="False">
       <Size>16</Size>
     </ShowInMenus>
+    <Theme>dctheme</Theme>
+    <ShowHiddenDimmed>False</ShowHiddenDimmed>
+    <DiskSize>16</DiskSize>
+    <DiskAlpha>50</DiskAlpha>
+    <ToolSize>24</ToolSize>
+    <CustomIcons>0</CustomIcons>
+    <PixelsPerInch>96</PixelsPerInch>
+    <ShowButtonGlyphs>0</ShowButtonGlyphs>
   </Icons>
   <IgnoreList Enabled="False">
     <IgnoreListFile>/home/petr/.config/doublecmd/ignorelist.txt</IgnoreListFile>
   </IgnoreList>
   <DirectoryHotList>
-    <HotDir Name="Downloads" Path="/media/data/Downloads/"/>
-    <HotDir Name="Dropbox" Path="/home/petr/Dropbox/"/>
-    <HotDir Name="work" Path="/home/petr/work/"/>
+    <HotDir Name="Downloads" Path="/media/data/Downloads"/>
+    <HotDir Name="Dropbox" Path="/home/petr/Dropbox"/>
+    <HotDir Name="work" Path="/home/petr/work"/>
   </DirectoryHotList>
   <Viewer>
     <PreviewVisible>False</PreviewVisible>
@@ -877,7 +518,7 @@
     <CopyMovePath3/>
     <CopyMovePath4/>
     <CopyMovePath5/>
-    <PaintMode>Pen</PaintMode>
+    <PaintMode>0</PaintMode>
     <PaintWidth>5</PaintWidth>
     <NumberOfColumns>1</NumberOfColumns>
     <ViewerMode>1</ViewerMode>
@@ -885,6 +526,21 @@
     <BackgroundColor>0</BackgroundColor>
     <FontColor>16777215</FontColor>
     <TextPosition>0</TextPosition>
+    <ImageExifRotate>True</ImageExifRotate>
+    <ImageStretchLargeOnly>True</ImageStretchLargeOnly>
+    <ImageShowTransparency>False</ImageShowTransparency>
+    <ImageCenter>True</ImageCenter>
+    <TabSpaces>8</TabSpaces>
+    <MaxCodeSize>128</MaxCodeSize>
+    <MaxTextWidth>1024</MaxTextWidth>
+    <PrintMargins>200|200|200|200</PrintMargins>
+    <ShowCaret>False</ShowCaret>
+    <WrapText>False</WrapText>
+    <LeftMargin>4</LeftMargin>
+    <ExtraLineSpan>0</ExtraLineSpan>
+    <AutoCopy>True</AutoCopy>
+    <SynEditMask>*</SynEditMask>
+    <JpegQuality>80</JpegQuality>
   </Viewer>
   <Lua>
     <PathToLibrary>liblua5.1.so.0</PathToLibrary>
@@ -892,16 +548,18 @@
   <NameShortcutFile>shortcuts.scf</NameShortcutFile>
   <LastUsedPacker>zip</LastUsedPacker>
   <SearchTemplates/>
-  <ColumnsSets>
-    <ColumnsSet>
+  <ColumnsSets DefaultTitleHash="0">
+    <ColumnsSet UseFrameCursor="False">
       <Name>Default</Name>
+      <Unique>BFCE867D-49DE-4668-ABBE-1828494BE8D3</Unique>
       <CustomView>False</CustomView>
-      <CursorBorder Enabled="False">
-        <Color>0</Color>
-      </CursorBorder>
+      <FileSystem>&lt;General&gt;</FileSystem>
+      <PixelsPerInch>96</PixelsPerInch>
+      <CursorBorder Enabled="False"/>
       <Columns>
         <Column>
           <Title>Name</Title>
+          <Unique>D0C87781-6862-4370-83B7-EAB4D352F891</Unique>
           <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
           <Width>250</Width>
           <Align>0</Align>
@@ -909,17 +567,15 @@
             <Name>default</Name>
             <Size>10</Size>
             <Style>1</Style>
+            <Quality>0</Quality>
           </Font>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
           <Overcolor>True</Overcolor>
-          <TextColor>536870912</TextColor>
-          <Background>16777215</Background>
-          <Background2>16777215</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
         </Column>
         <Column>
           <Title>Ext</Title>
+          <Unique>F1E4F4A4-92EB-42BF-A60F-ABDCDD111DB5</Unique>
           <FuncString>[DC().GETFILEEXT{}]</FuncString>
           <Width>50</Width>
           <Align>0</Align>
@@ -927,17 +583,15 @@
             <Name>default</Name>
             <Size>10</Size>
             <Style>1</Style>
+            <Quality>0</Quality>
           </Font>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
           <Overcolor>True</Overcolor>
-          <TextColor>536870912</TextColor>
-          <Background>16777215</Background>
-          <Background2>16777215</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
         </Column>
         <Column>
           <Title>Size</Title>
+          <Unique>BCA06729-2F96-4284-AC71-1FB25C85FFE2</Unique>
           <FuncString>[DC().GETFILESIZE{}]</FuncString>
           <Width>70</Width>
           <Align>1</Align>
@@ -945,17 +599,15 @@
             <Name>default</Name>
             <Size>10</Size>
             <Style>1</Style>
+            <Quality>0</Quality>
           </Font>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
           <Overcolor>True</Overcolor>
-          <TextColor>536870912</TextColor>
-          <Background>16777215</Background>
-          <Background2>16777215</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
         </Column>
         <Column>
           <Title>Date</Title>
+          <Unique>81942079-7735-4984-885E-651CE0892967</Unique>
           <FuncString>[DC().GETFILETIME{}]</FuncString>
           <Width>70</Width>
           <Align>1</Align>
@@ -963,17 +615,15 @@
             <Name>default</Name>
             <Size>10</Size>
             <Style>1</Style>
+            <Quality>0</Quality>
           </Font>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
           <Overcolor>True</Overcolor>
-          <TextColor>536870912</TextColor>
-          <Background>16777215</Background>
-          <Background2>16777215</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
         </Column>
         <Column>
           <Title>Attr</Title>
+          <Unique>24E2D17B-CD00-4165-94A7-79F73B773F08</Unique>
           <FuncString>[DC().GETFILEATTR{}]</FuncString>
           <Width>175</Width>
           <Align>0</Align>
@@ -981,26 +631,24 @@
             <Name>default</Name>
             <Size>10</Size>
             <Style>1</Style>
+            <Quality>0</Quality>
           </Font>
+          <UseInvertedSelection>False</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
           <Overcolor>True</Overcolor>
-          <TextColor>536870912</TextColor>
-          <Background>16777215</Background>
-          <Background2>16777215</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
         </Column>
       </Columns>
     </ColumnsSet>
   </ColumnsSets>
   <MainWindow>
-    <Position>
+    <Position Save="True">
       <Maximized>True</Maximized>
       <Left>0</Left>
       <Top>19</Top>
       <Width>1590</Width>
       <Height>871</Height>
       <Splitter>50</Splitter>
+      <PixelsPerInch>96</PixelsPerInch>
     </Position>
   </MainWindow>
   <MultiRenamePresets>
@@ -1009,6 +657,43 @@
   </MultiRenamePresets>
   <Toolbars>
     <MainToolbar/>
+    <MiddleToolbar>
+      <Row>
+        <Command>
+          <ID>{2F5AB518-2D38-4381-B206-20D413A157B4}</ID>
+          <Icon>cm_view</Icon>
+          <Command>cm_View</Command>
+        </Command>
+        <Command>
+          <ID>{75ECF5CF-2EEA-4DD2-BADB-26AE92821474}</ID>
+          <Icon>cm_edit</Icon>
+          <Command>cm_Edit</Command>
+        </Command>
+        <Command>
+          <ID>{E5B6D59F-C106-4329-8F82-1D423EB49DF1}</ID>
+          <Icon>cm_copy</Icon>
+          <Command>cm_Copy</Command>
+        </Command>
+        <Command>
+          <ID>{EA6A69FF-6186-41DF-84AE-CB79F7A1303A}</ID>
+          <Icon>cm_rename</Icon>
+          <Command>cm_Rename</Command>
+        </Command>
+        <Separator>
+          <Style>True</Style>
+        </Separator>
+        <Command>
+          <ID>{8E44BD47-757E-40BF-910D-7D178E108428}</ID>
+          <Icon>cm_packfiles</Icon>
+          <Command>cm_PackFiles</Command>
+        </Command>
+        <Command>
+          <ID>{53878860-15A6-4D14-A9E1-C0F7271F2951}</ID>
+          <Icon>cm_makedir</Icon>
+          <Command>cm_MakeDir</Command>
+        </Command>
+      </Row>
+    </MiddleToolbar>
   </Toolbars>
   <FilesViews>
     <Sorting>
@@ -1017,11 +702,25 @@
       <SortFolderMode>0</SortFolderMode>
       <NewFilesPosition>2</NewFilesPosition>
       <UpdatedFilesPosition>2</UpdatedFilesPosition>
+      <SpecialSorting>False</SpecialSorting>
     </Sorting>
     <ColumnsView>
       <AutoSaveWidth>True</AutoSaveWidth>
       <TitleStyle>1</TitleStyle>
+      <LongInStatus>False</LongInStatus>
     </ColumnsView>
+    <BriefView>
+      <FileExtAligned>False</FileExtAligned>
+      <Columns>
+        <FixedWidth>100</FixedWidth>
+        <FixedCount>2</FixedCount>
+        <AutoSize>2</AutoSize>
+      </Columns>
+    </BriefView>
+    <ExtraLineSpan>2</ExtraLineSpan>
+    <FolderPrefix>[</FolderPrefix>
+    <FolderPostfix>]</FolderPostfix>
+    <RenameConfirmMouse>False</RenameConfirmMouse>
   </FilesViews>
   <Keyboard>
     <Typing>
@@ -1047,6 +746,111 @@
     <FilterCopyLeft>True</FilterCopyLeft>
     <FilterDuplicates>True</FilterDuplicates>
     <FilterSingles>True</FilterSingles>
-    <FileMask>*</FileMask>
+    <FileMask Save="True">*</FileMask>
+    <Asymmetric Save="False">False</Asymmetric>
+    <DateTimeFormat>yyyy.mm.dd hh:nn:ss</DateTimeFormat>
   </SyncDirs>
+  <Description>
+    <CreateNewUnicode>True</CreateNewUnicode>
+    <DefaultEncoding>2</DefaultEncoding>
+    <CreateNewEncoding>3</CreateNewEncoding>
+  </Description>
+  <Editor>
+    <EditWaitTime>2000</EditWaitTime>
+    <SynEditOptions>856075</SynEditOptions>
+    <SynEditTabWidth>8</SynEditTabWidth>
+    <SynEditRightEdge>80</SynEditRightEdge>
+    <SynEditBlockIndent>2</SynEditBlockIndent>
+    <FindWordAtCursor>True</FindWordAtCursor>
+  </Editor>
+  <Differ>
+    <IgnoreCase>False</IgnoreCase>
+    <AutoCompare>True</AutoCompare>
+    <KeepScrolling>True</KeepScrolling>
+    <PaintBackground>True</PaintBackground>
+    <LineDifferences>False</LineDifferences>
+    <IgnoreWhiteSpace>False</IgnoreWhiteSpace>
+  </Differ>
+  <InternalAssociations>
+    <OfferToAddNewFileType>False</OfferToAddNewFileType>
+    <LastCustomAction>Custom action</LastCustomAction>
+    <ExpandedContextMenu>False</ExpandedContextMenu>
+    <DefaultContextActions>True</DefaultContextActions>
+    <ExecuteViaShell>False</ExecuteViaShell>
+    <OpenSystemWithTerminalClose>False</OpenSystemWithTerminalClose>
+    <OpenSystemWithTerminalStayOpen>False</OpenSystemWithTerminalStayOpen>
+    <IncludeFileAssociation>False</IncludeFileAssociation>
+    <FilenameStyle>0</FilenameStyle>
+    <PathToBeRelativeTo>%COMMANDER_PATH%</PathToBeRelativeTo>
+    <PathModifierElements>0</PathModifierElements>
+  </InternalAssociations>
+  <TreeViewMenu>
+    <UseTVMDirectoryHotlistFMC>False</UseTVMDirectoryHotlistFMC>
+    <UseTVMDirectoryHotlistFDC>False</UseTVMDirectoryHotlistFDC>
+    <UseTVMFavoriteTabsFMC>False</UseTVMFavoriteTabsFMC>
+    <UseTVMFavoriteTabsFDC>False</UseTVMFavoriteTabsFDC>
+    <UseTVMDirHistory>False</UseTVMDirHistory>
+    <UseTVMViewHistory>False</UseTVMViewHistory>
+    <UseTVMCommandLineHistory>False</UseTVMCommandLineHistory>
+    <TreeViewMenuShortcutExit>True</TreeViewMenuShortcutExit>
+    <TreeViewMenuSingleClickExit>True</TreeViewMenuSingleClickExit>
+    <TreeViewMenuDoubleClickExit>True</TreeViewMenuDoubleClickExit>
+    <Context00>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context00>
+    <Context01>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context01>
+    <Context02>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context02>
+    <Context03>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context03>
+    <Context04>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context04>
+    <Context05>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context05>
+    <Context06>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context06>
+    <TreeViewMenuUseKeyboardShortcut>True</TreeViewMenuUseKeyboardShortcut>
+  </TreeViewMenu>
+  <FavoriteTabsOptions>
+    <FavoriteTabsUseRestoreExtraOptions>False</FavoriteTabsUseRestoreExtraOptions>
+    <WhereToAdd>1</WhereToAdd>
+    <Expand>True</Expand>
+    <GotoConfigAftSav>False</GotoConfigAftSav>
+    <GotoConfigAftReSav>False</GotoConfigAftReSav>
+    <DfltLeftGoTo>0</DfltLeftGoTo>
+    <DfltRightGoTo>1</DfltRightGoTo>
+    <DfltKeep>5</DfltKeep>
+    <DfltSaveDirHistory>False</DfltSaveDirHistory>
+    <FavTabsLastUniqueID>{6540A3FC-F779-4A86-94E9-ABC3A383488F}</FavTabsLastUniqueID>
+  </FavoriteTabsOptions>
+  <HotKeySortOrder>0</HotKeySortOrder>
+  <UseEnterToCloseHotKeyEditor>True</UseEnterToCloseHotKeyEditor>
+  <LastDoAnyCommand>cm_Refresh</LastDoAnyCommand>
+  <MarkMaskCaseSensitive>False</MarkMaskCaseSensitive>
+  <MarkMaskIgnoreAccents>False</MarkMaskIgnoreAccents>
+  <MarkMaskFilterWindows>False</MarkMaskFilterWindows>
+  <MarkShowWantedAttribute>False</MarkShowWantedAttribute>
+  <MarkDefaultWantedAttribute/>
+  <MarkLastWantedAttribute/>
 </doublecmd>
