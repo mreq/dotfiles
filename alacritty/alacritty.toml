@@ -11,6 +11,11 @@ family = "Fira Code"
 x = 12
 y = 12
 
+[[keyboard.bindings]]
+chars = "printf \"\\033c\"\n"
+key = "L"
+mods = "Control"
+
 [colors]
 draw_bold_text_with_bright_colors = false
 
