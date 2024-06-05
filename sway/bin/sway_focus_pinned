@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+import i3ipc
+import argparse
+import os
+import code
+
+parser=argparse.ArgumentParser()
+
+parser.add_argument("executable")
+
+parser.add_argument("-w",
+                    "--workspace",
+                    help = "Switch [string] workspace.")
+
+parser.add_argument("-a",
+                    "--app-id",
+                    help="app_id if it's different from command")
+
+args = parser.parse_args()
+
+if args.workspace is None:
+  os.system("notify-send 'You need to provide a workspace using the -w option.'")
+  exit(1)
+
+sway = i3ipc.Connection()
+
+sway.command("workspace " + args.workspace)
+
+if args.executable is None:
+  exit(0)
+
+tree = sway.get_tree()
+app_id = args.app_id or args.executable
+
+found = False
+
+for c in tree:
+  if c.app_id == app_id:
+    found = True
+    break
+
+print(found)
+
+if found is False:
+  os.system(args.executable + " &")
