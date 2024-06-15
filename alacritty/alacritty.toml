@@ -20,15 +20,15 @@ mods = "Control"
 draw_bold_text_with_bright_colors = false
 
 [colors.primary]
-background = '0x181818'
+background = '0x151515'
 foreground = '0xd8d8d8'
 
 [colors.cursor]
-text = '0x181818'
+text = '0x151515'
 cursor = '0xd8d8d8'
 
 [colors.normal]
-black = '0x181818'
+black = '0x151515'
 red = '0xab4642'
 green = '0xa1b56c'
 yellow = '0xf7ca88'

@@ -17,7 +17,9 @@ libyaml-devel
 lld18
 make
 ncurses-devel
+neovim
 patch
 readline-devel
+rofi-wayland
 rust
 zlib-devel
