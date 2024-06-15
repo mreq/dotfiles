@@ -13,6 +13,8 @@ parser.add_argument("executable")
 
 parser.add_argument("-a",
                     "--app-id",
+                    action="append",
+                    nargs="+",
                     help="app_id if it's different from command")
 
 parser.add_argument("--float",
@@ -21,7 +23,8 @@ parser.add_argument("--float",
 
 args = parser.parse_args()
 
-app_id = args.app_id or args.executable
+app_ids_witH_default = args.app_id or [[args.executable]]
+app_ids = [item for sublist in app_ids_witH_default for item in sublist]
 
 focused = sway.get_tree().find_focused()
 focused_workspace = focused.workspace()
@@ -29,7 +32,7 @@ focused_workspace = focused.workspace()
 targets = []
 
 for c in focused_workspace:
-  if c.app_id == app_id:
+  if c.app_id in app_ids:
     targets.append(c)
 
 if len(targets) > 0:
