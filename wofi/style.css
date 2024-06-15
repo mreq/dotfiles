@@ -1,0 +1,32 @@
+* {
+  font-family: Fira Code;
+  font-size: 1.1rem;
+}
+
+window {
+  background: --wofi-color0;
+  color: --wofi-color1;
+/*  border: 5px solid --wofi-color2;*/
+}
+
+#input {
+  background: transparent;
+  border: 0;
+  padding: 10px;
+  margin: 0 0 0 -20px;
+  box-shadow: none;
+}
+
+#input > image {
+  -gtk-icon-transform: scaleX(0);
+}
+
+#entry {
+  padding: 10px;
+}
+
+#text:selected,
+#entry:selected {
+  background: --wofi-color2;
+  color: --wofi-color3;
+}
