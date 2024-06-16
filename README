@@ -3,7 +3,7 @@
 ```
 ~/.dotfiles/install
 
-cat ~/.dotfiles/zypper/*.txt | xargs sudo zypper install
+sudo zypper install $( cat ~/.dotfiles/zypper/*.txt | tr '\n' ' ' )
 
 pip3 install --break-system-packages -r ~/.dotfiles/python/requirements.txt
 

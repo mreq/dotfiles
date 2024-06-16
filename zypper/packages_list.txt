@@ -19,6 +19,9 @@ make
 ncurses-devel
 neovim
 patch
+postgresql
+postgresql-contrib
+postgresql-server
 readline-devel
 rofi-wayland
 rust
