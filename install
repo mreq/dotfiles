@@ -60,8 +60,16 @@ create_dotfiles_symlink rofi ~/.config/rofi
   done
 )
 
+if ! which google-chrome &> /dev/null; then
+  echo "Google chrome not present - see setup/google-chrome.md for setup instructions."
+fi
+
+if ! which slack &> /dev/null; then
+  echo "Slack not present - see setup/slack.md for setup instructions."
+fi
+
 # bash if dropbox executable exists
-if which dropbox > /dev/null; then
+if which dropbox &> /dev/null; then
   # Dropbox symlinks
   if [[ -d ~/Dropbox/ubuntu ]]; then
     create_symlink ~/Dropbox/ubuntu/fonts ~/.fonts
