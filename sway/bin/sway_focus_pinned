@@ -16,6 +16,9 @@ parser.add_argument("-a",
                     "--app-id",
                     help="app_id if it's different from command")
 
+parser.add_argument("--window-class",
+                    help="window_class if it's different from command")
+
 args = parser.parse_args()
 
 if args.workspace is None:
@@ -31,15 +34,14 @@ if args.executable is None:
 
 tree = sway.get_tree()
 app_id = args.app_id or args.executable
+window_class = args.window_class
 
 found = False
 
 for c in tree:
-  if c.app_id == app_id:
+  if (app_id and c.app_id == app_id) or (window_class and c.window_class == window_class):
     found = True
     break
-
-print(found)
 
 if found is False:
   os.system(args.executable + " &")
