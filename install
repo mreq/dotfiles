@@ -14,9 +14,9 @@ create_dotfiles_symlink git/.gitconfig ~/.gitconfig
 
 create_dotfiles_symlink git/ignore ~/.config/git/ignore
 
-# create_dotfiles_symlink bash/.bashrc ~/.bashrc
+create_dotfiles_symlink bash/.bashrc ~/.bashrc
 
-# create_dotfiles_symlink bash/.bash_aliases ~/.bash_aliases
+create_dotfiles_symlink bash/.bash_aliases ~/.bash_aliases
 
 create_dotfiles_symlink bash/.profile ~/.profile
 
