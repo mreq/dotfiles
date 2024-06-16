@@ -5,7 +5,7 @@ program = "tmux"
 size = 12
 
 [font.normal]
-family = "FiraCodeNerdFont"
+family = "FiraCodeNerdFontMono"
 
 [window]
 title = "Terminal"

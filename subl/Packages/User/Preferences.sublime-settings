@@ -16,7 +16,7 @@
 		"public/system/dragonfly",
 		"tmp"
 	],
-	"font_face": "FiraCode Nerd Font",
+	"font_face": "FiraCode Nerd Font Mono",
 	"font_options":
 	[
 		"no_liga",
