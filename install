@@ -28,7 +28,7 @@ create_dotfiles_symlink doublecmd/shortcuts.scf ~/.config/doublecmd/shortcuts.sc
 
 # create_dotfiles_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
 
-# create_dotfiles_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
+create_dotfiles_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
 
 # create_dotfiles_symlink X/.inputrc ~/.inputrc
 
@@ -42,9 +42,7 @@ create_dotfiles_symlink sway/config ~/.config/sway/config
 
 create_dotfiles_symlink sway/config.d ~/.config/sway/config.d
 
-create_dotfiles_symlink i3/.i3blocks.conf ~/.i3blocks.conf
-
-create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
+create_dotfiles_symlink waybar ~/.config/waybar
 
 # create_dotfiles_symlink nvim/init.vim ~/.config/nvim/init.vim
 

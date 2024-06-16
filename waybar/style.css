@@ -1,0 +1,59 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: Fira Code Nerd Font;
+  font-size: 12px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: @base-blackey;
+  border-bottom: 0;
+  color: @base-whitey;
+}
+
+/*
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+
+tooltip label {
+  color: white;
+}
+*/
+
+#workspaces button {
+  padding: 0 8px;
+  background: transparent;
+  color: white;
+}
+
+#workspaces button.focused {
+  background: @base-focus;
+  color: @base-color-on-focus;
+}
+
+#mode, #clock, #battery {
+  padding: 0 14px;
+}
+
+#battery.charging {
+  color: @base-yellow;
+}
+
+@keyframes blink {
+  to {
+    background-color: @base-whitey;
+    color: @base-blackey;
+  }
+}
+
+#battery.warning:not(.charging) {
+  background: @base-red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

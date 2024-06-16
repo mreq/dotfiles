@@ -15,7 +15,7 @@
     "keys": ["alt+backspace"],
     "command": "run_cmd",
     "args": {
-      "cmd": "switch_keyboard_layout"
+      "cmd": "swaymsg input \"type:keyboard\" xkb_switch_layout next"
     }
   },
 
@@ -184,7 +184,7 @@
     "keys": ["f9"],
     "command": "run_cmd",
     "args": {
-      "cmd": "xfce4-terminal --command='tmux -2' --working-directory=\"$project_dir\""
+      "cmd": "alacritty --working-directory=\"$project_dir\""
     }
   },
 
