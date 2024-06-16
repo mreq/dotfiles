@@ -62,12 +62,17 @@ create_dotfiles_symlink rofi ~/.config/rofi
   done
 )
 
-# Dropbox symlinks
-if [[ -d ~/Dropbox/ubuntu ]]; then
-  create_symlink ~/Dropbox/ubuntu/fonts ~/.fonts
-  create_symlink ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
-  create_symlink ~/Dropbox/ubuntu/ssh/config ~/.ssh/config
-  create_symlink ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
-  create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
-  create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
+# bash if dropbox executable exists
+if which dropbox > /dev/null; then
+  # Dropbox symlinks
+  if [[ -d ~/Dropbox/ubuntu ]]; then
+    create_symlink ~/Dropbox/ubuntu/fonts ~/.fonts
+    create_symlink ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
+    create_symlink ~/Dropbox/ubuntu/ssh/config ~/.ssh/config
+    create_symlink ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
+    create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
+    create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
+  fi
+else
+  echo "Dropbox not present - see setup/dropbox.md for setup instructions."
 fi
