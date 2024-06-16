@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: Fira Code Nerd Font;
+  font-family: FiraCodeNerdFont;
   font-size: 12px;
   min-height: 0;
 }
@@ -24,18 +24,15 @@ tooltip label {
 */
 
 #workspaces button {
-  padding: 0 8px;
+  padding: 0 4px;
+  min-width: 1em;
   background: transparent;
-  color: white;
+  color: @base-whitey;
 }
 
 #workspaces button.focused {
   background: @base-focus;
   color: @base-color-on-focus;
-}
-
-#mode, #clock, #battery {
-  padding: 0 14px;
 }
 
 #battery.charging {
@@ -56,4 +53,24 @@ tooltip label {
   animation-timing-function: steps(12);
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+.module {
+  padding: 0 0.5em;
+}
+
+#language {
+}
+
+#language.cz {
+  background: @base-red;
+  color: @base-blackey;
+}
+
+#custom-spacer {
+  padding: 0;
+}
+
+#idle_inhibitor.activated {
+  background: @base-red;
 }
