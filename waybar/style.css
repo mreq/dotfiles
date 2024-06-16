@@ -8,7 +8,6 @@
 
 window#waybar {
   background: @base-blackey;
-  border-bottom: 0;
   color: @base-whitey;
 }
 
@@ -24,8 +23,8 @@ tooltip label {
 */
 
 #workspaces button {
-  padding: 0 4px;
-  min-width: 1em;
+  padding: 0 0.1em;
+  min-width: 1.5em;
   background: transparent;
   color: @base-whitey;
 }
@@ -57,9 +56,6 @@ tooltip label {
 
 .module {
   padding: 0 0.5em;
-}
-
-#language {
 }
 
 #language.cz {
