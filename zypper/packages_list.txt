@@ -25,4 +25,5 @@ postgresql-server
 readline-devel
 rofi-wayland
 rust
+wlsunset
 zlib-devel
