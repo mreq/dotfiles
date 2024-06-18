@@ -1,0 +1,7 @@
+{
+  "scope": "git-savvy.make-commit",
+  "completions":
+  [
+    { "trigger": "m", "contents": "Merge branch '$1' into ${0:master}" }
+  ]
+}

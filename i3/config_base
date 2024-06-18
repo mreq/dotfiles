@@ -13,6 +13,7 @@ set $ico_folder 
 set $ico_game 
 set $ico_gimp 
 set $ico_light 
+set $ico_lock 🔒
 set $ico_mail 
 set $ico_move "  "
 set $ico_music 
@@ -192,6 +193,7 @@ assign [class="VirtualBox"] → $ico_virtualbox
 assign [class="Spotify"] → $ico_music
 assign [class="Gimp"] → $ico_gimp
 assign [class="thunderbird"] → $ico_mail
+assign [class="KeePassXC"] → $ico_lock
 assign [class="Doublecmd"] → $ico_folder
 assign [class="Slack"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
@@ -213,6 +215,7 @@ bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar' 'float'"
 # Back and forth
 bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c 'Doublecmd' -x doublecmd"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c thunderbird -x thunderbird"
+bindsym $m+n exec "i3_focus_pinned -w $ico_lock -c KeePassXC -x keepassxc"
 bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://web.whatsapp.com/'"
