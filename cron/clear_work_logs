@@ -1,2 +1,3 @@
 #!/bin/bash
 rm -rf /home/petr/work/*/log/*.log
+rm -rf /home/petr/work/*/test/dummy/log/*.log
