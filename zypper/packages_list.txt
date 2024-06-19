@@ -16,6 +16,7 @@ libxcrypt-devel-static
 libyaml-devel
 lld18
 make
+MozillaThunderbird
 ncurses-devel
 neovim
 patch

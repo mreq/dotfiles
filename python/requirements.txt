@@ -1,2 +1,3 @@
 i3ipc
+notify-send
 tldr

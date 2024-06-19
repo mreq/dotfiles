@@ -22,6 +22,7 @@
         "sway/language",
         "clock",
         "tray",
+        "custom/notification",
         "custom/spacer"
     ],
     "sway/workspaces": {
@@ -105,5 +106,25 @@
         "activated": "\uf070",
         "deactivated": "\uf06e"
       }
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "<span size=\"x-large\">{icon}</span>",
+        "format-icons": {
+            "notification": "<span foreground='#ab4642'></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='#ab4642'></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='#ab4642'></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='#ab4642'></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     }
-}
+  }

@@ -46,7 +46,7 @@ create_dotfiles_symlink waybar ~/.config/waybar
 
 # create_dotfiles_symlink nvim/init.vim ~/.config/nvim/init.vim
 
-# create_dotfiles_symlink ruby/.gemrc ~/.gemrc
+create_dotfiles_symlink ruby/.gemrc ~/.gemrc
 
 # create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
 
@@ -72,6 +72,7 @@ fi
 if which dropbox &> /dev/null; then
   # Dropbox symlinks
   if [[ -d ~/Dropbox/ubuntu ]]; then
+    create_symlink ~/Dropbox/ubuntu/Applications ~/Applications
     create_symlink ~/Dropbox/ubuntu/fonts ~/.fonts
     create_symlink ~/Dropbox/ubuntu/various_configs/texmf ~/texmf
     create_symlink ~/Dropbox/ubuntu/ssh/config ~/.ssh/config

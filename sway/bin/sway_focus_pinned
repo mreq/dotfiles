@@ -39,7 +39,8 @@ window_class = args.window_class
 found = False
 
 for c in tree:
-  if (app_id and c.app_id == app_id) or (window_class and c.window_class == window_class):
+  print(c.app_id, app_id)
+  if (app_id and c.app_id is app_id) or (window_class and c.window_class is window_class):
     found = True
     break
 
