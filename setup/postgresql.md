@@ -5,7 +5,7 @@ Get rpm from https://www.dropbox.com/install-linux.
 Install with `zypper`:
 
 ```sh
-sudo zypper in postgresql postgresql-contrib postgresql-server
+sudo zypper install postgresql postgresql-contrib postgresql-server postgresql-devel
 ```
 
 Enable and start service

@@ -32,17 +32,20 @@ sway.command("workspace " + args.workspace)
 if args.executable is None:
   exit(0)
 
-tree = sway.get_tree()
 app_id = args.app_id or args.executable
 window_class = args.window_class
 
+focused = sway.get_tree().find_focused()
+focused_workspace = focused.workspace()
+
+print(focused_workspace.name)
 found = False
 
-for c in tree:
-  print(c.app_id, app_id)
-  if (app_id and c.app_id is app_id) or (window_class and c.window_class is window_class):
+for c in focused_workspace:
+  if (app_id and c.app_id == app_id) or (window_class and c.window_class == window_class):
     found = True
     break
 
-if found is False:
+
+if found == False:
   os.system(args.executable + " &")

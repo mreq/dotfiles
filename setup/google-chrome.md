@@ -13,5 +13,5 @@ sudo rpm --import linux_signing_key.pub
 Install with `zypper`:
 
 ```sh
-sudo zypper in ~/Downloads/google-chrome-*.rpm
+sudo zypper install ~/Downloads/google-chrome-*.rpm
 ```

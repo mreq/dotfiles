@@ -13,5 +13,5 @@ sudo rpm --import slack_pubkey_20230710.gpg
 Install with `zypper`:
 
 ```sh
-sudo zypper in ~/Downloads/slack-*.rpm
+sudo zypper install ~/Downloads/slack-*.rpm
 ```

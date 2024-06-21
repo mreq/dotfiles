@@ -5,5 +5,5 @@ Get rpm from https://www.dropbox.com/install-linux.
 Install with `zypper`:
 
 ```sh
-sudo zypper in ~/Downloads/nautilus-dropbox-*.rpm
+sudo zypper install ~/Downloads/nautilus-dropbox-*.rpm
 ```
