@@ -20,19 +20,11 @@ create_dotfiles_symlink bash/.bash_aliases ~/.bash_aliases
 
 create_dotfiles_symlink bash/.profile ~/.profile
 
-# create_dotfiles_symlink X/.Xdefaults ~/.Xdefaults
-
 create_dotfiles_symlink doublecmd/doublecmd.xml ~/.config/doublecmd/doublecmd.xml
 
 create_dotfiles_symlink doublecmd/shortcuts.scf ~/.config/doublecmd/shortcuts.scf
 
-# create_dotfiles_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
-
 create_dotfiles_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
-
-# create_dotfiles_symlink X/.inputrc ~/.inputrc
-
-# create_dotfiles_symlink X/.screenrc ~/.screenrc
 
 create_dotfiles_symlink alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 
@@ -44,11 +36,9 @@ create_dotfiles_symlink sway/config.d ~/.config/sway/config.d
 
 create_dotfiles_symlink waybar ~/.config/waybar
 
-# create_dotfiles_symlink nvim/init.vim ~/.config/nvim/init.vim
+create_dotfiles_symlink nvim ~/.config/nvim
 
 create_dotfiles_symlink ruby/.gemrc ~/.gemrc
-
-# create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
 
 create_dotfiles_symlink rofi ~/.config/rofi
 

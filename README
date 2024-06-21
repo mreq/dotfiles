@@ -6,38 +6,4 @@
 sudo zypper install $( cat ~/.dotfiles/zypper/*.txt | tr '\n' ' ' )
 
 pip3 install --break-system-packages -r ~/.dotfiles/python/requirements.txt
-
-sudo ln -s ~/.dotfiles/scripts/ssh-askpass-xfce4-terminal /usr/bin/ssh-askpass
-
-sudo ln -s ~/.dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_downloads
-
-sudo ln -s ~/.dotfiles/cron/clear_dropbox /etc/cron.daily/clear_home_petr_dropbox
-
-sudo ln -s ~/.dotfiles/cron/clear_work_logs /etc/cron.daily/clear_home_petr_work_logs
 ```
-
-## rbenv
-
-```
-curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-rbenv install -l
-```
-
-## nvm
-
-```
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-```
-
-## Neovim
-
-```
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
-
-open `nvim` and run `:PlugInstall` and `:UpdateRemotePlugins`
-
-## Double commander
-
-Download qt-latest from https://download.opensuse.org/repositories/home:/Alexx2000:/doublecmd-svn/AppImage to `~/Applications`

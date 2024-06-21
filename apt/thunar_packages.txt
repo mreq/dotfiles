@@ -1,3 +1,0 @@
-gvfs-backends
-gvfs-libs
-smbclient
