@@ -38,7 +38,7 @@
             "": "<span size=\"x-large\"></span>",
             "": "<span size=\"x-large\"></span>",
             "": "<span size=\"x-large\"></span>",
-
+            "": "<span size=\"x-large\"></span>",
         }
     },
     "sway/mode": {
@@ -72,8 +72,8 @@
         "format-icons": ["", "", ""]
     },
     "backlight": {
-        "format": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{percent}%",
-        "format-icons": ["\uf2c7"]
+        "format": "<span>{icon}</span><span size=\"x-small\"> </span>{percent}%",
+        "format-icons": [""]
     },
     "battery": {
         "states": {

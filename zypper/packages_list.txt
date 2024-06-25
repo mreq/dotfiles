@@ -32,6 +32,7 @@ redis
 ripgrep
 rofi-wayland
 rust
+spotify-easyrpm
 vips-tools
 wlsunset
 zlib-devel

@@ -22,6 +22,10 @@ tooltip label {
 }
 */
 
+#workspaces {
+  padding-left: 0;
+}
+
 #workspaces button {
   padding: 0 0.1em;
   min-width: 1.5em;

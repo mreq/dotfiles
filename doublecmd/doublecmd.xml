@@ -577,7 +577,7 @@
           <Title>Ext</Title>
           <Unique>F1E4F4A4-92EB-42BF-A60F-ABDCDD111DB5</Unique>
           <FuncString>[DC().GETFILEEXT{}]</FuncString>
-          <Width>50</Width>
+          <Width>100</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
@@ -593,7 +593,7 @@
           <Title>Size</Title>
           <Unique>BCA06729-2F96-4284-AC71-1FB25C85FFE2</Unique>
           <FuncString>[DC().GETFILESIZE{}]</FuncString>
-          <Width>70</Width>
+          <Width>100</Width>
           <Align>1</Align>
           <Font>
             <Name>default</Name>
@@ -609,7 +609,7 @@
           <Title>Date</Title>
           <Unique>81942079-7735-4984-885E-651CE0892967</Unique>
           <FuncString>[DC().GETFILETIME{}]</FuncString>
-          <Width>70</Width>
+          <Width>120</Width>
           <Align>1</Align>
           <Font>
             <Name>default</Name>

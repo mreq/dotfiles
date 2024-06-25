@@ -58,6 +58,10 @@ if ! which slack &> /dev/null; then
   echo "Slack not present - see setup/slack.md for setup instructions."
 fi
 
+if ! which spotify &> /dev/null; then
+  echo "Spotify not present - run spotify-easyrpm"
+fi
+
 # bash if dropbox executable exists
 if which dropbox &> /dev/null; then
   # Dropbox symlinks
