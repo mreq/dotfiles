@@ -5,5 +5,8 @@ return {
     "sindrets/diffview.nvim",       
     "nvim-telescope/telescope.nvim", 
   },
-  config = true
+  config = true,
+  keys = {
+	  { "<leader>gs", "<cmd>Neogit<cr>", desc = "Git: Neogit status" },
+  },
 }
