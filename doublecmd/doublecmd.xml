@@ -546,7 +546,7 @@
     <PathToLibrary>liblua5.1.so.0</PathToLibrary>
   </Lua>
   <NameShortcutFile>shortcuts.scf</NameShortcutFile>
-  <LastUsedPacker>zip</LastUsedPacker>
+  <LastUsedPacker>gz</LastUsedPacker>
   <SearchTemplates/>
   <ColumnsSets DefaultTitleHash="0">
     <ColumnsSet UseFrameCursor="False">

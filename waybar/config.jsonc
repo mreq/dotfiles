@@ -69,7 +69,7 @@
     "temperature": {
         "critical-threshold": 80,
         "format": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{temperatureC}°",
-        "format-icons": ["", "", ""]
+        "format-icons": [""]
     },
     "backlight": {
         "format": "<span>{icon}</span><span size=\"x-small\"> </span>{percent}%",
