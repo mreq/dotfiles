@@ -110,6 +110,10 @@
         "format": "<span size=\"large\">\uf11c</span><span size=\"x-small\"> </span><span text_transform=\"uppercase\">{shortDescription}</span>",
         "on-click": "swaymsg input 'type:keyboard' xkb_switch_layout next"
     },
+    "sway/window": {
+        "on-scroll-up": "swaymsg workspace prev_on_output",
+        "on-scroll-down": "swaymsg workspace next_on_output"
+    },
     "custom/spacer": {
         "format": " ",
     },

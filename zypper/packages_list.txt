@@ -29,7 +29,6 @@ postgresql-contrib
 postgresql-devel
 postgresql-server
 readline-devel
-redis
 ripgrep
 rofi-wayland
 ruby-build
@@ -37,6 +36,7 @@ rust
 spotify-easyrpm
 sway
 tmux
+valkey-compat-redis
 vips-tools
 wlsunset
 zlib-devel
