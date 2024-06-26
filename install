@@ -50,6 +50,10 @@ create_dotfiles_symlink rofi ~/.config/rofi
   done
 )
 
+if ! which subl &> /dev/null; then
+  echo "Sublime text not present - see setup/sublime-text.md for setup instructions."
+fi
+
 if ! which google-chrome &> /dev/null; then
   echo "Google chrome not present - see setup/google-chrome.md for setup instructions."
 fi
@@ -60,6 +64,10 @@ fi
 
 if ! which spotify &> /dev/null; then
   echo "Spotify not present - run spotify-easyrpm"
+fi
+
+if ! which rbenv &> /dev/null; then
+  echo "rbenv not present - see setup/rbenv.md for setup instructions."
 fi
 
 # bash if dropbox executable exists

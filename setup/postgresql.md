@@ -1,7 +1,5 @@
 # Postgresql setup
 
-Get rpm from https://www.dropbox.com/install-linux.
-
 Install with `zypper`:
 
 ```sh

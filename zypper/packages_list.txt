@@ -11,6 +11,7 @@ gdbm-devel
 git
 glibc-devel-static
 htop
+keepassxc
 libnotify-tools
 libopenssl-devel
 libqt5-qtwayland
@@ -31,8 +32,11 @@ readline-devel
 redis
 ripgrep
 rofi-wayland
+ruby-build
 rust
 spotify-easyrpm
+sway
+tmux
 vips-tools
 wlsunset
 zlib-devel
