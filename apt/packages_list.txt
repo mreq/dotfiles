@@ -1,10 +1,8 @@
 acpi
 apache2-utils
 atril
-awscli
 cairosvg
 cifs-utils
-compton
 curl
 exfat-fuse
 faenza-icon-theme
@@ -25,8 +23,10 @@ htop
 i3
 i3blocks
 imagemagick
+inkscape
 inotify-tools
 jq
+keepassxc
 libgmp3-dev
 libimage-exiftool-perl
 libjpeg-progs
@@ -44,6 +44,7 @@ libvips-tools
 libyaml-dev
 ncdu
 neovim
+net-tools
 nfs-common
 nomacs
 postgresql
@@ -58,6 +59,7 @@ rofi
 rubber
 shellcheck
 simplescreenrecorder
+ssh-askpass-gnome
 texlive-latex-recommended
 texlive-xetex
 thunderbird

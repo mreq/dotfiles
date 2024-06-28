@@ -1,13 +1,7 @@
 #!/home/petr/.rbenv/shims/ruby
-show_gpu = false
-output = []
-sensors = `sensors`.chomp
-output << sensors[/ISA adapter\n.+(\d+\.\d+)/][/\d+\.\d+/].to_f.round
-if show_gpu
-  begin
-    output << sensors[/PCI adapter\n.+(\d+\.\d+)/][/\d+\.\d+/].to_f.round
-  rescue
-  end
+require 'json'
+sensors = JSON.parse(`sensors -j`.chomp)
+
+if sensors["acpitz-acpi-0"] && sensors["acpitz-acpi-0"]["temp1"] && sensors["acpitz-acpi-0"]["temp1"]["temp1_input"]
+  puts "  #{sensors["acpitz-acpi-0"]["temp1"]["temp1_input"].round}°"
 end
-output.map! { |s| "#{s}°" }
-puts "  #{output.join(' ')}"

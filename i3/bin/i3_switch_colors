@@ -2,7 +2,7 @@
 if [ "$1" ]; then
   target_version="$1"
 else
-  if grep 'base00 #151515' ~/.config/i3/config; then
+  if grep 'base00 #181818' ~/.config/i3/config; then
     # dark is active
     target_version=light
   else
@@ -27,8 +27,4 @@ fi
 displays=$( xrandr | grep ' connected' | awk '{ print "  output " $1 "\n  tray_output " $1 }' )
 perl -0777 -i -pe "s/  tray_output primary\n/$displays\n/" ~/.config/i3/config
 
-cat ~/.dotfiles/xfce4/terminal/"terminalrc_$target_version" ~/.dotfiles/xfce4/terminal/terminalrc_base > ~/.config/xfce4/terminal/terminalrc
-# jq ".color_scheme = \"$sublime_theme\"" $sublime_path > $sublime_path.tmp; mv $sublime_path.tmp $sublime_path
-
 i3-msg restart
-sleep 1 && touch ~/.config/xfce4/terminal/terminalrc

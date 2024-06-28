@@ -13,7 +13,7 @@ set $ico_folder 
 set $ico_game 
 set $ico_gimp 
 set $ico_light 
-set $ico_lock 🔒
+set $ico_lock 
 set $ico_mail 
 set $ico_move "  "
 set $ico_music 
@@ -27,10 +27,12 @@ set $ico_volume 
 set $ico_whatsapp 
 set $ico_wifi 
 
-font pango: Fira Code, FontAwesome 9
-font xft: Fira Code, FontAwesome 9
+font pango: FiraCodeNerdFontMono, 10
+font xft: FiraCodeNerdFontMono, 10
 
 # window borders
+gaps inner 12px
+smart_gaps on
 hide_edge_borders both
 new_window pixel 5
 new_float pixel 5
@@ -163,8 +165,8 @@ bar {
   status_command i3blocks
   tray_output primary
   position top
-  font pango: Fira Code, FontAwesome 11
-  font xft: Fira Code, FontAwesome 11
+  font pango: FiraCodeNerdFontMono 11
+  font xft: FiraCodeNerdFontMono 11
   colors {
     background $base00
     statusline $base07
@@ -194,7 +196,7 @@ assign [class="Spotify"] → $ico_music
 assign [class="Gimp"] → $ico_gimp
 assign [class="thunderbird"] → $ico_mail
 assign [class="KeePassXC"] → $ico_lock
-assign [class="Doublecmd"] → $ico_folder
+assign [class="Double Commander"] → $ico_folder
 assign [class="Slack"] → $ico_slack
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
@@ -213,13 +215,13 @@ bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\
 bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar' 'float'"
 
 # Back and forth
-bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c 'Doublecmd' -x doublecmd"
+bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c 'Double Commander' -x ~/AppImages/doublecmd-qt-latest-x86_64.AppImage"
 bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c thunderbird -x thunderbird"
 bindsym $m+n exec "i3_focus_pinned -w $ico_lock -c KeePassXC -x keepassxc"
 bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
 bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
 bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://web.whatsapp.com/'"
-bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/ubuntu/various_configs/calendar_urls.txt'"
+bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/dotfiles/i3-and-sway/calendar_urls.txt'"
 bindsym $m+m exec "i3_focus_pinned -w $ico_music -c Spotify -x spotify"
 bindsym $m+b exec "i3_focus_pinned -w $ico_game"
 
@@ -233,11 +235,12 @@ bindsym Control+Mod1+4 exec "scrotshare create chrome"
 
 # Startup
 exec --no-startup-id nm-applet
-exec --no-startup-id compton
-exec --no-startup-id redshift
+exec --no-startup-id redshift -l 50.08:14.42
 exec --no-startup-id dropbox start -i
 exec --no-startup-id setxkbmap -layout us -option caps:escape
 exec --no-startup-id xrdb -merge ~/.Xdefaults
 exec --no-startup-id i3_switch_colors dark
 exec --no-startup-id select_display guess
+exec --no-startup-id /usr/libexec/polkit-mate-authentication-agent-1
 # exec --no-startup-id light-locker --lock-on-suspend --lock-on-lid
+exec --no-startup-id xsetroot -solid $base00
