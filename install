@@ -42,7 +42,7 @@ create_dotfiles_symlink i3/.i3blocks.conf ~/.i3blocks.conf
 
 create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
 
-create_dotfiles_symlink nvim/init.vim ~/.config/nvim/init.vim
+create_dotfiles_symlink nvim ~/.config/nvim
 
 create_dotfiles_symlink ruby/.gemrc ~/.gemrc
 
