@@ -9,12 +9,12 @@ if acpi is '' or 'No support for device type:' in acpi:
 
 is_charging = re.search('Charging|Full', acpi)
 percentages = []
+
 for percentage in re.findall('(\d+)%', acpi):
     percentages.append(percentage)
 
 icon = ''
-output = icon + '  '
-output += ' / '.join(percentages)
+output = icon + ' ' + ' / '.join(percentages)
 
 print(output)
 if is_charging:

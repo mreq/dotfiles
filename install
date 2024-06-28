@@ -62,10 +62,9 @@ create_dotfiles_symlink xfce4/xfce4-terminal.xml ~/.config/xfce4/xfconf/xfce-per
 
 # Dropbox symlinks
 if [[ -d ~/Dropbox/ubuntu ]]; then
-  create_symlink ~/Dropbox/dotfiles/fonts ~/.fonts
+  create_symlink ~/Dropbox/dotfiles/AppImages ~/AppImages
   create_symlink ~/Dropbox/dotfiles/tex/texmf ~/texmf
-  create_symlink ~/Dropbox/ubuntu/ssh/config ~/.ssh/config
-  create_symlink ~/Dropbox/ubuntu/ssh/known_hosts ~/.ssh/known_hosts
+  create_symlink ~/Dropbox/dotfiles/tex/texmf ~/texmf
   create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
   create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
 fi
