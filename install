@@ -44,6 +44,8 @@ create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
 
 create_dotfiles_symlink nvim ~/.config/nvim
 
+create_dotfiles_symlink neovide ~/.config/neovide
+
 create_dotfiles_symlink ruby/.gemrc ~/.gemrc
 
 create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
@@ -67,4 +69,6 @@ if [[ -d ~/Dropbox/ubuntu ]]; then
   create_symlink ~/Dropbox/dotfiles/tex/texmf ~/texmf
   create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
   create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
+else
+  echo "Dropbox not present - see readme/dropbox.md for setup instructions."
 fi

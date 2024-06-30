@@ -24,7 +24,7 @@ class GitShowFileOnRemote(sublime_plugin.WindowCommand):
 
         url = 'https://' + url_base + '/blob/' + branch + path
 
-        run_cmd_parts = ["i3_focus_or_run 'Google-chrome' 'google-chrome'",
+        run_cmd_parts = ["i3_focus_or_run 'google-chrome' --window-class 'Google-chrome'",
                          'xdg-open ' + url]
         run_cmd = '; '.join(run_cmd_parts)
         subprocess.call(run_cmd, shell=True)

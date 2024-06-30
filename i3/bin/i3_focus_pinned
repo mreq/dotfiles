@@ -5,31 +5,46 @@ import os
 import code
 
 parser=argparse.ArgumentParser()
-parser.add_argument('-w', help = 'Switch [string] workspace.')
-parser.add_argument('-c', help = 'Look for such a window.')
-parser.add_argument('-i', help = 'Look for such a window.')
-parser.add_argument('-x', help = 'Execute this command if [WM_CLASS] is not found')
+
+parser.add_argument("executable")
+
+parser.add_argument("-w",
+                    "--workspace",
+                    help = "Switch [string] workspace.")
+
+parser.add_argument("-a",
+                    "--app-id",
+                    help="app_id if it's different from command")
+
+parser.add_argument("-c",
+                    "--window-class",
+                    help="window_class if it's different from command")
+
 args = parser.parse_args()
 
-if args.w is None:
-  os.system('notify-send "You need to provide a workspace using the -w option."')
+if args.workspace is None:
+  os.system("notify-send 'You need to provide a workspace using the -w option.'")
   exit(1)
 
 i3 = i3ipc.Connection()
 
-i3.command('workspace ' + args.w)
+i3.command("workspace " + args.workspace)
 
-if args.c is None or args.x is None:
+if args.executable is None:
   exit(0)
 
-tree = i3.get_tree()
+app_id = args.app_id or args.executable
+window_class = args.window_class
+
+focused = i3.get_tree().find_focused()
+focused_workspace = focused.workspace()
+
 found = False
 
-for instance in tree.find_classed(args.c):
-  if instance.workspace().name == args.w:
-    if not args.i or args.i == instance.window_instance:
-      found = True
-      break
+for c in focused_workspace:
+  if (app_id and c.app_id == app_id) or (window_class and c.window_class == window_class):
+    found = True
+    break
 
-if found is False:
-  os.system(args.x + " &")
+if found == False:
+  os.system(args.executable + " &")

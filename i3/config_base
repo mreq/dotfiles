@@ -67,30 +67,20 @@ bindsym $m+$right focus right
 bindsym Mod1+Tab focus right
 bindsym Mod1+Shift+Tab focus left
 bindsym $m+Tab workspace back_and_forth
-bindsym $m+Shift+Tab exec i3_focus_other_monitor
-bindsym $m+grave exec i3_focus_other_monitor
-bindsym $m+Shift+grave exec i3_move_workspace_to_other_monitor
+bindsym $m+equals exec i3_focus_other_monitor
+bindsym $m+Shift+equals exec i3_move_workspace_to_other_monitor
 bindsym $m+Shift+w exec i3_rename_workspace
 
 bindsym $m+BackSpace exec switch_keyboard_layout
 
-bindsym $m+o exec select_power_action
-bindsym $m+Shift+o exec "select_power_action screen"
-bindsym $m+p exec select_display
-bindsym $m+Shift+p exec select_display guess
-bindsym Control+$m+p exec select_display HDMI
+bindsym Control+$m+o exec select_power_action
+bindsym Control+$m+p exec select_display
 
 # move focused window
 bindsym $m+Shift+$left move left
 bindsym $m+Shift+$down move down
 bindsym $m+Shift+$up move up
 bindsym $m+Shift+$right move right
-
-# split in horizontal orientation
-bindsym Control+$m+e split h
-
-# split in vertical orientation
-bindsym Control+$m+o split v
 
 # enter fullscreen mode for the focused container
 bindsym $m+f fullscreen toggle
@@ -209,20 +199,20 @@ bindsym Control+$m+space exec "i3-dmenu-desktop --dmenu='rofi -dmenu -i -p \\"ru
 bindsym Control+$m+s exec "pick_a_subl_project"
 
 # Apps
-bindsym $m+1 exec "i3_focus_or_run 'Google-chrome' 'google-chrome --force-device-scale-factor=1'"
-bindsym $m+2 exec "i3_focus_or_run 'Sublime_text' 'subl -n'"
-bindsym $m+3 exec "i3_focus_or_run 'Xfce4-terminal' 'xfce4-terminal --command=\\"tmux -2\\"'"
-bindsym $m+t exec "i3_focus_or_run 'Thunar' 'thunar' 'float'"
+bindsym $m+1 exec "i3_focus_or_run 'google-chrome' --window-class 'Google-chrome' --window-class 'firefox'"
+bindsym $m+2 exec "i3_focus_or_run 'subl -n' --window-class 'Sublime_text' --window-class='neovide'"
+bindsym $m+3 exec "i3_focus_or_run 'xfce4-terminal --command=\\"tmux -2\\"' --window-class 'Xfce4-terminal'"
+bindsym $m+t exec "i3_focus_or_run 'thunar' --window-class 'Thunar'"
 
 # Back and forth
-bindsym $m+4 exec "i3_focus_pinned -w $ico_folder -c 'Double Commander' -x ~/AppImages/doublecmd-qt-latest-x86_64.AppImage"
-bindsym $m+5 exec "i3_focus_pinned -w $ico_mail -c thunderbird -x thunderbird"
-bindsym $m+n exec "i3_focus_pinned -w $ico_lock -c KeePassXC -x keepassxc"
-bindsym $m+s exec "i3_focus_pinned -w $ico_slack -c Slack -x slack"
-bindsym $m+g exec "i3_focus_pinned -w $ico_gimp -c Gimp -x gimp"
-bindsym $m+w exec "i3_focus_pinned -w $ico_whatsapp -i web.whatsapp.com -c Google-chrome -x 'google-chrome --force-device-scale-factor=1 --app=https://web.whatsapp.com/'"
-bindsym $m+x exec "i3_focus_pinned -w $ico_calendar -c Google-chrome -x 'while read url; do (google-chrome --force-device-scale-factor=1 --app=$url &); done < ~/Dropbox/dotfiles/i3-and-sway/calendar_urls.txt'"
-bindsym $m+m exec "i3_focus_pinned -w $ico_music -c Spotify -x spotify"
+bindsym $m+4 exec "i3_focus_pinned ~/AppImages/doublecmd-qt-latest-x86_64.AppImage -w $ico_folder -c 'Double Commander'"
+bindsym $m+5 exec "i3_focus_pinned thunderbird -w $ico_mail -c thunderbird"
+bindsym $m+n exec "i3_focus_pinned keepassxc -w $ico_lock -c KeePassXC"
+bindsym $m+s exec "i3_focus_pinned slack -w $ico_slack -c Slack"
+bindsym $m+g exec "i3_focus_pinned gimp -w $ico_gimp -c Gimp"
+bindsym $m+w exec "i3_focus_pinned 'google-chrome --app=https://web.whatsapp.com/' -w $ico_whatsapp -c Google-chrome"
+bindsym $m+x exec "i3_focus_pinned 'while read url; do (google-chrome --app=$url &); done < ~/Dropbox/dotfiles/i3-and-sway/calendar_urls.txt' -w $ico_calendar -c Google-chrome"
+bindsym $m+m exec "i3_focus_pinned spotify -w $ico_music -c Spotify"
 bindsym $m+b exec "i3_focus_pinned -w $ico_game"
 
 # bindsym --release $m+Shift+Escape exec "xkill"
