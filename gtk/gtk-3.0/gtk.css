@@ -1,0 +1,49 @@
+::root {
+  --base00: #151515;
+  --base01: #202020;
+  --base02: #303030;
+  --base03: #505050;
+  --base04: #b0b0b0;
+  --base05: #d0d0d0;
+  --base06: #e0e0e0;
+  --base07: #f5f5f5;
+  --base08: #ac4142;
+  --base09: #d28445;
+  --base0A: #f4bf75;
+  --base0B: #90a959;
+  --base0C: #75b5aa;
+  --base0D: #6a9fb5;
+  --base0E: #aa759f;
+  --base0F: #8f5536;
+}
+
+@define-color base00 #151515;
+@define-color base01 #202020;
+@define-color base02 #303030;
+@define-color base03 #505050;
+@define-color base04 #b0b0b0;
+@define-color base05 #d0d0d0;
+@define-color base06 #e0e0e0;
+@define-color base07 #f5f5f5;
+@define-color base08 #ac4142;
+@define-color base09 #d28445;
+@define-color base0A #f4bf75;
+@define-color base0B #90a959;
+@define-color base0C #75b5aa;
+@define-color base0D #6a9fb5;
+@define-color base0E #aa759f;
+@define-color base0F #8f5536;
+
+@define-color base-blackey @base00;
+@define-color base-blue @base0D;
+@define-color base-brown @base0F;
+@define-color base-green @base0B;
+@define-color base-orange @base09;
+@define-color base-purple @base0E;
+@define-color base-red @base08;
+@define-color base-turqoise @base0C;
+@define-color base-whitey @base07;
+@define-color base-yellow @base0A;
+
+@define-color base-focus @base-blue;
+@define-color base-color-on-focus @base-blackey;

@@ -1,0 +1,4 @@
+include ~/.config/sway/config.d/*.conf
+
+floating_modifier $mod normal
+workspace_layout tabbed

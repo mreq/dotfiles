@@ -42,6 +42,12 @@ create_dotfiles_symlink i3/.i3blocks.conf ~/.i3blocks.conf
 
 create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
 
+create_dotfiles_symlink alacritty ~/.config/alacritty
+
+create_dotfiles_symlink waybar ~/.config/waybar
+
+create_dotfiles_symlink sway ~/.config/sway
+
 create_dotfiles_symlink nvim ~/.config/nvim
 
 create_dotfiles_symlink neovide ~/.config/neovide

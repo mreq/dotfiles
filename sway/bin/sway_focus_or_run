@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+import argparse, sys
+import subprocess
+from i3ipc import Connection
+
+sway = Connection()
+
+executable = sys.argv[1]
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("executable")
+
+parser.add_argument("-a",
+                    "--app-id",
+                    action="append",
+                    nargs="*",
+                    help="app_id if it's different from command")
+
+parser.add_argument("--window-class",
+                    action="append",
+                    nargs="*",
+                    help="window_class if it's different from command")
+
+parser.add_argument("--float",
+                    help="use for floating windows, skips filtering by workspace",
+                    action=argparse.BooleanOptionalAction)
+
+args = parser.parse_args()
+
+app_ids_with_default = args.app_id or [[args.executable]]
+app_ids = [item for sublist in app_ids_with_default for item in sublist]
+
+window_classes_with_default = args.window_class or [[]]
+window_classes = [item for sublist in window_classes_with_default for item in sublist]
+
+focused = sway.get_tree().find_focused()
+focused_workspace = focused.workspace()
+
+targets = []
+
+for c in focused_workspace:
+  if (c.app_id and c.app_id in app_ids) or (c.window_class and c.window_class in window_classes):
+    targets.append(c)
+
+if len(targets) > 0:
+  focused_index = -1
+
+  for i, t in enumerate(targets):
+    if t.id == focused.id:
+      focused_index = i
+      break
+
+  target = targets[focused_index + 1] if len(targets) >= focused_index + 2 else targets[0]
+  sway.command("[con_id={}] focus".format(target.id))
+else:
+  subprocess.call(args.executable + ' &', shell=True)
