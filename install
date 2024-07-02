@@ -30,6 +30,8 @@ create_dotfiles_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
 
 create_dotfiles_symlink alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 
+create_dotfiles_symlink kitty/kitty.conf ~/.config/kitty/kitty.conf
+
 create_dotfiles_symlink tmux/.tmux.conf ~/.tmux.conf
 
 create_dotfiles_symlink sway/config ~/.config/sway/config

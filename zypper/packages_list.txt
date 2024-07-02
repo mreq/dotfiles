@@ -1,7 +1,5 @@
 automake
 aws-cli
-cargo
-cargo1.78
 doublecmd-qt
 dropbox-cli
 fira-code-fonts
