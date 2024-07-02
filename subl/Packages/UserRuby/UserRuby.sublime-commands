@@ -8,6 +8,11 @@
   },
 
   {
+    "caption": "Ruby: insert component BEM class name",
+    "command": "ruby_component_insert_bem_class_name",
+  },
+
+  {
     "caption": "Rails: active admin params",
     "command": "extract_active_admin_params"
   },

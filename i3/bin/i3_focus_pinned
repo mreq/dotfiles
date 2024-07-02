@@ -6,7 +6,8 @@ import code
 
 parser=argparse.ArgumentParser()
 
-parser.add_argument("executable")
+parser.add_argument("executable",
+                    nargs='?')
 
 parser.add_argument("-w",
                     "--workspace",

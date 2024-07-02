@@ -72,3 +72,25 @@ class ruby_component_create_initialize_method(sublime_plugin.TextCommand):
                "end"
 
         view.replace(edit, line, text)
+
+class ruby_component_insert_bem_class_name(sublime_plugin.TextCommand):
+    def run(self, edit):
+        view = self.view
+        window = self.view.window()
+        file_name = window.active_view().file_name()
+
+        if not file_name:
+            return window.status_message('No active project view.')
+
+        if not "app/components" in file_name:
+            return window.status_message('Not in app/components.')
+
+        component_path = re.sub(r'^(.*app/components/)(.*)(_component\.\w+)$', r'\2', file_name)
+        bem_class_name = re.sub(r'^(\w)\w*/(.*)', r'\1/\2', component_path)
+        bem_class_name = re.sub(r'[_/]', r'-', bem_class_name)
+
+        if ".slim" in file_name:
+            bem_class_name = "." + bem_class_name
+
+        for sel in view.sel():
+            view.insert(edit, sel.a, bem_class_name)

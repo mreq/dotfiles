@@ -12,6 +12,7 @@ set $ico_code 
 set $ico_folder 
 set $ico_game 
 set $ico_gimp 
+set $ico_lens 
 set $ico_light 
 set $ico_lock 
 set $ico_mail 
@@ -188,6 +189,7 @@ assign [class="thunderbird"] → $ico_mail
 assign [class="KeePassXC"] → $ico_lock
 assign [class="Double Commander"] → $ico_folder
 assign [class="Slack"] → $ico_slack
+assign [class="Lens"] → $ico_lens
 assign [class="Google-chrome" instance="trello.com"] → $ico_trello
 assign [class="Google-chrome" instance="web.whatsapp.com"] → $ico_whatsapp
 assign [class="Google-chrome" instance="calendar.google.com__calendar"] → $ico_calendar
@@ -210,10 +212,12 @@ bindsym $m+5 exec "i3_focus_pinned thunderbird -w $ico_mail -c thunderbird"
 bindsym $m+n exec "i3_focus_pinned keepassxc -w $ico_lock -c KeePassXC"
 bindsym $m+s exec "i3_focus_pinned slack -w $ico_slack -c Slack"
 bindsym $m+g exec "i3_focus_pinned gimp -w $ico_gimp -c Gimp"
-bindsym $m+w exec "i3_focus_pinned 'google-chrome --app=https://web.whatsapp.com/' -w $ico_whatsapp -c Google-chrome"
+bindsym $m+w exec "i3_focus_pinned 'while read url; do (google-chrome --app=$url &); done < ~/Dropbox/dotfiles/i3-and-sway/whatsapp_urls.txt' -w $ico_whatsapp -c Google-chrome"
 bindsym $m+x exec "i3_focus_pinned 'while read url; do (google-chrome --app=$url &); done < ~/Dropbox/dotfiles/i3-and-sway/calendar_urls.txt' -w $ico_calendar -c Google-chrome"
+bindsym $m+z exec "i3_focus_pinned 'while read url; do (google-chrome --new-window $url &); done < ~/Dropbox/dotfiles/i3-and-sway/code_urls.txt' -w $ico_code -c Google-chrome"
 bindsym $m+m exec "i3_focus_pinned spotify -w $ico_music -c Spotify"
 bindsym $m+b exec "i3_focus_pinned -w $ico_game"
+bindsym $m+slash exec "i3_focus_pinned kontenta-lens -w $ico_lens -c Lens"
 
 # bindsym --release $m+Shift+Escape exec "xkill"
 
