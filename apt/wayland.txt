@@ -1,0 +1,4 @@
+alacritty
+sway
+waybar
+xwayland
