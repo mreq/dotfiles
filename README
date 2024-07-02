@@ -1,13 +1,15 @@
 # Installation
 
 ```
+sudo apt install git
+
+git clone git@github.com:mreq/dotfiles.git .dotfiles
+
 ~/.dotfiles/install
 
-sudo apt install $( cat apt/*.txt )
+sudo apt install $( cat ~/.dotfiles/apt/*.txt )
 
-pip3 install -r ~/.dotfiles/python/requirements.txt
-
-sudo ln -s ~/.dotfiles/scripts/ssh-askpass-xfce4-terminal /usr/bin/ssh-askpass
+pip3 install -r ~/.dotfiles/python/requirements.txt --break-system-packages
 
 sudo ln -s ~/.dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_downloads
 
@@ -28,16 +30,3 @@ rbenv install -l
 ```
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 ```
-
-## Neovim
-
-```
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
-
-open `nvim` and run `:PlugInstall` and `:UpdateRemotePlugins`
-
-## Double commander
-
-Download qt-latest from https://download.opensuse.org/repositories/home:/Alexx2000:/doublecmd-svn/AppImage to `~/Applications`
