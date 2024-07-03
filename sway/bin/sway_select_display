@@ -30,7 +30,7 @@ if result is None:
                 result = f.read().strip()
 
         else:
-            exit(0)
+            result = 'auto'
 
 if result is None:
     if len(outputs) < 2:

@@ -58,7 +58,19 @@ tooltip label {
   animation-direction: alternate;
 }
 
-.module {
+.module,
+#pulseaudio,
+#backlight,
+#idle_inhibitor,
+#cpu,
+#memory,
+#temperature,
+#battery,
+#language,
+#clock,
+#tray,
+#custom_notification,
+#custom_spacer {
   padding: 0 0.5em;
 }
 
