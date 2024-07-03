@@ -44,6 +44,8 @@ create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
 
 create_dotfiles_symlink alacritty ~/.config/alacritty
 
+create_dotfiles_symlink kitty ~/.config/kitty
+
 create_dotfiles_symlink waybar ~/.config/waybar
 
 create_dotfiles_symlink sway ~/.config/sway

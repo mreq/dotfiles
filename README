@@ -22,7 +22,6 @@ sudo ln -s ~/.dotfiles/cron/clear_work_logs /etc/cron.daily/clear_home_petr_work
 
 ```
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-rbenv install -l
 ```
 
 ## nvm

@@ -184,7 +184,7 @@
     "keys": ["f9"],
     "command": "run_cmd",
     "args": {
-      "cmd": "xfce4-terminal --command='tmux -2' --working-directory=\"$project_dir\""
+      "cmd": "~/.dotfiles/sway/bin/sway_focus_or_run 'alacritty --working-directory $project_dir' --app-id Alacritty"
     }
   },
 
