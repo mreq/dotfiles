@@ -59,7 +59,6 @@ rofi
 rubber
 shellcheck
 simplescreenrecorder
-ssh-askpass-gnome
 texlive-latex-recommended
 texlive-xetex
 thunderbird
