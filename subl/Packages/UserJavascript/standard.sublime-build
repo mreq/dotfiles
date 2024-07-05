@@ -1,4 +1,4 @@
 {
   "selector": "source.jsx",
-  "cmd": ["/home/petr/.nvm/versions/node/v18.18.2/bin/standard", "--fix", "$file"]
+  "cmd": ["standard", "--fix", "$file"]
 }
