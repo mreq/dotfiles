@@ -20,6 +20,10 @@ sudo ln -s ~/.dotfiles/cron/clear_dropbox /etc/cron.daily/clear_home_petr_dropbo
 sudo ln -s ~/.dotfiles/cron/clear_work_logs /etc/cron.daily/clear_home_petr_work_logs
 ```
 
+## google-chrome
+
+Go to chrome://flags/ and switch "Preferred Ozone platform" to "Wayland"
+
 ## rbenv
 
 ```
