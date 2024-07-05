@@ -14,11 +14,6 @@ title = "Terminal"
 x = 12
 y = 12
 
-[[keyboard.bindings]]
-chars = "printf \"\\033c\"\n"
-key = "L"
-mods = "Control"
-
 [colors]
 draw_bold_text_with_bright_colors = false
 
@@ -49,3 +44,6 @@ blue = '0xb8b8b8'
 magenta = '0xe8e8e8'
 cyan = '0xa16946'
 white = '0xf8f8f8'
+
+[env]
+TERM = "xterm-256color"
