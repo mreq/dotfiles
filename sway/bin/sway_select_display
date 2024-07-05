@@ -23,6 +23,24 @@ sway = Connection()
 outputs = sway.get_outputs()
 output_names = [o.name for o in sway.get_outputs()]
 
+def get_best_mode_from_output(output):
+    highest_product = 0
+    target_mode = output.modes[0]
+
+    for mode in output.modes:
+        product = mode.width * mode.height * mode.refresh
+        if product > highest_product:
+            highest_product = product
+            target_mode = mode
+
+    return target_mode
+
+def are_modes_equal(a, b):
+    return a.width == b.width and a.height == b.height and a.refresh == b.refresh
+
+def set_mode(output, mode):
+    sway.command('output ' + output.name + ' mode ' + str(mode.width) + "x" + str(mode.height) + "@" + str(mode.refresh / 1000) + "Hz")
+
 if result is None:
     if args.handle_reload:
         if os.path.isfile(TMP_FILE_PATH):
@@ -34,17 +52,24 @@ if result is None:
 
 if result is None:
     if len(outputs) < 2:
+        best_mode = get_best_mode_from_output(outputs[0])
+
         if outputs[0] and not outputs[0].active:
-            sway.command('output ' + outputs[0] + ' enable')
-        notification('sway_select_display', message='only one output', app_name='sway')
-        exit(1)
+            result = outputs[0].name
+        elif not are_modes_equal(best_mode, outputs[0].current_mode):
+            result = outputs[0].name
 
-    options = ['auto'] + output_names
+        if not result:
+            notification('sway_select_display', message='only one output', app_name='sway')
+            exit(1)
 
-    result = dotfiles.rofi.dmenu(options)
+    else:
+        options = ['auto'] + output_names
 
-    if result not in options:
-        exit(0)
+        result = dotfiles.rofi.dmenu(options)
+
+        if result not in options:
+            exit(0)
 
 if result == 'auto':
     for output in outputs:
@@ -58,11 +83,13 @@ if result == 'auto':
 for output in outputs:
     if output.name == result:
         if not output.active:
-            print('output ' + output.name + ' enable')
             sway.command('output ' + output.name + ' enable')
+
+        best_mode = get_best_mode_from_output(output)
+        if not are_modes_equal(best_mode, output.current_mode):
+            set_mode(output, best_mode)
     else:
         if output.active:
-            print('output ' + output.name + ' disable')
             sway.command('output ' + output.name + ' disable')
 
 with open(TMP_FILE_PATH, 'w') as f:

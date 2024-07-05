@@ -19,6 +19,7 @@ gdebi
 gifsicle
 gimp
 gparted
+grim
 htop
 i3
 i3blocks
@@ -59,6 +60,7 @@ rofi
 rubber
 shellcheck
 simplescreenrecorder
+slurp
 texlive-latex-recommended
 texlive-xetex
 thunderbird

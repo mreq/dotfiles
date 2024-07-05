@@ -26,16 +26,24 @@ tooltip label {
   padding-left: 0;
 }
 
-#workspaces button {
+#workspaces button,
+#workspaces button:hover {
   padding: 0 0.1em;
   min-width: 1.5em;
   background: transparent;
   color: @base-whitey;
+  text-shadow: none;
+  box-shadow: none;
 }
 
 #workspaces button.focused {
   background: @base-focus;
   color: @base-color-on-focus;
+}
+
+#workspaces button.urgent {
+  background: @base-red;
+  color: @base-blackey;
 }
 
 #battery.charging {

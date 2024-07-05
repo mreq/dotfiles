@@ -13,12 +13,19 @@ parser.add_argument("-w",
                     "--workspace",
                     help = "Switch [string] workspace.")
 
+parser.add_argument("--strict-workspace-check",
+                    help = "Check windows on workspace only",
+                    action=argparse.BooleanOptionalAction)
+
 parser.add_argument("-a",
                     "--app-id",
                     help="app_id if it's different from command")
 
 parser.add_argument("--window-class",
                     help="window_class if it's different from command")
+
+parser.add_argument("--window-instance",
+                    help="window_instance if it's different from command")
 
 args = parser.parse_args()
 
@@ -35,18 +42,31 @@ if args.executable is None:
 
 app_id = args.app_id or args.executable
 window_class = args.window_class
+window_instance = args.window_instance
 
-focused = sway.get_tree().find_focused()
+tree = sway.get_tree()
+
+focused = tree.find_focused()
 focused_workspace = focused.workspace()
 
-print(focused_workspace.name)
 found = False
 
-for c in focused_workspace:
-  if (app_id and c.app_id == app_id) or (window_class and c.window_class == window_class):
-    found = True
-    break
+look_at = focused_workspace if args.strict_workspace_check else tree
 
+for c in look_at:
+  if app_id:
+    if c.app_id == app_id:
+      found = True
+  if window_class:
+    if c.window_class == window_class:
+      if window_instance:
+        if c.window_instance == window_instance:
+          found = True
+      else:
+        found = True
+
+  if found:
+    break
 
 if found == False:
   os.system(args.executable + " &")

@@ -28,17 +28,17 @@
     "sway/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "": "<span size=\"x-large\"></span>",
-            "": "<span size=\"x-large\"></span>",
-            "": "<span size=\"x-large\"></span>",
+            "": "<span size=\"large\"></span>",
+            "": "<span size=\"large\"></span>",
+            "": "<span size=\"large\"></span>",
             "": "<span size=\"large\"></span>",
-            "": "<span size=\"xx-large\"></span>",
-            "": "<span size=\"x-large\"></span>",
-            "": "<span size=\"x-large\"></span>",
-            "": "<span size=\"x-large\"></span>",
-            "": "<span size=\"x-large\"></span>",
-            "": "<span size=\"x-large\"></span>",
-            "": "<span size=\"x-large\"></span>",
+            "": "<span size=\"x-large\"></span>",
+            "": "<span size=\"large\"></span>",
+            "": "<span size=\"large\"></span>",
+            "": "<span size=\"large\"></span>",
+            "": "<span size=\"large\"></span>",
+            "": "<span size=\"large\"></span>",
+            "": "<span size=\"large\"></span>",
         }
     },
     "sway/mode": {
