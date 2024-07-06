@@ -48,6 +48,7 @@ neovim
 net-tools
 nfs-common
 nomacs
+pamixer
 postgresql
 postgresql-client
 postgresql-contrib
@@ -71,6 +72,7 @@ virtualbox
 vlc
 webp
 wmctrl
+wob
 xclip
 xdotool
 xsel
