@@ -1,0 +1,4 @@
+{
+  "selector": "source.python",
+  "cmd": ["black", "$file"]
+}

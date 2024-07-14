@@ -1,3 +1,4 @@
+black
 i3ipc
 notify-send
 tldr
