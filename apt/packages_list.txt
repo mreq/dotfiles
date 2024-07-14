@@ -1,6 +1,7 @@
 acpi
 apache2-utils
 atril
+brightnessctl
 cairosvg
 cifs-utils
 curl
