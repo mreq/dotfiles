@@ -60,6 +60,8 @@ create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
 
 create_dotfiles_symlink rofi ~/.config/rofi
 
+create_dotfiles_symlink mimeapps/mimeapps.list ~/.config/mimeapps.list
+
 create_dotfiles_symlink xfce4/xfce4-terminal.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml
 
 (

@@ -1,0 +1,36 @@
+[Default Applications]
+application/toml=sublime_text.desktop;
+application/x-ruby=sublime_text.desktop;
+image/apng=org.nomacs.ImageLounge.desktop;
+image/avif=org.nomacs.ImageLounge.desktop;
+image/gif=org.nomacs.ImageLounge.desktop;
+image/jpeg=org.nomacs.ImageLounge.desktop;
+image/png=org.nomacs.ImageLounge.desktop;
+image/svg+xml=org.nomacs.ImageLounge.desktop;
+image/webp=org.nomacs.ImageLounge.desktop;
+text/css=sublime_text.desktop;
+text/html=google-chrome.desktop
+text/plain=sublime_text.desktop;
+text/x-csrc=sublime_text.desktop;
+text/x-python3=sublime_text.desktop;
+text/x-script.python=sublime_text.desktop;
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
+
+[Added Associations]
+application/toml=sublime_text.desktop;
+application/x-ruby=sublime_text.desktop;
+image/apng=org.nomacs.ImageLounge.desktop;
+image/avif=org.nomacs.ImageLounge.desktop;
+image/gif=org.nomacs.ImageLounge.desktop;
+image/jpeg=org.nomacs.ImageLounge.desktop;
+image/png=org.nomacs.ImageLounge.desktop;
+image/svg+xml=org.nomacs.ImageLounge.desktop;
+image/webp=org.nomacs.ImageLounge.desktop;
+text/css=sublime_text.desktop;
+text/plain=sublime_text.desktop;
+text/x-csrc=sublime_text.desktop;
+text/x-python3=sublime_text.desktop;
+text/x-script.python=sublime_text.desktop;
