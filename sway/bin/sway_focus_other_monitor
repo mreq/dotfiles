@@ -7,7 +7,7 @@ sway = Connection()
 outputs = [o for o in sway.get_outputs() if o.active]
 
 if len(outputs) < 2:
-    notification('sway_focus_other_monitor', message='only one output', app_name='sway')
+    notification("sway_focus_other_monitor", message="only one output", app_name="sway")
     exit(1)
 
 focused_index = outputs.index([o for o in outputs if o.focused][0])

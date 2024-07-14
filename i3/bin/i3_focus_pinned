@@ -4,35 +4,30 @@ import argparse
 import os
 import code
 
-parser=argparse.ArgumentParser()
+parser = argparse.ArgumentParser()
 
-parser.add_argument("executable",
-                    nargs='?')
+parser.add_argument("executable", nargs="?")
 
-parser.add_argument("-w",
-                    "--workspace",
-                    help = "Switch [string] workspace.")
+parser.add_argument("-w", "--workspace", help="Switch [string] workspace.")
 
-parser.add_argument("-a",
-                    "--app-id",
-                    help="app_id if it's different from command")
+parser.add_argument("-a", "--app-id", help="app_id if it's different from command")
 
-parser.add_argument("-c",
-                    "--window-class",
-                    help="window_class if it's different from command")
+parser.add_argument(
+    "-c", "--window-class", help="window_class if it's different from command"
+)
 
 args = parser.parse_args()
 
 if args.workspace is None:
-  os.system("notify-send 'You need to provide a workspace using the -w option.'")
-  exit(1)
+    os.system("notify-send 'You need to provide a workspace using the -w option.'")
+    exit(1)
 
 i3 = i3ipc.Connection()
 
 i3.command("workspace " + args.workspace)
 
 if args.executable is None:
-  exit(0)
+    exit(0)
 
 app_id = args.app_id or args.executable
 window_class = args.window_class
@@ -43,9 +38,11 @@ focused_workspace = focused.workspace()
 found = False
 
 for c in focused_workspace:
-  if (app_id and c.app_id == app_id) or (window_class and c.window_class == window_class):
-    found = True
-    break
+    if (app_id and c.app_id == app_id) or (
+        window_class and c.window_class == window_class
+    ):
+        found = True
+        break
 
 if found == False:
-  os.system(args.executable + " &")
+    os.system(args.executable + " &")

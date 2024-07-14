@@ -11,17 +11,21 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("executable")
 
-parser.add_argument("-a",
-                    "--app-id",
-                    action="append",
-                    nargs="*",
-                    help="app_id if it's different from command")
+parser.add_argument(
+    "-a",
+    "--app-id",
+    action="append",
+    nargs="*",
+    help="app_id if it's different from command",
+)
 
-parser.add_argument("-c",
-                    "--window-class",
-                    action="append",
-                    nargs="*",
-                    help="window_class if it's different from command")
+parser.add_argument(
+    "-c",
+    "--window-class",
+    action="append",
+    nargs="*",
+    help="window_class if it's different from command",
+)
 
 args = parser.parse_args()
 
@@ -37,18 +41,22 @@ focused_workspace = focused.workspace()
 targets = []
 
 for c in focused_workspace:
-  if (c.app_id and c.app_id in app_ids) or (c.window_class and c.window_class in window_classes):
-    targets.append(c)
+    if (c.app_id and c.app_id in app_ids) or (
+        c.window_class and c.window_class in window_classes
+    ):
+        targets.append(c)
 
 if len(targets) > 0:
-  focused_index = -1
+    focused_index = -1
 
-  for i, t in enumerate(targets):
-    if t.id == focused.id:
-      focused_index = i
-      break
+    for i, t in enumerate(targets):
+        if t.id == focused.id:
+            focused_index = i
+            break
 
-  target = targets[focused_index + 1] if len(targets) >= focused_index + 2 else targets[0]
-  i3.command("[con_id={}] focus".format(target.id))
+    target = (
+        targets[focused_index + 1] if len(targets) >= focused_index + 2 else targets[0]
+    )
+    i3.command("[con_id={}] focus".format(target.id))
 else:
-  subprocess.call(args.executable + ' &', shell=True)
+    subprocess.call(args.executable + " &", shell=True)

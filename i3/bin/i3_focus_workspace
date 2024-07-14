@@ -4,11 +4,20 @@ import sys
 import subprocess
 import re
 
-names = [workspace['name'] for workspace in i3.get_workspaces() if re.match('\d', workspace['name'])]
+names = [
+    workspace["name"]
+    for workspace in i3.get_workspaces()
+    if re.match("\d", workspace["name"])
+]
 
-p = subprocess.Popen('echo "'+"\n".join(names)+'" | rofi -dmenu -i -p "workspace ↠ "', stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
-target_workspace = p.communicate()[0].strip().decode('utf-8')
+p = subprocess.Popen(
+    'echo "' + "\n".join(names) + '" | rofi -dmenu -i -p "workspace ↠ "',
+    stdin=subprocess.PIPE,
+    stdout=subprocess.PIPE,
+    shell=True,
+)
+target_workspace = p.communicate()[0].strip().decode("utf-8")
 
 if len(target_workspace) > 0:
-    cmd = 'workspace "'+str(target_workspace)+'"'
+    cmd = 'workspace "' + str(target_workspace) + '"'
     i3.command(cmd)

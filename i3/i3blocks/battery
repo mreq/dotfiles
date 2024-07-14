@@ -2,26 +2,30 @@
 import subprocess
 import re
 
-acpi = subprocess.check_output('acpi', shell=True, stderr=subprocess.STDOUT).strip().decode('utf-8')
+acpi = (
+    subprocess.check_output("acpi", shell=True, stderr=subprocess.STDOUT)
+    .strip()
+    .decode("utf-8")
+)
 
-if acpi is '' or 'No support for device type:' in acpi:
+if acpi is "" or "No support for device type:" in acpi:
     exit(0)
 
-is_charging = re.search('Charging|Full', acpi)
+is_charging = re.search("Charging|Full", acpi)
 percentages = []
 
-for percentage in re.findall('(\d+)%', acpi):
+for percentage in re.findall("(\d+)%", acpi):
     percentages.append(percentage)
 
-icon = ''
-output = icon + ' ' + ' / '.join(percentages)
+icon = ""
+output = icon + " " + " / ".join(percentages)
 
 print(output)
 if is_charging:
-    color = '#90a959'
+    color = "#90a959"
     print()
     print(color)
 elif int(percentages[-1]) <= 25:
-    color = '#ac4142'
+    color = "#ac4142"
     print()
     print(color)

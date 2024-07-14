@@ -4,7 +4,8 @@ from notify import notification
 import argparse
 
 import os, sys
-sys.path.append(os.path.expanduser('~/.dotfiles/python/modules'))
+
+sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
 import dotfiles
 
 TMP_FILE_PATH = "/tmp/sway_select_display.cache"
@@ -23,6 +24,7 @@ sway = Connection()
 outputs = sway.get_outputs()
 output_names = [o.name for o in sway.get_outputs()]
 
+
 def get_best_mode_from_output(output):
     highest_product = 0
     target_mode = output.modes[0]
@@ -35,20 +37,33 @@ def get_best_mode_from_output(output):
 
     return target_mode
 
+
 def are_modes_equal(a, b):
     return a.width == b.width and a.height == b.height and a.refresh == b.refresh
 
+
 def set_mode(output, mode):
-    sway.command('output ' + output.name + ' mode ' + str(mode.width) + "x" + str(mode.height) + "@" + str(mode.refresh / 1000) + "Hz")
+    sway.command(
+        "output "
+        + output.name
+        + " mode "
+        + str(mode.width)
+        + "x"
+        + str(mode.height)
+        + "@"
+        + str(mode.refresh / 1000)
+        + "Hz"
+    )
+
 
 if result is None:
     if args.handle_reload:
         if os.path.isfile(TMP_FILE_PATH):
-            with open(TMP_FILE_PATH, 'r') as f:
+            with open(TMP_FILE_PATH, "r") as f:
                 result = f.read().strip()
 
         else:
-            result = 'auto'
+            result = "auto"
 
 if result is None:
     if len(outputs) < 2:
@@ -60,37 +75,39 @@ if result is None:
             result = outputs[0].name
 
         if not result:
-            notification('sway_select_display', message='only one output', app_name='sway')
+            notification(
+                "sway_select_display", message="only one output", app_name="sway"
+            )
             exit(1)
 
     else:
-        options = ['auto'] + output_names
+        options = ["auto"] + output_names
 
         result = dotfiles.rofi.dmenu(options)
 
         if result not in options:
             exit(0)
 
-if result == 'auto':
+if result == "auto":
     for output in outputs:
         if "HDMI" in output.name:
             result = output.name
             break
 
-    if result == 'auto':
+    if result == "auto":
         result = outputs[0].name
 
 for output in outputs:
     if output.name == result:
         if not output.active:
-            sway.command('output ' + output.name + ' enable')
+            sway.command("output " + output.name + " enable")
 
         best_mode = get_best_mode_from_output(output)
         if not are_modes_equal(best_mode, output.current_mode):
             set_mode(output, best_mode)
     else:
         if output.active:
-            sway.command('output ' + output.name + ' disable')
+            sway.command("output " + output.name + " disable")
 
-with open(TMP_FILE_PATH, 'w') as f:
+with open(TMP_FILE_PATH, "w") as f:
     f.write(result + "\n")
