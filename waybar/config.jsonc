@@ -8,9 +8,7 @@
         "sway/scratchpad",
         "custom/media"
     ],
-    "modules-center": [
-        "sway/window"
-    ],
+    "modules-center": [],
     "modules-right": [
         "pulseaudio",
         "backlight",
@@ -27,6 +25,8 @@
     ],
     "sway/workspaces": {
         "format": "{icon}",
+        "enable-bar-scroll": true,
+        "disable-scroll-wraparound": true,
         "format-icons": {
             "": "<span size=\"large\"></span>",
             "": "<span size=\"large\"></span>",
@@ -109,10 +109,6 @@
     "sway/language": {
         "format": "<span size=\"large\">\uf11c</span><span size=\"x-small\"> </span><span text_transform=\"uppercase\">{shortDescription}</span>",
         "on-click": "swaymsg input 'type:keyboard' xkb_switch_layout next"
-    },
-    "sway/window": {
-        "on-scroll-up": "swaymsg workspace prev_on_output",
-        "on-scroll-down": "swaymsg workspace next_on_output"
     },
     "custom/spacer": {
         "format": " ",
