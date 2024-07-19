@@ -1,0 +1,136 @@
+#!/usr/bin/env python3
+import argparse, sys, os
+import subprocess
+import time
+from notify import notification
+from i3ipc import Connection
+from datetime import datetime
+
+sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
+import dotfiles
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("target", nargs="?")
+
+parser.add_argument(
+    "--full",
+    action=argparse.BooleanOptionalAction,
+)
+
+parser.add_argument(
+    "--area",
+    action=argparse.BooleanOptionalAction,
+)
+
+parser.add_argument(
+    "--window",
+    action=argparse.BooleanOptionalAction,
+)
+
+args = parser.parse_args()
+
+if not args.target and not args.full and not args.area and not args.window:
+    print("Need to select one of target / full / area / window")
+    exit(1)
+
+extension = args.target.split(".")[-1] if args.target else "png"
+name = str(round(datetime.timestamp(datetime.now()))) + "." + extension
+
+
+def scp_to_server(path):
+    notification(
+        "sway_scrotshare", message="Screenshot uploading to s.mreq.eu.", app_name="sway"
+    )
+
+    scp_result = subprocess.run(["scp", path, "mreq:s.mreq.eu/" + name])
+
+    url = "https://s.mreq.eu/" + name
+
+    subprocess.run(["wl-copy", url])
+
+    notification(
+        "sway_scrotshare",
+        message="Screenshot URL copied to clipboard.",
+        app_name="sway",
+    )
+
+
+def handle_target(path, adhoc):
+    options = ["push", "keep", "clipboard", "gimp"]
+
+    result = dotfiles.rofi.dmenu(options)
+
+    if result in options:
+        if result == "push":
+            scp_to_server(path)
+        elif result == "clipboard":
+            subprocess.run(["wl-copy", path])
+        elif result == "gimp":
+            os.system("gimp " + path + " &")
+            time.sleep(3)
+
+    if adhoc and result != "keep":
+        os.remove(path)
+
+
+if args.target:
+    handle_target(args.target, False)
+else:
+    path = os.path.expanduser("~/Pictures/" + name)
+
+    grim_args = None
+
+    if args.area:
+        slurp_result = subprocess.run(
+            "slurp", shell=True, capture_output=True, text=True
+        )
+
+        if not slurp_result.stdout:
+            print("No area selected")
+            exit(1)
+
+        grim_args = "-g '" + slurp_result.stdout.strip() + "'"
+    elif args.full:
+        sway = Connection()
+
+        outputs = sway.get_outputs()
+        focused_output = [o for o in outputs if o.focused][0]
+
+        if not focused_output:
+            print("No focused output")
+            exit(1)
+
+        grim_args = "-o '" + focused_output.name + "'"
+
+    elif args.window:
+        sway = Connection()
+
+        focused = sway.get_tree().find_focused()
+
+        if not focused:
+            print("No focused window")
+            exit(1)
+
+        grim_args = (
+            "-g '"
+            + str(focused.rect.x)
+            + ","
+            + str(focused.rect.y)
+            + " "
+            + str(focused.rect.width)
+            + "x"
+            + str(focused.rect.height)
+            + "'"
+        )
+
+    grim_command = "grim " + grim_args + " " + path
+    grim_result = subprocess.run(
+        grim_command, shell=True, capture_output=True, text=True
+    )
+
+    if grim_result.returncode != 0:
+        print("Failed grim with " + grim_command.stdout)
+        exit(1)
+
+    handle_target(path, True)

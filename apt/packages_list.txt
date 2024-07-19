@@ -72,8 +72,10 @@ unrar
 virtualbox
 vlc
 webp
+wl-clipboard
 wmctrl
 wob
 xclip
+xdg-desktop-portal-wlr
 xdotool
 xsel
