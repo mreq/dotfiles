@@ -1,0 +1,7 @@
+{
+  "scope": "source.python",
+  "completions":
+  [
+    { "trigger": "bp\tipdb", "contents": "import ipdb; ipdb.set_trace()$0" }
+  ]
+}

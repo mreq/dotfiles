@@ -43,7 +43,13 @@ def scp_to_server(path):
         "sway_scrotshare", message="Screenshot uploading to s.mreq.eu.", app_name="sway"
     )
 
-    scp_result = subprocess.run(["scp", path, "mreq:s.mreq.eu/" + name])
+    dotfiles.ssh_add()
+    scp_result = subprocess.run(
+        "scp " + path + " mreq:s.mreq.eu/" + name,
+        shell=True,
+        capture_output=True,
+        text=True,
+    )
 
     url = "https://s.mreq.eu/" + name
 
