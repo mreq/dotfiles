@@ -10,3 +10,10 @@ def dmenu(list, color="blue"):
 
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     return result.stdout.strip() or None
+
+
+def prompt(color="red"):
+    command = "rofi -dmenu -i -theme base16-mreq-" + color
+
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    return result.stdout.strip() or None

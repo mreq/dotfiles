@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+import i3ipc
+import os, sys
+
+sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
+import dotfiles
+
+sway = i3ipc.Connection()
+
+tree = sway.get_tree()
+
+focused = tree.find_focused()
+focused_workspace = focused.workspace()
+
+result = dotfiles.rofi.prompt()
+
+if result:
+    sway.command("rename workspace to '" + result + "'")
