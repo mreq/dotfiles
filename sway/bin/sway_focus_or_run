@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse, sys
 import subprocess
+import re
 from i3ipc import Connection
 
 sway = Connection()
@@ -42,6 +43,18 @@ window_classes = [item for sublist in window_classes_with_default for item in su
 
 focused = sway.get_tree().find_focused()
 focused_workspace = focused.workspace()
+
+if not args.float:
+    if not re.match(r"^[0-9]*$", focused_workspace.name):
+        sway.command("workspace back_and_forth")
+
+        focused = sway.get_tree().find_focused()
+        focused_workspace = focused.workspace()
+
+        if not re.match(r"^[0-9]*$", focused_workspace.name):
+            sway.command("workspace 1")
+            focused = sway.get_tree().find_focused()
+            focused_workspace = focused.workspace()
 
 targets = []
 
