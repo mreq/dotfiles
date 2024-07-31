@@ -1,9 +1,17 @@
 {
   "clients": {
-    "ruby": {
+    "ruby-lsp": {
       "enabled": true,
-      "command": ["/home/petr/.rbenv/shims/solargraph", "stdio"],
-      "selector": "source.ruby | text.html.ruby"
-    },
-  },
+      "command": [
+        "/home/petr/.rbenv/shims/ruby-lsp"
+      ],
+      "selector": "source.ruby | text.html.ruby",
+      "initializationOptions": {
+        "enabledFeatures": {
+          "diagnostics": false
+        },
+        "experimentalFeaturesEnabled": true
+      }
+    }
+  }
 }
