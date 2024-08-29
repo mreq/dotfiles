@@ -56,7 +56,8 @@ for c in look_at:
     if app_id:
         if c.app_id == app_id:
             found = True
-    if window_class:
+
+    if not found and window_class:
         if c.window_class == window_class:
             if window_instance:
                 if c.window_instance == window_instance:

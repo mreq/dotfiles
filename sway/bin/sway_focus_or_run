@@ -45,7 +45,7 @@ focused = sway.get_tree().find_focused()
 focused_workspace = focused.workspace()
 
 if not args.float:
-    if not re.match(r"^[0-9]*$", focused_workspace.name):
+    if not re.match(r"^[0-9]+", focused_workspace.name):
         sway.command("workspace back_and_forth")
 
         focused = sway.get_tree().find_focused()
