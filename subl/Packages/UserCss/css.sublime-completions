@@ -26,6 +26,8 @@
     { "trigger": "bw\tborder-width", "contents": "border-width: $0" },
     { "trigger": "bc\tborder-color", "contents": "border-color: $0" },
 
+    { "trigger": "s\tspacers", "contents": "map-get(\\$spacers, ${0:b})" },
+
     { "trigger": "m\tmargin", "contents": "margin: $0" },
     { "trigger": "mab", "contents": "margin-bottom: $0" },
     { "trigger": "mat", "contents": "margin-top: $0" },

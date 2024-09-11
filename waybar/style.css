@@ -29,7 +29,7 @@ tooltip label {
 #workspaces button,
 #workspaces button:hover {
   padding: 0 0.6em;
-  min-width: 0.9em;
+  min-width: 0.65em;
   background: transparent;
   color: @base-whitey;
   text-shadow: none;
