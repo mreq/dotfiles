@@ -1,6 +1,7 @@
 vim.keymap.set('n', '<leader>q', "<cmd>bd<cr>")
 
-vim.keymap.set('n', '<leader>q', "<cmd>bd<cr>")
+-- clear search highlights
+vim.keymap.set('n', '<esc>', ":noh<cr>")
 
 -- use alt+hjkl to move between windows
 vim.keymap.set('n', '<A-h>', "<C-w>h")
