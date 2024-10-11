@@ -30,9 +30,13 @@ def get_best_mode_from_output(output):
     target_mode = output.modes[0]
 
     for mode in output.modes:
-        product = mode.width * mode.height * mode.refresh
+        product = mode.width * mode.height
         if product > highest_product:
             highest_product = product
+            target_mode = mode
+
+    for mode in output.modes:
+        if mode.width == target_mode.width and mode.height == target_mode.height and mode.refresh > target_mode.refresh:
             target_mode = mode
 
     return target_mode
