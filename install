@@ -10,8 +10,6 @@ create_dotfiles_symlink() {
   create_symlink ~/.dotfiles/$1 $2
 }
 
-mkdir -p ~/.config/i3
-
 create_dotfiles_symlink git/.gitconfig ~/.gitconfig
 
 create_dotfiles_symlink git/ignore ~/.config/git/ignore
@@ -22,7 +20,7 @@ create_dotfiles_symlink bash/.bash_aliases ~/.bash_aliases
 
 create_dotfiles_symlink bash/.profile ~/.profile
 
-create_dotfiles_symlink X/.Xdefaults ~/.Xdefaults
+# create_dotfiles_symlink X/.Xdefaults ~/.Xdefaults
 
 create_dotfiles_symlink doublecmd/doublecmd.xml ~/.config/doublecmd/doublecmd.xml
 
@@ -32,27 +30,17 @@ create_dotfiles_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
 
 create_dotfiles_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
 
-create_dotfiles_symlink X/.inputrc ~/.inputrc
+create_dotfiles_symlink input/.inputrc ~/.inputrc
 
-create_dotfiles_symlink X/.screenrc ~/.screenrc
+# create_dotfiles_symlink X/.screenrc ~/.screenrc
 
 create_dotfiles_symlink tmux/.tmux.conf ~/.tmux.conf
 
-create_dotfiles_symlink i3/.i3blocks.conf ~/.i3blocks.conf
-
-create_dotfiles_symlink i3/i3blocks ~/.config/i3blocks
-
 create_dotfiles_symlink alacritty ~/.config/alacritty
-
-create_dotfiles_symlink kitty ~/.config/kitty
 
 create_dotfiles_symlink waybar ~/.config/waybar
 
 create_dotfiles_symlink sway ~/.config/sway
-
-create_dotfiles_symlink nvim ~/.config/nvim
-
-create_dotfiles_symlink neovide ~/.config/neovide
 
 create_dotfiles_symlink ruby/.gemrc ~/.gemrc
 
@@ -61,8 +49,6 @@ create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
 create_dotfiles_symlink rofi ~/.config/rofi
 
 create_dotfiles_symlink mimeapps/mimeapps.list ~/.config/mimeapps.list
-
-create_dotfiles_symlink xfce4/xfce4-terminal.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml
 
 (
   cd subl || exit 0

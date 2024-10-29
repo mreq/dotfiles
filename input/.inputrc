@@ -58,4 +58,3 @@ set convert-meta off
 # Use ctrl+j/k to simulate down/up arrow
 Control-j: next-history
 Control-k: previous-history
-

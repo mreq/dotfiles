@@ -1,5 +1,0 @@
-alacritty
-sway
-sway-notification-center
-waybar
-xwayland
