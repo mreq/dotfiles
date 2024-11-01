@@ -71,10 +71,18 @@ def handle_target(path, adhoc):
         if result == "push":
             scp_to_server(path)
         elif result == "clipboard":
-            subprocess.run(["wl-copy", path])
+            os.system("wl-copy < " + path)
+
+            notification(
+                "sway_scrotshare", message="Screenshot copied to clipboard.", app_name="sway"
+            )
         elif result == "gimp":
             os.system("gimp " + path + " &")
             time.sleep(3)
+        elif result == "keep":
+            notification(
+                "sway_scrotshare", message="Screenshot kept at " + path + ".", app_name="sway"
+            )
 
     if adhoc and result != "keep":
         os.remove(path)
