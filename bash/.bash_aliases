@@ -1,5 +1,7 @@
 alias R='R --no-save -q'
 
+alias b="btop"
+
 alias be="bundle exec"
 alias bi="bundle install --jobs $( nproc )"
 alias bo="bundle open"
