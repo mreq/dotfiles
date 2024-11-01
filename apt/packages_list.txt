@@ -5,6 +5,7 @@ brightnessctl
 cairosvg
 cifs-utils
 curl
+doublecmd-qt
 exfat-fuse
 ffmpeg
 ffmpegthumbnailer
