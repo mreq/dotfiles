@@ -28,10 +28,21 @@ parser.add_argument(
     action=argparse.BooleanOptionalAction,
 )
 
+parser.add_argument(
+    "--chrome",
+    action=argparse.BooleanOptionalAction,
+)
+
 args = parser.parse_args()
 
-if not args.target and not args.full and not args.area and not args.window:
-    print("Need to select one of target / full / area / window")
+if (
+    not args.target
+    and not args.full
+    and not args.area
+    and not args.window
+    and not args.chrome
+):
+    print("Need to select one of target / full / area / window / chrome")
     exit(1)
 
 extension = args.target.split(".")[-1] if args.target else "png"
@@ -74,14 +85,18 @@ def handle_target(path, adhoc):
             os.system("wl-copy < " + path)
 
             notification(
-                "sway_scrotshare", message="Screenshot copied to clipboard.", app_name="sway"
+                "sway_scrotshare",
+                message="Screenshot copied to clipboard.",
+                app_name="sway",
             )
         elif result == "gimp":
             os.system("gimp " + path + " &")
             time.sleep(3)
         elif result == "keep":
             notification(
-                "sway_scrotshare", message="Screenshot kept at " + path + ".", app_name="sway"
+                "sway_scrotshare",
+                message="Screenshot kept at " + path + ".",
+                app_name="sway",
             )
 
     if adhoc and result != "keep":
@@ -117,7 +132,7 @@ else:
 
         grim_args = "-o '" + focused_output.name + "'"
 
-    elif args.window:
+    elif args.window or args.chrome:
         sway = Connection()
 
         focused = sway.get_tree().find_focused()
@@ -126,15 +141,20 @@ else:
             print("No focused window")
             exit(1)
 
+        crop = 0
+
+        if args.chrome:
+            crop = 121
+
         grim_args = (
             "-g '"
             + str(focused.rect.x)
             + ","
-            + str(focused.rect.y)
+            + str(focused.rect.y + crop)
             + " "
             + str(focused.rect.width)
             + "x"
-            + str(focused.rect.height)
+            + str(focused.rect.height - crop)
             + "'"
         )
 
