@@ -19,6 +19,7 @@ x-scheme-handler/http=google-chrome.desktop
 x-scheme-handler/https=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
 application/pdf=org.gnome.Evince.desktop;atril.desktop;
+text/x-log=sublime_text.desktop;
 
 [Added Associations]
 application/toml=sublime_text.desktop;
@@ -36,3 +37,4 @@ text/x-csrc=sublime_text.desktop;
 text/x-python3=sublime_text.desktop;
 text/x-script.python=sublime_text.desktop;
 application/pdf=org.gnome.Evince.desktop;atril.desktop;
+text/x-log=sublime_text.desktop;
