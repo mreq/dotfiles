@@ -26,8 +26,8 @@ output_names = [o.name for o in sway.get_outputs()]
 
 
 def refresh_rate_is_within_limits(refresh):
-    # max 120hz
-    return refresh < 130000
+    # max 165hz
+    return refresh < 170000
 
 
 def get_best_mode_from_output(output):
