@@ -26,8 +26,13 @@ output_names = [o.name for o in sway.get_outputs()]
 
 
 def refresh_rate_is_within_limits(refresh):
-    # max 165hz
-    return refresh < 170000
+    is_laptop = os.uname().nodename == "tp"
+
+    if is_laptop:
+        # max 120Hz
+        return refresh < 130000
+    else:
+        return True
 
 
 def get_best_mode_from_output(output):
