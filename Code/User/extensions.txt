@@ -1,0 +1,11 @@
+code --install-extension github.copilot
+code --install-extension github.copilot-chat
+code --install-extension github.github-vscode-theme
+code --install-extension ms-python.debugpy
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
+code --install-extension shopify.ruby-lsp
+code --install-extension sianglim.slim
+code --install-extension syler.sass-indented
+code --install-extension tompollak.lazygit-vscode
+code --install-extension vscodevim.vim

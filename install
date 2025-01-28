@@ -38,6 +38,8 @@ create_dotfiles_symlink tmux/.tmux.conf ~/.tmux.conf
 
 create_dotfiles_symlink alacritty ~/.config/alacritty
 
+create_dotfiles_symlink lazygit ~/.config/lazygit
+
 create_dotfiles_symlink waybar ~/.config/waybar
 
 create_dotfiles_symlink sway ~/.config/sway

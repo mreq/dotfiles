@@ -1,0 +1,6 @@
+gui:
+  scrollHeight: 25
+  scrollPastBottom: false
+
+os:
+  editPreset: "vscode"

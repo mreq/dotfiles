@@ -1,0 +1,27 @@
+{
+    "window.zoomLevel": 1,
+    "keyboard.dispatch": "keyCode",
+    "editor.minimap.enabled": false,
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-p>": false,
+        "<C-s>": false,
+        "<C-w>": false,
+        "<C-y>": false,
+        "<C-z>": false
+    },
+    "files.trimTrailingWhitespace": true,
+    "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
+    "workbench.editor.closeEmptyGroups": false,
+    "editor.smoothScrolling": true,
+    "editor.lightbulb.enabled": "off",
+    "terminal.integrated.persistentSessionReviveProcess": "never",
+    "terminal.integrated.enablePersistentSessions": false,
+    "workbench.colorTheme": "GitHub Dark",
+    "window.menuBarVisibility": "toggle",
+    "editor.wordWrap": "on",
+    "editor.scrollBeyondLastLine": false,
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+}

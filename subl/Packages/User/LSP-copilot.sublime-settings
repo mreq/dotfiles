@@ -1,5 +1,13 @@
 // Settings in here override those in "LSP-copilot/LSP-copilot.sublime-settings"
 
 {
-  "selector": "source.jsx | source.ruby | source.yaml | source.json | source.python | source.shell | text | embedding"
+  "selector": "source.jsx | source.ruby | source.yaml | source.json | source.python | source.shell | text | embedding | git-savvy.make-commit",
+  "settings": {
+    "completion_style": "phantom",
+    "hook_to_auto_complete_command": true,
+    "completion": {
+      "phantom_line_padding_top": 0,
+      "phantom_line_padding_bottom": 0,
+    }
+  }
 }

@@ -1,3 +1,10 @@
 __pycache__
 gtk/_colors-public.scss
 GitSavvy.log_graph_view.hidden-tmTheme
+
+Code/*
+!Code/User
+Code/User/*
+!Code/User/*.json
+!Code/User/extensions.txt
+!Code/User/snippets
