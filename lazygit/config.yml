@@ -1,6 +1,8 @@
 gui:
   scrollHeight: 25
   scrollPastBottom: false
-
+  theme:
+    selectedLineBgColor:
+      - "#2d3139"
 os:
-  editPreset: "vscode"
+  editPreset: "zed"

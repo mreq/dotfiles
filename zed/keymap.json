@@ -1,0 +1,27 @@
+[
+  {
+    "context": "vim_mode == normal || EmptyPane",
+    "bindings": {
+      "space g g": ["task::Spawn", { "task_name": "Git: lazygit" }],
+      "space x": "pane::CloseActiveItem",
+      "space q": "workspace::CloseAllItemsAndPanes",
+      "tab": "tab_switcher::Toggle"
+    }
+  },
+  {
+    "context": "ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
+    "bindings": {
+      "alt-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "alt-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "alt-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "alt-k": ["workspace::ActivatePaneInDirection", "Up"]
+    }
+  },
+
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  }
+]
