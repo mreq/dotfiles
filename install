@@ -60,6 +60,11 @@ create_dotfiles_symlink mimeapps/mimeapps.list ~/.config/mimeapps.list
   done
 )
 
+mkdir -p ~/.config/Cursor/User
+create_dotfiles_symlink cursor/keybindings.json ~/.config/Cursor/User/keybindings.json
+create_dotfiles_symlink cursor/settings.json ~/.config/Cursor/User/settings.json
+create_dotfiles_symlink cursor/snippets ~/.config/Cursor/User/snippets
+
 # Dropbox symlinks
 if [[ -d ~/Dropbox/ubuntu ]]; then
   create_symlink ~/Dropbox/dotfiles/AppImages ~/AppImages

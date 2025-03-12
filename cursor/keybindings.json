@@ -1,0 +1,65 @@
+[
+    // vim movement in splits
+    {
+        "key": "alt+h",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "alt+j",
+        "command": "workbench.action.navigateDown"
+    },
+    {
+        "key": "alt+k",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "alt+l",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "shift+alt+h",
+        "command": "workbench.action.moveEditorToLeftGroup"
+    },
+    {
+        "key": "shift+alt+j",
+        "command": "workbench.action.moveEditorToBelowGroup"
+    },
+    {
+        "key": "shift+alt+k",
+        "command": "workbench.action.moveEditorToAboveGroup"
+    },
+    {
+        "key": "shift+alt+l",
+        "command": "workbench.action.moveEditorToRightGroup"
+    },
+    // navigate quick search menu
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
+    },
+    // lazygit
+    {
+        "key": "space g g",
+        "command": "lazygit-vscode.toggle",
+        "when": "vim.mode == 'Normal' && editorTextFocus"
+    },
+    // layout management
+    {
+        "key": "alt+shift+1",
+        "command": "workbench.action.editorLayoutSingle"
+    },
+    {
+        "key": "alt+shift+2",
+        "command": "workbench.action.editorLayoutTwoColumns"
+    },
+    {
+        "key": "alt+shift+3",
+        "command": "workbench.action.editorLayoutThreeColumns"
+    },
+]
