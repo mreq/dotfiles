@@ -13,7 +13,42 @@
   whitespace = fix
 
 [rerere]
-  enabled = 1
+  enabled = true
+  autoupdate = true
 
 [init]
 	defaultBranch = master
+
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[help]
+  autocorrect = prompt
+
+[commit]
+  verbose = true
+
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+
+[merge]
+  conflictstyle = zdiff3
