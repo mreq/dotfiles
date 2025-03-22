@@ -43,6 +43,15 @@
         "command": "workbench.action.quickOpenSelectNext",
         "when": "inQuickOpen"
     },
+    // navigate between tabs
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.nextEditorInGroup",
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.previousEditorInGroup"
+    },
     // lazygit
     {
         "key": "space g g",

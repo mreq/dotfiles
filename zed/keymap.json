@@ -4,8 +4,7 @@
     "bindings": {
       "space g g": ["task::Spawn", { "task_name": "Git: lazygit" }],
       "space x": "pane::CloseActiveItem",
-      "space q": "workspace::CloseAllItemsAndPanes",
-      "tab": "tab_switcher::Toggle"
+      "space q": "workspace::CloseAllItemsAndPanes"
     }
   },
   {
@@ -15,13 +14,6 @@
       "alt-h": ["workspace::ActivatePaneInDirection", "Left"],
       "alt-j": ["workspace::ActivatePaneInDirection", "Down"],
       "alt-k": ["workspace::ActivatePaneInDirection", "Up"]
-    }
-  },
-
-  {
-    "context": "Editor",
-    "bindings": {
-      // "j k": ["workspace::SendKeystrokes", "escape"]
     }
   }
 ]
