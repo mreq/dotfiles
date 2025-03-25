@@ -9,6 +9,42 @@
   { "keys": ["ctrl+j"], "command": "move", "args": { "by": "lines", "forward": true } },
   { "keys": ["ctrl+k"], "command": "move", "args": { "by": "lines", "forward": false } },
 
+  {
+    "keys": ["ctrl+n"],
+    "command": "move",
+    "args": { "by": "lines", "forward": true },
+    "context": [
+      { "key": "auto_complete_visible", "operator": "equal", "operand": true }
+    ]
+  },
+
+  {
+    "keys": ["ctrl+p"],
+    "command": "move",
+    "args": { "by": "lines", "forward": false },
+    "context": [
+      { "key": "auto_complete_visible", "operator": "equal", "operand": true }
+    ]
+  },
+
+  {
+    "keys": ["ctrl+n"],
+    "command": "move",
+    "args": { "by": "lines", "forward": true },
+    "context": [
+      { "key": "overlay_visible", "operator": "equal", "operand": true }
+    ]
+  },
+
+  {
+    "keys": ["ctrl+p"],
+    "command": "move",
+    "args": { "by": "lines", "forward": false },
+    "context": [
+      { "key": "overlay_visible", "operator": "equal", "operand": true }
+    ]
+  },
+
 
   // Generic: Toggle keyboard layout
   {

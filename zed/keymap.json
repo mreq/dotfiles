@@ -10,10 +10,26 @@
   {
     "context": "ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
     "bindings": {
-      "alt-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "alt-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "alt-j": ["workspace::ActivatePaneInDirection", "Down"],
-      "alt-k": ["workspace::ActivatePaneInDirection", "Up"]
+      "alt-h": "workspace::ActivatePaneLeft",
+      "alt-j": "workspace::ActivatePaneDown",
+      "alt-k": "workspace::ActivatePaneUp",
+      "alt-l": "workspace::ActivatePaneRight",
+      "alt-shift-h": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "left", "focus": true }
+      ],
+      "alt-shift-j": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "down", "focus": true }
+      ],
+      "alt-shift-k": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "up", "focus": true }
+      ],
+      "alt-shift-l": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "right", "focus": true }
+      ]
     }
   }
 ]
