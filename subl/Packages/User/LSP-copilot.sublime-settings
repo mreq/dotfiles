@@ -3,11 +3,7 @@
 {
   "selector": "source | markup | embedding | git-savvy.make-commit",
   "settings": {
-    "completion_style": "phantom",
     "hook_to_auto_complete_command": true,
-    "completion": {
-      "phantom_line_padding_top": 0,
-      "phantom_line_padding_bottom": 0,
-    }
+    "commit_completion_on_tab": false,
   }
 }
