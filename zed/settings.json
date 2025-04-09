@@ -39,5 +39,9 @@
     }
   },
   "pane_split_direction_vertical": "right",
-  "pane_split_direction_horizontal": "down"
+  "pane_split_direction_horizontal": "down",
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "tab_size": 2
 }

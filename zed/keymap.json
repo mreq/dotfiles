@@ -1,5 +1,24 @@
 [
   {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-tab": "pane::ActivateNextItem",
+      "ctrl-shift-tab": "pane::ActivatePreviousItem"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "alt-space": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction_conflict",
+    "bindings": {
+      "alt-space": "editor::AcceptEditPrediction"
+    }
+  },
+  {
     "context": "vim_mode == normal || EmptyPane",
     "bindings": {
       "space g g": ["task::Spawn", { "task_name": "Git: lazygit" }],

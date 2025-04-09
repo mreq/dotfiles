@@ -12,8 +12,13 @@ class GitGoToFileFromStatus(sublime_plugin.WindowCommand):
         output = subprocess.check_output("git status --porcelain", shell=True, cwd=cwd)
 
         files = []
+        lines = output.decode("utf8").strip().split("\n")
 
-        for line in output.decode("utf8").strip().split("\n"):
+        if len(lines) == 1 and lines[0] == "":
+            self.window.status_message("No git changes to go to.")
+            return
+
+        for line in lines:
             if not line.startswith(" D"):
                 annotation = line[:3].strip()
                 file_name = line[3:].replace('"', "").strip()

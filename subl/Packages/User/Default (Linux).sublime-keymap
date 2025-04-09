@@ -202,7 +202,7 @@
 
   // Git: go to file from status
   {
-    "keys": ["g", "g"],
+    "keys": ["g", "c"],
     "command": "git_go_to_file_from_status",
     "context": [
       { "key": "vi_command_mode_aware" }
