@@ -52,6 +52,8 @@ create_dotfiles_symlink rofi ~/.config/rofi
 
 create_dotfiles_symlink mimeapps/mimeapps.list ~/.config/mimeapps.list
 
+create_dotfiles_symlink electron/electron-flags.conf ~/.config/electron-flags.conf
+
 (
   cd subl || exit 0
 
