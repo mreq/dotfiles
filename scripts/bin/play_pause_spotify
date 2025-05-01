@@ -12,6 +12,6 @@ else
     fi
   else
     notify-send -i 'spotify-client' 'Spotify' 'Launching spotify.'
-    spotify &
+    spotify --ozone-platform-hint=auto &
   fi
 fi

@@ -14,16 +14,8 @@
   "ui_font_size": 16,
   "buffer_font_size": 16,
   "scroll_beyond_last_line": "off",
-  "ui_font_family": "FiraCode Nerd Font Mono",
-  "ui_font_features": {
-    "calt": false,
-    "liga": false
-  },
-  "buffer_font_family": "FiraCode Nerd Font Mono",
-  "buffer_font_features": {
-    "calt": false,
-    "liga": false
-  },
+  "ui_font_family": "FiraCode Nerd Font Mono Freeze",
+  "buffer_font_family": "FiraCode Nerd Font Mono Freeze",
   "soft_wrap": "editor_width",
   "theme": {
     "mode": "system",
