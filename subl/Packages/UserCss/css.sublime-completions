@@ -27,6 +27,7 @@
     { "trigger": "bc\tborder-color", "contents": "border-color: $0" },
 
     { "trigger": "s\tspacers", "contents": "map-get(\\$spacers, ${0:b})" },
+    { "trigger": "ss\tspacers", "contents": "map-get(\\$spacers, n${0:24})" },
 
     { "trigger": "m\tmargin", "contents": "margin: $0" },
     { "trigger": "mab", "contents": "margin-bottom: $0" },
