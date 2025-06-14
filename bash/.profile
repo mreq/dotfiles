@@ -10,20 +10,15 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
+  # include .bashrc if it exists
+  if [ -f "$HOME/.bashrc" ]; then
+  	. "$HOME/.bashrc"
+  fi
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ]; then
-    PATH="$HOME/.local/bin:$PATH"
+  PATH="$HOME/.local/bin:$PATH"
 fi
 
 for dir in $HOME/.dotfiles/*/bin; do
@@ -36,15 +31,11 @@ export BUNDLER_EDITOR="subl -n"
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g !.git/"
 
-# nvm setup
-export NVM_DIR="$HOME/.nvm"
-if [ -d "$NVM_DIR" ]; then
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -f ~/.local/bin/mise ]; then
+  eval "$(~/.local/bin/mise activate bash)"
 fi
 
-# rbenv setup
-if [ -d "$HOME/.rbenv" ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/share/mise/shims" ]; then
+  PATH="$HOME/.local/share/mise/shims:$PATH"
 fi

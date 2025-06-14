@@ -1,0 +1,4 @@
+// Settings in here override those in "LSP/lsp_utils.sublime-settings"
+{
+  "nodejs_runtime": ["local"],
+}

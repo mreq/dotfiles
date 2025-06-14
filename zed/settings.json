@@ -4,6 +4,10 @@
     "edit_prediction_provider": "zed"
   },
   "agent": {
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4o"

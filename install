@@ -26,7 +26,7 @@ create_dotfiles_symlink doublecmd/doublecmd.xml ~/.config/doublecmd/doublecmd.xm
 
 create_dotfiles_symlink doublecmd/shortcuts.scf ~/.config/doublecmd/shortcuts.scf
 
-create_dotfiles_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
+# create_dotfiles_symlink gtk/.gtkrc-2.0 ~/.gtkrc-2.0
 
 create_dotfiles_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
 
@@ -34,9 +34,11 @@ create_dotfiles_symlink input/.inputrc ~/.inputrc
 
 # create_dotfiles_symlink X/.screenrc ~/.screenrc
 
-create_dotfiles_symlink tmux/.tmux.conf ~/.tmux.conf
+# create_dotfiles_symlink tmux/.tmux.conf ~/.tmux.conf
 
 create_dotfiles_symlink alacritty ~/.config/alacritty
+
+create_dotfiles_symlink btop ~/.config/btop
 
 create_dotfiles_symlink lazygit ~/.config/lazygit
 
@@ -46,13 +48,13 @@ create_dotfiles_symlink sway ~/.config/sway
 
 create_dotfiles_symlink ruby/.gemrc ~/.gemrc
 
-create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
+# create_dotfiles_symlink dunst/dunstrc ~/.config/dunst/dunstrc
 
 create_dotfiles_symlink rofi ~/.config/rofi
 
 create_dotfiles_symlink mimeapps/mimeapps.list ~/.config/mimeapps.list
 
-create_dotfiles_symlink electron/electron-flags.conf ~/.config/electron-flags.conf
+# create_dotfiles_symlink electron/electron-flags.conf ~/.config/electron-flags.conf
 
 (
   cd subl || exit 0
@@ -62,17 +64,11 @@ create_dotfiles_symlink electron/electron-flags.conf ~/.config/electron-flags.co
   done
 )
 
-mkdir -p ~/.config/Cursor/User
-create_dotfiles_symlink cursor/keybindings.json ~/.config/Cursor/User/keybindings.json
-create_dotfiles_symlink cursor/settings.json ~/.config/Cursor/User/settings.json
-create_dotfiles_symlink cursor/snippets ~/.config/Cursor/User/snippets
-
 # Dropbox symlinks
 if [[ -d ~/Dropbox/ubuntu ]]; then
   create_symlink ~/Dropbox/dotfiles/AppImages ~/AppImages
   create_symlink ~/Dropbox/dotfiles/fonts ~/.fonts
   create_symlink ~/Dropbox/dotfiles/tex/texmf ~/texmf
-  create_symlink ~/Dropbox/dotfiles/ssh/config ~/.ssh/config
   create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
   create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
 else

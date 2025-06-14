@@ -1,9 +1,0 @@
-{
-	"binding.pry": {
-		"prefix": "bp",
-		"body": [
-			"binding.pry"
-		],
-		"description": "Insert binding.pry for debugging"
-	}
-}

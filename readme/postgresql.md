@@ -3,7 +3,7 @@
 Install with `apt`:
 
 ```sh
-sudo zypper install postgresql postgresql-client postgresql-contrib
+sudo apt install postgresql postgresql-client postgresql-contrib
 ```
 
 Make a superuser

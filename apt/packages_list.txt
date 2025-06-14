@@ -43,7 +43,6 @@ libvips-dev
 libvips-tools
 libyaml-dev
 ncdu
-neovim
 net-tools
 nfs-common
 nomacs

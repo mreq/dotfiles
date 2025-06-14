@@ -1,0 +1,8 @@
+{
+  "packages": [
+    {
+      "label": "asdf dependencies",
+      "packages": ["dirmngr", "gpg", "curl", "gawk"]
+    }
+  ]
+}

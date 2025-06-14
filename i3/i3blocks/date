@@ -1,2 +1,0 @@
-#!/bin/sh
-echo " $( date '+%d/%m' ) "

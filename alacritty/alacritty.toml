@@ -1,5 +1,5 @@
 [shell]
-program = "tmux"
+program = "/home/petr/.local/bin/zellij"
 
 [font]
 size = 12
