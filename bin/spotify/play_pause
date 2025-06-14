@@ -11,7 +11,6 @@ else
       dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
     fi
   else
-    notify-send -i 'spotify-client' 'Spotify' 'Launching spotify.'
     spotify --ozone-platform-hint=auto &
   fi
 fi
