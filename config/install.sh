@@ -7,7 +7,7 @@ cd "${0%/*}" || exit 0
 create_symlink() {
   if ! test -h $2 || ! test -e $2; then
     echo "Creating symlink: $1 -> $2"
-    rm -rf $2 && mkdir -p $( dirname $2 ) && ln -s $1 $2
+    rm -rf $2 && mkdir -p $(dirname $2) && ln -s $1 $2
   fi
 }
 

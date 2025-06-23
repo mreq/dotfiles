@@ -25,11 +25,6 @@ for dir in $HOME/.dotfiles/*/bin; do
   PATH="$PATH:$dir"
 done
 
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-export BUNDLER_EDITOR="subl -n"
-
-export FZF_DEFAULT_COMMAND="rg --files --hidden -g !.git/"
 
 if [ -f ~/.local/bin/mise ]; then
   eval "$(~/.local/bin/mise activate bash)"
@@ -39,3 +34,8 @@ fi
 if [ -d "$HOME/.local/share/mise/shims" ]; then
   PATH="$HOME/.local/share/mise/shims:$PATH"
 fi
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export BUNDLER_EDITOR="subl -n"
+export FZF_DEFAULT_COMMAND="rg --files --hidden -g !.git/"

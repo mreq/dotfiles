@@ -12,10 +12,6 @@
     "modules-right": [
         "pulseaudio",
         "backlight",
-        "idle_inhibitor",
-        "cpu",
-        "memory",
-        "temperature",
         "battery",
         "sway/language",
         "clock",
@@ -59,21 +55,9 @@
         "format": "<span foreground=\"#f4bf75\"><span size=\"large\"></span><span size=\"x-small\"> </span>{0:%H:%M}</span><span size=\"x-large\"> </span><span size=\"large\"></span><span size=\"x-small\"> </span>{0:%d/%m}",
         "tooltip-format": "",
     },
-    "cpu": {
-        "format": "<span size=\"x-large\"></span><span size=\"x-small\"> </span>{usage}%",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "<span size=\"large\">\uf1c0</span> {}%"
-    },
-    "temperature": {
-        "critical-threshold": 80,
-        "format": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{temperatureC}°",
-        "format-icons": [""]
-    },
     "backlight": {
-        "format": "<span>{icon}</span><span size=\"x-small\"> </span>{percent}%",
-        "format-icons": [""]
+        "format": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{percent}%",
+        "format-icons": ["\uf185"]
     },
     "battery": {
         "states": {
@@ -94,7 +78,7 @@
         "format": "<span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span>{volume}%",
         "format-bluetooth": "<span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span> {volume}%",
         "format-bluetooth-muted": "<span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span> <span foreground=\"#ac4142\"></span>",
-        "format-muted": "<span foreground=\"#ac4142\"></span>",
+        "format-muted": "<span foreground=\"#ac4142\"><span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span>{volume}%</span>",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -113,24 +97,17 @@
     "custom/spacer": {
         "format": " ",
     },
-    "idle_inhibitor": {
-      "format": "<span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span>",
-      "format-icons": {
-        "activated": "\uf070",
-        "deactivated": "\uf06e"
-      }
-    },
     "custom/notification": {
         "tooltip": false,
         "format": "<span size=\"x-large\">{icon}</span>",
         "format-icons": {
-            "notification": "<span foreground='#ab4642'></span>",
+            "notification": "",
             "none": "",
-            "dnd-notification": "<span foreground='#ab4642'></span>",
+            "dnd-notification": "",
             "dnd-none": "",
-            "inhibited-notification": "<span foreground='#ab4642'></span>",
+            "inhibited-notification": "",
             "inhibited-none": "",
-            "dnd-inhibited-notification": "<span foreground='#ab4642'></span>",
+            "dnd-inhibited-notification": "",
             "dnd-inhibited-none": ""
         },
         "return-type": "json",

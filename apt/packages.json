@@ -4,6 +4,7 @@
       "label": "Base system",
       "packages": [
         "curl",
+        "lm-sensors",
         "r-base",
         "exfat-fuse",
         "fzf",
@@ -17,6 +18,8 @@
         "alacritty",
         "ssh-askpass-gnome",
         "sway",
+        "swayidle",
+        "swaylock",
         "sway-notification-center",
         "thunderbird",
         "ubuntu-restricted-extras",
@@ -90,6 +93,12 @@
         "pamixer"
       ]
     },
-
+    {
+      "label": "bluetooth support",
+      "packages": [
+        "blueman", "pulseaudio-module-bluetooth"
+      ],
+      "optional": true
+    },
   ]
 }

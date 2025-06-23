@@ -2,9 +2,6 @@
   "clients": {
     "ruby-lsp": {
       "enabled": true,
-      "command": [
-        "/home/petr/.rbenv/shims/ruby-lsp"
-      ],
       "selector": "source.ruby | text.html.ruby",
       "initializationOptions": {
         "enabledFeatures": {

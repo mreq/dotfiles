@@ -20,7 +20,7 @@ select_action() {
     shutdown|poweroff )
       systemctl poweroff ;;
     logout )
-      i3-msg exit ;;
+      swaymsg exit ;;
   esac
 }
 

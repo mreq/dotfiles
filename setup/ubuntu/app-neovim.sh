@@ -3,7 +3,7 @@
 set -e
 
 install_nvim() {
-  echo -e "setup/ubuntu/app-neovim - Installing Neovim"
+  echo "setup/ubuntu/app-neovim - Installing Neovim"
   cd /tmp
 
   wget -O nvim.tar.gz "https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz"
@@ -17,7 +17,7 @@ install_nvim() {
   rm -rf nvim-linux-x86_64 nvim.tar.gz
   cd -
 
-  echo -e "setup/ubuntu/app-neovim - Installing luarocks and tree-sitter-cli to resolve lazyvim :checkhealth warnings"
+  echo "setup/ubuntu/app-neovim - Installing luarocks and tree-sitter-cli to resolve lazyvim :checkhealth warnings"
   sudo apt install -y luarocks tree-sitter-cli
 }
 
@@ -36,4 +36,4 @@ else
   fi
 fi
 
-echo -e "setup/ubuntu/app-neovim - ✓"
+echo "setup/ubuntu/app-neovim - ✓"

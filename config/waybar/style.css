@@ -50,20 +50,9 @@ tooltip label {
   color: @base-yellow;
 }
 
-@keyframes blink {
-  to {
-    background-color: @base-whitey;
-    color: @base-blackey;
-  }
-}
-
 #battery.warning:not(.charging) {
-  background: @base-red;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  background: @base-orange;
+  color: @base-blackey;
 }
 
 .module,
