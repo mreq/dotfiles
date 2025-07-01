@@ -91,7 +91,7 @@
         "on-click": "pavucontrol"
     },
     "sway/language": {
-        "format": "<span size=\"large\">\uf11c</span><span size=\"x-small\"> </span><span text_transform=\"uppercase\">{shortDescription}</span>",
+        "format": "<span size=\"x-large\">\uf11c</span><span size=\"x-small\"> </span><span text_transform=\"uppercase\">{shortDescription}</span>",
         "on-click": "swaymsg input 'type:keyboard' xkb_switch_layout next"
     },
     "custom/spacer": {
