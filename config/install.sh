@@ -45,6 +45,8 @@ create_dotfiles_config_symlink ruby/.gemrc ~/.gemrc
 
 create_dotfiles_config_symlink sway ~/.config/sway
 
+create_dotfiles_config_symlink tmux/.tmux.conf ~/.tmux.conf
+
 create_dotfiles_config_symlink waybar ~/.config/waybar
 
 create_dotfiles_config_symlink zed ~/.config/zed
