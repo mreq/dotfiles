@@ -39,6 +39,10 @@ create_dotfiles_config_symlink lazygit ~/.config/lazygit
 
 create_dotfiles_config_symlink mimeapps/mimeapps.list ~/.config/mimeapps.list
 
+create_dotfiles_config_symlink mise ~/.config/mise
+
+create_dotfiles_config_symlink nvim ~/.config/nvim
+
 create_dotfiles_config_symlink rofi ~/.config/rofi
 
 create_dotfiles_config_symlink ruby/.gemrc ~/.gemrc
