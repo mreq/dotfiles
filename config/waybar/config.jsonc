@@ -66,8 +66,8 @@
         },
         "format": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{capacity}%",
         "format-full": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
+        "format-charging": "<span size=\"large\"></span><span size=\"x-small\"> </span>{capacity}%",
+        "format-plugged": "<span size=\"large\"></span><span size=\"x-small\"> </span>{capacity}%",
         "format-alt": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{time}",
         "format-good": "",
         "format-full": "",
@@ -76,8 +76,6 @@
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
         "format": "<span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span>{volume}%",
-        "format-bluetooth": "<span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span> {volume}%",
-        "format-bluetooth-muted": "<span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span> <span foreground=\"#ac4142\"></span>",
         "format-muted": "<span foreground=\"#ac4142\"><span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span>{volume}%</span>",
         "format-icons": {
             "headphone": "",
@@ -86,6 +84,7 @@
             "phone": "",
             "portable": "",
             "car": "",
+            "bluetooth": "",
             "default": ["\uf028"]
         },
         "on-click": "pavucontrol"
