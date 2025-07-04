@@ -5,4 +5,4 @@ gui:
     selectedLineBgColor:
       - "#2d3139"
 os:
-  editPreset: "zed"
+  editPreset: "nvim"
