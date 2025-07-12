@@ -35,6 +35,8 @@ create_dotfiles_config_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
 
 create_dotfiles_config_symlink input/.inputrc ~/.inputrc
 
+create_dotfiles_config_symlink kitty ~/.config/kitty
+
 create_dotfiles_config_symlink lazygit ~/.config/lazygit
 
 create_dotfiles_config_symlink mimeapps/mimeapps.list ~/.config/mimeapps.list

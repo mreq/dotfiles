@@ -240,7 +240,7 @@
     "keys": ["f9"],
     "command": "run_cmd",
     "args": {
-      "cmd": "alacritty --working-directory $project_dir"
+      "cmd": "kitty --working-directory $project_dir"
     }
   },
 
