@@ -10,9 +10,11 @@ Control-l: clear-screen
 set keymap vi-insert
 # these are for vi-insert mode
 Control-l: clear-screen
+$endif
 
 set show-mode-in-prompt off
-$endif
+set vi-cmd-mode-string "\1\e[2 q\2"  # Block cursor in command mode
+set vi-ins-mode-string "\1\e[6 q\2"  # Bar cursor in insert mode
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on

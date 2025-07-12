@@ -6,8 +6,6 @@ alias be="bundle exec"
 alias bi="bundle install --jobs $( nproc )"
 alias bo="bundle open"
 
-alias n="nvim"
-
 alias g="lazygit"
 
 r() {
@@ -28,4 +26,13 @@ rr() {
 
 wrg() {
   ( cd ~/work; rg -g *.$1 "${*:2}" )
+}
+
+n() {
+  # get title from arg or current directory
+  title="${1:-$(basename "$(pwd)")}"
+  kitty --hold --app-id kitty-nvim --detach --title "nvim - $title" -- nvim "${@:2}" || {
+    echo "Failed to start kitty with nvim"
+    return 1
+  }
 }

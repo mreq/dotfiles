@@ -1,12 +1,6 @@
 #!/bin/bash
 
-set -e
-
-if ! command -v kitty &> /dev/null; then
-
-  echo "setup/ubuntu/app-kitty - Installing kitty to ~/.local/kitty.app"
-
-  (
+kitty_setup() {
     # Copyright (C) 2018 Kovid Goyal <kovid at kovidgoyal.net>
     #
     # Distributed under terms of the GPLv3 license.
@@ -188,6 +182,14 @@ if ! command -v kitty &> /dev/null; then
     }
 
     main "$@"
+}
+
+if ! command -v kitty &> /dev/null; then
+  (
+    if [ ! -d ~/.local/kitty.app ]; then
+      echo "setup/ubuntu/app-kitty - Installing kitty to ~/.local/kitty.app"
+      kitty_setup "$@"
+    fi
 
     echo "setup/ubuntu/app-kitty - setting up for ubuntu"
 
