@@ -240,7 +240,7 @@
     "keys": ["f9"],
     "command": "run_cmd",
     "args": {
-      "cmd": "kitty --working-directory $project_dir"
+      "cmd": "kitty --title \"kitty - $( basename $project_dir )\" --working-directory $project_dir"
     }
   },
 
