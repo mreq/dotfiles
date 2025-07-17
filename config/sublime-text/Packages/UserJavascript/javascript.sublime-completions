@@ -1,5 +1,5 @@
 {
-  "scope": "source.js, source.jsx",
+  "scope": "source.js, source.jsx, source.ts, source.tsx",
   "completions":
   [
     { "trigger": "std\tstyled", "contents": "styled.${1:div}`\n\t$0\n`" },

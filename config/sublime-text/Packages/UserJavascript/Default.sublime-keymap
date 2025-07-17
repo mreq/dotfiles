@@ -3,7 +3,7 @@
     "keys": [" ", "c"],
     "command": "log_magic_up",
     "context": [
-      { "key": "selector", "operator": "equal", "operand": "source.js | source.jsx" },
+      { "key": "selector", "operator": "equal", "operand": "source.js | source.jsx | source.ts | source.tsx" },
       { "key": "vi_command_mode_aware" }
     ]
   },
