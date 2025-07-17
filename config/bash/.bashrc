@@ -44,7 +44,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-  xterm-color|*-256color|xterm-kitty) color_prompt=yes;;
+  xterm-color|*-256color|foot) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -145,3 +145,5 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# opencode
+export PATH=/home/petr/.opencode/bin:$PATH

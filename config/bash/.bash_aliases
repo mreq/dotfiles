@@ -31,8 +31,8 @@ wrg() {
 n() {
   # get title from arg or current directory
   title="${1:-$(basename "$(pwd)")}"
-  kitty --hold --app-id kitty-nvim --detach --title "nvim - $title" -- nvim "${@:2}" || {
-    echo "Failed to start kitty with nvim"
-    return 1
-  }
+  (
+    foot --app-id foot-nvim --title "nvim - $title" -- nvim "${@:2}" &
+    disown
+  ) >/dev/null 2>&1
 }

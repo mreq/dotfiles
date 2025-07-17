@@ -15,8 +15,6 @@ create_dotfiles_config_symlink() {
   create_symlink ~/.dotfiles/config/$1 $2
 }
 
-create_dotfiles_config_symlink alacritty ~/.config/alacritty
-
 create_dotfiles_config_symlink bash/.bashrc ~/.bashrc
 create_dotfiles_config_symlink bash/.bash_aliases ~/.bash_aliases
 create_dotfiles_config_symlink bash/.profile ~/.profile
@@ -31,11 +29,11 @@ create_dotfiles_config_symlink doublecmd/shortcuts.scf ~/.config/doublecmd/short
 
 create_dotfiles_config_symlink electron/electron-flags.conf ~/.config/electron-flags.conf
 
+create_dotfiles_config_symlink foot ~/.config/foot
+
 create_dotfiles_config_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
 
 create_dotfiles_config_symlink input/.inputrc ~/.inputrc
-
-create_dotfiles_config_symlink kitty ~/.config/kitty
 
 create_dotfiles_config_symlink lazygit ~/.config/lazygit
 
