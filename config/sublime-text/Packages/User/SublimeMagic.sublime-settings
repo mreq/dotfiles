@@ -14,6 +14,32 @@
     },
 
     {
+      "name": "Fix folio tiptap import",
+      "context": {
+        "scope": ["source.ts", "source.tsx"],
+        "line_matches": ["from [\"']tiptap/src"],
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(from [\"'])tiptap/src([^\\.]+)\\.\\w+([\"'])",
+        "replacement": "\\1@\\2\\3"
+      }
+    },
+
+    {
+      "name": "Remove extension from import/export",
+      "context": {
+        "scope": ["source.ts", "source.tsx"],
+        "line_matches": ["import|export.*from.*\\.\\w+"],
+      },
+      "spell": "perform_line_regex",
+      "args": {
+        "pattern": "(from .+)\\.\\w+",
+        "replacement": "\\1"
+      }
+    },
+
+    {
       "name": "Drop dot from class name",
       "context": {
         "scope": ["text.slim"],

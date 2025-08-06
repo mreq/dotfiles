@@ -29,16 +29,30 @@
   },
   "languages": {
     "Ruby": {
-      "language_servers": ["ruby-lsp", "!solargraph", "!rubocop", "..."]
-    },
-    "JavaScript": {
-      "format_on_save": "off"
+      "language_servers": ["ruby-lsp", "rubocop", "!solargraph", "!steep"]
     }
   },
+  "lsp": {
+    "ruby-lsp": {
+      "initialization_options": {
+        "enabledFeatures": {
+          "onTypeFormatting": false
+        }
+      }
+    }
+  },
+  "format_on_save": "off",
   "pane_split_direction_vertical": "right",
   "pane_split_direction_horizontal": "down",
   "edit_predictions": {
     "mode": "subtle"
   },
-  "tab_size": 2
+  "tab_size": 2,
+  "scrollbar": {
+    "show": "always",
+    "axes": {
+      "horizontal": false,
+      "vertical": true,
+    },
+  },
 }
