@@ -13,6 +13,7 @@
         "pulseaudio",
         "backlight",
         "battery",
+        "power-profiles-daemon",
         "sway/language",
         "clock",
         "tray",
@@ -66,7 +67,7 @@
         },
         "format": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{capacity}%",
         "format-full": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{capacity}%",
-        "format-charging": "<span size=\"large\"></span><span size=\"x-small\"> </span>{capacity}%",
+        "format-charging": "<span size=\"x-small\"> </span>{capacity}%",
         "format-plugged": "<span size=\"large\"></span><span size=\"x-small\"> </span>{capacity}%",
         "format-alt": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{time}",
         "format-good": "",
@@ -115,5 +116,16 @@
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
+    },
+    "power-profiles-daemon": {
+      "format": "<span size=\"x-large\">{icon}</span>",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
     }
   }
