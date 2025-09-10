@@ -25,35 +25,23 @@ outputs = sway.get_outputs()
 output_names = [o.name for o in sway.get_outputs()]
 
 
-def refresh_rate_is_within_limits(refresh):
-    is_laptop = os.uname().nodename == "tp"
-
-    if is_laptop:
-        # max 120Hz
-        return refresh < 130000
-    else:
-        return True
-
-
 def get_best_mode_from_output(output):
     highest_product = 0
     target_mode = output.modes[0]
 
     for mode in output.modes:
-        if refresh_rate_is_within_limits(mode.refresh):
-            product = mode.width * mode.height
-            if product > highest_product:
-                highest_product = product
-                target_mode = mode
+        product = mode.width * mode.height
+        if product > highest_product:
+            highest_product = product
+            target_mode = mode
 
     for mode in output.modes:
-        if refresh_rate_is_within_limits(mode.refresh):
-            if (
-                mode.width == target_mode.width
-                and mode.height == target_mode.height
-                and mode.refresh > target_mode.refresh
-            ):
-                target_mode = mode
+        if (
+            mode.width == target_mode.width
+            and mode.height == target_mode.height
+            and mode.refresh > target_mode.refresh
+        ):
+            target_mode = mode
 
     return target_mode
 
@@ -110,6 +98,11 @@ if result is None:
 
 if result == "auto":
     for output in outputs:
+        if "DP" in output.name:
+            result = output.name
+            break
+
+    for output in outputs:
         if "HDMI" in output.name:
             result = output.name
             break
@@ -123,6 +116,7 @@ for output in outputs:
             sway.command("output " + output.name + " enable")
 
         best_mode = get_best_mode_from_output(output)
+
         if not are_modes_equal(best_mode, output.current_mode):
             set_mode(output, best_mode)
     else:
