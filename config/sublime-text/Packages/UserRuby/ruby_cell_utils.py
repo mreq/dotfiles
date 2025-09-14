@@ -25,12 +25,6 @@ def get_cell_name(window):
                                 path)
             if results:
                 return results.group(1)
-            else:
-                results = re.search(
-                    'app/models/' + namespaces + '/atom/' + namespaces +
-                    '\.rb', path)
-                if results:
-                    return results.group(1) + '/atom/' + results.group(2)
 
     return None
 
@@ -55,7 +49,12 @@ def get_component_name(window):
     if results and results.group(1):
         return results.group(1)
     else:
-        return None
+        results = re.search('models/(\w+/)(atom/|tiptap/node/)(.+)+\.rb', path)
+        if results and results.group(1) and results.group(2) and results.group(3):
+            print(results.group(1) + results.group(2) + results.group(3) + "_component")
+            return results.group(1) + results.group(2) + results.group(3) + "_component"
+        else:
+            return None
 
 def create_view(window, extension, alt_extension = None):
     name = get_cell_name(window)
