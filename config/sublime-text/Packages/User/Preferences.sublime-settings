@@ -1,0 +1,52 @@
+{
+	"align_arguments":
+	{
+		"line_length": 1,
+		"one_per_line": true,
+	},
+	"ensure_newline_at_eof_on_save": true,
+	"file_exclude_patterns": ["*.pyc", "*.pyo", "*.exe", "*.dll", "*.obj","*.o", "*.a", "*.lib", "*.so", "*.dylib", "*.ncb", "*.sdf", "*.suo", "*.pdb", "*.idb", ".DS_Store", ".directory", "desktop.ini", "*.class", "*.psd", "*.db", "*.sublime-workspace", "*.key", "*.pem", "app/assets/javascripts/folio/console/react.js"],
+	"fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		".git",
+		"log",
+		"build",
+		"node_modules",
+		"public/system/dragonfly",
+		"tmp"
+	],
+	"font_face": "FiraCode Nerd Font Mono",
+	"font_options":
+	[
+		"no_liga",
+		"no_clig",
+		"no_calt"
+	],
+	"font_size": 12,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"hot_exit": false,
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"indent_to_bracket": true,
+	"line_padding_bottom": 2,
+	"line_padding_top": 2,
+	"neovintageous_build_version": 13200,
+	"show_tab_close_buttons": false,
+	"reveal_menu": false,
+	"tab_size": 2,
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"vintageous_reset_mode_when_switching_tabs": true,
+	"vintageous_use_ctrl_keys": false,
+	"vintageous_use_super_keys": false,
+	"vintageous_use_sys_clipboard": true,
+	"word_wrap": true,
+	"color_scheme": "Mariana.sublime-color-scheme",
+	"index_files": false,
+	"update_check": false,
+}

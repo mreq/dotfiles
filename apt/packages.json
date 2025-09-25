@@ -1,0 +1,104 @@
+{
+  "packages": [
+    {
+      "label": "Base system",
+      "packages": [
+        "curl",
+        "lm-sensors",
+        "r-base",
+        "exfat-fuse",
+        "fzf",
+        "nomacs",
+        "gimp",
+        "inkscape",
+        "libreoffice-calc",
+        "libreoffice-writer",
+        "doublecmd-qt",
+        "keepassxc",
+        "alacritty",
+        "ssh-askpass-gnome",
+        "sway",
+        "swayidle",
+        "swaylock",
+        "sway-notification-center",
+        "thunderbird",
+        "ubuntu-restricted-extras",
+        "unrar",
+        "waybar",
+        "webp",
+        "wl-clipboard",
+        "wob",
+        "xdg-desktop-portal-wlr",
+        "xwayland"
+      ]
+    },
+    {
+      "label": "Multimedia",
+      "packages": [
+        "spotify-client"
+        "vlc"
+      ]
+    },
+    {
+      "label": "Development",
+      "packages": [
+        "inotify-tools",
+        "apache2-utils",
+        "postgresql",
+        "postgresql-client",
+        "postgresql-contrib",
+        "python3-pip",
+        "redis",
+        "ripgrep",
+        "shellcheck",
+        "ffmpeg",
+        "ffmpegthumbnailer",
+        "jq",
+        "imagemagick",
+        "libvips-dev",
+        "libvips-tools"
+      ]
+    },
+    {
+      "label": "TeX",
+      "packages": [
+        "rubber",
+        "texlive-latex-recommended",
+        "texlive-xetex"
+      ],
+      "optional": true
+    },
+    {
+      "label": "paplay to play sounds",
+      "packages": [
+        "pulseaudio-utils"
+      ],
+      "optional": true
+    },
+    {
+      "label": "ncdu to check file usage",
+      "packages": [
+        "ncdu"
+      ]
+    },
+    {
+      "label": "for ifconfig and route",
+      "packages": [
+        "net-tools"
+      ]
+    },
+    {
+      "label": "volume controls via sway shortcuts",
+      "packages": [
+        "pamixer"
+      ]
+    },
+    {
+      "label": "bluetooth support",
+      "packages": [
+        "blueman", "pulseaudio-module-bluetooth"
+      ],
+      "optional": true
+    },
+  ]
+}

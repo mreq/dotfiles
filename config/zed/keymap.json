@@ -1,0 +1,69 @@
+[
+  {
+    "context": "Editor && !menu",
+    "bindings": {
+      "ctrl-c": "editor::Copy", // vim default: return to normal mode
+      "ctrl-x": "editor::Cut", // vim default: decrement
+      "ctrl-v": "editor::Paste", // vim default: visual block mode
+      "ctrl-y": "editor::Undo", // vim default: line up
+      "ctrl-f": "buffer_search::Deploy", // vim default: page down
+      "ctrl-o": "workspace::Open", // vim default: go back
+      "ctrl-s": "workspace::Save", // vim default: show signature
+      "ctrl-a": "editor::SelectAll", // vim default: increment
+      "ctrl-w": "pane::CloseActiveItem" // vim default: delete word
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-tab": "pane::ActivateNextItem",
+      "ctrl-shift-tab": "pane::ActivatePreviousItem"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "alt-space": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction_conflict",
+    "bindings": {
+      "alt-space": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "vim_mode == normal || EmptyPane",
+    "bindings": {
+      "space g g": ["task::Spawn", { "task_name": "Git: lazygit" }],
+      "space x": "pane::CloseActiveItem",
+      "space o": "workspace::CloseAllDocks",
+      "space q": "workspace::CloseAllItemsAndPanes"
+    }
+  },
+  {
+    "context": "ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
+    "bindings": {
+      "alt-h": "workspace::ActivatePaneLeft",
+      "alt-j": "workspace::ActivatePaneDown",
+      "alt-k": "workspace::ActivatePaneUp",
+      "alt-l": "workspace::ActivatePaneRight",
+      "alt-shift-h": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "left", "focus": true }
+      ],
+      "alt-shift-j": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "down", "focus": true }
+      ],
+      "alt-shift-k": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "up", "focus": true }
+      ],
+      "alt-shift-l": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "right", "focus": true }
+      ]
+    }
+  }
+]

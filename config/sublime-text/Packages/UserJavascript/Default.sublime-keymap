@@ -1,0 +1,29 @@
+[
+  {
+    "keys": [" ", "c"],
+    "command": "log_magic_up",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.js | source.jsx | source.ts | source.tsx" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  {
+    "keys": ["ctrl+space"],
+    "command": "cell_open",
+    "args": { "target": "slim" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.jsx" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+
+  {
+    "keys": ["ctrl+shift+space"],
+    "command": "cell_create_sass",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.jsx" },
+      { "key": "vi_command_mode_aware" }
+    ]
+  },
+]

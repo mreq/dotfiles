@@ -1,0 +1,58 @@
+// Zed settings
+{
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "agent": {
+    "play_sound_when_agent_done": true,
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "version": "2"
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "scroll_beyond_last_line": "off",
+  "ui_font_family": "FiraCode Nerd Font Mono Freeze",
+  "buffer_font_family": "FiraCode Nerd Font Mono Freeze",
+  "soft_wrap": "editor_width",
+  "theme": {
+    "mode": "system",
+    "light": "One Dark",
+    "dark": "One Dark"
+  },
+  "languages": {
+    "Ruby": {
+      "language_servers": ["ruby-lsp", "rubocop", "!solargraph", "!steep"]
+    }
+  },
+  "lsp": {
+    "ruby-lsp": {
+      "initialization_options": {
+        "enabledFeatures": {
+          "onTypeFormatting": false
+        }
+      }
+    }
+  },
+  "format_on_save": "off",
+  "pane_split_direction_vertical": "right",
+  "pane_split_direction_horizontal": "down",
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "tab_size": 2,
+  "scrollbar": {
+    "show": "always",
+    "axes": {
+      "horizontal": false,
+      "vertical": true,
+    },
+  },
+}

@@ -1,5 +1,0 @@
-black
-i3ipc
-ipdb
-notify-send
-tldr

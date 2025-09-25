@@ -1,0 +1,85 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: FiraCodeNerdFontMono;
+  font-size: 14px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: @base-blackey;
+  color: @base-whitey;
+}
+
+/*
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+
+tooltip label {
+  color: white;
+}
+*/
+
+#workspaces {
+  padding-left: 0;
+}
+
+#workspaces button,
+#workspaces button:hover {
+  padding: 0 0.6em;
+  min-width: 0.65em;
+  background: transparent;
+  color: @base-whitey;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+#workspaces button.focused {
+  background: @base-focus;
+  color: @base-color-on-focus;
+}
+
+#workspaces button.urgent {
+  background: @base-red;
+  color: @base-blackey;
+}
+
+#battery.charging {
+  color: @base-yellow;
+}
+
+#battery.warning:not(.charging) {
+  background: @base-orange;
+  color: @base-blackey;
+}
+
+.module,
+#pulseaudio,
+#backlight,
+#idle_inhibitor,
+#cpu,
+#memory,
+#temperature,
+#battery,
+#language,
+#clock,
+#tray,
+#custom_notification,
+#custom_spacer {
+  padding: 0 0.5em;
+}
+
+#language.cz {
+  background: @base-red;
+  color: @base-blackey;
+}
+
+#custom-spacer {
+  padding: 0;
+}
+
+#idle_inhibitor.activated {
+  background: @base-red;
+}
