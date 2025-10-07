@@ -83,3 +83,11 @@ tooltip label {
 #idle_inhibitor.activated {
   background: @base-red;
 }
+
+#custom-notification.dnd-notification,
+#custom-notification.dnd-none,
+#custom-notification.dnd-inhibited-notification,
+#custom-notification.dnd-inhibited-none {
+  background: @base-red;
+  color: @base-blackey;
+}

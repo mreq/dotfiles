@@ -18,7 +18,6 @@
         "clock",
         "tray",
         "custom/notification",
-        "custom/spacer"
     ],
     "sway/workspaces": {
         "format": "{icon}",
