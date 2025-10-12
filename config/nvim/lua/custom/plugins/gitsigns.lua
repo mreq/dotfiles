@@ -35,7 +35,6 @@ return {
       end, { desc = 'Jump to previous git [c]hange' })
 
       -- Actions
-      map('n', '<leader>gb', gitsigns.blame_line, { desc = '[b]lame line' })
       map('n', '<leader>gd', gitsigns.preview_hunk_inline, { desc = 'toggle git show [d]eleted' })
     end,
   },
