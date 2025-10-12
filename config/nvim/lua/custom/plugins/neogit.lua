@@ -12,10 +12,10 @@ return {
   },
   keys = {
     {
-      '<leader>gn',
+      '<leader>gs',
       function()
         local neogit = require 'neogit'
-        neogit.open()
+        neogit.open { kind = 'floating' }
       end,
       desc = 'neogit',
     },
