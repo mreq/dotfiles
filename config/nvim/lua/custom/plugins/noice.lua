@@ -1,4 +1,3 @@
--- lazy.nvim
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',
@@ -13,7 +12,7 @@ return {
     --   If not available, we use `mini` as the fallback
     'rcarriga/nvim-notify',
   },
-  config = {
+  config = function()
     require('noice').setup {
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -31,6 +30,6 @@ return {
         inc_rename = false, -- enables an input dialog for inc-rename.nvim
         lsp_doc_border = false, -- add a border to hover docs and signature help
       },
-    },
-  },
+    }
+  end,
 }
