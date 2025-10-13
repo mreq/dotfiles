@@ -10,6 +10,15 @@ return {
     'nvim-mini/mini.pick', -- optional
     'folke/snacks.nvim', -- optional
   },
+  config = function()
+    require('neogit').setup {
+      mappings = {
+        commit_editor = {
+          ['<C-CR>'] = 'Submit',
+        },
+      },
+    }
+  end,
   keys = {
     {
       '<leader>gs',
