@@ -15,7 +15,7 @@ return {
       '<leader>gs',
       function()
         local neogit = require 'neogit'
-        neogit.open { kind = 'floating' }
+        neogit.open()
       end,
       desc = 'neogit',
     },

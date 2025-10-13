@@ -14,7 +14,14 @@ return {
     input = {},
     lazygit = {},
     notifier = {},
-    picker = {},
+    picker = {
+      sources = {
+        files = {
+          hidden = true,
+          ignored = false,
+        },
+      },
+    },
     quickfix = {},
     statuscolumn = {},
     words = {},
