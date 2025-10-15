@@ -208,6 +208,8 @@ return {
 
       ruby_lsp = {},
 
+      copilot = {},
+
       lua_ls = {
         -- cmd = { ... },
         -- filetypes = { ... },
