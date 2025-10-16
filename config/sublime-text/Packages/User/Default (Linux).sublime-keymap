@@ -244,6 +244,15 @@
     }
   },
 
+  // Terminal: run opencode in project dir
+  {
+    "keys": ["f10"],
+    "command": "run_cmd",
+    "args": {
+      "cmd": "~/.dotfiles/bin/foot/foot-opencode $project_dir"
+    }
+  },
+
   // Align arguments: format
   {
     "keys": [" ", "a", "a"],

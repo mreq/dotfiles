@@ -1,0 +1,9 @@
+#!/bin/bash
+# get title from arg or current directory
+title="${1:-$(basename "$(pwd)")}"
+export EDITOR=subl
+
+(
+  foot --app-id foot-opencode --title "opencode - $title" -- ~/.opencode/bin/opencode "${@:2}" &
+  disown
+) >/dev/null 2>&1
