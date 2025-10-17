@@ -1,4 +1,55 @@
 [
+  // Git: disable multiselect
+  {
+    "keys": [" "],
+    "command": "noop",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+    ]
+  },
+  {
+    "keys": [" "],
+    "command": "noop",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.commit_view", "operator": "equal", "operand": true },
+      { "key": "selector", "operand": "git-savvy.make-commit meta.dropped.git.commit" }
+    ]
+  },
+  {
+    "keys": [" "],
+    "command": "noop",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.diff_view", "operator": "equal", "operand": true }
+    ]
+  },
+  {
+    "keys": [" "],
+    "command": "noop",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.tags_view", "operator": "equal", "operand": true }
+    ]
+  },
+  {
+    "keys": [" "],
+    "command": "noop",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.branch_view", "operator": "equal", "operand": true }
+    ]
+  },
+  {
+    "keys": [" "],
+    "command": "noop",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.log_graph_view", "operator": "equal", "operand": true }
+    ]
+  },
+
   // Git: git status
   {
     "keys": [" ", "g", "s"],

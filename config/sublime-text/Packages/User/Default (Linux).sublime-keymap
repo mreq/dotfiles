@@ -5,6 +5,23 @@
     "command": "sublime_magic"
   },
 
+  // Generic: tabs
+  {
+    "keys": ["H"],
+    "command": "prev_view_in_stack",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+  {
+    "keys": ["L"],
+    "command": "next_view_in_stack",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+  {
+    "keys": ["X"],
+    "command": "close",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
   // lsp-copilot
   {
     "keys": ["alt+space"],
