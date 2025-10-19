@@ -1,7 +1,7 @@
 // Zed settings
 {
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "copilot"
   },
   "agent": {
     "play_sound_when_agent_done": true,

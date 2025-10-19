@@ -17,7 +17,7 @@
     "context": "Pane",
     "bindings": {
       "ctrl-tab": "pane::ActivateNextItem",
-      "ctrl-shift-tab": "pane::ActivatePreviousItem"
+      "ctrl-shift-tab": "pane::ActivatePreviousItem",
     }
   },
   {
@@ -38,7 +38,10 @@
       "space g g": ["task::Spawn", { "task_name": "Git: lazygit" }],
       "space x": "pane::CloseActiveItem",
       "space o": "workspace::CloseAllDocks",
-      "space q": "workspace::CloseAllItemsAndPanes"
+      "space q": "workspace::CloseAllItemsAndPanes",
+      "shift-l": "pane::ActivateNextItem",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-x": "pane::CloseActiveItem"
     }
   },
   {
