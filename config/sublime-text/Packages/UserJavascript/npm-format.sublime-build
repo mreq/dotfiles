@@ -1,0 +1,4 @@
+{
+  "selector": "source.ts, source.tsx",
+  "cmd": ["npm", "run", "format:file", "$file"]
+}
