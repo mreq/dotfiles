@@ -48,7 +48,7 @@
 [rebase]
   autoSquash = true
   autoStash = true
-  updateRefs = true
+  updateRefs = false
 
 [merge]
   conflictstyle = zdiff3
