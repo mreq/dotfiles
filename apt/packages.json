@@ -35,7 +35,7 @@
     {
       "label": "Multimedia",
       "packages": [
-        "spotify-client"
+        "spotify-client",
         "vlc"
       ]
     },
