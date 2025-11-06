@@ -1,4 +1,0 @@
-cups
-cups-filters
-printer-driver-cups-pdf
-system-config-printer

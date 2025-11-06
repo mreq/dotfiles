@@ -10,6 +10,7 @@
         "foot",
         "fzf",
         "nomacs",
+        "gdebi",
         "gimp",
         "inkscape",
         "libreoffice-calc",
@@ -91,6 +92,15 @@
       "label": "volume controls via sway shortcuts",
       "packages": [
         "pamixer"
+      ]
+    },
+    {
+      "label": "printer",
+      "packages": [
+        "cups",
+        "cups-filters",
+        "printer-driver-cups-pdf",
+        "system-config-printer"
       ]
     },
     {
