@@ -56,14 +56,6 @@ create_dotfiles_config_symlink waybar ~/.config/waybar
 create_dotfiles_config_symlink zed ~/.config/zed
 
 (
-  cd cursor/User || exit 0
-
-  for file in settings.json keybindings.json snippets; do
-    create_dotfiles_config_symlink cursor/User/$file ~/.config/Cursor/User/$file
-  done
-)
-
-(
   cd sublime-text || exit 0
 
   for dir in Packages/User*; do
@@ -71,10 +63,21 @@ create_dotfiles_config_symlink zed ~/.config/zed
   done
 )
 
+if [[ ! -d ~/.fonts ]]; then
+  mkdir -p ~/.fonts
+  echo "Creating ~/.fonts"
+fi
+
+FONT_PATH=~/.fonts/FiraCodeNerdFontMono-Regular.ttf
+
+if [[ ! -f "$FONT_PATH" ]]; then
+  cp ../fonts/FiraCodeNerdFontMono-Regular.ttf "$FONT_PATH"
+  echo "Copying FiraCodeNerdFontMono-Regular to ~/.fonts"
+fi
+
 # Dropbox symlinks
 if [[ -d ~/Dropbox/ubuntu ]]; then
   create_symlink ~/Dropbox/dotfiles/AppImages ~/AppImages
-  create_symlink ~/Dropbox/dotfiles/fonts ~/.fonts
   create_symlink ~/Dropbox/dotfiles/tex/texmf ~/texmf
   create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
   create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
