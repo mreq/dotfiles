@@ -270,6 +270,15 @@
     }
   },
 
+  // Terminal: run opencode in project dir
+  {
+    "keys": ["shift+f10"],
+    "command": "run_cmd",
+    "args": {
+      "cmd": "ELECTRON_OZONE_PLATFORM_HINT=auto ~/.AppImage/cursor-0.45.14x86_64.AppImage $project_dir"
+    }
+  },
+
   // Align arguments: format
   {
     "keys": [" ", "a", "a"],
