@@ -99,6 +99,6 @@
         "blueman", "pulseaudio-module-bluetooth"
       ],
       "optional": true
-    },
+    }
   ]
 }
