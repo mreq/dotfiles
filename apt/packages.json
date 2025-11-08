@@ -3,6 +3,7 @@
     {
       "label": "Base system",
       "packages": [
+        "btop",
         "curl",
         "lm-sensors",
         "r-base",
@@ -32,6 +33,18 @@
         "wob",
         "xdg-desktop-portal-wlr",
         "xwayland"
+      ]
+    },
+    {
+      "label": "Ruby build dependencies",
+      "packages": [
+        "libyaml-dev",
+        "libssl-dev",
+        "libreadline-dev",
+        "zlib1g-dev",
+        "libncurses5-dev",
+        "libffi-dev",
+        "libgdbm-dev"
       ]
     },
     {
