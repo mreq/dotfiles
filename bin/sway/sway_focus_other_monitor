@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
+import argparse
 from i3ipc import Connection
 from notify import notification
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--move",
+    action="store_true",
+    help="Move the current workspace to the other monitor",
+)
+args = parser.parse_args()
 
 sway = Connection()
 
@@ -13,5 +22,11 @@ if len(outputs) < 2:
 focused_index = outputs.index([o for o in outputs if o.focused][0])
 
 target = outputs[focused_index + 1] if focused_index + 1 < len(outputs) else outputs[0]
+
+if args.move:
+    tree = sway.get_tree()
+    focused = tree.find_focused()
+    focused_workspace = focused.workspace()
+    sway.command("move workspace to output {}".format(target.name))
 
 sway.command("focus output {}".format(target.name))
