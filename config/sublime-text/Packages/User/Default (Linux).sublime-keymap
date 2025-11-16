@@ -24,7 +24,7 @@
 
   // lsp-copilot
   {
-    "keys": ["alt+space"],
+    "keys": ["alt+enter"],
     "command": "copilot_accept_completion",
     "context": [
       {
