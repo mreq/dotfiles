@@ -10,14 +10,7 @@
         "exfat-fuse",
         "foot",
         "fzf",
-        "nomacs",
         "gdebi",
-        "gimp",
-        "inkscape",
-        "libreoffice-calc",
-        "libreoffice-writer",
-        "doublecmd-qt",
-        "keepassxc",
         "alacritty",
         "ssh-askpass-gnome",
         "sway",
@@ -46,12 +39,6 @@
         "libncurses5-dev",
         "libffi-dev",
         "libgdbm-dev"
-      ]
-    },
-    {
-      "label": "Multimedia",
-      "packages": [
-        "vlc"
       ]
     },
     {

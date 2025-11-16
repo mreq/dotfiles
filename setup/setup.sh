@@ -7,6 +7,7 @@ set -e
 
   echo "setup/setup-applications - Running all app installers"
   echo ""
+  echo "Note: app-flatpak.sh runs first (alphabetically) to install Flatpak apps"
 
   for file in ./ubuntu/app-*.sh
   do

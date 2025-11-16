@@ -18,3 +18,9 @@ sudo ln -s ~/.dotfiles/cron/clear_dropbox /etc/cron.daily/clear_home_petr_dropbo
 
 sudo ln -s ~/.dotfiles/cron/clear_work_logs /etc/cron.daily/clear_home_petr_work_logs
 ```
+
+## Flatpak Applications
+
+Desktop applications (GIMP, Inkscape, LibreOffice, Firefox, Thunderbird, Chrome, Spotify, Slack, etc.) are installed via Flatpak. The `setup.sh` script automatically installs Flatpak and all applications listed in `flatpak/packages.json`.
+
+For migration instructions from apt/snap to Flatpak, see [FLATPAK_MIGRATION.md](FLATPAK_MIGRATION.md).

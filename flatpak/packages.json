@@ -1,0 +1,27 @@
+{
+  "packages": [
+    {
+      "label": "Desktop Applications",
+      "packages": [
+        "org.gimp.GIMP",
+        "org.inkscape.Inkscape",
+        "org.libreoffice.LibreOffice",
+        "org.keepassxc.KeePassXC",
+        "org.videolan.VLC",
+        "org.nomacs.ImageLounge",
+        "org.doublecmd.DoubleCommander"
+      ]
+    },
+    {
+      "label": "Web & Communication",
+      "packages": [
+        "com.google.Chrome",
+        "com.spotify.Client",
+        "com.slack.Slack",
+        "org.mozilla.firefox",
+        "org.mozilla.Thunderbird"
+      ]
+    }
+  ]
+}
+
