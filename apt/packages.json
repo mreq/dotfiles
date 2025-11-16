@@ -27,6 +27,7 @@
         "tmux",
         "ubuntu-restricted-extras",
         "unrar",
+        "libunrar5t64",
         "waybar",
         "webp",
         "wl-clipboard",
