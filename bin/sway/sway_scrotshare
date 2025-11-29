@@ -2,6 +2,7 @@
 import argparse, sys, os
 import subprocess
 import time
+import secrets
 from notify import notification
 from i3ipc import Connection
 from datetime import datetime
@@ -46,7 +47,10 @@ if (
     exit(1)
 
 extension = args.target.split(".")[-1] if args.target else "png"
-name = str(round(datetime.timestamp(datetime.now()))) + "." + extension
+timestamp = str(round(datetime.timestamp(datetime.now())))
+hash_length = len(timestamp)
+random_hash = secrets.token_hex((hash_length + 1) // 2)[:hash_length]
+name = timestamp + "-" + random_hash + "." + extension
 
 
 def scp_to_server(path):
