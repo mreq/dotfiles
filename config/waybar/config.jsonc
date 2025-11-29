@@ -8,7 +8,9 @@
         "sway/scratchpad",
         "custom/media"
     ],
-    "modules-center": [],
+    "modules-center": [
+        "custom/recording"
+    ],
     "modules-right": [
         "pulseaudio",
         "backlight",
@@ -126,5 +128,13 @@
         "balanced": "",
         "power-saver": ""
       }
+    },
+    "custom/recording": {
+        "format": "{}",
+        "interval": 1,
+        "exec": "/home/petr/.dotfiles/bin/sway/sway_recorder_status",
+        "on-click": "/home/petr/.dotfiles/bin/sway/sway_recorder",
+        "signal": 8,
+        "tooltip": false
     }
   }

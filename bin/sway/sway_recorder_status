@@ -1,0 +1,49 @@
+#!/bin/bash
+# Ensure UTF-8 locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+lock_file="/tmp/sway_recorder.lock"
+
+# Check if wf-recorder is running
+if ! pgrep -x wf-recorder >/dev/null 2>&1; then
+	# Output zero-width space so waybar always shows the module slot
+	# This ensures the module exists and can be updated via signal
+	printf "\xE2\x80\x8B"
+	exit 0
+fi
+
+# Try to read start timestamp from lock file
+start_time=""
+if [[ -f "$lock_file" ]]; then
+	start_time=$(sed -n '4p' "$lock_file" 2>/dev/null || echo "")
+fi
+
+# If no lock file, use file modification time as fallback
+if [[ -z "$start_time" ]]; then
+	videos_dir="$HOME/Videos"
+	if [[ -d "$videos_dir" ]]; then
+		latest_file=$(find "$videos_dir" -maxdepth 1 -type f \( -name "*.webm" -o -name "*.mp4" \) -printf '%T@ %p\n' 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)
+		if [[ -n "$latest_file" && -f "$latest_file" ]]; then
+			start_time=$(stat -c %Y "$latest_file" 2>/dev/null || echo "")
+		fi
+	fi
+fi
+
+# Calculate and output timer
+if [[ -n "$start_time" ]]; then
+	# Use awk for floating point arithmetic to get accurate elapsed time
+	current_time=$(date +%s)
+	elapsed=$(awk "BEGIN {printf \"%.0f\", $current_time - $start_time}")
+	# Ensure elapsed is never negative (handle timing edge cases)
+	if [[ $elapsed -lt 0 ]]; then
+		elapsed=0
+	fi
+	minutes=$((elapsed / 60))
+	seconds=$((elapsed % 60))
+	# Output timer with emoji and zero-padding
+	printf "⏺ %02d:%02d\n" "$minutes" "$seconds"
+else
+	# No timestamp found, but wf-recorder is running
+	echo "⏺"
+fi

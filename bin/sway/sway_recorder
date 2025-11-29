@@ -1,0 +1,202 @@
+#!/usr/bin/env python3
+import sys
+import subprocess
+import os
+import time
+from datetime import datetime
+import secrets
+from notify import notification
+from i3ipc import Connection
+
+sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
+import dotfiles
+
+# Check if wf-recorder is already running
+if subprocess.run(["pgrep", "-x", "wf-recorder"], capture_output=True).returncode == 0:
+    # Stop recording
+    subprocess.run(["killall", "-s", "SIGINT", "wf-recorder"])
+    notification("sway_recorder", message="Recording stopped", app_name="sway")
+
+    # Wait for wf-recorder to finish
+    while (
+        subprocess.run(["pgrep", "-x", "wf-recorder"], capture_output=True).returncode
+        == 0
+    ):
+        time.sleep(0.1)
+
+    # Remove lock file
+    lock_file = "/tmp/sway_recorder.lock"
+    if os.path.exists(lock_file):
+        os.remove(lock_file)
+
+    # Signal waybar to update
+    subprocess.run(["pkill", "-RTMIN+8", "waybar"])
+
+    # Find the most recent video file
+    videos_dir = os.path.expanduser("~/Videos")
+    if os.path.exists(videos_dir):
+        files = sorted(
+            [f for f in os.listdir(videos_dir) if f.endswith((".webm", ".mp4"))],
+            key=lambda f: os.path.getmtime(os.path.join(videos_dir, f)),
+            reverse=True,
+        )
+        if files:
+            path = os.path.join(videos_dir, files[0])
+            extension = files[0].split(".")[-1]
+            timestamp = str(round(datetime.timestamp(datetime.now())))
+            hash_length = len(timestamp)
+            random_hash = secrets.token_hex((hash_length + 1) // 2)[:hash_length]
+            name = timestamp + "-" + random_hash + "." + extension
+
+            # Show menu for what to do with the file
+            options = ["push", "keep", "clipboard", "gimp"]
+            result = dotfiles.rofi.dmenu(options)
+
+            if result == "push":
+                notification(
+                    "sway_recorder", message="Uploading to s.mreq.eu.", app_name="sway"
+                )
+                dotfiles.ssh_add()
+                subprocess.run(
+                    ["scp", path, f"mreq:s.mreq.eu/{name}"],
+                    check=True,
+                )
+                url = f"https://s.mreq.eu/{name}"
+                subprocess.run(["wl-copy", url])
+                notification(
+                    "sway_recorder", message="URL copied to clipboard.", app_name="sway"
+                )
+            elif result == "keep":
+                notification(
+                    "sway_recorder", message=f"File kept at {path}", app_name="sway"
+                )
+            elif result == "clipboard":
+                notification(
+                    "sway_recorder", message=f"Video file: {path}", app_name="sway"
+                )
+            elif result == "gimp":
+                subprocess.Popen(["gimp", path])
+            else:
+                # User cancelled or didn't select an option - delete the file
+                if os.path.exists(path):
+                    os.remove(path)
+                    notification(
+                        "sway_recorder",
+                        message="Recording deleted",
+                        app_name="sway",
+                    )
+    exit(0)
+
+# Start recording - show mode selection
+recording_modes = ["full", "area", "window"]
+selected_mode = dotfiles.rofi.dmenu(recording_modes)
+
+if selected_mode not in recording_modes:
+    exit(0)
+
+# Generate filename
+extension = "mp4"
+timestamp = str(round(datetime.timestamp(datetime.now())))
+hash_length = len(timestamp)
+random_hash = secrets.token_hex((hash_length + 1) // 2)[:hash_length]
+name = timestamp + "-" + random_hash + "." + extension
+
+videos_dir = os.path.expanduser("~/Videos")
+os.makedirs(videos_dir, exist_ok=True)
+path = os.path.join(videos_dir, name)
+
+# Get geometry based on mode
+sway = Connection()
+
+if selected_mode == "area":
+    slurp_result = subprocess.run("slurp", shell=True, capture_output=True, text=True)
+    if not slurp_result.stdout:
+        notification("sway_recorder", message="No area selected", app_name="sway")
+        exit(1)
+    geometry = slurp_result.stdout.strip()
+    wf_recorder_cmd = [
+        "wf-recorder",
+        "-r",
+        "60",
+        "-c",
+        "libx264",
+        "-p",
+        "preset=veryfast",
+        "-p",
+        "tune=zerolatency",
+        "-p",
+        "crf=23",
+        "-g",
+        geometry,
+        "-f",
+        path,
+    ]
+elif selected_mode == "full":
+    outputs = sway.get_outputs()
+    focused_output = [o for o in outputs if o.focused]
+    if not focused_output:
+        notification("sway_recorder", message="No focused output", app_name="sway")
+        exit(1)
+    wf_recorder_cmd = [
+        "wf-recorder",
+        "-r",
+        "60",
+        "-c",
+        "libx264",
+        "-p",
+        "preset=veryfast",
+        "-p",
+        "tune=zerolatency",
+        "-p",
+        "crf=23",
+        "-o",
+        focused_output[0].name,
+        "-f",
+        path,
+    ]
+elif selected_mode == "window":
+    focused = sway.get_tree().find_focused()
+    if not focused:
+        notification("sway_recorder", message="No focused window", app_name="sway")
+        exit(1)
+    geometry = (
+        f"{focused.rect.x},{focused.rect.y} {focused.rect.width}x{focused.rect.height}"
+    )
+    wf_recorder_cmd = [
+        "wf-recorder",
+        "-r",
+        "60",
+        "-c",
+        "libx264",
+        "-p",
+        "preset=veryfast",
+        "-p",
+        "tune=zerolatency",
+        "-p",
+        "crf=23",
+        "-g",
+        geometry,
+        "-f",
+        path,
+    ]
+
+# Start recording
+recording_process = subprocess.Popen(
+    wf_recorder_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+)
+
+# Save start timestamp to lock file for timer
+lock_file = "/tmp/sway_recorder.lock"
+script_pid = os.getpid()
+start_timestamp = time.time()
+with open(lock_file, "w") as f:
+    f.write(f"{recording_process.pid}\n{script_pid}\n{path}\n{start_timestamp}")
+
+notification(
+    "sway_recorder",
+    message=f"Recording started ({selected_mode} mode)",
+    app_name="sway",
+)
+
+# Signal waybar to update
+subprocess.run(["pkill", "-RTMIN+8", "waybar"])
