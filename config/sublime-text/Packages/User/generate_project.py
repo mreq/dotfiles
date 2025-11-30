@@ -1,5 +1,7 @@
 import sublime_plugin
-import os, json
+import os
+import json
+
 
 class GenerateProjectCommand(sublime_plugin.WindowCommand):
     def run(self):
@@ -8,17 +10,17 @@ class GenerateProjectCommand(sublime_plugin.WindowCommand):
 
         project_name = os.path.basename(pwd)
 
-        if project_name[0] is '.':
+        if project_name[0] == ".":
             project_name = project_name[1:]
 
         project = {
-            'name': project_name,
-            'folders': [{ 'path': pwd }],
+            "name": project_name,
+            "folders": [{"path": pwd}],
         }
 
-        project_file = pwd + '/' + project_name + '.sublime-project'
+        project_file = pwd + "/" + project_name + ".sublime-project"
 
         if not os.path.isfile(project_file):
-            with open(project_file, 'w') as f:
-                f.write(json.dumps(project, indent = 2))
+            with open(project_file, "w") as f:
+                f.write(json.dumps(project, indent=2))
                 f.close()

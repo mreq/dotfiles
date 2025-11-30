@@ -1,6 +1,6 @@
-import sublime
 import sublime_plugin
 import re
+
 
 class ruby_bracket_less_alignment(sublime_plugin.TextCommand):
     def run(self, edit):

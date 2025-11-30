@@ -2,6 +2,7 @@ import sublime
 import sublime_plugin
 import re
 
+
 class ruby_component_convert_path_to_render(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
@@ -39,6 +40,7 @@ class ruby_component_convert_path_to_render(sublime_plugin.TextCommand):
         view.show(line.b - 2)
         view.run_command("nv_enter_insert_mode")
 
+
 class ruby_component_create_initialize_method(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
@@ -58,20 +60,27 @@ class ruby_component_create_initialize_method(sublime_plugin.TextCommand):
         argument_matches = re.sub(r"\s*i\s+", "", line_text).split(" ")
 
         arguments = [argument + ":" for argument in argument_matches]
-        arguments_line = leading_whitespace + "def initialize(" + ", ".join(arguments) + ")"
+        arguments_line = (
+            leading_whitespace + "def initialize(" + ", ".join(arguments) + ")"
+        )
 
-        attributes = ["@" + argument + " = " + argument for argument in argument_matches]
+        attributes = [
+            "@" + argument + " = " + argument for argument in argument_matches
+        ]
         attributes_lines = ("\n  " + leading_whitespace).join(attributes)
 
-        text = arguments_line + \
-               "\n  " + \
-               leading_whitespace + \
-               attributes_lines + \
-               "\n" + \
-               leading_whitespace + \
-               "end"
+        text = (
+            arguments_line
+            + "\n  "
+            + leading_whitespace
+            + attributes_lines
+            + "\n"
+            + leading_whitespace
+            + "end"
+        )
 
         view.replace(edit, line, text)
+
 
 class ruby_component_insert_bem_class_name(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -80,14 +89,16 @@ class ruby_component_insert_bem_class_name(sublime_plugin.TextCommand):
         file_name = window.active_view().file_name()
 
         if not file_name:
-            return window.status_message('No active project view.')
+            return window.status_message("No active project view.")
 
-        if not "app/components" in file_name:
-            return window.status_message('Not in app/components.')
+        if "app/components" not in file_name:
+            return window.status_message("Not in app/components.")
 
-        component_path = re.sub(r'^(.*app/components/)(.*)(_component\.\w+)$', r'\2', file_name)
-        bem_class_name = re.sub(r'^(\w)\w*/(.*)', r'\1/\2', component_path)
-        bem_class_name = re.sub(r'[_/]', r'-', bem_class_name)
+        component_path = re.sub(
+            r"^(.*app/components/)(.*)(_component\.\w+)$", r"\2", file_name
+        )
+        bem_class_name = re.sub(r"^(\w)\w*/(.*)", r"\1/\2", component_path)
+        bem_class_name = re.sub(r"[_/]", r"-", bem_class_name)
 
         if ".slim" in file_name:
             bem_class_name = "." + bem_class_name

@@ -1,7 +1,6 @@
 import sublime
 import sublime_plugin
 import subprocess
-import re
 from operator import itemgetter
 
 
@@ -30,7 +29,9 @@ class GitGoToFileFromStatus(sublime_plugin.WindowCommand):
 
                 modified_date = modified_date_output.decode("utf8").strip()
                 basename = file_name.split("/")[-1]
-                quick_panel_item = sublime.QuickPanelItem(basename, file_name, annotation)
+                quick_panel_item = sublime.QuickPanelItem(
+                    basename, file_name, annotation
+                )
 
                 files.append(
                     {

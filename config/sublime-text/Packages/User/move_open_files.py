@@ -4,16 +4,31 @@ import shutil
 import re
 import os
 
+
 class MoveOpenFiles(sublime_plugin.WindowCommand):
     def run(self):
         view = self.window.active_view()
 
-        default = re.sub(r'.*/(?:app|test)/cells/(.*)(?:_cell)(?:_test)\.rb', r'\1', view.file_name())
+        default = re.sub(
+            r".*/(?:app|test)/cells/(.*)(?:_cell)(?:_test)\.rb", r"\1", view.file_name()
+        )
 
-        self.window.show_input_panel("From:", default, lambda user_input_from: self.select_to(user_input_from), None, None)
+        self.window.show_input_panel(
+            "From:",
+            default,
+            lambda user_input_from: self.select_to(user_input_from),
+            None,
+            None,
+        )
 
     def select_to(self, user_input_from):
-        self.window.show_input_panel('Change "' + user_input_from + '" to:', user_input_from, lambda user_input_to: self.perform(user_input_from, user_input_to), None, None)
+        self.window.show_input_panel(
+            'Change "' + user_input_from + '" to:',
+            user_input_from,
+            lambda user_input_to: self.perform(user_input_from, user_input_to),
+            None,
+            None,
+        )
 
     def perform(self, user_input_from, user_input_to):
         for view in self.window.views():
@@ -40,7 +55,7 @@ class MoveOpenFiles(sublime_plugin.WindowCommand):
         if old_file.endswith(".py"):
             try:
                 os.remove(old_file + "c")
-            except:
+            except OSError:
                 pass
 
         if os.access(new_file, os.R_OK):  # Can read new file

@@ -1,6 +1,8 @@
 import sublime
 import sublime_plugin
-import re, os, shutil
+import re
+import os
+
 
 class FixedFindInFilesOpenFileCommand(sublime_plugin.TextCommand):
     def run(self, edit):
