@@ -1,0 +1,10 @@
+{
+  "window.systemTrayIcon": false,
+  "window.commandCenter": true,
+  "workbench.colorTheme": "Cursor Dark Midnight",
+  "window.zoomLevel": 1,
+  "editor.fontFamily": "FiraCode Nerd Font Mono",
+  "editor.fontSize": 12,
+  "editor.fontLigatures": true
+}
+

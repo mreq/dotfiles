@@ -55,6 +55,9 @@ create_dotfiles_config_symlink waybar ~/.config/waybar
 
 create_dotfiles_config_symlink zed ~/.config/zed
 
+create_dotfiles_config_symlink cursor/keybindings.json ~/.config/Cursor/User/keybindings.json
+create_dotfiles_config_symlink cursor/settings.json ~/.config/Cursor/User/settings.json
+
 (
   cd sublime-text || exit 0
 
