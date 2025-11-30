@@ -98,6 +98,7 @@
         "redis",
         "ripgrep",
         "shellcheck",
+        "shfmt",
         "webp"
       ]
     },

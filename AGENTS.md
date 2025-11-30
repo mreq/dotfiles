@@ -1,32 +1,24 @@
 # Agent Instructions
 
-## Python Code Formatting
+## AGENTS.md File Resolution
 
-**MANDATORY**: After editing any Python files, you MUST automatically format them using `black`:
+AGENTS.md files can be placed at the project root or in subdirectories. When multiple files exist, traverse up from the edited file's directory to the root, collecting all AGENTS.md files. Files closer to the edited file take precedence over files further away.
 
-```bash
-black <file_path>
-```
+## Code Formatting and Linting
 
-This ensures consistent code formatting across all Python files in the project.
+After editing any code files, automatically format and lint them using the appropriate tools for that language.
 
-**IMPORTANT**: Do not skip this step. Formatting must be executed immediately after every Python file edit.
+### Python
+- Format: `black <file_path>`
+- Lint: `ruff check <file_path>`
 
-## Bash Script Formatting
-
-**MANDATORY**: After editing any Bash/shell script files, you MUST automatically format them using `shfmt`:
-
-```bash
-shfmt -w <file_path>
-```
-
-This ensures consistent code formatting across all shell scripts in the project.
-
-**IMPORTANT**: Do not skip this step. Formatting must be executed immediately after every shell script edit.
+### Bash/Shell
+- Format: `shfmt -w <file_path>`
+- Lint: `shellcheck <file_path>`
 
 ## Git Commits
 
-**MANDATORY**: All commits MUST use semantic commit messages following the conventional commits format:
+All commits must use semantic commit messages:
 
 ```
 <type>(<scope>): <subject>
@@ -34,14 +26,7 @@ This ensures consistent code formatting across all shell scripts in the project.
 <body>
 ```
 
-**Types:**
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting, missing semicolons, etc.)
-- `refactor`: Code refactoring
-- `test`: Adding or updating tests
-- `chore`: Maintenance tasks, dependency updates
+**Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
 **Examples:**
 - `feat(sway): add screen recording functionality`
@@ -49,4 +34,4 @@ This ensures consistent code formatting across all shell scripts in the project.
 - `refactor(sway): abstract common patterns to dotfiles module`
 - `docs: update AGENTS.md with commit guidelines`
 
-**IMPORTANT**: Use semantic commits for all changes. The scope is optional but recommended for clarity.
+Scope is optional but recommended for clarity.

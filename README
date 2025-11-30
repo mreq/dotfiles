@@ -10,7 +10,7 @@ sudo apt update && sudo apt install -y $(jq -r '.packages[].packages[]' ~/.dotfi
 ~/.dotfiles/config/install.sh
 ~/.dotfiles/setup/setup.sh
 
-pip3 install -r ~/.dotfiles/python/requirements.txt --break-system-packages
+pip3 install -r ~/.dotfiles/setup/python/requirements.txt --break-system-packages
 
 sudo ln -s ~/.dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_downloads
 

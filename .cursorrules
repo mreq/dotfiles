@@ -1,24 +1,3 @@
 # Cursor Rules
 
-## AGENTS.md File Resolution
-
-Before processing any request, automatically check for and read `AGENTS.md` files using the following hierarchical resolution strategy:
-
-1. **Start from the edited file's directory**: If a file is being edited, start searching from that file's directory. Otherwise, start from the current working directory.
-
-2. **Traverse up to project root**: Search for `AGENTS.md` files by traversing up the directory tree from the starting directory all the way to the project root.
-
-3. **Collect all found files**: Gather all `AGENTS.md` files found during traversal.
-
-4. **Apply with precedence**: Files closer to the edited file (or starting directory) take precedence over files further away. When multiple `AGENTS.md` files contain conflicting instructions, the closer file's instructions override the more distant file's instructions.
-
-5. **Read and apply**: Read all collected `AGENTS.md` files in order from closest to furthest, and apply their instructions accordingly.
-
-## Example
-If editing `/home/user/project/src/components/Button.tsx`:
-- Check for `AGENTS.md` in: `src/components/` → `src/` → project root
-- If found at all three levels, apply them with `src/components/AGENTS.md` having highest precedence, then `src/AGENTS.md`, then root `AGENTS.md`
-
-This allows for project-wide rules at the root level, with more specific overrides in subdirectories.
-
-
+Read and apply instructions from AGENTS.md at the project root.
