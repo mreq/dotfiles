@@ -2,10 +2,7 @@
 import argparse, sys, os
 import subprocess
 import time
-import secrets
 from notify import notification
-from i3ipc import Connection
-from datetime import datetime
 
 sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
 import dotfiles
@@ -47,34 +44,11 @@ if (
     exit(1)
 
 extension = args.target.split(".")[-1] if args.target else "png"
-timestamp = str(round(datetime.timestamp(datetime.now())))
-hash_length = len(timestamp)
-random_hash = secrets.token_hex((hash_length + 1) // 2)[:hash_length]
-name = timestamp + "-" + random_hash + "." + extension
+name = dotfiles.generate_filename(extension)
 
 
 def scp_to_server(path):
-    notification(
-        "sway_scrotshare", message="Screenshot uploading to s.mreq.eu.", app_name="sway"
-    )
-
-    dotfiles.ssh_add()
-    scp_result = subprocess.run(
-        "scp " + path + " mreq:s.mreq.eu/" + name,
-        shell=True,
-        capture_output=True,
-        text=True,
-    )
-
-    url = "https://s.mreq.eu/" + name
-
-    subprocess.run(["wl-copy", url])
-
-    notification(
-        "sway_scrotshare",
-        message="Screenshot URL copied to clipboard.",
-        app_name="sway",
-    )
+    dotfiles.upload_to_server(path, name, "sway_scrotshare")
 
 
 def handle_target(path, adhoc):
@@ -112,55 +86,33 @@ if args.target:
 else:
     path = os.path.expanduser("~/Pictures/" + name)
 
-    grim_args = None
-
+    # Determine mode and crop
     if args.area:
-        slurp_result = subprocess.run(
-            "slurp", shell=True, capture_output=True, text=True
-        )
-
-        if not slurp_result.stdout:
-            print("No area selected")
-            exit(1)
-
-        grim_args = "-g '" + slurp_result.stdout.strip() + "'"
-    elif args.full:
-        sway = Connection()
-
-        outputs = sway.get_outputs()
-        focused_output = [o for o in outputs if o.focused][0]
-
-        if not focused_output:
-            print("No focused output")
-            exit(1)
-
-        grim_args = "-o '" + focused_output.name + "'"
-
-    elif args.window or args.chrome:
-        sway = Connection()
-
-        focused = sway.get_tree().find_focused()
-
-        if not focused:
-            print("No focused window")
-            exit(1)
-
+        mode = "area"
         crop = 0
+    elif args.full:
+        mode = "full"
+        crop = 0
+    elif args.window or args.chrome:
+        mode = "window"
+        crop = 121 if args.chrome else 0
+    else:
+        print("No mode selected")
+        exit(1)
 
-        if args.chrome:
-            crop = 121
+    try:
+        selection = dotfiles.get_sway_selection(mode, crop)
+    except dotfiles.SwaySelectionError as e:
+        print(str(e))
+        exit(1)
 
-        grim_args = (
-            "-g '"
-            + str(focused.rect.x)
-            + ","
-            + str(focused.rect.y + crop)
-            + " "
-            + str(focused.rect.width)
-            + "x"
-            + str(focused.rect.height - crop)
-            + "'"
-        )
+    # Format grim args based on selection type
+    if selection["type"] == "area":
+        grim_args = "-g '" + selection["geometry"] + "'"
+    elif selection["type"] == "full":
+        grim_args = "-o '" + selection["output_name"] + "'"
+    elif selection["type"] == "window":
+        grim_args = "-g '" + selection["geometry"] + "'"
 
     grim_command = "grim " + grim_args + " " + path
     grim_result = subprocess.run(

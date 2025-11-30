@@ -3,10 +3,7 @@ import sys
 import subprocess
 import os
 import time
-from datetime import datetime
-import secrets
 from notify import notification
-from i3ipc import Connection
 
 sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
 import dotfiles
@@ -43,29 +40,14 @@ if subprocess.run(["pgrep", "-x", "wf-recorder"], capture_output=True).returncod
         if files:
             path = os.path.join(videos_dir, files[0])
             extension = files[0].split(".")[-1]
-            timestamp = str(round(datetime.timestamp(datetime.now())))
-            hash_length = len(timestamp)
-            random_hash = secrets.token_hex((hash_length + 1) // 2)[:hash_length]
-            name = timestamp + "-" + random_hash + "." + extension
+            name = dotfiles.generate_filename(extension)
 
             # Show menu for what to do with the file
             options = ["push", "keep", "clipboard", "gimp"]
             result = dotfiles.rofi.dmenu(options)
 
             if result == "push":
-                notification(
-                    "sway_recorder", message="Uploading to s.mreq.eu.", app_name="sway"
-                )
-                dotfiles.ssh_add()
-                subprocess.run(
-                    ["scp", path, f"mreq:s.mreq.eu/{name}"],
-                    check=True,
-                )
-                url = f"https://s.mreq.eu/{name}"
-                subprocess.run(["wl-copy", url])
-                notification(
-                    "sway_recorder", message="URL copied to clipboard.", app_name="sway"
-                )
+                dotfiles.upload_to_server(path, name, "sway_recorder")
             elif result == "keep":
                 notification(
                     "sway_recorder", message=f"File kept at {path}", app_name="sway"
@@ -96,89 +78,39 @@ if selected_mode not in recording_modes:
 
 # Generate filename
 extension = "mp4"
-timestamp = str(round(datetime.timestamp(datetime.now())))
-hash_length = len(timestamp)
-random_hash = secrets.token_hex((hash_length + 1) // 2)[:hash_length]
-name = timestamp + "-" + random_hash + "." + extension
+name = dotfiles.generate_filename(extension)
 
 videos_dir = os.path.expanduser("~/Videos")
 os.makedirs(videos_dir, exist_ok=True)
 path = os.path.join(videos_dir, name)
 
 # Get geometry based on mode
-sway = Connection()
+try:
+    selection = dotfiles.get_sway_selection(selected_mode)
+except dotfiles.SwaySelectionError as e:
+    notification("sway_recorder", message=str(e), app_name="sway")
+    exit(1)
 
-if selected_mode == "area":
-    slurp_result = subprocess.run("slurp", shell=True, capture_output=True, text=True)
-    if not slurp_result.stdout:
-        notification("sway_recorder", message="No area selected", app_name="sway")
-        exit(1)
-    geometry = slurp_result.stdout.strip()
-    wf_recorder_cmd = [
-        "wf-recorder",
-        "-r",
-        "60",
-        "-c",
-        "libx264",
-        "-p",
-        "preset=veryfast",
-        "-p",
-        "tune=zerolatency",
-        "-p",
-        "crf=23",
-        "-g",
-        geometry,
-        "-f",
-        path,
-    ]
-elif selected_mode == "full":
-    outputs = sway.get_outputs()
-    focused_output = [o for o in outputs if o.focused]
-    if not focused_output:
-        notification("sway_recorder", message="No focused output", app_name="sway")
-        exit(1)
-    wf_recorder_cmd = [
-        "wf-recorder",
-        "-r",
-        "60",
-        "-c",
-        "libx264",
-        "-p",
-        "preset=veryfast",
-        "-p",
-        "tune=zerolatency",
-        "-p",
-        "crf=23",
-        "-o",
-        focused_output[0].name,
-        "-f",
-        path,
-    ]
-elif selected_mode == "window":
-    focused = sway.get_tree().find_focused()
-    if not focused:
-        notification("sway_recorder", message="No focused window", app_name="sway")
-        exit(1)
-    geometry = (
-        f"{focused.rect.x},{focused.rect.y} {focused.rect.width}x{focused.rect.height}"
-    )
-    wf_recorder_cmd = [
-        "wf-recorder",
-        "-r",
-        "60",
-        "-c",
-        "libx264",
-        "-p",
-        "preset=veryfast",
-        "-p",
-        "tune=zerolatency",
-        "-p",
-        "crf=23",
-        "-g",
-        geometry,
-        "-f",
-        path,
-    ]
+wf_recorder_cmd = [
+    "wf-recorder",
+    "-r",
+    "60",
+    "-c",
+    "libx264",
+    "-p",
+    "preset=veryfast",
+    "-p",
+    "tune=zerolatency",
+    "-p",
+    "crf=23",
+]
+
+if selection["type"] == "area":
+    wf_recorder_cmd.extend(["-g", selection["geometry"], "-f", path])
+elif selection["type"] == "full":
+    wf_recorder_cmd.extend(["-o", selection["output_name"], "-f", path])
+elif selection["type"] == "window":
+    wf_recorder_cmd.extend(["-g", selection["geometry"], "-f", path])
 
 # Start recording
 recording_process = subprocess.Popen(
