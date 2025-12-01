@@ -16,6 +16,12 @@ After editing any code files, automatically format and lint them using the appro
 - Format: `shfmt -w <file_path>`
 - Lint: `shellcheck <file_path>`
 
+## File Formatting Standards
+
+When editing any file:
+- Remove trailing whitespace from all lines
+- Keep a single newline at the end of file (EOF)
+
 ## Git Commits
 
 All commits must use semantic commit messages:
