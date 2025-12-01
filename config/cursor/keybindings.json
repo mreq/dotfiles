@@ -3,5 +3,16 @@
     {
         "key": "ctrl+i",
         "command": "composerMode.agent"
+    },
+    // Vim-style navigation in menus (Ctrl+P/N for up/down)
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen || quickInputVisible"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen || quickInputVisible"
     }
 ]
