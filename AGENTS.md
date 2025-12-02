@@ -40,4 +40,4 @@ All commits must use semantic commit messages:
 - `refactor(sway): abstract common patterns to dotfiles module`
 - `docs: update AGENTS.md with commit guidelines`
 
-Scope is optional but recommended for clarity. Describe the final state/outcome, not the implementation steps. Keep the message concise and focused on what was achieved.
+Scope is optional but recommended for clarity. Describe the final state/outcome, not the implementation steps. Check the actual changes that will be committed, don't base the message on the conversation. Keep the message concise and focused on what was achieved.
