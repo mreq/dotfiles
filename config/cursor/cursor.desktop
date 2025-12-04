@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Cursor
+GenericName=Intelligent, fast, and familiar, Cursor is the best way to code with AI.
+Exec=env ELECTRON_OZONE_PLATFORM_HINT=auto /home/petr/.local/share/cursor/Cursor.AppImage %F
+Icon=cursor-icon
+Categories=Utility;Development
+StartupWMClass=Cursor
+Terminal=false
+Comment=Cursor is an AI-first coding environment for software development.
+Keywords=cursor;ai;code;editor;ide;programming;developer;development;
+MimeType=x-scheme-handler/cursor;

@@ -5,14 +5,14 @@ set -e
 cd "${0%/*}" || exit 0
 
 create_symlink() {
-  if ! test -h $2 || ! test -e $2; then
-    echo "Creating symlink: $1 -> $2"
-    rm -rf $2 && mkdir -p $(dirname $2) && ln -s $1 $2
-  fi
+	if ! test -h $2 || ! test -e $2; then
+		echo "Creating symlink: $1 -> $2"
+		rm -rf $2 && mkdir -p $(dirname $2) && ln -s $1 $2
+	fi
 }
 
 create_dotfiles_config_symlink() {
-  create_symlink ~/.dotfiles/config/$1 $2
+	create_symlink ~/.dotfiles/config/$1 $2
 }
 
 create_dotfiles_config_symlink bash/.bashrc ~/.bashrc
@@ -57,33 +57,35 @@ create_dotfiles_config_symlink zed ~/.config/zed
 
 create_dotfiles_config_symlink cursor/keybindings.json ~/.config/Cursor/User/keybindings.json
 create_dotfiles_config_symlink cursor/settings.json ~/.config/Cursor/User/settings.json
+create_dotfiles_config_symlink cursor/cursor.sh ~/.local/bin/cursor
+create_dotfiles_config_symlink cursor/cursor.desktop ~/.local/share/applications/cursor.desktop
 
 (
-  cd sublime-text || exit 0
+	cd sublime-text || exit 0
 
-  for dir in Packages/User*; do
-    create_dotfiles_config_symlink sublime-text/$dir ~/.config/sublime-text/$dir
-  done
+	for dir in Packages/User*; do
+		create_dotfiles_config_symlink sublime-text/$dir ~/.config/sublime-text/$dir
+	done
 )
 
 if [[ ! -d ~/.fonts ]]; then
-  mkdir -p ~/.fonts
-  echo "Creating ~/.fonts"
+	mkdir -p ~/.fonts
+	echo "Creating ~/.fonts"
 fi
 
 FONT_PATH=~/.fonts/FiraCodeNerdFontMono-Regular.ttf
 
 if [[ ! -f "$FONT_PATH" ]]; then
-  cp ../fonts/FiraCodeNerdFontMono-Regular.ttf "$FONT_PATH"
-  echo "Copying FiraCodeNerdFontMono-Regular to ~/.fonts"
+	cp ../fonts/FiraCodeNerdFontMono-Regular.ttf "$FONT_PATH"
+	echo "Copying FiraCodeNerdFontMono-Regular to ~/.fonts"
 fi
 
 # Dropbox symlinks
 if [[ -d ~/Dropbox/ubuntu ]]; then
-  create_symlink ~/Dropbox/dotfiles/AppImages ~/AppImages
-  create_symlink ~/Dropbox/dotfiles/tex/texmf ~/texmf
-  create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
-  create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
+	create_symlink ~/Dropbox/dotfiles/AppImages ~/AppImages
+	create_symlink ~/Dropbox/dotfiles/tex/texmf ~/texmf
+	create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
+	create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
 else
-  echo "Dropbox not present - not creating Dropbox symlinks."
+	echo "Dropbox not present - not creating Dropbox symlinks."
 fi

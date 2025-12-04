@@ -5,6 +5,6 @@
   "window.zoomLevel": 1,
   "editor.fontFamily": "FiraCode Nerd Font Mono",
   "editor.fontSize": 12,
-  "editor.fontLigatures": true
+  "editor.fontLigatures": false
 }
 
