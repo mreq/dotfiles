@@ -2,7 +2,7 @@
 Type=Application
 Name=Cursor
 GenericName=Intelligent, fast, and familiar, Cursor is the best way to code with AI.
-Exec=env ELECTRON_OZONE_PLATFORM_HINT=auto /home/petr/.local/share/cursor/Cursor.AppImage %F
+Exec=/home/petr/.local/bin/cursor %F
 Icon=cursor-icon
 Categories=Utility;Development
 StartupWMClass=Cursor

@@ -275,7 +275,7 @@
     "keys": ["shift+f10"],
     "command": "run_cmd",
     "args": {
-      "cmd": "ELECTRON_OZONE_PLATFORM_HINT=auto cursor $project_dir"
+      "cmd": "cursor $project_dir"
     }
   },
 
