@@ -7,6 +7,38 @@ lock_file="/tmp/sway_recorder.lock"
 
 # Check if wf-recorder is running
 if ! pgrep -x wf-recorder >/dev/null 2>&1; then
+	# Check if video file is still being processed/finalized
+	# First try to get path from lock file if it exists
+	video_path=""
+	if [[ -f "$lock_file" ]]; then
+		video_path=$(sed -n '3p' "$lock_file" 2>/dev/null || echo "")
+	fi
+
+	# If no lock file or no path, check most recent video file
+	if [[ -z "$video_path" ]]; then
+		videos_dir="$HOME/Videos"
+		if [[ -d "$videos_dir" ]]; then
+			video_path=$(find "$videos_dir" -maxdepth 1 -type f \( -name "*.webm" -o -name "*.mp4" \) -printf '%T@ %p\n' 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)
+		fi
+	fi
+
+	# Check if file is still being written to or was recently modified
+	if [[ -n "$video_path" && -f "$video_path" ]]; then
+		# Check if file is still open by any process (being written to)
+		if lsof "$video_path" >/dev/null 2>&1; then
+			echo "⏺ PROCESSING"
+			exit 0
+		fi
+		# Check if file was modified very recently (within last 5 seconds)
+		# This catches the finalization phase after wf-recorder exits
+		file_mtime=$(stat -c %Y "$video_path" 2>/dev/null || echo 0)
+		current_time=$(date +%s)
+		file_age=$((current_time - file_mtime))
+		if [[ $file_age -lt 5 ]]; then
+			echo "⏺ PROCESSING"
+			exit 0
+		fi
+	fi
 	# Output zero-width space so waybar always shows the module slot
 	# This ensures the module exists and can be updated via signal
 	printf "\xE2\x80\x8B"

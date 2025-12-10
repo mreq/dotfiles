@@ -94,15 +94,17 @@ except dotfiles.SwaySelectionError as e:
 wf_recorder_cmd = [
     "wf-recorder",
     "-r",
-    "60",
+    "60",  # Frame rate: 60 fps
     "-c",
-    "libx264",
+    "libx264",  # Codec: H.264 (widely compatible)
+    "-x",
+    "yuv444p",  # Pixel format: 4:4:4 chroma (no subsampling, sharper text)
     "-p",
-    "preset=veryfast",
+    "preset=slow",  # Encoding preset: slower = better compression efficiency
     "-p",
-    "tune=zerolatency",
+    "tune=stillimage",  # Tune: optimized for screen content/text (not motion)
     "-p",
-    "crf=23",
+    "crf=18",  # Constant Rate Factor: lower = higher quality (18 is visually lossless)
 ]
 
 if selection["type"] == "area":
