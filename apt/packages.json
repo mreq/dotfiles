@@ -33,7 +33,8 @@
         "wl-clipboard",
         "wob",
         "xdg-desktop-portal-wlr",
-        "xwayland"
+        "xwayland",
+        "wf-recorder"
       ]
     },
     {
@@ -151,6 +152,12 @@
         "blueman", "pulseaudio-module-bluetooth"
       ],
       "optional": true
+    },
+    {
+      "label": "AppImage dependencies",
+      "packages": [
+        "libfuse2"
+      ]
     }
   ]
 }
