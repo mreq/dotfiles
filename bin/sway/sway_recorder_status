@@ -55,7 +55,7 @@ fi
 if [[ -z "$start_time" ]]; then
 	videos_dir="$HOME/Videos"
 	if [[ -d "$videos_dir" ]]; then
-		latest_file=$(find "$videos_dir" -maxdepth 1 -type f \( -name "*.webm" -o -name "*.mp4" \) -printf '%T@ %p\n' 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)
+		latest_file=$(find "$videos_dir" -maxdepth 1 -type f -name "*.mp4" -printf '%T@ %p\n' 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)
 		if [[ -n "$latest_file" && -f "$latest_file" ]]; then
 			start_time=$(stat -c %Y "$latest_file" 2>/dev/null || echo "")
 		fi

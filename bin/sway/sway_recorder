@@ -33,7 +33,7 @@ if subprocess.run(["pgrep", "-x", "wf-recorder"], capture_output=True).returncod
     videos_dir = os.path.expanduser("~/Videos")
     if os.path.exists(videos_dir):
         files = sorted(
-            [f for f in os.listdir(videos_dir) if f.endswith((".webm", ".mp4"))],
+            [f for f in os.listdir(videos_dir) if f.endswith(".mp4")],
             key=lambda f: os.path.getmtime(os.path.join(videos_dir, f)),
             reverse=True,
         )
@@ -96,15 +96,15 @@ wf_recorder_cmd = [
     "-r",
     "60",  # Frame rate: 60 fps
     "-c",
-    "libx264",  # Codec: H.264 (widely compatible)
-    "-x",
-    "yuv444p",  # Pixel format: 4:4:4 chroma (no subsampling, sharper text)
+    "h264_vaapi",  # Codec: hardware-accelerated H.264 via VAAPI (auto-detects GPU)
     "-p",
-    "preset=slow",  # Encoding preset: slower = better compression efficiency
+    "qp=18",  # Quality parameter: lower = higher quality (18 is near-lossless)
     "-p",
-    "tune=stillimage",  # Tune: optimized for screen content/text (not motion)
+    "color_primaries=bt709",  # Color space: BT.709 (standard for HD video)
     "-p",
-    "crf=18",  # Constant Rate Factor: lower = higher quality (18 is visually lossless)
+    "color_trc=bt709",  # Transfer characteristics: BT.709
+    "-p",
+    "colorspace=bt709",  # Color matrix: BT.709
 ]
 
 if selection["type"] == "area":
