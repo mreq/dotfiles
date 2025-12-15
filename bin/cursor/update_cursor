@@ -1,0 +1,146 @@
+#!/bin/bash
+
+set -e
+
+CURSOR_DIR="$HOME/.local/share/cursor"
+ICON_DIR="$HOME/.local/share/icons"
+ICON_PATH="$ICON_DIR/cursor-icon.png"
+
+# Function to extract version number from filename (removes -x86_64 suffix)
+extract_version() {
+	local filename="$1"
+	local version
+	version=$(basename "$filename" | sed -n 's/Cursor-\(.*\)\.AppImage/\1/p')
+	# Extract just the numeric version part (before any -)
+	version=${version%%-*}
+	echo "$version"
+}
+
+# Function to compare versions (returns 0 if v1 >= v2, 1 otherwise)
+version_ge() {
+	local v1="$1"
+	local v2="$2"
+	# Use sort -V to compare, if v1 sorts after or equal to v2, return 0
+	if printf '%s\n%s\n' "$v1" "$v2" | sort -V -C; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+# Find the latest Cursor AppImage in Downloads
+DOWNLOAD_APPIMAGE=$(find "$HOME/Downloads" -name "Cursor-*.AppImage" -type f 2>/dev/null | sort -V | tail -1)
+
+if [[ -z "$DOWNLOAD_APPIMAGE" || ! -f "$DOWNLOAD_APPIMAGE" ]]; then
+	echo "update_cursor - ERROR: No Cursor AppImage found in ~/Downloads"
+	echo "update_cursor - Looking for files matching: Cursor-*.AppImage"
+	exit 1
+fi
+
+# Extract full version string and numeric version
+FILENAME=$(basename "$DOWNLOAD_APPIMAGE")
+DOWNLOAD_VERSION_FULL=$(echo "$FILENAME" | sed -n 's/Cursor-\(.*\)\.AppImage/\1/p')
+DOWNLOAD_VERSION_NUM=$(extract_version "$DOWNLOAD_APPIMAGE")
+
+if [[ -z "$DOWNLOAD_VERSION_FULL" ]]; then
+	echo "update_cursor - ERROR: Could not extract version from filename: $FILENAME"
+	exit 1
+fi
+
+echo "update_cursor - Found Cursor v$DOWNLOAD_VERSION_FULL in Downloads: $DOWNLOAD_APPIMAGE"
+
+mkdir -p "$CURSOR_DIR"
+mkdir -p "$ICON_DIR"
+
+# Find the newest installed version
+INSTALLED_VERSIONS=$(find "$CURSOR_DIR" -name "Cursor-*.AppImage" -type f 2>/dev/null | sort -V)
+NEWEST_INSTALLED=""
+NEWEST_INSTALLED_VERSION_NUM=""
+
+if [[ -n "$INSTALLED_VERSIONS" ]]; then
+	NEWEST_INSTALLED=$(echo "$INSTALLED_VERSIONS" | tail -1)
+	NEWEST_INSTALLED_VERSION_NUM=$(extract_version "$NEWEST_INSTALLED")
+fi
+
+# Determine the target filename with version
+TARGET_APPIMAGE="$CURSOR_DIR/Cursor-$DOWNLOAD_VERSION_FULL.AppImage"
+
+# Check if we should install (only if newer than what's installed or not installed)
+if [[ -f "$TARGET_APPIMAGE" ]]; then
+	echo "update_cursor - Version $DOWNLOAD_VERSION_FULL is already installed at $TARGET_APPIMAGE"
+	echo "update_cursor - Skipping installation"
+elif [[ -z "$NEWEST_INSTALLED_VERSION_NUM" ]] || version_ge "$DOWNLOAD_VERSION_NUM" "$NEWEST_INSTALLED_VERSION_NUM"; then
+	echo "update_cursor - Installing Cursor v$DOWNLOAD_VERSION_FULL"
+	cp "$DOWNLOAD_APPIMAGE" "$TARGET_APPIMAGE"
+	chmod +x "$TARGET_APPIMAGE"
+
+	# Extract icon from AppImage
+	echo "update_cursor - Extracting icon"
+	cd /tmp
+	"$TARGET_APPIMAGE" --appimage-extract cursor.png 2>/dev/null || true
+	if [[ -f squashfs-root/cursor.png ]]; then
+		cp squashfs-root/cursor.png "$ICON_PATH"
+	else
+		# Try alternative icon location
+		"$TARGET_APPIMAGE" --appimage-extract usr/share/icons/hicolor/512x512/apps/cursor.png 2>/dev/null || true
+		if [[ -f squashfs-root/usr/share/icons/hicolor/512x512/apps/cursor.png ]]; then
+			cp squashfs-root/usr/share/icons/hicolor/512x512/apps/cursor.png "$ICON_PATH"
+		fi
+	fi
+	rm -rf squashfs-root
+	cd - >/dev/null
+
+	echo "update_cursor - Installed Cursor v$DOWNLOAD_VERSION_FULL to $TARGET_APPIMAGE"
+else
+	echo "update_cursor - Version $DOWNLOAD_VERSION_FULL is older than installed version $NEWEST_INSTALLED_VERSION_NUM"
+	echo "update_cursor - Skipping installation"
+fi
+
+# Find the newest installed version (after potential installation)
+ALL_INSTALLED=$(find "$CURSOR_DIR" -name "Cursor-*.AppImage" -type f 2>/dev/null | sort -V)
+NEWEST_AFTER_INSTALL=$(echo "$ALL_INSTALLED" | tail -1)
+
+# Create or update symlink to latest version
+LATEST_SYMLINK="$CURSOR_DIR/Cursor.AppImage"
+if [[ -L "$LATEST_SYMLINK" ]] || [[ -f "$LATEST_SYMLINK" ]]; then
+	rm "$LATEST_SYMLINK"
+fi
+if [[ -n "$NEWEST_AFTER_INSTALL" ]]; then
+	ln -s "$(basename "$NEWEST_AFTER_INSTALL")" "$LATEST_SYMLINK"
+	echo "update_cursor - Updated symlink: $LATEST_SYMLINK -> $(basename "$NEWEST_AFTER_INSTALL")"
+fi
+
+# Check for older versions and ask to remove them
+# Compare each installed version against the newest one
+NEWEST_VERSION_NUM=$(extract_version "$NEWEST_AFTER_INSTALL")
+OLD_VERSIONS=()
+
+if [[ -n "$ALL_INSTALLED" ]]; then
+	while IFS= read -r installed_file; do
+		installed_version_num=$(extract_version "$installed_file")
+		if ! version_ge "$installed_version_num" "$NEWEST_VERSION_NUM"; then
+			OLD_VERSIONS+=("$installed_file")
+		fi
+	done <<<"$ALL_INSTALLED"
+fi
+
+if [[ ${#OLD_VERSIONS[@]} -gt 0 ]]; then
+	echo "update_cursor - Found older versions:"
+	for old_version in "${OLD_VERSIONS[@]}"; do
+		echo "  - $(basename "$old_version")"
+	done
+	echo -n "update_cursor - Remove older versions? [Y/n] "
+	read -r response
+	if [[ -z "$response" ]] || [[ "$response" =~ ^[Yy]$ ]]; then
+		for old_version in "${OLD_VERSIONS[@]}"; do
+			rm -f "$old_version"
+			echo "update_cursor - Removed $(basename "$old_version")"
+		done
+	fi
+fi
+
+# Remove downloaded AppImage after successful installation
+rm -f "$DOWNLOAD_APPIMAGE"
+echo "update_cursor - Removed downloaded file: $(basename "$DOWNLOAD_APPIMAGE")"
+
+echo -e "update_cursor - \033[32m✓ Done\033[0m"
