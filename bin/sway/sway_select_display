@@ -3,7 +3,8 @@ from i3ipc import Connection
 from notify import notification
 import argparse
 
-import os, sys
+import os
+import sys
 
 sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
 import dotfiles
@@ -71,7 +72,7 @@ if result is None:
                 result = f.read().strip()
 
         else:
-            result = "auto"
+            result = "all"
 
 if result is None:
     if len(outputs) < 2:
@@ -89,29 +90,15 @@ if result is None:
             exit(1)
 
     else:
-        options = ["auto"] + output_names
+        options = ["all"] + output_names
 
         result = dotfiles.rofi.dmenu(options)
 
         if result not in options:
             exit(0)
 
-if result == "auto":
+if result == "all":
     for output in outputs:
-        if "DP" in output.name:
-            result = output.name
-            break
-
-    for output in outputs:
-        if "HDMI" in output.name:
-            result = output.name
-            break
-
-    if result == "auto":
-        result = outputs[0].name
-
-for output in outputs:
-    if output.name == result:
         if not output.active:
             sway.command("output " + output.name + " enable")
 
@@ -119,9 +106,19 @@ for output in outputs:
 
         if not are_modes_equal(best_mode, output.current_mode):
             set_mode(output, best_mode)
-    else:
-        if output.active:
-            sway.command("output " + output.name + " disable")
+else:
+    for output in outputs:
+        if output.name == result:
+            if not output.active:
+                sway.command("output " + output.name + " enable")
+
+            best_mode = get_best_mode_from_output(output)
+
+            if not are_modes_equal(best_mode, output.current_mode):
+                set_mode(output, best_mode)
+        else:
+            if output.active:
+                sway.command("output " + output.name + " disable")
 
 with open(TMP_FILE_PATH, "w") as f:
     f.write(result + "\n")
