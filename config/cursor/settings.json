@@ -8,5 +8,6 @@
   "editor.fontSize": 12,
   "editor.fontLigatures": false,
   "terminal.integrated.fontLigatures.featureSettings": "\"calt\" off",
-  "git.confirmSync": false
+  "git.confirmSync": false,
+  "git.autofetch": true
 }
