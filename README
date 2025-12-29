@@ -5,12 +5,12 @@ sudo apt install git
 
 git clone git@github.com:mreq/dotfiles.git .dotfiles
 
-sudo apt update && sudo apt install -y $(jq -r '.packages[].packages[]' ~/.dotfiles/apt/packages.json)
+sudo apt update && sudo apt install -y $(jq -r '.apt[].package' ~/.dotfiles/setup/packages.json)
 
 ~/.dotfiles/config/install.sh
 ~/.dotfiles/setup/setup.sh
 
-pip3 install -r ~/.dotfiles/setup/python/requirements.txt --break-system-packages
+pip3 install $(jq -r '.pip[].package' ~/.dotfiles/setup/packages.json) --break-system-packages
 
 sudo ln -s ~/.dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_downloads
 

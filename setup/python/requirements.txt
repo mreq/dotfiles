@@ -1,7 +1,0 @@
-black
-cairosvg
-i3ipc
-ipdb
-notify-send
-ruff
-tldr
