@@ -20,8 +20,9 @@ extract_version() {
 version_ge() {
 	local v1="$1"
 	local v2="$2"
-	# Use sort -V to compare, if v1 sorts after or equal to v2, return 0
-	if printf '%s\n%s\n' "$v1" "$v2" | sort -V -C; then
+	# Use sort -V to compare, swap order to check if v1 >= v2
+	# sort -C returns 0 if input is sorted, so we check if v2 <= v1
+	if printf '%s\n%s\n' "$v2" "$v1" | sort -V -C; then
 		return 0
 	else
 		return 1
