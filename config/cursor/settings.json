@@ -11,5 +11,30 @@
   "git.confirmSync": false,
   "git.autofetch": true,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "window.confirmSaveUntitledWorkspace": false
+  "window.confirmSaveUntitledWorkspace": false,
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-b>": false,
+    "<C-c>": false,
+    "<C-e>": false,
+    "<C-f>": false,
+    "<C-g>": false,
+    "<C-h>": false,
+    "<C-i>": false,
+    "<C-j>": false,
+    "<C-k>": false,
+    "<C-l>": false,
+    "<C-n>": false,
+    "<C-o>": false,
+    "<C-p>": false,
+    "<C-q>": false,
+    "<C-r>": false,
+    "<C-s>": false,
+    "<C-t>": false,
+    "<C-v>": false,
+    "<C-w>": false,
+    "<C-x>": false,
+    "<C-y>": false,
+    "<C-z>": false
+  }
 }
