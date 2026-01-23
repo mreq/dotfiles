@@ -126,11 +126,5 @@ start_timestamp = time.time()
 with open(lock_file, "w") as f:
     f.write(f"{recording_process.pid}\n{script_pid}\n{path}\n{start_timestamp}")
 
-notification(
-    "sway_recorder",
-    message=f"Recording started ({selected_mode} mode)",
-    app_name="sway",
-)
-
 # Signal waybar to update
 subprocess.run(["pkill", "-RTMIN+8", "waybar"])
