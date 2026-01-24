@@ -1,10 +1,8 @@
-// Place your key bindings in this file to override the defaults
 [
     {
         "key": "ctrl+i",
         "command": "composerMode.agent"
     },
-    // Vim-style navigation in menus (Ctrl+P/N for up/down)
     {
         "key": "ctrl+p",
         "command": "workbench.action.quickOpenSelectPrevious",
@@ -14,5 +12,29 @@
         "key": "ctrl+n",
         "command": "workbench.action.quickOpenSelectNext",
         "when": "inQuickOpen || quickInputVisible"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.nextEditorInGroup"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.previousEditorInGroup"
+    },
+    {
+        "key": "alt+l",
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "alt+h",
+        "command": "workbench.action.focusPreviousGroup"
+    },
+    {
+        "key": "alt+shift+l",
+        "command": "workbench.action.splitEditorRight"
+    },
+    {
+        "key": "alt+shift+h",
+        "command": "workbench.action.splitEditorLeft"
     }
 ]

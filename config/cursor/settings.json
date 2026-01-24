@@ -1,17 +1,13 @@
 {
-  "files.trimFinalNewlines": true,
-  "window.systemTrayIcon": false,
-  "window.commandCenter": true,
-  "workbench.colorTheme": "Cursor Dark Midnight",
-  "window.zoomLevel": 1,
-  "editor.fontFamily": "FiraCode Nerd Font Mono",
-  "editor.fontSize": 12,
-  "editor.fontLigatures": false,
-  "terminal.integrated.fontLigatures.featureSettings": "\"calt\" off",
-  "git.confirmSync": false,
-  "git.autofetch": true,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "window.confirmSaveUntitledWorkspace": false,
+  "editor.fontFamily": "FiraCode Nerd Font Mono",
+  "editor.fontLigatures": false,
+  "editor.lineHeight": 1.4,
+  "files.trimFinalNewlines": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "keyboard.dispatch": "keyCode",
+  "terminal.integrated.fontLigatures.featureSettings": "\"calt\" off",
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-b>": false,
@@ -36,5 +32,10 @@
     "<C-x>": false,
     "<C-y>": false,
     "<C-z>": false
-  }
+  },
+  "window.commandCenter": true,
+  "window.confirmSaveUntitledWorkspace": false,
+  "window.systemTrayIcon": false,
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Cursor Dark Midnight"
 }
