@@ -31,10 +31,10 @@
     },
     {
         "key": "alt+shift+l",
-        "command": "workbench.action.splitEditorRight"
+        "command": "workbench.action.moveEditorToRightGroup"
     },
     {
         "key": "alt+shift+h",
-        "command": "workbench.action.splitEditorLeft"
+        "command": "workbench.action.moveEditorToLeftGroup"
     }
 ]
