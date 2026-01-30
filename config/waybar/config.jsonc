@@ -68,7 +68,7 @@
         },
         "format": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{capacity}%",
         "format-full": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{capacity}%",
-        "format-charging": "<span size=\"x-small\"> </span>{capacity}%",
+        "format-charging": "<span size=\"x-large\">\ueea1</span><span size=\"x-small\"> </span>{capacity}%",
         "format-plugged": "<span size=\"large\"></span><span size=\"x-small\"> </span>{capacity}%",
         "format-alt": "<span size=\"large\">{icon}</span><span size=\"x-small\"> </span>{time}",
         "format-good": "",
