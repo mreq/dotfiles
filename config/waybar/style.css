@@ -55,6 +55,12 @@ tooltip label {
   color: @base-blackey;
 }
 
+#mode {
+  background: @base-red;
+  color: @base-blackey;
+  font-style: normal;
+}
+
 .module,
 #pulseaudio,
 #backlight,
