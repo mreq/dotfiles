@@ -39,5 +39,6 @@
   "window.confirmSaveUntitledWorkspace": false,
   "window.systemTrayIcon": false,
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Cursor Dark Midnight"
+  "workbench.colorTheme": "Cursor Dark Midnight",
+  "files.insertFinalNewline": true
 }
