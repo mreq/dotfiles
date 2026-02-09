@@ -5,7 +5,7 @@ import re
 
 class GitShowFileOnRemote(sublime_plugin.WindowCommand):
 
-    def run(self):
+    def run(self, branch=None):
         file_name = self.window.active_view().file_name()
         cwd = self.window.folders()[0]
         path = file_name[file_name.startswith(cwd) and len(cwd) :]
@@ -19,14 +19,15 @@ class GitShowFileOnRemote(sublime_plugin.WindowCommand):
         url_base = re.sub("\\.git", "", url_base)
         url_base = re.sub(":", "/", url_base)
 
-        branch = (
-            subprocess.check_output(
-                "git branch 2> /dev/null | grep \*", shell=True, cwd=cwd
+        if branch is None:
+            branch = (
+                subprocess.check_output(
+                    "git branch 2> /dev/null | grep \*", shell=True, cwd=cwd
+                )
+                .decode("utf8")
+                .strip()
+                .replace("* ", "")
             )
-            .decode("utf8")
-            .strip()
-            .replace("* ", "")
-        )
 
         url = "https://" + url_base + "/blob/" + branch + path
 

@@ -172,10 +172,18 @@
     "context": [{ "key": "setting.git_savvy.branch_view", "operator": "equal", "operand": true }]
   },
 
-  // Git: xdg-open commits page
+  // Git: xdg-open file on remote
   {
     "keys": [" ", "g", "o"],
     "command": "git_show_file_on_remote",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: xdg-open file on remote (master branch)
+  {
+    "keys": [" ", "g", "m"],
+    "command": "git_show_file_on_remote",
+    "args": { "branch": "master" },
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
