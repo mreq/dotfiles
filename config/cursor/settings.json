@@ -39,6 +39,8 @@
   "window.confirmSaveUntitledWorkspace": false,
   "window.systemTrayIcon": false,
   "window.zoomLevel": 1,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
   "workbench.colorTheme": "Cursor Dark Midnight",
-  "files.insertFinalNewline": true
+  "diffEditor.renderSideBySide": false
 }

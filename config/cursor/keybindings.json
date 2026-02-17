@@ -1,40 +1,13 @@
 [
-    {
-        "key": "ctrl+i",
-        "command": "composerMode.agent"
-    },
-    {
-        "key": "ctrl+p",
-        "command": "workbench.action.quickOpenSelectPrevious",
-        "when": "inQuickOpen || quickInputVisible"
-    },
-    {
-        "key": "ctrl+n",
-        "command": "workbench.action.quickOpenSelectNext",
-        "when": "inQuickOpen || quickInputVisible"
-    },
-    {
-        "key": "ctrl+tab",
-        "command": "workbench.action.nextEditorInGroup"
-    },
-    {
-        "key": "ctrl+shift+tab",
-        "command": "workbench.action.previousEditorInGroup"
-    },
-    {
-        "key": "alt+l",
-        "command": "workbench.action.focusNextGroup"
-    },
-    {
-        "key": "alt+h",
-        "command": "workbench.action.focusPreviousGroup"
-    },
-    {
-        "key": "alt+shift+l",
-        "command": "workbench.action.moveEditorToRightGroup"
-    },
-    {
-        "key": "alt+shift+h",
-        "command": "workbench.action.moveEditorToLeftGroup"
-    }
+  // --- General ---
+  { "key": "ctrl+i", "command": "composerMode.agent" },
+  { "key": "ctrl+p", "command": "workbench.action.quickOpenSelectPrevious", "when": "inQuickOpen || quickInputVisible" },
+  { "key": "ctrl+n", "command": "workbench.action.quickOpenSelectNext", "when": "inQuickOpen || quickInputVisible" },
+  { "key": "ctrl+tab", "command": "workbench.action.nextEditorInGroup" },
+  { "key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup" },
+  { "key": "alt+l", "command": "workbench.action.focusNextGroup" },
+  { "key": "alt+h", "command": "workbench.action.focusPreviousGroup" },
+  { "key": "alt+shift+l", "command": "workbench.action.moveEditorToRightGroup" },
+  { "key": "alt+shift+h", "command": "workbench.action.moveEditorToLeftGroup" },
+  { "key": "ctrl+r", "command": "workbench.action.gotoSymbol" }
 ]
