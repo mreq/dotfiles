@@ -101,19 +101,30 @@ export function activate(context: vscode.ExtensionContext): void {
               return path.join(rootPath, p);
             });
 
+            // Prefer focusing an existing tab anywhere in the window; only open in active group if not visible.
             const showOptions: vscode.TextDocumentShowOptions = rule.replace
               ? {}
-              : rule.split
-                ? { viewColumn: vscode.ViewColumn.Beside, preview: false }
-                : { preview: false };
+              : { preview: false };
+
+            const showTarget = async (targetUri: vscode.Uri) => {
+              const existing = vscode.window.visibleTextEditors.find(
+                (e) => e.document.uri.fsPath === targetUri.fsPath
+              );
+              if (existing?.viewColumn != null) {
+                await vscode.window.showTextDocument(existing.document, {
+                  viewColumn: existing.viewColumn,
+                  preview: false,
+                });
+                return;
+              }
+              const targetDoc =
+                await vscode.workspace.openTextDocument(targetUri);
+              await vscode.window.showTextDocument(targetDoc, showOptions);
+            };
 
             for (const absoluteTarget of resolvedPaths) {
               if (fs.existsSync(absoluteTarget)) {
-                const targetUri = vscode.Uri.file(absoluteTarget);
-                const targetDoc = await vscode.workspace.openTextDocument(
-                  targetUri
-                );
-                await vscode.window.showTextDocument(targetDoc, showOptions);
+                await showTarget(vscode.Uri.file(absoluteTarget));
                 return;
               }
             }
@@ -124,11 +135,7 @@ export function activate(context: vscode.ExtensionContext): void {
                 fs.mkdirSync(dir, { recursive: true });
               }
               fs.writeFileSync(absoluteTarget, "", "utf8");
-              const targetUri = vscode.Uri.file(absoluteTarget);
-              const targetDoc = await vscode.workspace.openTextDocument(
-                targetUri
-              );
-              await vscode.window.showTextDocument(targetDoc, showOptions);
+              await showTarget(vscode.Uri.file(absoluteTarget));
               return;
             }
           }
