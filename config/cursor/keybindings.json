@@ -36,5 +36,25 @@
     {
         "key": "alt+shift+h",
         "command": "workbench.action.moveEditorToLeftGroup"
+    },
+    {
+        "key": "ctrl+space",
+        "command": "fileTierNav.open",
+        "args": { "tier": "alpha" }
+    },
+    {
+        "key": "ctrl+backspace",
+        "command": "fileTierNav.open",
+        "args": { "tier": "delta" }
+    },
+    {
+        "key": "ctrl+shift+space",
+        "command": "fileTierNav.open",
+        "args": { "tier": "beta" }
+    },
+    {
+        "key": "ctrl+shift+alt+space",
+        "command": "fileTierNav.open",
+        "args": { "tier": "gamma" }
     }
 ]

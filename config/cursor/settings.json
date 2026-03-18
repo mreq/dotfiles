@@ -39,5 +39,65 @@
   "window.confirmSaveUntitledWorkspace": false,
   "window.systemTrayIcon": false,
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Cursor Dark Midnight"
+  "workbench.colorTheme": "GitHub Dark",
+  "cursor.cpp.enablePartialAccepts": true,
+
+  "fileTierNav.tiers": [
+    { "id": "alpha" },
+    { "id": "beta" },
+    { "id": "gamma" },
+    { "id": "delta" }
+  ],
+  "fileTierNav.rules": [
+    {
+      "id": "to_ruby_component_rb_from_test",
+      "from": ["test/components/(.+/)?([^/]+)_component_test\\.rb"],
+      "to": ["app/components/$1$2_component.rb"],
+      "tier": "delta"
+    },
+    {
+      "id": "to_ruby_component_test",
+      "from": ["app/components/(.+/)?([^/]+)_component\\..+"],
+      "to": ["test/components/$1$2_component_test.rb"],
+      "tier": "delta"
+    },
+    {
+      "id": "to_ruby_view_component_sass",
+      "from": ["(app|test)/components/(.+/)?([^/]+)_component(?:\\.(?!sass|scss)\\w+|_test\\.rb)"],
+      "to": ["app/components/$2$3_component.scss", "app/components/$2$3_component.sass"],
+      "tier": "beta",
+      "create": true
+    },
+    {
+      "id": "to_ruby_view_component_slim_from_sass",
+      "from": ["(app|test)/components/(.+/)?([^/]+)_component\\.(sass|scss)"],
+      "to": ["app/components/$2$3_component.slim"],
+      "tier": "beta"
+    },
+    {
+      "id": "to_ruby_view_component_js",
+      "from": ["(app|test)/components/(.+/)?([^/]+)_component(?:\\.(?!js)\\w+|_test\\.rb)"],
+      "to": ["app/components/$2$3_component.js"],
+      "tier": "gamma",
+      "create": true
+    },
+    {
+      "id": "to_ruby_view_component_slim_from_js",
+      "from": ["(app|test)/components/(.+/)?([^/]+)_component\\.js"],
+      "to": ["app/components/$2$3_component.slim"],
+      "tier": "gamma"
+    },
+    {
+      "id": "to_ruby_view_component_slim",
+      "from": ["app/components/(.+/)?([^/]+)_component\\.(?!slim)"],
+      "to": ["app/components/$1$2_component.slim"],
+      "tier": "alpha"
+    },
+    {
+      "id": "to_ruby_view_component_rb",
+      "from": ["(test|app)/components/(.+/)?([^/]+)_component(?:\\.\\w+|_test\\.rb)"],
+      "to": ["app/components/$2$3_component.rb"],
+      "tier": "alpha"
+    }
+  ]
 }

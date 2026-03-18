@@ -1,0 +1,68 @@
+{
+  "name": "file-tier-nav",
+  "displayName": "File Tier Nav",
+  "description": "Navigate between related files by tier (alpha/beta/gamma/delta) using regex from→to rules. No default keybindings or rules; configure in settings and keybindings.json.",
+  "version": "0.1.0",
+  "publisher": "mreq",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onCommand:fileTierNav.open"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "fileTierNav.open",
+        "title": "File Tier Nav: Open by tier",
+        "icon": "$(file-symlink-file)"
+      }
+    ],
+    "configuration": {
+      "title": "File Tier Nav",
+      "properties": {
+        "fileTierNav.tiers": {
+          "type": "array",
+          "default": [],
+          "description": "Tier definitions (e.g. alpha, beta, gamma, delta). Each keybind invokes the command with one tier id.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "description": "Tier id (e.g. alpha)" },
+              "key": { "type": "string", "description": "Example keybinding for README/docs only; extension does not use this." }
+            },
+            "required": ["id"]
+          }
+        },
+        "fileTierNav.rules": {
+          "type": "array",
+          "default": [],
+          "description": "Rules: from (regex) → to (template with $1, $2…). Only rules whose tier matches the invoked tier run.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "description": "Rule id" },
+              "from": { "type": "array", "items": { "type": "string" }, "description": "Regexes to match current file path (workspace-relative). Try each in order, first match wins; its capture groups are used for to." },
+              "to": { "type": "array", "items": { "type": "string" }, "description": "Target path templates. Use $1, $2, … for capture groups. Try each in order, open first that exists; if none and create: true, create the last." },
+              "tier": { "type": "string", "description": "Tier id this rule belongs to." },
+              "create": { "type": "boolean", "default": false, "description": "If true, create the target file if it does not exist and open it." },
+              "replace": { "type": "boolean", "default": false, "description": "If true, open in the current tab (replacing the active editor). Default: open in new tab (preview: false) or focus existing." },
+              "split": { "type": "boolean", "default": false, "description": "If true, open in a new column (split editor)." }
+            },
+            "required": ["id", "from", "to", "tier"]
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.74.0",
+    "typescript": "^5.0.0"
+  }
+}
