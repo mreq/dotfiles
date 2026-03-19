@@ -99,5 +99,15 @@
       "to": ["app/components/$2$3_component.rb"],
       "tier": "alpha"
     }
-  ]
+  ],
+  "files.trimTrailingWhitespace": true,
+
+  "[sass]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[scss]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  }
 }

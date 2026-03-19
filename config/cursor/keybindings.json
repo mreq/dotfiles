@@ -40,21 +40,38 @@
     {
         "key": "ctrl+space",
         "command": "fileTierNav.open",
-        "args": { "tier": "alpha" }
+        "args": { "tier": "alpha" },
+        "when": "editorTextFocus && vim.mode == 'Normal'"
     },
     {
         "key": "ctrl+backspace",
         "command": "fileTierNav.open",
-        "args": { "tier": "delta" }
+        "args": { "tier": "delta" },
+        "when": "editorTextFocus && vim.mode == 'Normal'"
     },
     {
         "key": "ctrl+shift+space",
         "command": "fileTierNav.open",
-        "args": { "tier": "beta" }
+        "args": { "tier": "beta" },
+        "when": "editorTextFocus && vim.mode == 'Normal'"
     },
     {
         "key": "ctrl+shift+alt+space",
         "command": "fileTierNav.open",
-        "args": { "tier": "gamma" }
+        "args": { "tier": "gamma" },
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "space q",
+        "command": "workbench.action.closeAllEditors",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+y",
+        "command": "redo"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "workbench.action.gotoSymbol"
     }
 ]
