@@ -41,6 +41,13 @@
   "window.zoomLevel": 1,
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "workbench.colorTheme": "Cursor Dark Midnight",
-  "diffEditor.renderSideBySide": false
+  "[sass]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[scss]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "diffEditor.renderSideBySide": false,
 }

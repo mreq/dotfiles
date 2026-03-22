@@ -23,3 +23,6 @@ npm-debug.log
 
 # LibreOffice tempfiles
 .~lock*
+
+# AI stuff
+/.claude
