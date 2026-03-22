@@ -22,13 +22,14 @@
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
-  // lsp-copilot
+  // copilot-sublime
   {
     "keys": ["alt+enter"],
     "command": "copilot_accept_completion",
     "context": [
       {
-        "key": "copilot.is_on_completion"
+        "key": "setting.copilot_completion_visible",
+        "operand": true
       }
     ]
   },
@@ -177,10 +178,17 @@
     ]
   },
 
-  // ChangeList: show
+  // Navigation: next edit point (]e)
   {
-    "keys": [" ", "e"],
-    "command": "show_change_list",
+    "keys": ["]", "e"],
+    "command": "jump_forward",
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Navigation: prev edit point ([e)
+  {
+    "keys": ["[", "e"],
+    "command": "jump_back",
     "context": [{ "key": "vi_command_mode_aware" }]
   },
 
@@ -306,6 +314,22 @@
       "panel": "replace",
       "reverse": false,
     }
+  },
+
+  // Git: next change (]c)
+  {
+    "keys": ["]", "c"],
+    "command": "goto_git_hunk",
+    "args": { "direction": "next" },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  // Git: prev change ([c)
+  {
+    "keys": ["[", "c"],
+    "command": "goto_git_hunk",
+    "args": { "direction": "prev" },
+    "context": [{ "key": "vi_command_mode_aware" }]
   },
 
   // Pretty json

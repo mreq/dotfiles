@@ -1,9 +1,0 @@
-// Settings in here override those in "LSP-copilot/LSP-copilot.sublime-settings"
-
-{
-  "selector": "source | markup | embedding | git-savvy.make-commit",
-  "settings": {
-    "hook_to_auto_complete_command": true,
-    "commit_completion_on_tab": false,
-  }
-}

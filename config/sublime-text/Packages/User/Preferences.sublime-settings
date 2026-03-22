@@ -47,6 +47,7 @@
 	"vintageous_use_sys_clipboard": true,
 	"word_wrap": true,
 	"color_scheme": "Mariana.sublime-color-scheme",
+	"git_diff_target": "head",
 	"index_files": false,
 	"update_check": false,
 }
