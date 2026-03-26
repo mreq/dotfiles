@@ -340,4 +340,33 @@
       { "key": "vi_command_mode_aware" },
     ]
   },
+
+  // Filehop
+  {
+    "keys": ["ctrl+space"],
+    "command": "filehop_hop",
+    "args": { "slot": "alpha" },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  {
+    "keys": ["ctrl+backspace"],
+    "command": "filehop_hop",
+    "args": { "slot": "delta" },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  {
+    "keys": ["ctrl+shift+space"],
+    "command": "filehop_hop",
+    "args": { "slot": "beta" },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  },
+
+  {
+    "keys": ["ctrl+shift+alt+space"],
+    "command": "filehop_hop",
+    "args": { "slot": "gamma" },
+    "context": [{ "key": "vi_command_mode_aware" }]
+  }
 ]

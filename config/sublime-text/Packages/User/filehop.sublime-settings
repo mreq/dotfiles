@@ -1,63 +1,11 @@
 {
-  "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "editor.fontFamily": "FiraCode Nerd Font Mono",
-  "editor.fontLigatures": false,
-  "editor.lineHeight": 1.4,
-  "editor.wordWrap": "on",
-  "files.trimFinalNewlines": true,
-  "git.autofetch": true,
-  "git.confirmSync": false,
-  "keyboard.dispatch": "keyCode",
-  "terminal.integrated.fontLigatures.featureSettings": "\"calt\" off",
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-b>": false,
-    "<C-c>": false,
-    "<C-e>": false,
-    "<C-f>": false,
-    "<C-g>": false,
-    "<C-h>": false,
-    "<C-i>": false,
-    "<C-j>": false,
-    "<C-k>": false,
-    "<C-l>": false,
-    "<C-n>": false,
-    "<C-o>": false,
-    "<C-p>": false,
-    "<C-q>": false,
-    "<C-r>": false,
-    "<C-s>": false,
-    "<C-t>": false,
-    "<C-v>": false,
-    "<C-w>": false,
-    "<C-x>": false,
-    "<C-y>": false,
-    "<C-z>": false
-  },
-  "vim.useSystemClipboard": true,
-  "window.commandCenter": true,
-  "window.confirmSaveUntitledWorkspace": false,
-  "window.systemTrayIcon": false,
-  "window.zoomLevel": 1,
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
-  "[sass]": {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true
-  },
-  "[scss]": {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true
-  },
-  "diffEditor.renderSideBySide": false,
-  "claudeCode.preferredLocation": "sidebar",
-  "filehop.slots": [
+  "slots": [
     { "id": "alpha" },
     { "id": "beta" },
     { "id": "gamma" },
     { "id": "delta" }
   ],
-  "filehop.rules": [
+  "rules": [
     {
       "id": "to_ruby_component_rb_from_test",
       "from": ["test/components/(.+/)?([^/]+)_component_test\\.rb"],

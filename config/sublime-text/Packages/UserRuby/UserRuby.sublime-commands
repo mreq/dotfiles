@@ -31,19 +31,4 @@
       "cmd": "~/.dotfiles/rails/append_module_to_application_css $file_name"
     }
   },
-
-  {
-    "caption": "Cells: create sass",
-    "command": "cell_create_sass"
-  },
-
-  {
-    "caption": "Cells: create coffee",
-    "command": "cell_create_coffee"
-  },
-
-  {
-    "caption": "Cells: create js",
-    "command": "cell_create_js"
-  }
 ]
