@@ -125,5 +125,6 @@
       "to": ["app/controllers/$2$3_controller.rb"],
       "slot": "alpha"
     }
-  ]
+  ],
+  "workbench.colorTheme": "GitHub Dark",
 }
