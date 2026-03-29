@@ -55,6 +55,8 @@ create_dotfiles_config_symlink waybar ~/.config/waybar
 
 create_dotfiles_config_symlink zed ~/.config/zed
 
+bash ~/.dotfiles/config/vscode-extensions/install.sh
+
 create_dotfiles_config_symlink cursor/keybindings.json ~/.config/Cursor/User/keybindings.json
 create_dotfiles_config_symlink cursor/settings.json ~/.config/Cursor/User/settings.json
 create_dotfiles_config_symlink cursor/cursor.sh ~/.local/bin/cursor

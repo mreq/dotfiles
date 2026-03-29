@@ -107,6 +107,23 @@
       "from": ["(test|app)/components/(.+/)?([^/]+)_component(?:\\.\\w+|_test\\.rb)"],
       "to": ["app/components/$2$3_component.rb"],
       "slot": "alpha"
+    },
+    {
+      "id": "to_ruby_view_from_controller",
+      "from": ["(app|test)/controllers/(.+/)?([^/]+)_controller.*\\.rb"],
+      "to": [
+        "app/views/$2$3/show.slim",
+        "app/views/$2$3/index.slim",
+        "app/views/$2$3/edit.slim",
+        "app/views/$2$3/new.slim",
+      ],
+      "slot": "alpha"
+    },
+    {
+      "id": "to_ruby_controller_from_view",
+      "from": ["(app|test)/views/(.+/)?([^/]+)/\\w+\\.slim"],
+      "to": ["app/controllers/$2$3_controller.rb"],
+      "slot": "alpha"
     }
   ]
 }

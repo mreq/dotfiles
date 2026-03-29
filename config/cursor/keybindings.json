@@ -33,5 +33,10 @@
     "command": "filehop.hop",
     "args": { "slot": "gamma" },
     "when": "editorTextFocus && vim.mode == 'Normal'"
+  },
+  {
+    "key": "space i",
+    "command": "abut.open",
+    "when": "editorTextFocus && vim.mode == 'Normal'"
   }
 ]
