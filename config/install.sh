@@ -70,16 +70,16 @@ create_dotfiles_config_symlink cursor/cursor.desktop ~/.local/share/applications
 	done
 )
 
-if [[ ! -d ~/.fonts ]]; then
-	mkdir -p ~/.fonts
-	echo "Creating ~/.fonts"
+if [[ ! -d ~/.local/share/fonts ]]; then
+	mkdir -p ~/.local/share/fonts
+	echo "Creating ~/.local/share/fonts"
 fi
 
-FONT_PATH=~/.fonts/FiraCodeNerdFontMono-Regular.ttf
+FONT_PATH=~/.local/share/fonts/FiraCodeNerdFontMono-Regular.ttf
 
 if [[ ! -f "$FONT_PATH" ]]; then
 	cp ../fonts/FiraCodeNerdFontMono-Regular.ttf "$FONT_PATH"
-	echo "Copying FiraCodeNerdFontMono-Regular to ~/.fonts"
+	echo "Copying FiraCodeNerdFontMono-Regular to ~/.local/share/fonts"
 fi
 
 # Dropbox symlinks

@@ -22,6 +22,7 @@ application/pdf=atril.desktop;org.gnome.Evince.desktop;
 text/x-log=sublime_text.desktop;
 application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
 video/mp4=google-chrome.desktop;
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 
 [Added Associations]
 application/toml=sublime_text.desktop;
