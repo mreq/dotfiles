@@ -77,6 +77,7 @@ bin/lazygit/update_lazygit
 bin/doublecmd/update_doublecmd
 config/systemd/dropbox.service
 config/systemd/wlsunset.service
+bin/waybar/check_updates
 ```
 
 ### Rewrite
@@ -110,7 +111,7 @@ rpm-ostree override remove firefox
 Add official vendor repos for Chrome, Slack, Sublime, then layer:
 ```
 rpm-ostree install \
-  tmux btop ripgrep keepassxc \
+  tmux btop ripgrep keepassxc gh awscli2 \
   google-chrome-stable slack sublime-text
 ```
 
@@ -189,6 +190,23 @@ WantedBy=graphical-session.target
 
 Everything else in sway `exec.conf` is tightly coupled to sway
 (wob uses $SWAYSOCK, swaync, polkit) and stays there.
+
+**Automatic update check** (system-level, not user):
+```
+sudo systemctl enable --now rpm-ostreed-automatic.timer
+```
+
+Waybar custom module in `config/waybar/config.jsonc`:
+```json
+"custom/updates": {
+    "exec": "~/.dotfiles/bin/waybar/check_updates",
+    "return-type": "json",
+    "interval": 3600
+}
+```
+
+`bin/waybar/check_updates` — shows icon when rpm-ostree update available,
+empty otherwise.
 
 ### Phase 4 — install.sh rewrite
 
