@@ -95,9 +95,82 @@ bin/spotify/            (playerctl handles media controls now)
 
 ---
 
-## Implementation Phases
+## Implementation Steps
 
-### Phase 1 — Host layer
+Work happens on the `atomic-fedora` branch. Commit after each step.
+
+### Step 0 — Repo cleanup
+
+Delete dropped files and directories:
+```
+config/alacritty/
+config/electron/
+config/input/
+config/kitty/
+config/mise/
+config/nvim/           (already staged for deletion)
+config/ruby/
+config/bash/.bash_aliases
+bin/spotify/
+CHANGES.md
+```
+
+Commit: "feat(fedora): drop unused configs"
+
+### Step 1 — Fix existing configs
+
+Small, targeted edits to existing files:
+- `config/tmux/.tmux.conf`: `xclip -in -selection clipboard` → `wl-copy`
+- `config/sway/config.d/exec.conf`: remove `dropbox start -i` and `wlsunset` lines
+- `config/bash/.bashrc`: clean sweep (source /etc/bashrc + exports)
+- `config/bash/.profile`: clean sweep (PATH + EDITOR)
+
+Commit: "feat(fedora): update configs for atomic"
+
+### Step 2 — Create new files
+
+- `config/systemd/dropbox.service`
+- `config/systemd/wlsunset.service`
+- `bin/waybar/check_updates`
+- `bin/lazygit/update_lazygit`
+- `bin/doublecmd/update_doublecmd`
+
+Commit: "feat(fedora): add systemd services and update scripts"
+
+### Step 3 — Rewrite install.sh
+
+Encode the full setup: rpm-ostree, flatpak, symlinks, systemd enable, fonts.
+This is the "clone and run" automation.
+
+Commit: "feat(fedora): rewrite install.sh"
+
+### Step 4 — Test on live system
+
+Run `config/install.sh` on the current system. Fix anything that breaks.
+This step may produce follow-up commits.
+
+### Step 5 — Sway keybinding audit
+
+Verify all app launchers work with layered/Flatpak/AppImage binaries.
+Update `bindsym.conf` as needed. Move Dropbox URL files to private repo,
+update paths.
+
+Commit: "feat(fedora): update sway bindings"
+
+### Step 6 — Devcontainer prototype
+
+Separate from dotfiles — done in a project repo.
+Once working, document the approach here for reference.
+
+### Step 7 — Merge to master
+
+Squash or merge `atomic-fedora` → `master` when everything works.
+
+---
+
+## Phase Details
+
+### Host layer
 
 The Fedora Sway Atomic spin ships sway, foot, rofi, waybar, grim, slurp,
 polkit-gnome, wl-clipboard, brightnessctl, playerctl, wob, wlsunset, swaync.
@@ -119,7 +192,7 @@ fuse2 is already in the base image — AppImages work without layering anything.
 
 Reboot after rpm-ostree changes.
 
-### Phase 2 — Flatpak
+### Flatpak
 
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -133,7 +206,7 @@ flatpak install flathub \
 Chrome stays as the default browser for now — the `--app=` flag is used
 heavily in sway keybindings. Switch to Firefox later if needed.
 
-### Phase 2b — AppImage / binary apps
+### AppImage / binary apps
 
 Pattern established by `bin/cursor/update_cursor`.
 
@@ -151,7 +224,7 @@ Pattern established by `bin/cursor/update_cursor`.
 - `bin/lazygit/update_lazygit` — auto-download from GitHub releases API
 - Installs to `~/.local/bin/lazygit`
 
-### Phase 3 — systemd user services
+### systemd user services
 
 Already provided by the system:
 ```
@@ -208,7 +281,7 @@ Waybar custom module in `config/waybar/config.jsonc`:
 `bin/waybar/check_updates` — shows icon when rpm-ostree update available,
 empty otherwise.
 
-### Phase 4 — install.sh rewrite
+### install.sh rewrite
 
 Order of operations:
 1. rpm-ostree override remove + install (Phase 1) — requires reboot
@@ -222,7 +295,7 @@ Symlink changes vs current install.sh:
 - Remove: Sublime tarball desktop file (no longer needed — rpm handles it)
 - Keep: everything else as-is
 
-### Phase 5 — Bash clean sweep
+### Bash clean sweep
 
 Drop all Ubuntu-era content. Start from Fedora defaults.
 
@@ -248,7 +321,7 @@ export BUNDLER_EDITOR="subl -n"
 
 No `.bash_aliases` for now — add only when a need arises.
 
-### Phase 6 — Sway config cleanup
+### Sway config cleanup
 
 **exec.conf**
 - Remove `dropbox start -i` (now systemd service)
@@ -270,7 +343,7 @@ No `.bash_aliases` for now — add only when a need arises.
 **tmux/.tmux.conf**
 - Change `xclip -in -selection clipboard` → `wl-copy`
 
-### Phase 7 — Devcontainer prototype
+### Devcontainer prototype
 
 Add `.devcontainer/` to one project as a prototype. If it works, propose to team.
 
@@ -289,7 +362,7 @@ Key points:
 - `rails test`, `rails db:migrate` etc. run in Cursor's integrated terminal (inside container)
 - foot+tmux access via: `podman exec -it <container> bash`
 
-### Phase 8 — Editor + LSP
+### Editor + LSP
 
 Sublime Text is layered (rpm) so it has full host access. LSP integration
 with devcontainers via:
