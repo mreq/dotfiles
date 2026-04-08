@@ -8,16 +8,20 @@ Goal: clone dotfiles, run `config/install.sh`, reboot, be ready to develop.
 
 ```
 Host (immutable)   Fedora Sway Atomic base
-                   rpm-ostree layer: tmux, btop, ripgrep, google-chrome-stable,
-                     slack, sublime-text, keepassxc
-                   rpm-ostree override remove: firefox (replaced by Flatpak)
+                   rpm-ostree layer: distrobox, tmux, btop, ripgrep
                    fuse2 already present in base image (AppImages work out of the box)
 
-Flatpak            Firefox (verified, Mozilla), Thunderbird (verified, Mozilla),
-                   Spotify (unverified, low-risk)
+Distrobox "apps"   Fedora-based, exported to host via distrobox-export
+(Fedora)           google-chrome-stable, slack, sublime-text, keepassxc,
+                   firefox, thunderbird, doublecmd-gtk
 
-AppImage           Cursor, Double Commander — managed via update_* scripts
-Binary             lazygit — managed via update_* script
+Distrobox "dev"    Fedora-based, exported to host via distrobox-export
+(Fedora)           gh, awscli2 — future dev CLI tools go here
+
+Flatpak            Spotify (no official repo, low-risk)
+
+AppImage           Cursor — managed via update_cursor script
+Binary             lazygit — managed via update_lazygit script
 
 Podman             Per-project dev services (postgres, redis, etc.)
                    Devcontainers for "clone and develop" workflow
@@ -28,9 +32,17 @@ systemd (user)     ssh-agent.socket, podman.socket
 No global runtimes. No mise. No toolbox — add later only if needed.
 Projects use devcontainers for dev environments.
 
-Layering rationale: Chrome, Slack, Sublime, KeePassXC are security-critical
-or core workflow apps. All available from official vendor rpm repos with GPG
-signing. Layering leaf apps has negligible impact on updates and rollback.
+Layering rationale: only distrobox, tmux, btop, ripgrep are layered — bare
+essentials for host use. distrobox is not shipped with the Sway spin.
+Everything else runs in distroboxes or Flatpak to keep the host image
+minimal and rollbacks fast.
+
+Distrobox rationale: all critical desktop apps (Chrome, Slack, Sublime,
+Firefox, Thunderbird, KeePassXC) run in the "apps" distrobox. Fedora-based
+for newer packages. distrobox-export creates seamless .desktop files and
+binaries in ~/.local/bin — sway keybindings and rofi work transparently.
+Dev CLI tools (gh, awscli2) live in a separate "dev" distrobox to keep
+concerns separated.
 
 ---
 
@@ -74,7 +86,6 @@ bin/sway/
 ### New
 ```
 bin/lazygit/update_lazygit
-bin/doublecmd/update_doublecmd
 config/systemd/dropbox.service
 config/systemd/wlsunset.service
 bin/waybar/check_updates
@@ -139,8 +150,8 @@ Commit: "feat(fedora): add systemd services and update scripts"
 
 ### Step 3 — Rewrite install.sh
 
-Encode the full setup: rpm-ostree, flatpak, symlinks, systemd enable, fonts.
-This is the "clone and run" automation.
+Encode the full setup: rpm-ostree, distrobox (apps + dev), flatpak (Spotify),
+symlinks, systemd enable, fonts. This is the "clone and run" automation.
 
 Commit: "feat(fedora): rewrite install.sh"
 
@@ -176,31 +187,63 @@ The Fedora Sway Atomic spin ships sway, foot, rofi, waybar, grim, slurp,
 polkit-gnome, wl-clipboard, brightnessctl, playerctl, wob, wlsunset, swaync.
 Verify what's present before adding anything.
 
-Remove layered Firefox, replace with Flatpak:
+Remove layered Firefox (replaced by distrobox Firefox):
 ```
 rpm-ostree override remove firefox
 ```
 
-Add official vendor repos for Chrome, Slack, Sublime, then layer:
+Layer only bare essentials for host use:
 ```
-rpm-ostree install \
-  tmux btop ripgrep keepassxc gh awscli2 \
-  google-chrome-stable slack sublime-text
+rpm-ostree install distrobox tmux btop ripgrep
 ```
 
 fuse2 is already in the base image — AppImages work without layering anything.
 
 Reboot after rpm-ostree changes.
 
+### Distrobox
+
+Both containers are Fedora-based (newer packages than Ubuntu).
+
+**"apps" container** — desktop apps without verified Flatpaks:
+```
+distrobox create --name apps --image registry.fedoraproject.org/fedora-toolbox:latest
+distrobox enter apps -- sudo dnf install -y \
+  google-chrome-stable slack sublime-text keepassxc firefox thunderbird doublecmd-gtk
+```
+
+Requires adding vendor repos inside the container for Chrome, Slack, Sublime.
+
+Export apps to host (creates .desktop files + binaries in ~/.local/bin):
+```
+distrobox enter apps -- distrobox-export --app google-chrome-stable
+distrobox enter apps -- distrobox-export --app slack
+distrobox enter apps -- distrobox-export --app sublime_text
+distrobox enter apps -- distrobox-export --app keepassxc
+distrobox enter apps -- distrobox-export --app firefox
+distrobox enter apps -- distrobox-export --app thunderbird
+distrobox enter apps -- distrobox-export --app doublecmd
+```
+
+**"dev" container** — CLI dev tools:
+```
+distrobox create --name dev --image registry.fedoraproject.org/fedora-toolbox:latest
+distrobox enter dev -- sudo dnf install -y gh awscli2
+```
+
+Export binaries to host:
+```
+distrobox enter dev -- distrobox-export --bin /usr/bin/gh --export-path ~/.local/bin
+distrobox enter dev -- distrobox-export --bin /usr/bin/aws --export-path ~/.local/bin
+```
+
 ### Flatpak
+
+Only Spotify — no official repo or deb available.
 
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-flatpak install flathub \
-  org.mozilla.firefox \
-  org.mozilla.Thunderbird \
-  com.spotify.Client
+flatpak install flathub com.spotify.Client
 ```
 
 Chrome stays as the default browser for now — the `--app=` flag is used
@@ -215,14 +258,10 @@ Pattern established by `bin/cursor/update_cursor`.
 - `cursor.sh` wraps with `ELECTRON_OZONE_PLATFORM_HINT=auto --no-sandbox`
 - Needs Podman socket exported (Phase 3) for devcontainer support
 
-**Double Commander** — Qt AppImage from GitHub releases
-- `bin/doublecmd/update_doublecmd`
-- Installs to `~/.local/share/doublecmd/`, symlink at `~/.local/bin/doublecmd`
-- Custom `.desktop` file for Sway/rofi integration
-
 **lazygit** — single binary from GitHub releases
 - `bin/lazygit/update_lazygit` — auto-download from GitHub releases API
 - Installs to `~/.local/bin/lazygit`
+- Preferred over Fedora COPR (third-party repo) — official binary is more reliable
 
 ### systemd user services
 
@@ -283,16 +322,35 @@ empty otherwise.
 
 ### install.sh rewrite
 
+All package names, container images, services, etc. are defined in
+`setup/packages.json` — install.sh reads from it, nothing is hardcoded.
+
+**Idempotent by design.** Every section checks current state before acting.
+Edit `packages.json`, re-run the script, and only the delta is applied.
+
 Order of operations:
-1. rpm-ostree override remove + install (Phase 1) — requires reboot
-2. flatpak install (Phase 2)
-3. symlink dotfiles configs
-4. install fonts
-5. systemctl enable services (Phase 3)
+1. rpm-ostree override remove + install (from `rpm-ostree` key) — requires reboot
+2. distrobox create + dnf install + distrobox-export (from `distrobox` key)
+3. flatpak install (from `flatpak` key)
+4. symlink dotfiles configs
+5. install fonts
+6. systemctl enable services (from `systemd-user` key)
+
+Idempotency approach per section:
+- **rpm-ostree**: query `rpm-ostree status` for currently layered/removed
+  packages, compute diff against packages.json, skip if no changes
+- **distrobox**: check if container exists (`distrobox list`), create only
+  if missing. Inside container: `rpm -q` to check installed packages,
+  `dnf install` only missing ones. Re-export apps/bins unconditionally
+  (export is already idempotent)
+- **flatpak**: `flatpak list` to check installed, install only missing
+- **symlinks**: `ln -sf` is already idempotent
+- **fonts**: skip if font dir already populated
+- **systemd**: `systemctl is-enabled` to check, enable only if not already
 
 Symlink changes vs current install.sh:
 - Remove: nvim, mise, ruby/.gemrc, electron/electron-flags.conf, zed Flatpak path
-- Remove: Sublime tarball desktop file (no longer needed — rpm handles it)
+- Remove: Sublime tarball desktop file (no longer needed — distrobox-export handles it)
 - Keep: everything else as-is
 
 ### Bash clean sweep
@@ -399,3 +457,5 @@ Dropbox still syncs for personal use.
 - [ ] Team devcontainer adoption: prototype first, then propose
 - [ ] Dropbox: verify headless daemon works on Atomic
 - [ ] Default browser: switch to Firefox later if `--app=` usage can be replaced
+- [ ] Distrobox app exports: verify GUI apps (Chrome, Sublime, etc.) integrate cleanly with sway/rofi
+- [ ] Distrobox persistence: confirm containers survive rpm-ostree updates/reboots
