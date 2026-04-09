@@ -79,6 +79,17 @@ else
 	log "no packages to layer"
 fi
 
+to_unlayer=$(comm -23 <(printf '%s\n' "$currently_layered") <(printf '%s\n' "$desired_install") | grep -v '^$' || true)
+
+if [[ -n "$to_unlayer" ]]; then
+	log "uninstalling layered packages: $(echo "$to_unlayer" | tr '\n' ' ')"
+	# shellcheck disable=SC2086
+	sudo rpm-ostree uninstall $to_unlayer
+	NEEDS_REBOOT=1
+else
+	log "no layered packages to uninstall"
+fi
+
 #-------------------------------------------------------------------------------
 # 2. distrobox — create containers, install packages, export
 #-------------------------------------------------------------------------------
