@@ -9,8 +9,7 @@
       { "package": "tmux", "info": "Terminal multiplexer" },
       { "package": "btop", "info": "Resource monitor" },
       { "package": "ripgrep", "info": "Fast recursive grep" },
-      { "package": "python3-i3ipc", "info": "Python sway IPC for bin/sway/ scripts" },
-      { "package": "openssh-askpass", "info": "SSH passphrase GUI prompt" }
+      { "package": "python3-i3ipc", "info": "Python sway IPC for bin/sway/ scripts" }
     ]
   },
   "distrobox": {
@@ -35,6 +34,7 @@
           "gpg-key": "https://download.sublimetext.com/sublimehq-rpm-pub.gpg",
           "repofile": "https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo"
         },
+        { "package": "openssh-askpass", "info": "SSH passphrase GUI prompt for git operations" },
         { "package": "keepassxc", "info": "Password manager" },
         { "package": "firefox", "info": "Web browser" },
         { "package": "thunderbird", "info": "Email client" },
