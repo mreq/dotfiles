@@ -1,0 +1,9 @@
+[Unit]
+Description=Dropbox
+
+[Service]
+ExecStart=%h/.local/share/.dropbox-dist/dropboxd
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

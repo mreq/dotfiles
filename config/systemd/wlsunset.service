@@ -1,0 +1,10 @@
+[Unit]
+Description=Day/night color temperature
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/wlsunset -l 50.08 -L 14.42
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

@@ -1,0 +1,149 @@
+#!/bin/bash
+# Generic AppImage installer driven by setup/packages.json.
+#
+# Usage: update_appimage <name>
+#   e.g. update_appimage cursor
+#        update_appimage freelens
+#
+# Reads the matching entry under the "appimage" key in packages.json:
+#   - source: "manual"  → picks the latest matching file from ~/Downloads
+#   - source: "github"  → downloads the latest release asset from GitHub
+#
+# Installs versioned AppImage to install-dir, points <Prefix>.AppImage
+# symlink at the newest one, prompts to remove older versions.
+
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+	echo "Usage: update_appimage <name>" >&2
+	exit 2
+fi
+
+APP_NAME="$1"
+PACKAGES_JSON="$(dirname "$(readlink -f "$0")")/../setup/packages.json"
+
+if [[ ! -f "$PACKAGES_JSON" ]]; then
+	echo "update_appimage - ERROR: packages.json not found at $PACKAGES_JSON" >&2
+	exit 1
+fi
+
+entry=$(jq -c --arg name "$APP_NAME" '.appimage[] | select(.name == $name)' "$PACKAGES_JSON")
+if [[ -z "$entry" ]]; then
+	echo "update_appimage - ERROR: no entry named '$APP_NAME' under .appimage in packages.json" >&2
+	exit 1
+fi
+
+source_type=$(printf '%s' "$entry" | jq -r '.source')
+install_dir=$(printf '%s' "$entry" | jq -r '.["install-dir"]')
+install_dir="${install_dir/#\~/$HOME}"
+mkdir -p "$install_dir"
+
+# Stage the new AppImage into a temp file before installing.
+staged_file=""
+staged_filename=""
+cleanup() { [[ -n "${staged_file:-}" && -f "$staged_file" ]] && rm -f "$staged_file"; }
+trap cleanup EXIT
+
+case "$source_type" in
+manual)
+	pattern=$(printf '%s' "$entry" | jq -r '.["file-pattern"]')
+	if [[ -z "$pattern" || "$pattern" == "null" ]]; then
+		echo "update_appimage - ERROR: manual source requires .file-pattern" >&2
+		exit 1
+	fi
+
+	candidate=$(find "$HOME/Downloads" -maxdepth 1 -type f -name "$pattern" 2>/dev/null | sort -V | tail -n1)
+	if [[ -z "$candidate" ]]; then
+		echo "update_appimage - ERROR: no file matching '$pattern' found in ~/Downloads" >&2
+		exit 1
+	fi
+
+	staged_filename=$(basename "$candidate")
+	staged_file="$candidate"
+	# We do NOT trap-delete a manual source; clear the trap.
+	trap - EXIT
+	echo "update_appimage - found $staged_filename in ~/Downloads"
+	;;
+
+github)
+	repo=$(printf '%s' "$entry" | jq -r '.repo')
+	asset_pattern=$(printf '%s' "$entry" | jq -r '.["asset-pattern"]')
+	if [[ -z "$repo" || "$repo" == "null" || -z "$asset_pattern" || "$asset_pattern" == "null" ]]; then
+		echo "update_appimage - ERROR: github source requires .repo and .asset-pattern" >&2
+		exit 1
+	fi
+
+	# Convert glob pattern (*) to regex (.*) for jq's test().
+	asset_regex="^${asset_pattern//\./\\.}\$"
+	asset_regex="${asset_regex//\*/.*}"
+
+	release_json=$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest")
+	asset_url=$(printf '%s' "$release_json" | jq -r --arg re "$asset_regex" '.assets[] | select(.name | test($re)) | .browser_download_url' | head -n1)
+	asset_name=$(printf '%s' "$release_json" | jq -r --arg re "$asset_regex" '.assets[] | select(.name | test($re)) | .name' | head -n1)
+
+	if [[ -z "$asset_url" ]]; then
+		echo "update_appimage - ERROR: no asset matching '$asset_pattern' in latest release of $repo" >&2
+		exit 1
+	fi
+
+	staged_filename="$asset_name"
+	target_check="$install_dir/$staged_filename"
+	if [[ -f "$target_check" ]]; then
+		echo "update_appimage - $staged_filename is already installed, skipping download"
+	else
+		staged_file=$(mktemp --suffix=".AppImage")
+		echo "update_appimage - downloading $asset_name from $repo"
+		curl -fsSL "$asset_url" -o "$staged_file"
+	fi
+	;;
+
+*)
+	echo "update_appimage - ERROR: unknown source type '$source_type'" >&2
+	exit 1
+	;;
+esac
+
+# Install: copy the staged file to install-dir if it's not already there.
+target="$install_dir/$staged_filename"
+if [[ ! -f "$target" ]]; then
+	if [[ -z "$staged_file" || ! -f "$staged_file" ]]; then
+		echo "update_appimage - ERROR: staged file missing" >&2
+		exit 1
+	fi
+	echo "update_appimage - installing $staged_filename to $install_dir"
+	install -m 0755 "$staged_file" "$target"
+elif [[ -n "$staged_file" && "$staged_file" != "$target" ]]; then
+	echo "update_appimage - $staged_filename already installed, skipping copy"
+fi
+
+# For manual source: remove the file from ~/Downloads after successful install.
+if [[ "$source_type" == "manual" && -f "$target" && -f "$HOME/Downloads/$staged_filename" ]]; then
+	rm -f "$HOME/Downloads/$staged_filename"
+	echo "update_appimage - removed $staged_filename from ~/Downloads"
+fi
+
+# Refresh symlink: <Prefix>.AppImage → newest installed file.
+# Prefix is everything in the filename up to the first '-'.
+prefix="${staged_filename%%-*}"
+symlink_path="$install_dir/${prefix}.AppImage"
+newest=$(find "$install_dir" -maxdepth 1 -type f -name "${prefix}-*.AppImage" 2>/dev/null | sort -V | tail -n1)
+if [[ -n "$newest" ]]; then
+	ln -sfn "$(basename "$newest")" "$symlink_path"
+	echo "update_appimage - symlink ${prefix}.AppImage → $(basename "$newest")"
+fi
+
+# Prompt to clean up older versions.
+mapfile -t old_versions < <(find "$install_dir" -maxdepth 1 -type f -name "${prefix}-*.AppImage" 2>/dev/null | sort -V | head -n -1)
+if [[ ${#old_versions[@]} -gt 0 ]]; then
+	echo "update_appimage - older versions found:"
+	for f in "${old_versions[@]}"; do echo "  - $(basename "$f")"; done
+	read -rp "update_appimage - remove older versions? [Y/n] " response
+	if [[ -z "$response" || "$response" =~ ^[Yy]$ ]]; then
+		for f in "${old_versions[@]}"; do
+			rm -f "$f"
+			echo "update_appimage - removed $(basename "$f")"
+		done
+	fi
+fi
+
+echo -e "update_appimage - \033[32m✓ done\033[0m"

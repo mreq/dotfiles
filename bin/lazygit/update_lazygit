@@ -1,0 +1,46 @@
+#!/bin/bash
+# Install or upgrade lazygit from upstream GitHub releases.
+# Preferred over Fedora COPR — single static binary, official source.
+
+set -euo pipefail
+
+REPO="jesseduffield/lazygit"
+INSTALL_PATH="$HOME/.local/bin/lazygit"
+
+mkdir -p "$(dirname "$INSTALL_PATH")"
+
+latest_json=$(curl -fsSL "https://api.github.com/repos/$REPO/releases/latest")
+latest_tag=$(printf '%s' "$latest_json" | jq -r '.tag_name')
+latest_version="${latest_tag#v}"
+
+if [[ -z "$latest_version" || "$latest_version" == "null" ]]; then
+	echo "update_lazygit - ERROR: could not determine latest version" >&2
+	exit 1
+fi
+
+current_version=""
+if [[ -x "$INSTALL_PATH" ]]; then
+	current_version=$("$INSTALL_PATH" --version 2>/dev/null | sed -n 's/.*version=\([0-9.]*\).*/\1/p' | head -n1 || true)
+fi
+
+if [[ -n "$current_version" ]] && [[ "$current_version" == "$latest_version" ]]; then
+	echo "update_lazygit - already at v$latest_version, nothing to do"
+	exit 0
+fi
+
+asset_url=$(printf '%s' "$latest_json" | jq -r '.assets[] | select(.name | test("^lazygit_.*_Linux_x86_64\\.tar\\.gz$")) | .browser_download_url' | head -n1)
+
+if [[ -z "$asset_url" ]]; then
+	echo "update_lazygit - ERROR: no Linux x86_64 asset found in release $latest_tag" >&2
+	exit 1
+fi
+
+echo "update_lazygit - downloading lazygit v$latest_version"
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+curl -fsSL "$asset_url" -o "$tmpdir/lazygit.tar.gz"
+tar -xzf "$tmpdir/lazygit.tar.gz" -C "$tmpdir" lazygit
+install -m 0755 "$tmpdir/lazygit" "$INSTALL_PATH"
+
+echo -e "update_lazygit - \033[32m✓ installed v$latest_version to $INSTALL_PATH\033[0m"

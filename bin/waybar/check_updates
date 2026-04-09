@@ -1,0 +1,17 @@
+#!/bin/bash
+# Waybar custom module — emit JSON when an rpm-ostree update is staged.
+# Empty output means "no update", which hides the module in waybar.
+
+set -u
+
+# rpm-ostree status -j is fast and doesn't hit the network.
+# Pair this with `systemctl enable --now rpm-ostreed-automatic.timer` so
+# the deployment list actually reflects available upstream updates.
+status_json=$(rpm-ostree status --json 2>/dev/null) || exit 0
+
+# A staged deployment indicates an update is queued for next boot.
+staged=$(printf '%s' "$status_json" | jq -r '.deployments[]? | select(.staged == true) | .checksum' 2>/dev/null | head -n1)
+
+if [[ -n "$staged" ]]; then
+	printf '{"text": "󰚰", "tooltip": "rpm-ostree update staged — reboot to apply", "class": "update-available"}\n'
+fi
