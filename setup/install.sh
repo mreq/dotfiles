@@ -69,8 +69,11 @@ fi
 
 if [[ -n "$to_install" ]]; then
 	log "layering packages: $(echo "$to_install" | tr '\n' ' ')"
+	# --allow-inactive: declare-as-requested even if the base image already
+	# provides the package, so packages.json stays authoritative if a future
+	# base ever drops it.
 	# shellcheck disable=SC2086
-	sudo rpm-ostree install $to_install
+	sudo rpm-ostree install --allow-inactive $to_install
 	NEEDS_REBOOT=1
 else
 	log "no packages to layer"
@@ -104,26 +107,61 @@ for container in "${containers[@]}"; do
 		distrobox create --yes --name "$container" --image "$image"
 	fi
 
-	# Install missing packages inside the container.
-	mapfile -t pkgs < <(jq -r --arg c "$container" '.distrobox[$c].packages[].package' "$PACKAGES_JSON")
-	if [[ ${#pkgs[@]} -gt 0 ]]; then
-		# shellcheck disable=SC2016
-		missing=$(distrobox enter "$container" -- bash -c '
-			missing=()
-			for pkg in "$@"; do
-				rpm -q "$pkg" >/dev/null 2>&1 || missing+=("$pkg")
-			done
-			printf "%s\n" "${missing[@]}"
-		' -- "${pkgs[@]}" | grep -v '^$' || true)
+	# Install missing packages inside the container, per package, so that
+	# each package's vendor-repo setup (requires-package, gpg-key, repofile,
+	# enable-repo) lives next to the package declaration in packages.json.
+	mapfile -t pkg_entries < <(jq -c --arg c "$container" '.distrobox[$c].packages[]' "$PACKAGES_JSON")
 
-		if [[ -n "$missing" ]]; then
-			log "[$container] installing: $(echo "$missing" | tr '\n' ' ')"
-			# shellcheck disable=SC2086
-			distrobox enter "$container" -- sudo dnf install -y $missing
-		else
-			log "[$container] all packages already installed"
+	for entry in "${pkg_entries[@]}"; do
+		pkg=$(printf '%s' "$entry" | jq -r '.package')
+
+		if distrobox enter "$container" -- rpm -q "$pkg" >/dev/null 2>&1; then
+			continue
 		fi
-	fi
+
+		log "[$container] installing $pkg"
+
+		requires_pkg=$(printf '%s' "$entry" | jq -r '."requires-package" // empty')
+		gpg_key=$(printf '%s' "$entry" | jq -r '."gpg-key" // empty')
+		repofile=$(printf '%s' "$entry" | jq -r '.repofile // empty')
+		enable_repo=$(printf '%s' "$entry" | jq -r '."enable-repo" // empty')
+		url=$(printf '%s' "$entry" | jq -r '.url // empty')
+		url_from_page=$(printf '%s' "$entry" | jq -r '."url-from-page" // empty')
+		url_pattern=$(printf '%s' "$entry" | jq -r '."url-pattern" // empty')
+
+		# Resolve url by scraping a vendor download page (used when no yum repo exists).
+		if [[ -z "$url" && -n "$url_from_page" && -n "$url_pattern" ]]; then
+			url=$(curl -fsL "$url_from_page" | grep -oE "$url_pattern" | head -n1)
+			if [[ -z "$url" ]]; then
+				echo "setup/install - ERROR: could not extract $pkg url from $url_from_page (pattern: $url_pattern)" >&2
+				exit 1
+			fi
+			log "[$container] resolved $pkg url: $url"
+		fi
+
+		if [[ -n "$requires_pkg" ]]; then
+			distrobox enter "$container" -- bash -c "rpm -q $requires_pkg >/dev/null 2>&1 || sudo dnf install -y $requires_pkg"
+		fi
+
+		if [[ -n "$gpg_key" ]]; then
+			distrobox enter "$container" -- sudo rpm --import "$gpg_key"
+		fi
+
+		if [[ -n "$repofile" ]]; then
+			repo_basename=$(basename "$repofile")
+			distrobox enter "$container" -- bash -c "[ -f /etc/yum.repos.d/$repo_basename ] || sudo dnf config-manager addrepo --from-repofile=$repofile"
+		fi
+
+		if [[ -n "$enable_repo" ]]; then
+			distrobox enter "$container" -- sudo dnf config-manager setopt "$enable_repo.enabled=1"
+		fi
+
+		if [[ -n "$url" ]]; then
+			distrobox enter "$container" -- sudo dnf install -y "$url"
+		else
+			distrobox enter "$container" -- sudo dnf install -y "$pkg"
+		fi
+	done
 
 	# Export apps (.desktop entries).
 	mapfile -t export_apps < <(jq -r --arg c "$container" '.distrobox[$c]["export-apps"][]?' "$PACKAGES_JSON")

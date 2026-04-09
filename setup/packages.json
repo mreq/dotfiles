@@ -1,7 +1,8 @@
 {
   "rpm-ostree": {
     "remove": [
-      { "package": "firefox", "info": "Replaced by distrobox Firefox" }
+      { "package": "firefox", "info": "Replaced by distrobox Firefox" },
+      { "package": "firefox-langpacks", "info": "Depends on firefox; must be removed in the same transaction" }
     ],
     "install": [
       { "package": "distrobox", "info": "Run any Linux distro in a container" },
@@ -16,9 +17,24 @@
     "apps": {
       "image": "registry.fedoraproject.org/fedora-toolbox:latest",
       "packages": [
-        { "package": "google-chrome-stable", "info": "Web browser (requires vendor repo)" },
-        { "package": "slack", "info": "Team messaging (requires vendor repo)" },
-        { "package": "sublime-text", "info": "Text editor (requires vendor repo)" },
+        {
+          "package": "google-chrome-stable",
+          "info": "Web browser",
+          "requires-package": "fedora-workstation-repositories",
+          "enable-repo": "google-chrome"
+        },
+        {
+          "package": "slack",
+          "info": "Team messaging — RPM URL scraped from slack.com (no vendor repo)",
+          "url-from-page": "https://slack.com/downloads/instructions/linux?ddl=1&build=rpm",
+          "url-pattern": "https://downloads\\.slack-edge\\.com/[^\"' ]+\\.rpm"
+        },
+        {
+          "package": "sublime-text",
+          "info": "Text editor",
+          "gpg-key": "https://download.sublimetext.com/sublimehq-rpm-pub.gpg",
+          "repofile": "https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo"
+        },
         { "package": "keepassxc", "info": "Password manager" },
         { "package": "firefox", "info": "Web browser" },
         { "package": "thunderbird", "info": "Email client" },
