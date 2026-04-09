@@ -107,6 +107,21 @@ for container in "${containers[@]}"; do
 		distrobox create --yes --name "$container" --image "$image"
 	fi
 
+	# Remove packages that were in the last commit but are no longer in the manifest.
+	repo_root=$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null || true)
+	pkg_rel=$(realpath --relative-to="$repo_root" "$PACKAGES_JSON" 2>/dev/null || true)
+	if [[ -n "$repo_root" && -n "$pkg_rel" ]] && git -C "$repo_root" diff HEAD -- "$pkg_rel" 2>/dev/null | grep -q '^-'; then
+		prev_packages=$(git -C "$repo_root" show "HEAD:$pkg_rel" 2>/dev/null | jq -r --arg c "$container" '.distrobox[$c].packages[].package' 2>/dev/null | sort -u || true)
+		curr_packages=$(jq -r --arg c "$container" '.distrobox[$c].packages[].package' "$PACKAGES_JSON" | sort -u)
+		to_remove_pkgs=$(comm -23 <(printf '%s\n' "$prev_packages") <(printf '%s\n' "$curr_packages") | grep -v '^$' || true)
+		for pkg in $to_remove_pkgs; do
+			if distrobox enter "$container" -- rpm -q "$pkg" >/dev/null 2>&1; then
+				log "[$container] removing $pkg (removed from manifest)"
+				distrobox enter "$container" -- sudo dnf remove -y "$pkg"
+			fi
+		done
+	fi
+
 	# Install missing packages inside the container, per package, so that
 	# each package's vendor-repo setup (requires-package, gpg-key, repofile,
 	# enable-repo) lives next to the package declaration in packages.json.

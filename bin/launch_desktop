@@ -1,0 +1,36 @@
+#!/bin/bash
+# launch_desktop — launch a .desktop entry by its ID via `gio launch`.
+#
+# Lets sway bindings (and any other caller) delegate the actual launch
+# command to the .desktop file installed by the upstream tool, instead
+# of hardcoding `distrobox-enter -n apps -- /opt/.../bin --flag` lines.
+# Re-exports from distrobox or flatpak just work without touching this.
+#
+# Usage: launch_desktop <desktop-id> [args...]
+#   e.g. launch_desktop apps-com.google.Chrome
+#        launch_desktop apps-sublime_text
+#        launch_desktop com.spotify.Client
+
+set -e
+
+if [[ $# -lt 1 ]]; then
+	echo "Usage: launch_desktop <desktop-id> [args...]" >&2
+	exit 2
+fi
+
+id="$1"
+shift
+
+for dir in \
+	"$HOME/.local/share/applications" \
+	"$HOME/.local/share/flatpak/exports/share/applications" \
+	/var/lib/flatpak/exports/share/applications \
+	/usr/local/share/applications \
+	/usr/share/applications; do
+	if [[ -f "$dir/$id.desktop" ]]; then
+		exec gio launch "$dir/$id.desktop" "$@"
+	fi
+done
+
+echo "launch_desktop: $id.desktop not found in standard application directories" >&2
+exit 1

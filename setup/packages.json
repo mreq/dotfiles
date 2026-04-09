@@ -38,7 +38,11 @@
         { "package": "keepassxc", "info": "Password manager" },
         { "package": "firefox", "info": "Web browser" },
         { "package": "thunderbird", "info": "Email client" },
-        { "package": "doublecmd-gtk", "info": "Twin-panel file manager (GTK)" }
+        {
+          "package": "doublecmd-qt",
+          "info": "Twin-panel file manager (Qt5 build, native Wayland)",
+          "requires-package": "qt5-qtwayland"
+        }
       ],
       "export-apps": [
         "google-chrome-stable",
@@ -47,7 +51,7 @@
         "keepassxc",
         "firefox",
         "thunderbird",
-        "doublecmd"
+        "doublecmd-qt"
       ]
     },
     "dev": {
