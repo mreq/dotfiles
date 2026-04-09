@@ -13,14 +13,15 @@ Host (immutable)   Fedora Sway Atomic base
 
 Distrobox "apps"   Fedora-based, exported to host via distrobox-export
 (Fedora)           google-chrome-stable, slack, sublime-text, keepassxc,
-                   firefox, thunderbird, doublecmd-gtk
+                   firefox, thunderbird, doublecmd-gtk, freelens
 
 Distrobox "dev"    Fedora-based, exported to host via distrobox-export
-(Fedora)           gh, awscli2 — future dev CLI tools go here
+(Fedora)           gh, awscli2, wf-recorder — future dev/tools go here
 
-Flatpak            Spotify (no official repo, low-risk)
+Flatpak            Spotify (no official repo, low-risk),
+                   GIMP (verified, non-sensitive)
 
-AppImage           Cursor — managed via update_cursor script
+AppImage           Cursor, Freelens — managed via generic update_appimage script
 Binary             lazygit — managed via update_lazygit script
 
 Podman             Per-project dev services (postgres, redis, etc.)
@@ -32,8 +33,9 @@ systemd (user)     ssh-agent.socket, podman.socket
 No global runtimes. No mise. No toolbox — add later only if needed.
 Projects use devcontainers for dev environments.
 
-Layering rationale: only distrobox, tmux, btop, ripgrep are layered — bare
-essentials for host use. distrobox is not shipped with the Sway spin.
+Layering rationale: only distrobox, tmux, btop, ripgrep, python3-i3ipc are
+layered — bare essentials for host use. distrobox and python3-i3ipc are not
+shipped with the Sway spin. python3-i3ipc is needed by bin/sway/ scripts.
 Everything else runs in distroboxes or Flatpak to keep the host image
 minimal and rollbacks fast.
 
@@ -85,6 +87,7 @@ bin/sway/
 
 ### New
 ```
+bin/update_appimage            generic AppImage installer (reads packages.json)
 bin/lazygit/update_lazygit
 config/systemd/dropbox.service
 config/systemd/wlsunset.service
@@ -184,8 +187,9 @@ Squash or merge `atomic-fedora` → `master` when everything works.
 ### Host layer
 
 The Fedora Sway Atomic spin ships sway, foot, rofi, waybar, grim, slurp,
-polkit-gnome, wl-clipboard, brightnessctl, playerctl, wob, wlsunset, swaync.
-Verify what's present before adding anything.
+wl-clipboard, brightnessctl, playerctl, wlsunset, swaylock, swayidle,
+wpctl, dunst, thunar, xwayland.
+NOT shipped: wob, swaync, polkit-gnome, wf-recorder, ssh-askpass.
 
 Remove layered Firefox (replaced by distrobox Firefox):
 ```
@@ -194,7 +198,7 @@ rpm-ostree override remove firefox
 
 Layer only bare essentials for host use:
 ```
-rpm-ostree install distrobox tmux btop ripgrep
+rpm-ostree install distrobox tmux btop ripgrep python3-i3ipc openssh-askpass
 ```
 
 fuse2 is already in the base image — AppImages work without layering anything.
@@ -251,12 +255,22 @@ heavily in sway keybindings. Switch to Firefox later if needed.
 
 ### AppImage / binary apps
 
-Pattern established by `bin/cursor/update_cursor`.
+All AppImages and binaries are declared in `setup/packages.json` under
+`appimage` and `binary` keys.
 
-**Cursor** — AppImage, existing script unchanged
-- Download `Cursor-*.AppImage` to `~/Downloads`, run `update_cursor`
+**`bin/update_appimage`** — generic script that handles all AppImages:
+- Reads app config from packages.json (source, pattern, install dir)
+- `source: "github"` — auto-downloads latest from GitHub releases API
+- `source: "manual"` — picks up from `~/Downloads` (e.g. Cursor has no
+  public release URL)
+- Version comparison, symlink to latest, old version cleanup
+- Usage: `update_appimage cursor` or `update_appimage freelens`
+
+**Cursor** — `source: manual`, download AppImage to ~/Downloads first
 - `cursor.sh` wraps with `ELECTRON_OZONE_PLATFORM_HINT=auto --no-sandbox`
-- Needs Podman socket exported (Phase 3) for devcontainer support
+- Needs Podman socket exported for devcontainer support
+
+**Freelens** — `source: github`, auto-download from freelensapp/freelens
 
 **lazygit** — single binary from GitHub releases
 - `bin/lazygit/update_lazygit` — auto-download from GitHub releases API

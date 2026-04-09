@@ -7,7 +7,9 @@
       { "package": "distrobox", "info": "Run any Linux distro in a container" },
       { "package": "tmux", "info": "Terminal multiplexer" },
       { "package": "btop", "info": "Resource monitor" },
-      { "package": "ripgrep", "info": "Fast recursive grep" }
+      { "package": "ripgrep", "info": "Fast recursive grep" },
+      { "package": "python3-i3ipc", "info": "Python sway IPC for bin/sway/ scripts" },
+      { "package": "openssh-askpass", "info": "SSH passphrase GUI prompt" }
     ]
   },
   "distrobox": {
@@ -36,16 +38,46 @@
       "image": "registry.fedoraproject.org/fedora-toolbox:latest",
       "packages": [
         { "package": "gh", "info": "GitHub CLI" },
-        { "package": "awscli2", "info": "AWS CLI v2" }
+        { "package": "awscli2", "info": "AWS CLI v2" },
+        { "package": "wf-recorder", "info": "Wayland screen recorder" }
       ],
       "export-bins": [
         "/usr/bin/gh",
-        "/usr/bin/aws"
+        "/usr/bin/aws",
+        "/usr/bin/wf-recorder"
       ]
     }
   },
   "flatpak": [
-    { "package": "com.spotify.Client", "info": "Music streaming" }
+    { "package": "com.spotify.Client", "info": "Music streaming" },
+    { "package": "org.gimp.GIMP", "info": "Image editor" }
+  ],
+  "appimage": [
+    {
+      "name": "cursor",
+      "info": "AI code editor",
+      "source": "manual",
+      "file-pattern": "Cursor-*.AppImage",
+      "install-dir": "~/.local/share/cursor"
+    },
+    {
+      "name": "freelens",
+      "info": "Kubernetes IDE",
+      "source": "github",
+      "repo": "freelensapp/freelens",
+      "asset-pattern": "Freelens-*.x86_64.AppImage",
+      "install-dir": "~/.local/share/freelens"
+    }
+  ],
+  "binary": [
+    {
+      "name": "lazygit",
+      "info": "Terminal UI for git",
+      "source": "github",
+      "repo": "jesseduffield/lazygit",
+      "asset-pattern": "lazygit_*_Linux_x86_64.tar.gz",
+      "install-path": "~/.local/bin/lazygit"
+    }
   ],
   "systemd-user": {
     "enable": [
