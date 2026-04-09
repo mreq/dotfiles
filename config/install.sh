@@ -50,8 +50,6 @@ create_dotfiles_config_symlink zed ~/.config/zed
 create_dotfiles_config_symlink systemd/dropbox.service ~/.config/systemd/user/dropbox.service
 create_dotfiles_config_symlink systemd/wlsunset.service ~/.config/systemd/user/wlsunset.service
 
-bash ~/.dotfiles/config/vscode-extensions/install.sh
-
 create_dotfiles_config_symlink cursor/keybindings.json ~/.config/Cursor/User/keybindings.json
 create_dotfiles_config_symlink cursor/settings.json ~/.config/Cursor/User/settings.json
 create_dotfiles_config_symlink cursor/cursor.sh ~/.local/bin/cursor
