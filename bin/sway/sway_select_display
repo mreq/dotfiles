@@ -6,7 +6,7 @@ import argparse
 import os
 import sys
 
-sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'python', 'modules'))
 import dotfiles
 
 TMP_FILE_PATH = "/tmp/sway_select_display.cache"

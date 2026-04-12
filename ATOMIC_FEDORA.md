@@ -325,7 +325,7 @@ sudo systemctl enable --now rpm-ostreed-automatic.timer
 Waybar custom module in `config/waybar/config.jsonc`:
 ```json
 "custom/updates": {
-    "exec": "~/.dotfiles/bin/waybar/check_updates",
+    "exec": "~/.local/share/dotfiles/bin/waybar/check_updates",
     "return-type": "json",
     "interval": 3600
 }
@@ -383,7 +383,7 @@ export PATH="$HOME/.local/bin:$PATH"
 **`.profile`**
 ```bash
 # Add dotfiles bin dirs to PATH
-for dir in $HOME/.dotfiles/*/bin; do
+for dir in $HOME/.local/share/dotfiles/*/bin; do
   PATH="$PATH:$dir"
 done
 

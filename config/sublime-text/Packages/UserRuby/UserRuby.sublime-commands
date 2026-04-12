@@ -28,7 +28,7 @@
     "caption": "Rails: Add module to application.sass",
     "command": "run_cmd",
     "args": {
-      "cmd": "~/.dotfiles/rails/append_module_to_application_css $file_name"
+      "cmd": "~/.local/share/dotfiles/rails/append_module_to_application_css $file_name"
     }
   },
 ]

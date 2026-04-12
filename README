@@ -3,18 +3,18 @@
 ```
 sudo apt install git
 
-git clone git@github.com:mreq/dotfiles.git .dotfiles
+git clone git@github.com:mreq/dotfiles.git ~/.local/share/dotfiles
 
-sudo apt update && sudo apt install -y $(jq -r '.apt[].package' ~/.dotfiles/setup/packages.json)
+sudo apt update && sudo apt install -y $(jq -r '.apt[].package' ~/.local/share/dotfiles/setup/packages.json)
 
-~/.dotfiles/config/install.sh
-~/.dotfiles/setup/setup.sh
+~/.local/share/dotfiles/config/install.sh
+~/.local/share/dotfiles/setup/setup.sh
 
-pip3 install $(jq -r '.pip[].package' ~/.dotfiles/setup/packages.json) --break-system-packages
+pip3 install $(jq -r '.pip[].package' ~/.local/share/dotfiles/setup/packages.json) --break-system-packages
 
-sudo ln -s ~/.dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_downloads
+sudo ln -s ~/.local/share/dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_downloads
 
-sudo ln -s ~/.dotfiles/cron/clear_dropbox /etc/cron.daily/clear_home_petr_dropbox
+sudo ln -s ~/.local/share/dotfiles/cron/clear_dropbox /etc/cron.daily/clear_home_petr_dropbox
 
-sudo ln -s ~/.dotfiles/cron/clear_work_logs /etc/cron.daily/clear_home_petr_work_logs
+sudo ln -s ~/.local/share/dotfiles/cron/clear_work_logs /etc/cron.daily/clear_home_petr_work_logs
 ```

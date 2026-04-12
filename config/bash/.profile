@@ -11,7 +11,7 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 # Add dotfiles bin dirs to PATH
-for dir in "$HOME"/.dotfiles/*/bin; do
+for dir in "$HOME/.local/share/dotfiles"/*/bin; do
   [ -d "$dir" ] && PATH="$PATH:$dir"
 done
 

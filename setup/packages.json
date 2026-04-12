@@ -70,7 +70,9 @@
   },
   "flatpak": [
     { "package": "com.spotify.Client", "info": "Music streaming" },
-    { "package": "org.gimp.GIMP", "info": "Image editor" }
+    { "package": "org.gimp.GIMP", "info": "Image editor" },
+    { "package": "com.moonlight_stream.Moonlight", "info": "Streaming" },
+    { "package": "org.localsend.localsend_app", "info": "File transfer" }
   ],
   "appimage": [
     {

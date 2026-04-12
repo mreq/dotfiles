@@ -6,6 +6,8 @@ set -e
 
 cd "${0%/*}" || exit 0
 
+DOTFILES_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+
 create_symlink() {
 	if ! test -h "$2" || ! test -e "$2"; then
 		echo "Creating symlink: $1 -> $2"
@@ -14,7 +16,7 @@ create_symlink() {
 }
 
 create_dotfiles_config_symlink() {
-	create_symlink ~/.dotfiles/config/"$1" "$2"
+	create_symlink "$DOTFILES_ROOT/config/$1" "$2"
 }
 
 create_dotfiles_config_symlink bash/.bashrc ~/.bashrc

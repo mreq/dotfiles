@@ -2,7 +2,7 @@
 import i3ipc
 import os, sys
 
-sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'python', 'modules'))
 import dotfiles
 
 sway = i3ipc.Connection()

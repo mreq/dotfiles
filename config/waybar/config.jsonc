@@ -132,8 +132,8 @@
     "custom/recording": {
         "format": "{}",
         "interval": 1,
-        "exec": "/home/petr/.dotfiles/bin/sway/sway_recorder_status",
-        "on-click": "/home/petr/.dotfiles/bin/sway/sway_recorder",
+        "exec": "$HOME/.local/share/dotfiles/bin/sway/sway_recorder_status",
+        "on-click": "$HOME/.local/share/dotfiles/bin/sway/sway_recorder",
         "signal": 8,
         "tooltip": false
     }
