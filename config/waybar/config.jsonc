@@ -19,7 +19,7 @@
         "sway/language",
         "clock",
         "tray",
-        "custom/notification",
+        "custom/dnd",
     ],
     "sway/workspaces": {
         "format": "{icon}",
@@ -98,25 +98,18 @@
     "custom/spacer": {
         "format": " ",
     },
-    "custom/notification": {
+    "custom/dnd": {
         "tooltip": false,
-        "format": "<span size=\"x-large\">{icon}</span>",
+        "format": "<span size=\"large\">{icon}</span>",
         "format-icons": {
-            "notification": "",
-            "none": "",
-            "dnd-notification": "",
-            "dnd-none": "",
-            "inhibited-notification": "",
-            "inhibited-none": "",
-            "dnd-inhibited-notification": "",
-            "dnd-inhibited-none": ""
+            "default": "",
+            "dnd": ""
         },
         "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "escape": true
+        "exec": "$HOME/.local/share/dotfiles/bin/waybar/dnd_status",
+        "on-click": "dunstctl set-paused toggle; pkill -RTMIN+9 waybar",
+        "signal": 9,
+        "interval": "once"
     },
     "power-profiles-daemon": {
       "format": "<span size=\"x-large\">{icon}</span>",

@@ -72,7 +72,7 @@ tooltip label {
 #language,
 #clock,
 #tray,
-#custom_notification,
+#custom-dnd,
 #custom_spacer,
 #custom_recording {
   padding: 0 0.5em;
@@ -91,10 +91,7 @@ tooltip label {
   background: @base-red;
 }
 
-#custom-notification.dnd-notification,
-#custom-notification.dnd-none,
-#custom-notification.dnd-inhibited-notification,
-#custom-notification.dnd-inhibited-none {
+#custom-dnd.dnd {
   background: @base-red;
   color: @base-blackey;
 }

@@ -1,0 +1,6 @@
+#!/bin/bash
+if dunstctl is-paused | grep -q "true"; then
+  echo '{"alt": "dnd", "class": "dnd"}'
+else
+  echo '{"alt": "default", "class": "default"}'
+fi

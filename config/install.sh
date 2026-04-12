@@ -4,9 +4,9 @@
 
 set -e
 
-cd "${0%/*}" || exit 0
-
 DOTFILES_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+
+cd "${0%/*}" || exit 0
 
 create_symlink() {
 	if ! test -h "$2" || ! test -e "$2"; then
@@ -24,6 +24,8 @@ create_dotfiles_config_symlink bash/.profile ~/.profile
 
 create_dotfiles_config_symlink btop ~/.config/btop
 
+create_dotfiles_config_symlink dunst ~/.config/dunst
+
 create_dotfiles_config_symlink git/.gitconfig ~/.gitconfig
 create_dotfiles_config_symlink git/ignore ~/.config/git/ignore
 
@@ -33,6 +35,8 @@ create_dotfiles_config_symlink doublecmd/shortcuts.scf ~/.config/doublecmd/short
 create_dotfiles_config_symlink foot ~/.config/foot
 
 create_dotfiles_config_symlink gtk/gtk-3.0 ~/.config/gtk-3.0
+create_dotfiles_config_symlink gtk/gtk-4.0 ~/.config/gtk-4.0
+gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
 
 create_dotfiles_config_symlink lazygit ~/.config/lazygit
 

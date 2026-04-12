@@ -50,22 +50,13 @@ status_json=$(rpm-ostree status --json)
 # Currently layered packages
 currently_layered=$(printf '%s' "$status_json" | jq -r '.deployments[0]."requested-packages"[]?' | sort -u)
 # Currently removed (overridden out) base packages
-currently_removed=$(printf '%s' "$status_json" | jq -r '.deployments[0]."requested-base-removals"[]?' | sort -u)
+currently_removed=$(printf '%s' "$status_json" | jq -r '.deployments[0]."requested-base-removals"[]?' | tr '[:upper:]' '[:lower:]' | sort -u)
 
 desired_install=$(jq -r '."rpm-ostree".install[].package' "$PACKAGES_JSON" | sort -u)
 desired_remove=$(jq -r '."rpm-ostree".remove[].package' "$PACKAGES_JSON" | sort -u)
 
 to_install=$(comm -23 <(printf '%s\n' "$desired_install") <(printf '%s\n' "$currently_layered") | grep -v '^$' || true)
 to_remove=$(comm -23 <(printf '%s\n' "$desired_remove") <(printf '%s\n' "$currently_removed") | grep -v '^$' || true)
-
-if [[ -n "$to_remove" ]]; then
-	log "removing base packages: $(echo "$to_remove" | tr '\n' ' ')"
-	# shellcheck disable=SC2086
-	sudo rpm-ostree override remove $to_remove
-	NEEDS_REBOOT=1
-else
-	log "no base packages to remove"
-fi
 
 if [[ -n "$to_install" ]]; then
 	log "layering packages: $(echo "$to_install" | tr '\n' ' ')"
@@ -79,6 +70,15 @@ else
 	log "no packages to layer"
 fi
 
+if [[ -n "$to_remove" ]]; then
+	log "removing base packages: $(echo "$to_remove" | tr '\n' ' ')"
+	# shellcheck disable=SC2086
+	sudo rpm-ostree override remove $to_remove
+	NEEDS_REBOOT=1
+else
+	log "no base packages to remove"
+fi
+
 to_unlayer=$(comm -23 <(printf '%s\n' "$currently_layered") <(printf '%s\n' "$desired_install") | grep -v '^$' || true)
 
 if [[ -n "$to_unlayer" ]]; then
@@ -88,6 +88,28 @@ if [[ -n "$to_unlayer" ]]; then
 	NEEDS_REBOOT=1
 else
 	log "no layered packages to uninstall"
+fi
+
+#-------------------------------------------------------------------------------
+# 1b. systemd-system — enable system services declared on rpm-ostree packages
+#-------------------------------------------------------------------------------
+section "systemd-system"
+
+if [[ $NEEDS_REBOOT -eq 1 ]]; then
+	log "rpm-ostree changes pending reboot — skipping system service activation"
+else
+	mapfile -t svc_entries < <(jq -r '."rpm-ostree".install[] | select(."enable-service") | ."enable-service"' "$PACKAGES_JSON")
+	if [[ ${#svc_entries[@]} -eq 0 ]]; then
+		log "no system services to enable"
+	fi
+	for svc in "${svc_entries[@]}"; do
+		if systemctl is-enabled "$svc" >/dev/null 2>&1; then
+			log "$svc already enabled"
+		else
+			log "enabling $svc"
+			sudo systemctl enable --now "$svc"
+		fi
+	done
 fi
 
 #-------------------------------------------------------------------------------

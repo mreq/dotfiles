@@ -1,0 +1,76 @@
+[global]
+    monitor = 0
+    follow = mouse
+
+    width = 320
+    height = (0, 320)
+    origin = top-right
+    offset = (16, 16)
+    scale = 0
+
+    notification_limit = 0
+
+    indicate_hidden = yes
+    transparency = 0
+    separator_height = 6
+    padding = 22
+    horizontal_padding = 22
+    text_icon_padding = 0
+    frame_width = 0
+    frame_color = "#585858"
+    gap_size = 8
+    separator_color = frame
+    sort = no
+
+    font = Fira Code 12
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    icon_position = off
+    min_icon_size = 0
+    max_icon_size = 32
+
+    sticky_history = yes
+    history_length = 20
+
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/xdg-open
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    corner_radius = 16
+    ignore_dbusclose = false
+
+    layer = top
+    force_xwayland = false
+
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = close_all
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    background = "#282828"
+    foreground = "#d8d8d8"
+    timeout = 10
+
+[urgency_normal]
+    background = "#282828"
+    foreground = "#d8d8d8"
+    timeout = 10
+
+[urgency_critical]
+    background = "#ab4642"
+    foreground = "#d8d8d8"
+    timeout = 0
