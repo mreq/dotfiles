@@ -19,6 +19,18 @@ create_dotfiles_config_symlink() {
 	create_symlink "$DOTFILES_ROOT/config/$1" "$2"
 }
 
+sync_system_dir() {
+	# Copy a directory to a system path (sudo). Used where sddm/system users
+	# can't follow symlinks into the user home directory.
+	# Skips if destination already matches source (avoids sudo prompt).
+	if diff -rq "$1" "$2" > /dev/null 2>&1; then
+		return 0
+	fi
+	echo "Syncing system dir: $1 -> $2"
+	sudo mkdir -p "$2"
+	sudo cp -r "$1/." "$2/"
+}
+
 create_dotfiles_config_symlink bash/.bashrc ~/.bashrc
 create_dotfiles_config_symlink bash/.profile ~/.profile
 
@@ -79,4 +91,12 @@ FONT_PATH=~/.local/share/fonts/FiraCodeNerdFontMono-Regular.ttf
 if [[ ! -f "$FONT_PATH" ]]; then
 	cp ../fonts/FiraCodeNerdFontMono-Regular.ttf "$FONT_PATH"
 	echo "Copying FiraCodeNerdFontMono-Regular to ~/.local/share/fonts"
+fi
+
+# SDDM theme — copied not symlinked (sddm user can't traverse user home)
+sync_system_dir "$DOTFILES_ROOT/config/sddm/theme" /etc/sddm/themes/mreq
+if ! diff -q "$DOTFILES_ROOT/config/sddm/sddm.conf.d/theme.conf" /etc/sddm.conf.d/theme.conf > /dev/null 2>&1; then
+	echo "Syncing system file: sddm.conf.d/theme.conf"
+	sudo mkdir -p /etc/sddm.conf.d
+	sudo cp "$DOTFILES_ROOT/config/sddm/sddm.conf.d/theme.conf" /etc/sddm.conf.d/theme.conf
 fi

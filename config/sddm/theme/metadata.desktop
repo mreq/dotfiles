@@ -1,0 +1,7 @@
+[SddmGreeterTheme]
+Name=mreq
+Description=mreq base16 dark theme
+Type=sddm-theme
+MainScript=Main.qml
+Theme-API=2.0
+QtVersion=6
