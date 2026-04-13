@@ -9,7 +9,7 @@ AGENTS.md files can be placed at the project root or in subdirectories. When mul
 After editing any code files, automatically format and lint them using the appropriate tools for that language.
 
 ### Python
-- Format: `black <file_path>`
+- Format: `ruff format <file_path>`
 - Lint: `ruff check <file_path>`
 
 ### Bash/Shell

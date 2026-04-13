@@ -62,12 +62,18 @@
       "packages": [
         { "package": "gh", "info": "GitHub CLI" },
         { "package": "awscli2", "info": "AWS CLI v2" },
-        { "package": "wf-recorder", "info": "Wayland screen recorder" }
+        { "package": "wf-recorder", "info": "Wayland screen recorder" },
+        { "package": "ruff", "info": "Python linter and formatter" },
+        { "package": "shfmt", "info": "Shell script formatter" },
+        { "package": "ShellCheck", "info": "Shell script linter" }
       ],
       "export-bins": [
         "/usr/bin/gh",
         "/usr/bin/aws",
-        "/usr/bin/wf-recorder"
+        "/usr/bin/wf-recorder",
+        "/usr/bin/ruff",
+        "/usr/bin/shfmt",
+        "/usr/bin/shellcheck"
       ]
     }
   },
