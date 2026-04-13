@@ -1,46 +1,44 @@
 #!/usr/bin/env python3
-from i3ipc import Connection
-from notify import notification
 import argparse
-
+import json
 import os
+import subprocess
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'python', 'modules'))
+from notify import notification
 import dotfiles
 
 TMP_FILE_PATH = "/tmp/sway_select_display.cache"
 
 parser = argparse.ArgumentParser()
-
 parser.add_argument("output", nargs="?")
 parser.add_argument("--handle-reload", action=argparse.BooleanOptionalAction)
-
 args = parser.parse_args()
 
 result = args.output
 
-sway = Connection()
-
-outputs = sway.get_outputs()
-output_names = [o.name for o in sway.get_outputs()]
+outputs = json.loads(
+    subprocess.run(["swaymsg", "-t", "get_outputs"], capture_output=True, text=True).stdout
+)
+output_names = [o["name"] for o in outputs]
 
 
 def get_best_mode_from_output(output):
     highest_product = 0
-    target_mode = output.modes[0]
+    target_mode = output["modes"][0]
 
-    for mode in output.modes:
-        product = mode.width * mode.height
+    for mode in output["modes"]:
+        product = mode["width"] * mode["height"]
         if product > highest_product:
             highest_product = product
             target_mode = mode
 
-    for mode in output.modes:
+    for mode in output["modes"]:
         if (
-            mode.width == target_mode.width
-            and mode.height == target_mode.height
-            and mode.refresh > target_mode.refresh
+            mode["width"] == target_mode["width"]
+            and mode["height"] == target_mode["height"]
+            and mode["refresh"] > target_mode["refresh"]
         ):
             target_mode = mode
 
@@ -48,21 +46,13 @@ def get_best_mode_from_output(output):
 
 
 def are_modes_equal(a, b):
-    return a.width == b.width and a.height == b.height and a.refresh == b.refresh
+    return a["width"] == b["width"] and a["height"] == b["height"] and a["refresh"] == b["refresh"]
 
 
 def set_mode(output, mode):
-    sway.command(
-        "output "
-        + output.name
-        + " mode "
-        + str(mode.width)
-        + "x"
-        + str(mode.height)
-        + "@"
-        + str(mode.refresh / 1000)
-        + "Hz"
-    )
+    subprocess.run(["swaymsg", "output {} mode {}x{}@{}Hz".format(
+        output["name"], mode["width"], mode["height"], mode["refresh"] / 1000
+    )])
 
 
 if result is None:
@@ -70,7 +60,6 @@ if result is None:
         if os.path.isfile(TMP_FILE_PATH):
             with open(TMP_FILE_PATH, "r") as f:
                 result = f.read().strip()
-
         else:
             result = "all"
 
@@ -78,10 +67,10 @@ if result is None:
     if len(outputs) < 2:
         best_mode = get_best_mode_from_output(outputs[0])
 
-        if outputs[0] and not outputs[0].active:
-            result = outputs[0].name
-        elif not are_modes_equal(best_mode, outputs[0].current_mode):
-            result = outputs[0].name
+        if outputs[0] and not outputs[0]["active"]:
+            result = outputs[0]["name"]
+        elif not are_modes_equal(best_mode, outputs[0]["current_mode"]):
+            result = outputs[0]["name"]
 
         if not result:
             notification(
@@ -91,34 +80,28 @@ if result is None:
 
     else:
         options = ["all"] + output_names
-
         result = dotfiles.rofi.dmenu(options)
-
         if result not in options:
             exit(0)
 
 if result == "all":
     for output in outputs:
-        if not output.active:
-            sway.command("output " + output.name + " enable")
-
+        if not output["active"]:
+            subprocess.run(["swaymsg", "output {} enable".format(output["name"])])
         best_mode = get_best_mode_from_output(output)
-
-        if not are_modes_equal(best_mode, output.current_mode):
+        if not are_modes_equal(best_mode, output["current_mode"]):
             set_mode(output, best_mode)
 else:
     for output in outputs:
-        if output.name == result:
-            if not output.active:
-                sway.command("output " + output.name + " enable")
-
+        if output["name"] == result:
+            if not output["active"]:
+                subprocess.run(["swaymsg", "output {} enable".format(output["name"])])
             best_mode = get_best_mode_from_output(output)
-
-            if not are_modes_equal(best_mode, output.current_mode):
+            if not are_modes_equal(best_mode, output["current_mode"]):
                 set_mode(output, best_mode)
         else:
-            if output.active:
-                sway.command("output " + output.name + " disable")
+            if output["active"]:
+                subprocess.run(["swaymsg", "output {} disable".format(output["name"])])
 
 with open(TMP_FILE_PATH, "w") as f:
     f.write(result + "\n")

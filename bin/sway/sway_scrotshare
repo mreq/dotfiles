@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 import argparse, sys, os
 import subprocess
-import time
-from notify import notification
-
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'python', 'modules'))
+from notify import notification
 import dotfiles
 
 parser = argparse.ArgumentParser()
@@ -68,8 +66,8 @@ def handle_target(path, adhoc):
                 app_name="sway",
             )
         elif result == "gimp":
-            os.system("gimp " + path + " &")
-            time.sleep(3)
+            launch_desktop = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'launch_desktop')
+            subprocess.Popen([launch_desktop, "org.gimp.GIMP", path])
         elif result == "keep":
             notification(
                 "sway_scrotshare",
@@ -77,7 +75,7 @@ def handle_target(path, adhoc):
                 app_name="sway",
             )
 
-    if adhoc and result != "keep":
+    if adhoc and result not in ("keep", "gimp"):
         os.remove(path)
 
 

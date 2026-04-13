@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 
+import json
 import subprocess
-from i3ipc import Connection
 
 
 class SwaySelectionError(Exception):
     """Exception raised when sway selection fails."""
 
     pass
+
+
+def _find_focused(node):
+    if node.get("focused"):
+        return node
+    for child in node.get("nodes", []) + node.get("floating_nodes", []):
+        result = _find_focused(child)
+        if result:
+            return result
+    return None
 
 
 def get_sway_selection(mode: str, crop: int = 0) -> dict:
@@ -33,27 +43,33 @@ def get_sway_selection(mode: str, crop: int = 0) -> dict:
         )
         if not slurp_result.stdout:
             raise SwaySelectionError("No area selected")
-        geometry = slurp_result.stdout.strip()
-        return {"type": "area", "geometry": geometry}
+        return {"type": "area", "geometry": slurp_result.stdout.strip()}
 
     elif mode == "full":
-        sway = Connection()
-        outputs = sway.get_outputs()
-        focused_output = [o for o in outputs if o.focused]
-        if not focused_output:
+        outputs = json.loads(
+            subprocess.run(
+                ["swaymsg", "-t", "get_outputs"], capture_output=True, text=True
+            ).stdout
+        )
+        focused = next((o for o in outputs if o["focused"]), None)
+        if not focused:
             raise SwaySelectionError("No focused output")
-        return {"type": "full", "output_name": focused_output[0].name}
+        return {"type": "full", "output_name": focused["name"]}
 
     elif mode == "window":
-        sway = Connection()
-        focused = sway.get_tree().find_focused()
+        tree = json.loads(
+            subprocess.run(
+                ["swaymsg", "-t", "get_tree"], capture_output=True, text=True
+            ).stdout
+        )
+        focused = _find_focused(tree)
         if not focused:
             raise SwaySelectionError("No focused window")
         rect = {
-            "x": focused.rect.x,
-            "y": focused.rect.y + crop,
-            "width": focused.rect.width,
-            "height": focused.rect.height - crop,
+            "x": focused["rect"]["x"],
+            "y": focused["rect"]["y"] + crop,
+            "width": focused["rect"]["width"],
+            "height": focused["rect"]["height"] - crop,
         }
         geometry = f"{rect['x']},{rect['y']} {rect['width']}x{rect['height']}"
         return {"type": "window", "rect": rect, "geometry": geometry}

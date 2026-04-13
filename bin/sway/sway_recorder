@@ -3,9 +3,9 @@ import sys
 import subprocess
 import os
 import time
-from notify import notification
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'python', 'modules'))
+from notify import notification
 import dotfiles
 
 # Check if wf-recorder is already running
@@ -57,7 +57,8 @@ if subprocess.run(["pgrep", "-x", "wf-recorder"], capture_output=True).returncod
                     "sway_recorder", message=f"Video file: {path}", app_name="sway"
                 )
             elif result == "gimp":
-                subprocess.Popen(["gimp", path])
+                launch_desktop = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'launch_desktop')
+                subprocess.Popen([launch_desktop, "org.gimp.GIMP", path])
             else:
                 # User cancelled or didn't select an option - delete the file
                 if os.path.exists(path):

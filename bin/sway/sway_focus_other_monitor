@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 import argparse
-from i3ipc import Connection
+import json
+import os
+import subprocess
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'python', 'modules'))
 from notify import notification
 
 parser = argparse.ArgumentParser()
@@ -11,22 +16,21 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-sway = Connection()
-
-outputs = [o for o in sway.get_outputs() if o.active]
+outputs = [
+    o for o in json.loads(
+        subprocess.run(["swaymsg", "-t", "get_outputs"], capture_output=True, text=True).stdout
+    )
+    if o["active"]
+]
 
 if len(outputs) < 2:
     notification("sway_focus_other_monitor", message="only one output", app_name="sway")
     exit(1)
 
-focused_index = outputs.index([o for o in outputs if o.focused][0])
-
+focused_index = next(i for i, o in enumerate(outputs) if o["focused"])
 target = outputs[focused_index + 1] if focused_index + 1 < len(outputs) else outputs[0]
 
 if args.move:
-    tree = sway.get_tree()
-    focused = tree.find_focused()
-    focused_workspace = focused.workspace()
-    sway.command("move workspace to output {}".format(target.name))
+    subprocess.run(["swaymsg", "move workspace to output {}".format(target["name"])])
 
-sway.command("focus output {}".format(target.name))
+subprocess.run(["swaymsg", "focus output {}".format(target["name"])])

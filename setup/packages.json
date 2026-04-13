@@ -11,7 +11,6 @@
       { "package": "tmux", "info": "Terminal multiplexer" },
       { "package": "btop", "info": "Resource monitor" },
       { "package": "ripgrep", "info": "Fast recursive grep" },
-      { "package": "python3-i3ipc", "info": "Python sway IPC for bin/sway/ scripts" },
       { "package": "nautilus", "info": "File manager" },
       { "package": "power-profiles-daemon", "info": "CPU/platform power profile switcher (fan noise control)", "enable-service": "power-profiles-daemon.service" }
     ]
