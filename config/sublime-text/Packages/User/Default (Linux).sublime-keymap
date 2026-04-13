@@ -274,7 +274,7 @@
     "keys": ["f10"],
     "command": "run_cmd",
     "args": {
-      "cmd": "distrobox-host-exec cursor $project_dir"
+      "cmd": "cursor $project_dir"
     }
   },
 

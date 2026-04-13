@@ -45,6 +45,12 @@
           "package": "doublecmd-qt",
           "info": "Twin-panel file manager (Qt5 build, native Wayland)",
           "requires-package": "qt5-qtwayland"
+        },
+        {
+          "package": "cursor",
+          "info": "AI code editor — RPM URL scraped from cursor.com/download (no vendor repo)",
+          "url-from-page": "https://cursor.com/download",
+          "url-pattern": "https://api2\\.cursor\\.sh/updates/download/golden/linux-x64-rpm/cursor/[^\"' ]+"
         }
       ],
       "export-apps": [
@@ -54,7 +60,8 @@
         "keepassxc",
         "firefox",
         "thunderbird",
-        "doublecmd-qt"
+        "doublecmd-qt",
+        "cursor"
       ]
     },
     "dev": {
@@ -85,13 +92,6 @@
   ],
   "appimage": [
     {
-      "name": "cursor",
-      "info": "AI code editor",
-      "source": "manual",
-      "file-pattern": "Cursor-*.AppImage",
-      "install-dir": "~/.local/share/cursor"
-    },
-    {
       "name": "freelens",
       "info": "Kubernetes IDE",
       "source": "github",
@@ -110,6 +110,7 @@
       "install-path": "~/.local/bin/lazygit"
     }
   ],
+  "mise": true,
   "systemd-user": {
     "enable": [
       "ssh-agent.socket",
