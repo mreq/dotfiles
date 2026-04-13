@@ -1,4 +1,0 @@
-{
-  "selector": "source.python",
-  "cmd": ["/home/petr/.local/bin/black", "$file"]
-}
