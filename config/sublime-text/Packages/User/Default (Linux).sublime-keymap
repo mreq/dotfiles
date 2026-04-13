@@ -80,7 +80,7 @@
     "keys": ["alt+backspace"],
     "command": "run_cmd",
     "args": {
-      "cmd": "swaymsg input 'type:keyboard' xkb_switch_layout next"
+      "cmd": "distrobox-host-exec swaymsg input 'type:keyboard' xkb_switch_layout next"
     }
   },
 
@@ -265,7 +265,7 @@
     "keys": ["f9"],
     "command": "run_cmd",
     "args": {
-      "cmd": "foot --title \"foot - $( basename $project_dir )\" --working-directory $project_dir"
+      "cmd": "distrobox-host-exec foot --title \"foot - $( basename $project_dir )\" --working-directory $project_dir"
     }
   },
 
@@ -274,7 +274,7 @@
     "keys": ["f10"],
     "command": "run_cmd",
     "args": {
-      "cmd": "cursor $project_dir"
+      "cmd": "distrobox-host-exec cursor $project_dir"
     }
   },
 
