@@ -59,8 +59,6 @@ bash ~/.dotfiles/config/vscode-extensions/install.sh
 
 create_dotfiles_config_symlink cursor/keybindings.json ~/.config/Cursor/User/keybindings.json
 create_dotfiles_config_symlink cursor/settings.json ~/.config/Cursor/User/settings.json
-create_dotfiles_config_symlink cursor/cursor.sh ~/.local/bin/cursor
-create_dotfiles_config_symlink cursor/cursor.desktop ~/.local/share/applications/cursor.desktop
 
 (
 	cd sublime-text || exit 0
