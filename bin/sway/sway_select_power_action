@@ -1,31 +1,38 @@
 #!/bin/bash
 actions=(
-  'suspend'
-  'screen'
-  'reboot'
-  'shutdown'
-  'logout'
-  'restart'
-  'poweroff'
+	'suspend'
+	'screen'
+	'reboot'
+	'shutdown'
+	'logout'
+	'restart'
+	'poweroff'
 )
 
 select_action() {
-  case $1 in
-    screen )
-      sleep 1 && xset dpms force off ;;
-    suspend )
-      systemctl suspend ;;
-    reboot|restart )
-      systemctl reboot ;;
-    shutdown|poweroff )
-      systemctl poweroff ;;
-    logout )
-      swaymsg exit ;;
-  esac
+	case $1 in
+	screen)
+		swayidle -w \
+			timeout 1 'swaymsg "output * power off"' \
+			resume "swaymsg \"output * power on\"; kill -TERM \"\$PPID\""
+		;;
+	suspend)
+		systemctl suspend
+		;;
+	reboot | restart)
+		systemctl reboot
+		;;
+	shutdown | poweroff)
+		systemctl poweroff
+		;;
+	logout)
+		swaymsg exit
+		;;
+	esac
 }
 
 if [[ $1 ]]; then
-  select_action "$1"
+	select_action "$1"
 else
-  select_action "$( printf "%s\n" "${actions[@]}" | rofi -dmenu -i -theme base16-mreq-red )"
+	select_action "$(printf "%s\n" "${actions[@]}" | rofi -dmenu -i -theme base16-mreq-red)"
 fi
