@@ -1,0 +1,321 @@
+#!/bin/bash
+# Update the Fedora Atomic host, Flatpaks, and distrobox containers.
+
+set -uo pipefail
+
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+# shellcheck source=bin/update_common
+source "$SCRIPT_DIR/update_common"
+
+ASSUME_YES=0
+PAUSE_AT_END=0
+REBOOT_NEEDED=0
+FAILED=0
+
+log() {
+	echo "update_everything - $*"
+}
+
+interrupt() {
+	echo
+	log "interrupted"
+	exit 130
+}
+
+trap interrupt INT TERM
+
+section() {
+	echo
+	echo "==> $*"
+}
+
+usage() {
+	cat <<EOF
+Usage: update_everything [--yes] [--pause]
+
+Update the Fedora Atomic base deployment, Flatpaks, and distrobox containers.
+
+Options:
+  -y, --yes   Skip the confirmation prompt
+  --pause     Wait for Enter before exiting, useful when launched from Waybar
+  -h, --help  Show this help
+EOF
+}
+
+for arg in "$@"; do
+	case "$arg" in
+	-y | --yes)
+		ASSUME_YES=1
+		;;
+	--pause)
+		PAUSE_AT_END=1
+		;;
+	-h | --help)
+		usage
+		exit 0
+		;;
+	*)
+		echo "update_everything - ERROR: unknown option '$arg'" >&2
+		usage >&2
+		exit 2
+		;;
+	esac
+done
+
+require_interactive_confirmation() {
+	if [[ $ASSUME_YES -eq 0 && ! -t 0 ]]; then
+		echo "update_everything - ERROR: confirmation required; rerun with --yes for non-interactive use" >&2
+		exit 2
+	fi
+}
+
+show_rpm_ostree_preview() {
+	local preview
+	local rc
+
+	if ! have_cmd rpm-ostree; then
+		echo "  - Base: rpm-ostree not found, skipping"
+		return
+	fi
+
+	preview=$(rpm_ostree_upgrade_preview)
+	rc=$?
+
+	case "$rc" in
+	0)
+		if [[ "$preview" == "staged" ]]; then
+			echo "  - Base: staged deployment already exists; reboot needed"
+		else
+			echo "  - Base: update available"
+			printf '%s\n' "$preview" | indent_lines "      "
+		fi
+		;;
+	77)
+		echo "  - Base: no update found"
+		;;
+	*)
+		echo "  - Base: could not check"
+		if [[ -n "$preview" ]]; then
+			printf '%s\n' "$preview" | indent_lines "      "
+		fi
+		;;
+	esac
+}
+
+show_flatpak_preview() {
+	local name
+	local row
+	local scope
+	local -a updates
+
+	if ! have_cmd flatpak; then
+		echo "  - Flatpak: flatpak not found, skipping"
+		return
+	fi
+
+	mapfile -t updates < <(flatpak_updates)
+
+	if ((${#updates[@]} == 0)); then
+		echo "  - Flatpak: no updates found"
+		return
+	fi
+
+	echo "  - Flatpak: ${#updates[@]} package update(s)"
+	for row in "${updates[@]}"; do
+		IFS=$'\t' read -r scope name <<<"$row"
+		echo "      - $name ($scope)"
+	done
+}
+
+show_distrobox_preview() {
+	local container
+	local count
+	local known_names
+	local row
+	local summaries
+	local -a updates
+
+	if ! have_cmd distrobox-upgrade; then
+		echo "  - Distrobox: distrobox-upgrade not found, skipping"
+		return
+	fi
+
+	if ! summaries=$(distrobox_update_summaries); then
+		echo "  - Distrobox: could not check"
+		return
+	fi
+
+	while IFS= read -r row; do
+		[[ -n "$row" ]] || continue
+		updates+=("$row")
+	done <<<"$summaries"
+
+	if ((${#updates[@]} == 0)); then
+		echo "  - Distrobox: no updates found"
+		return
+	fi
+
+	echo "  - Distrobox:"
+	for row in "${updates[@]}"; do
+		IFS=$'\t' read -r container count known_names <<<"$row"
+		echo "      - $container: $count package update(s)"
+		if [[ -n "$known_names" ]]; then
+			echo "        setup/packages.json: $known_names"
+		fi
+	done
+}
+
+show_update_preview() {
+	section "preview"
+	log "checking for available updates"
+	echo "Available before running update commands:"
+	show_rpm_ostree_preview
+	show_flatpak_preview
+	show_distrobox_preview
+}
+
+confirm_updates() {
+	local response
+
+	if [[ $ASSUME_YES -eq 1 ]]; then
+		return 0
+	fi
+
+	cat <<EOF
+This will run:
+  - rpm-ostree upgrade
+  - flatpak update --user/--system --assumeyes --noninteractive
+  - distrobox-upgrade --all
+
+EOF
+	read -r -p "Continue? [Y/n] " response
+	case "$response" in
+	[nN] | [nN][oO])
+		log "cancelled"
+		exit 0
+		;;
+	*)
+		return 0
+		;;
+	esac
+}
+
+pause_if_requested() {
+	if [[ $PAUSE_AT_END -eq 1 && -t 0 ]]; then
+		echo
+		read -r -p "Press Enter to close..." _ || true
+	fi
+}
+
+flatpak_has_refs() {
+	local scope="$1"
+
+	flatpak list "$scope" --columns=application,runtime 2>/dev/null | grep -q .
+}
+
+update_rpm_ostree() {
+	section "rpm-ostree"
+
+	if ! have_cmd rpm-ostree; then
+		log "rpm-ostree not found, skipping"
+		return
+	fi
+
+	log "upgrading base deployment"
+	if ! rpm-ostree upgrade; then
+		log "ERROR: base deployment update failed"
+		return 1
+	fi
+
+	if rpm_ostree_has_staged_deployment; then
+		REBOOT_NEEDED=1
+		log "base deployment staged; reboot required"
+	else
+		log "base deployment already current"
+	fi
+}
+
+update_flatpaks() {
+	local failed=0
+
+	section "flatpak"
+
+	if ! have_cmd flatpak; then
+		log "flatpak not found, skipping"
+		return
+	fi
+
+	if flatpak_has_refs --user; then
+		log "updating user Flatpaks"
+		if ! flatpak update --user --assumeyes --noninteractive; then
+			log "ERROR: user Flatpak update failed"
+			failed=1
+		fi
+	else
+		log "no user Flatpaks installed"
+	fi
+
+	if flatpak_has_refs --system; then
+		log "updating system Flatpaks"
+		if ! flatpak update --system --assumeyes --noninteractive; then
+			log "ERROR: system Flatpak update failed"
+			failed=1
+		fi
+	else
+		log "no system Flatpaks installed"
+	fi
+
+	return "$failed"
+}
+
+update_distroboxes() {
+	local boxes
+
+	section "distrobox"
+
+	if ! have_cmd distrobox-upgrade; then
+		log "distrobox-upgrade not found, skipping"
+		return
+	fi
+
+	if ! boxes=$(distrobox_containers); then
+		log "ERROR: could not list distroboxes"
+		return 1
+	fi
+
+	if [[ -z "$boxes" ]]; then
+		log "no distroboxes found"
+		return
+	fi
+
+	log "upgrading all distroboxes"
+	if ! distrobox-upgrade --all; then
+		log "ERROR: distrobox update failed"
+		return 1
+	fi
+}
+
+require_interactive_confirmation
+show_update_preview
+confirm_updates
+
+update_rpm_ostree || FAILED=1
+update_flatpaks || FAILED=1
+update_distroboxes || FAILED=1
+
+echo
+if [[ $REBOOT_NEEDED -eq 1 ]]; then
+	log "done; reboot to apply the staged base deployment"
+	if have_cmd notify-send && [[ -n "${WAYLAND_DISPLAY:-}${DISPLAY:-}" ]]; then
+		notify-send "Updates staged" "Reboot to apply the Fedora Atomic base update."
+	fi
+fi
+
+if [[ $FAILED -eq 1 ]]; then
+	log "one or more update sections failed"
+	pause_if_requested
+	exit 1
+fi
+
+log "done"
+pause_if_requested

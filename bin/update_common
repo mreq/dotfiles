@@ -1,0 +1,203 @@
+#!/bin/bash
+# Shared update discovery helpers for update_everything and Waybar.
+
+UPDATE_COMMON_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+UPDATE_REPO_ROOT="$(dirname "$UPDATE_COMMON_DIR")"
+UPDATE_PACKAGES_JSON="${UPDATE_PACKAGES_JSON:-$UPDATE_REPO_ROOT/setup/packages.json}"
+UPDATE_CHECK_TIMEOUT="${UPDATE_CHECK_TIMEOUT:-120}"
+
+have_cmd() {
+	command -v "$1" >/dev/null 2>&1
+}
+
+join_nonempty_lines() {
+	awk 'NF { out = out ? out ", " $0 : $0 } END { print out }'
+}
+
+indent_lines() {
+	local prefix="$1"
+
+	awk -v prefix="$prefix" '{ print prefix $0 }'
+}
+
+rpm_ostree_has_staged_deployment() {
+	local status_json
+
+	have_cmd rpm-ostree || return 1
+	have_cmd jq || return 1
+
+	status_json=$(rpm-ostree status --json 2>/dev/null) || return 1
+	printf '%s' "$status_json" | jq -e '.deployments[]? | select(.staged == true)' >/dev/null 2>&1
+}
+
+rpm_ostree_update_state() {
+	local rc
+
+	have_cmd rpm-ostree || return 1
+
+	if rpm_ostree_has_staged_deployment; then
+		printf 'staged\n'
+		return 0
+	fi
+
+	timeout "$UPDATE_CHECK_TIMEOUT" rpm-ostree upgrade --check --quiet >/dev/null 2>&1
+	rc=$?
+
+	if [[ $rc -eq 0 ]]; then
+		printf 'available\n'
+	elif [[ $rc -eq 77 ]]; then
+		printf 'none\n'
+	else
+		return 1
+	fi
+}
+
+rpm_ostree_upgrade_preview() {
+	local output
+	local rc
+
+	have_cmd rpm-ostree || return 1
+
+	if rpm_ostree_has_staged_deployment; then
+		printf 'staged\n'
+		return 0
+	fi
+
+	output=$(timeout "$UPDATE_CHECK_TIMEOUT" rpm-ostree upgrade --preview 2>&1)
+	rc=$?
+
+	if [[ $rc -eq 0 ]]; then
+		printf '%s\n' "$output"
+	elif [[ $rc -eq 77 ]]; then
+		return 77
+	else
+		printf '%s\n' "$output"
+		return "$rc"
+	fi
+}
+
+flatpak_updates_for_scope() {
+	local scope="$1"
+	local scope_name="${scope#--}"
+	local updates
+
+	have_cmd flatpak || return 1
+
+	updates=$(timeout "$UPDATE_CHECK_TIMEOUT" flatpak remote-ls "$scope" --updates --columns=ref 2>/dev/null) || return 1
+	printf '%s\n' "$updates" | awk -F/ -v scope="$scope_name" '
+NF >= 2 && $2 != "" {
+	print scope "\t" $2
+	next
+}
+NF {
+	print scope "\t" $0
+}
+' | sort -u
+}
+
+flatpak_updates() {
+	flatpak_updates_for_scope --user || true
+	flatpak_updates_for_scope --system || true
+}
+
+distrobox_containers() {
+	local boxes
+
+	have_cmd distrobox || return 1
+	boxes=$(distrobox list --no-color 2>/dev/null) || return 1
+
+	printf '%s\n' "$boxes" | awk -F ' *\\| *' 'NR > 1 && $2 != "" { print $2 }'
+}
+
+distrobox_package_updates() {
+	local container="$1"
+
+	have_cmd distrobox || return 1
+
+	# shellcheck disable=SC2016
+	timeout "$UPDATE_CHECK_TIMEOUT" distrobox enter "$container" -- sh -lc '
+parse_dnf_updates() {
+	awk "NF >= 3 {
+		pkg = \$1
+		sub(/\\.[^.[:space:]]+$/, \"\", pkg)
+		print pkg
+	}"
+}
+
+if command -v dnf >/dev/null 2>&1; then
+	output=$(dnf -q check-update --refresh 2>/dev/null)
+	rc=$?
+	if [ "$rc" -eq 100 ]; then
+		printf "%s\n" "$output" | parse_dnf_updates
+		exit 0
+	fi
+	[ "$rc" -eq 0 ] && exit 0
+	exit "$rc"
+fi
+
+if command -v dnf5 >/dev/null 2>&1; then
+	output=$(dnf5 -q check-upgrade --refresh 2>/dev/null)
+	rc=$?
+	if [ "$rc" -eq 100 ]; then
+		printf "%s\n" "$output" | parse_dnf_updates
+		exit 0
+	fi
+	[ "$rc" -eq 0 ] && exit 0
+	exit "$rc"
+fi
+
+if command -v apt-get >/dev/null 2>&1; then
+	apt-get -s upgrade 2>/dev/null | awk "/^Inst / { print \$2 }"
+	exit 0
+fi
+
+exit 0
+' 2>/dev/null | sort -u
+}
+
+distrobox_manifest_packages() {
+	local container="$1"
+
+	[[ -f "$UPDATE_PACKAGES_JSON" ]] || return 0
+	have_cmd jq || return 0
+
+	jq -r --arg c "$container" '.distrobox[$c].packages[]?.package' "$UPDATE_PACKAGES_JSON" 2>/dev/null | sort -u
+}
+
+distrobox_manifest_update_names() {
+	local container="$1"
+	local package
+	declare -A manifest=()
+
+	while IFS= read -r package; do
+		[[ -n "$package" ]] || continue
+		manifest["$package"]=1
+	done < <(distrobox_manifest_packages "$container")
+
+	while IFS= read -r package; do
+		[[ -n "$package" ]] || continue
+		[[ -n "${manifest[$package]+x}" ]] || continue
+		printf '%s\n' "$package"
+	done
+}
+
+distrobox_update_summaries() {
+	local container
+	local containers
+	local count
+	local known_names
+	local -a update_names
+
+	containers=$(distrobox_containers) || return 1
+
+	while IFS= read -r container; do
+		[[ -n "$container" ]] || continue
+
+		mapfile -t update_names < <(distrobox_package_updates "$container")
+		count=${#update_names[@]}
+		((count > 0)) || continue
+
+		known_names=$(printf '%s\n' "${update_names[@]}" | distrobox_manifest_update_names "$container" | join_nonempty_lines)
+		printf '%s\t%d\t%s\n' "$container" "$count" "$known_names"
+	done <<<"$containers"
+}

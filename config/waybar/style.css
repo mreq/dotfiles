@@ -73,6 +73,7 @@ tooltip label {
 #clock,
 #tray,
 #custom-dnd,
+#custom-updates,
 #custom_spacer,
 #custom_recording {
   padding: 0 0.5em;
@@ -98,4 +99,13 @@ tooltip label {
 
 #custom-recording {
   color: @base-red;
+}
+
+#custom-updates.update-available {
+  color: @base-yellow;
+}
+
+#custom-updates.update-staged {
+  background: @base-yellow;
+  color: @base-blackey;
 }

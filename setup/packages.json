@@ -12,7 +12,6 @@
       { "package": "btop", "info": "Resource monitor" },
       { "package": "ripgrep", "info": "Fast recursive grep" },
       { "package": "nautilus", "info": "File manager" },
-      { "package": "power-profiles-daemon", "info": "CPU/platform power profile switcher (fan noise control)", "enable-service": "power-profiles-daemon.service" },
       { "package": "podman-compose", "info": "Compose backend for `podman compose` — keeps image tags under localhost/ (Dev Containers compat)" }
     ]
   },

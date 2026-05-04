@@ -317,7 +317,7 @@ WantedBy=graphical-session.target
 Everything else in sway `exec.conf` is tightly coupled to sway
 (wob uses $SWAYSOCK, swaync, polkit) and stays there.
 
-**Automatic update check** (system-level, not user):
+**Automatic base update check** (system-level, not user):
 ```
 sudo systemctl enable --now rpm-ostreed-automatic.timer
 ```
@@ -327,12 +327,24 @@ Waybar custom module in `config/waybar/config.jsonc`:
 "custom/updates": {
     "exec": "~/.local/share/dotfiles/bin/waybar/check_updates",
     "return-type": "json",
-    "interval": 3600
+    "interval": 3600,
+    "on-click": "foot --title updates ~/.local/share/dotfiles/bin/update_everything --pause"
 }
 ```
 
-`bin/waybar/check_updates` — shows icon when rpm-ostree update available,
-empty otherwise.
+`bin/waybar/check_updates` — shows an icon when an rpm-ostree base update,
+Flatpak update, or distrobox package update is available. Empty output means
+there are no known updates, so Waybar hides the module.
+
+`bin/update_everything` — single manual update path:
+1. `rpm-ostree upgrade` for the base deployment and layered packages
+2. `flatpak update --user/--system --assumeyes --noninteractive`
+3. `distrobox-upgrade --all`
+
+The script asks for confirmation before running update commands. Use
+`update_everything --yes` only when non-interactive confirmation is intentional.
+
+Reboot after the command if rpm-ostree staged a new deployment.
 
 ### install.sh rewrite
 

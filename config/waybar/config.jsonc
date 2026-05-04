@@ -12,6 +12,7 @@
         "custom/recording"
     ],
     "modules-right": [
+        "custom/updates",
         "pulseaudio",
         "backlight",
         "battery",
@@ -110,6 +111,14 @@
         "on-click": "dunstctl set-paused toggle; pkill -RTMIN+9 waybar",
         "signal": 9,
         "interval": "once"
+    },
+    "custom/updates": {
+        "return-type": "json",
+        "exec": "$HOME/.local/share/dotfiles/bin/waybar/check_updates",
+        "on-click": "foot --title updates $HOME/.local/share/dotfiles/bin/update_everything --pause; pkill -RTMIN+10 waybar",
+        "signal": 10,
+        "interval": 3600,
+        "tooltip": true
     },
     "power-profiles-daemon": {
       "format": "<span size=\"x-large\">{icon}</span>",

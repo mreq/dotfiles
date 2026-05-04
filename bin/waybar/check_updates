@@ -1,17 +1,73 @@
 #!/bin/bash
-# Waybar custom module — emit JSON when an rpm-ostree update is staged.
-# Empty output means "no update", which hides the module in waybar.
+# Waybar custom module — emit JSON when base, Flatpak, or distrobox updates exist.
+# Empty output means "no update", which hides the module in Waybar.
 
 set -u
 
-# rpm-ostree status -j is fast and doesn't hit the network.
-# Pair this with `systemctl enable --now rpm-ostreed-automatic.timer` so
-# the deployment list actually reflects available upstream updates.
-status_json=$(rpm-ostree status --json 2>/dev/null) || exit 0
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+# shellcheck source=bin/update_common
+source "$SCRIPT_DIR/../update_common"
 
-# A staged deployment indicates an update is queued for next boot.
-staged=$(printf '%s' "$status_json" | jq -r '.deployments[]? | select(.staged == true) | .checksum' 2>/dev/null | head -n1)
+add_tooltip_line() {
+	local line="$1"
 
-if [[ -n "$staged" ]]; then
-	printf '{"text": "󰚰", "tooltip": "rpm-ostree update staged — reboot to apply", "class": "update-available"}\n'
+	if [[ -n "$TOOLTIP" ]]; then
+		TOOLTIP+=$'\n'
+	fi
+	TOOLTIP+="$line"
+}
+
+base_state=$(rpm_ostree_update_state || true)
+mapfile -t flatpak_update_rows < <(flatpak_updates)
+mapfile -t distrobox_update_rows < <(distrobox_update_summaries || true)
+
+TOTAL=0
+TOOLTIP=
+CLASS=update-available
+
+case "$base_state" in
+staged)
+	TOTAL=$((TOTAL + 1))
+	CLASS=update-staged
+	add_tooltip_line "Base: staged, reboot to apply"
+	;;
+available)
+	TOTAL=$((TOTAL + 1))
+	add_tooltip_line "Base: update available"
+	;;
+esac
+
+if ((${#flatpak_update_rows[@]} > 0)); then
+	TOTAL=$((TOTAL + ${#flatpak_update_rows[@]}))
+	add_tooltip_line "Flatpak: ${#flatpak_update_rows[@]} package update(s)"
+	for row in "${flatpak_update_rows[@]}"; do
+		IFS=$'\t' read -r scope name <<<"$row"
+		add_tooltip_line "  $name ($scope)"
+	done
 fi
+
+if ((${#distrobox_update_rows[@]} > 0)); then
+	distrobox_total=0
+	for row in "${distrobox_update_rows[@]}"; do
+		IFS=$'\t' read -r container count known_names <<<"$row"
+		distrobox_total=$((distrobox_total + count))
+	done
+
+	TOTAL=$((TOTAL + distrobox_total))
+	add_tooltip_line "Distrobox: $distrobox_total package update(s)"
+	for row in "${distrobox_update_rows[@]}"; do
+		IFS=$'\t' read -r container count known_names <<<"$row"
+		add_tooltip_line "  $container: $count package update(s)"
+		if [[ -n "$known_names" ]]; then
+			add_tooltip_line "    setup/packages.json: $known_names"
+		fi
+	done
+fi
+
+if ((TOTAL == 0)); then
+	exit 0
+fi
+
+add_tooltip_line "Click to update everything"
+jq -cn --arg text "󰚰 $TOTAL" --arg tooltip "$TOOLTIP" --arg class "$CLASS" \
+	'{text: $text, tooltip: $tooltip, class: $class}'
