@@ -51,6 +51,7 @@
   },
   "diffEditor.renderSideBySide": false,
   "claudeCode.preferredLocation": "sidebar",
+  "dev.containers.dockerPath": "/home/petr/.local/bin/podman-host",
   "filehop.slots": [
     { "id": "alpha" },
     { "id": "beta" },

@@ -1,18 +1,20 @@
 # ~/.profile: executed for login shells.
+# shellcheck shell=sh
 
-# Source .bashrc if running bash
+# Source .bashrc if running bash.
 if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
-  . "$HOME/.bashrc"
+	# shellcheck source=/dev/null
+	. "$HOME/.bashrc"
 fi
 
-# Add user's private bin to PATH
+# Add user's private bin to PATH.
 if [ -d "$HOME/.local/bin" ]; then
-  PATH="$HOME/.local/bin:$PATH"
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Add dotfiles bin dirs to PATH
-for dir in "$HOME/.local/share/dotfiles"/*/bin; do
-  [ -d "$dir" ] && PATH="$PATH:$dir"
+# Add dotfiles bin dirs to PATH.
+for dir in "$HOME/.local/share/dotfiles/bin" "$HOME/.local/share/dotfiles/bin"/*; do
+	[ -d "$dir" ] && PATH="$PATH:$dir"
 done
 
 export VISUAL=subl

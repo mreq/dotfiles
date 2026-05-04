@@ -71,6 +71,8 @@ create_dotfiles_config_symlink systemd/wlsunset.service ~/.config/systemd/user/w
 create_dotfiles_config_symlink cursor/keybindings.json ~/.config/Cursor/User/keybindings.json
 create_dotfiles_config_symlink cursor/settings.json ~/.config/Cursor/User/settings.json
 
+create_dotfiles_config_symlink containers ~/.config/containers
+
 (
 	cd sublime-text || exit 0
 
