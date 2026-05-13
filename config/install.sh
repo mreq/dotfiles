@@ -5,14 +5,19 @@ set -e
 cd "${0%/*}" || exit 0
 
 create_symlink() {
-	if ! test -h $2 || ! test -e $2; then
-		echo "Creating symlink: $1 -> $2"
-		rm -rf $2 && mkdir -p $(dirname $2) && ln -s $1 $2
+	local source=$1
+	local target=$2
+
+	if [[ ! -L "$target" || ! -e "$target" ]]; then
+		echo "Creating symlink: $source -> $target"
+		rm -rf -- "$target"
+		mkdir -p -- "$(dirname -- "$target")"
+		ln -s -- "$source" "$target"
 	fi
 }
 
 create_dotfiles_config_symlink() {
-	create_symlink ~/.dotfiles/config/$1 $2
+	create_symlink "$HOME/.dotfiles/config/$1" "$2"
 }
 
 create_dotfiles_config_symlink bash/.bashrc ~/.bashrc
@@ -20,6 +25,8 @@ create_dotfiles_config_symlink bash/.bash_aliases ~/.bash_aliases
 create_dotfiles_config_symlink bash/.profile ~/.profile
 
 create_dotfiles_config_symlink btop ~/.config/btop
+
+create_dotfiles_config_symlink codex/AGENTS.md ~/.codex/AGENTS.md
 
 create_dotfiles_config_symlink git/.gitconfig ~/.gitconfig
 create_dotfiles_config_symlink git/ignore ~/.config/git/ignore
@@ -64,7 +71,7 @@ create_dotfiles_config_symlink cursor/settings.json ~/.config/Cursor/User/settin
 	cd sublime-text || exit 0
 
 	for dir in Packages/User*; do
-		create_dotfiles_config_symlink sublime-text/$dir ~/.config/sublime-text/$dir
+		create_dotfiles_config_symlink "sublime-text/$dir" ~/.config/sublime-text/"$dir"
 	done
 )
 
