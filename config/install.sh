@@ -9,9 +9,14 @@ DOTFILES_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "${0%/*}" || exit 0
 
 create_symlink() {
-	if ! test -h "$2" || ! test -e "$2"; then
-		echo "Creating symlink: $1 -> $2"
-		rm -rf "$2" && mkdir -p "$(dirname "$2")" && ln -s "$1" "$2"
+	local source=$1
+	local target=$2
+
+	if [[ ! -L "$target" || ! -e "$target" ]]; then
+		echo "Creating symlink: $source -> $target"
+		rm -rf -- "$target"
+		mkdir -p -- "$(dirname -- "$target")"
+		ln -s -- "$source" "$target"
 	fi
 }
 
@@ -23,7 +28,7 @@ sync_system_dir() {
 	# Copy a directory to a system path (sudo). Used where sddm/system users
 	# can't follow symlinks into the user home directory.
 	# Skips if destination already matches source (avoids sudo prompt).
-	if diff -rq "$1" "$2" > /dev/null 2>&1; then
+	if diff -rq "$1" "$2" >/dev/null 2>&1; then
 		return 0
 	fi
 	echo "Syncing system dir: $1 -> $2"
@@ -35,6 +40,8 @@ create_dotfiles_config_symlink bash/.bashrc ~/.bashrc
 create_dotfiles_config_symlink bash/.profile ~/.profile
 
 create_dotfiles_config_symlink btop ~/.config/btop
+
+create_dotfiles_config_symlink codex/AGENTS.md ~/.codex/AGENTS.md
 
 create_dotfiles_config_symlink dunst ~/.config/dunst
 
@@ -95,7 +102,7 @@ fi
 
 # SDDM theme — copied not symlinked (sddm user can't traverse user home)
 sync_system_dir "$DOTFILES_ROOT/config/sddm/theme" /etc/sddm/themes/mreq
-if ! diff -q "$DOTFILES_ROOT/config/sddm/sddm.conf.d/theme.conf" /etc/sddm.conf.d/theme.conf > /dev/null 2>&1; then
+if ! diff -q "$DOTFILES_ROOT/config/sddm/sddm.conf.d/theme.conf" /etc/sddm.conf.d/theme.conf >/dev/null 2>&1; then
 	echo "Syncing system file: sddm.conf.d/theme.conf"
 	sudo mkdir -p /etc/sddm.conf.d
 	sudo cp "$DOTFILES_ROOT/config/sddm/sddm.conf.d/theme.conf" /etc/sddm.conf.d/theme.conf

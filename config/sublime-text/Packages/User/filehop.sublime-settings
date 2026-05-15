@@ -8,52 +8,52 @@
   "rules": [
     {
       "id": "to_ruby_component_rb_from_test",
-      "from": ["test/components/(.+/)?([^/]+)_component_test\\.rb"],
-      "to": ["app/components/$1$2_component.rb"],
+      "from": ["(packs/[^/]+/)?test/components/(.+/)?([^/]+)_component_test\\.rb"],
+      "to": ["$1app/components/$2$3_component.rb"],
       "slot": "delta"
     },
     {
       "id": "to_ruby_component_test",
-      "from": ["app/components/(.+/)?([^/]+)_component\\..+"],
-      "to": ["test/components/$1$2_component_test.rb"],
+      "from": ["(packs/[^/]+/)?app/components/(.+/)?([^/]+)_component\\..+"],
+      "to": ["$1test/components/$2$3_component_test.rb"],
       "slot": "delta"
     },
     {
       "id": "to_ruby_view_component_sass",
-      "from": ["(app|test)/components/(.+/)?([^/]+)_component(?:\\.(?!sass|scss)\\w+|_test\\.rb)"],
-      "to": ["app/components/$2$3_component.scss", "app/components/$2$3_component.sass"],
+      "from": ["(packs/[^/]+/)?(app|test)/components/(.+/)?([^/]+)_component(?:\\.(?!sass|scss)\\w+|_test\\.rb)"],
+      "to": ["$1app/components/$3$4_component.scss", "$1app/components/$3$4_component.sass"],
       "slot": "beta",
-      "create": true
+      "prompt_to_create": true
     },
     {
       "id": "to_ruby_view_component_slim_from_sass",
-      "from": ["(app|test)/components/(.+/)?([^/]+)_component\\.(sass|scss)"],
-      "to": ["app/components/$2$3_component.slim"],
+      "from": ["(packs/[^/]+/)?(app|test)/components/(.+/)?([^/]+)_component\\.(sass|scss)"],
+      "to": ["$1app/components/$3$4_component.slim"],
       "slot": "beta"
     },
     {
       "id": "to_ruby_view_component_js",
-      "from": ["(app|test)/components/(.+/)?([^/]+)_component(?:\\.(?!js)\\w+|_test\\.rb)"],
-      "to": ["app/components/$2$3_component.js"],
+      "from": ["(packs/[^/]+/)?(app|test)/components/(.+/)?([^/]+)_component(?:\\.(?!js)\\w+|_test\\.rb)"],
+      "to": ["$1app/components/$3$4_component.js"],
       "slot": "gamma",
-      "create": true
+      "prompt_to_create": true
     },
     {
       "id": "to_ruby_view_component_slim_from_js",
-      "from": ["(app|test)/components/(.+/)?([^/]+)_component\\.js"],
-      "to": ["app/components/$2$3_component.slim"],
+      "from": ["(packs/[^/]+/)?(app|test)/components/(.+/)?([^/]+)_component\\.js"],
+      "to": ["$1app/components/$3$4_component.slim"],
       "slot": "gamma"
     },
     {
       "id": "to_ruby_view_component_slim",
-      "from": ["app/components/(.+/)?([^/]+)_component\\.(?!slim)"],
-      "to": ["app/components/$1$2_component.slim"],
+      "from": ["(packs/[^/]+/)?app/components/(.+/)?([^/]+)_component\\.(?!slim)"],
+      "to": ["$1app/components/$2$3_component.slim"],
       "slot": "alpha"
     },
     {
       "id": "to_ruby_view_component_rb",
-      "from": ["(test|app)/components/(.+/)?([^/]+)_component(?:\\.\\w+|_test\\.rb)"],
-      "to": ["app/components/$2$3_component.rb"],
+      "from": ["(packs/[^/]+/)?(test|app)/components/(.+/)?([^/]+)_component(?:\\.\\w+|_test\\.rb)"],
+      "to": ["$1app/components/$3$4_component.rb"],
       "slot": "alpha"
     }
   ]
