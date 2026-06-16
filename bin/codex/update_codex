@@ -10,6 +10,7 @@ ASSET="codex-x86_64-unknown-linux-musl.tar.gz"
 BINARY="codex-x86_64-unknown-linux-musl"
 INSTALL_PATH="$HOME/.local/bin/codex"
 RELEASES_URL="https://github.com/openai/codex/releases"
+LATEST_RELEASE_API_URL="https://api.github.com/repos/openai/codex/releases/latest"
 
 log() {
 	echo "update_codex - $*"
@@ -28,11 +29,12 @@ require_command() {
 
 usage() {
 	cat <<EOF
-Usage: update_codex [--open-releases]
+Usage: update_codex [--open-releases | --update-release-config]
 
 Options:
-  --open-releases  Open the Codex GitHub releases page in the browser.
-  -h, --help       Show this help.
+  --open-releases          Open the Codex GitHub releases page in the browser.
+  --update-release-config  Fetch the latest stable release and update release.json.
+  -h, --help               Show this help.
 EOF
 }
 
@@ -53,10 +55,93 @@ read_config_value() {
 	jq -r ".$key // empty" "$CONFIG_PATH"
 }
 
+confirm() {
+	local prompt=$1
+	local answer
+
+	while true; do
+		read -r -p "$prompt [Y/n] " answer
+
+		case "$answer" in
+		"" | [Yy] | [Yy][Ee][Ss])
+			return 0
+			;;
+		[Nn] | [Nn][Oo])
+			return 1
+			;;
+		*)
+			log "Please answer y or n."
+			;;
+		esac
+	done
+}
+
+fetch_latest_release_json() {
+	curl --fail --location --show-error --silent \
+		--header "Accept: application/vnd.github+json" \
+		"$LATEST_RELEASE_API_URL"
+}
+
+latest_release_value() {
+	local release_json=$1
+	local filter=$2
+
+	jq -r "$filter // empty" <<<"$release_json"
+}
+
+update_release_config() {
+	local release_json
+	local release_tag
+	local asset_digest
+	local new_config
+
+	require_command curl
+	require_command jq
+
+	log "Fetching latest stable Codex release"
+	release_json="$(fetch_latest_release_json)"
+	release_tag="$(latest_release_value "$release_json" ".tag_name")"
+
+	if [[ -z "$release_tag" ]]; then
+		error "GitHub response did not include a release tag."
+	fi
+
+	asset_digest="$(
+		jq -r --arg asset "$ASSET" \
+			'first(.assets[]? | select(.name == $asset)) // {} | .digest // empty' \
+			<<<"$release_json"
+	)"
+
+	if [[ ! "$asset_digest" =~ ^sha256:[0-9a-fA-F]{64}$ ]]; then
+		error "GitHub did not provide a valid SHA-256 digest for $ASSET in $release_tag."
+	fi
+
+	new_config="$(
+		jq -n \
+			--arg release_tag "$release_tag" \
+			--arg sha256 "$asset_digest" \
+			'{ release_tag: $release_tag, sha256: $sha256 }'
+	)"
+
+	log "New release config:"
+	printf '%s\n' "$new_config"
+
+	if confirm "Write $CONFIG_PATH?"; then
+		printf '%s\n' "$new_config" >"$CONFIG_PATH"
+		log "Updated $CONFIG_PATH"
+	else
+		log "Skipped writing $CONFIG_PATH"
+	fi
+}
+
 case "${1:-}" in
 --open-releases)
 	require_command xdg-open
 	xdg-open "$RELEASES_URL"
+	exit 0
+	;;
+--update-release-config)
+	update_release_config
 	exit 0
 	;;
 -h | --help)
