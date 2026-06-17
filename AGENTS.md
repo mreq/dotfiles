@@ -22,6 +22,13 @@ When editing any file:
 - Remove trailing whitespace from all lines
 - Keep a single newline at the end of file (EOF)
 
+## Public Repository Hygiene
+
+This dotfiles repository is public. Do not add private project names,
+employer/client names, private checkout paths, or repo-specific examples to
+tracked files. Public/open-source project names are fine when they are
+intentional and useful.
+
 ## Git Commits
 
 All commits must use semantic commit messages:
