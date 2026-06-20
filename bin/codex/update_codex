@@ -2,14 +2,9 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DOTFILES_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
-CONFIG_PATH="${CODEX_UPDATE_CONFIG:-$DOTFILES_DIR/config/codex/release.json}"
-
 ASSET="codex-x86_64-unknown-linux-musl.tar.gz"
 BINARY="codex-x86_64-unknown-linux-musl"
 INSTALL_PATH="$HOME/.local/bin/codex"
-RELEASES_URL="https://github.com/openai/codex/releases"
 LATEST_RELEASE_API_URL="https://api.github.com/repos/openai/codex/releases/latest"
 
 log() {
@@ -29,12 +24,9 @@ require_command() {
 
 usage() {
 	cat <<EOF
-Usage: update_codex [--open-releases | --update-release-config]
+Usage: update_codex
 
-Options:
-  --open-releases          Open the Codex GitHub releases page in the browser.
-  --update-release-config  Fetch the latest stable release and update release.json.
-  -h, --help               Show this help.
+Fetch the latest stable Codex release, confirm it, and install it.
 EOF
 }
 
@@ -48,11 +40,6 @@ require_linux_x86_64() {
 	if [[ "$os" != "Linux" || "$arch" != "x86_64" ]]; then
 		error "Unsupported platform: $os $arch. Expected Linux x86_64."
 	fi
-}
-
-read_config_value() {
-	local key=$1
-	jq -r ".$key // empty" "$CONFIG_PATH"
 }
 
 confirm() {
@@ -82,73 +69,12 @@ fetch_latest_release_json() {
 		"$LATEST_RELEASE_API_URL"
 }
 
-latest_release_value() {
-	local release_json=$1
-	local filter=$2
-
-	jq -r "$filter // empty" <<<"$release_json"
-}
-
-update_release_config() {
-	local release_json
-	local release_tag
-	local asset_digest
-	local new_config
-
-	require_command curl
-	require_command jq
-
-	log "Fetching latest stable Codex release"
-	release_json="$(fetch_latest_release_json)"
-	release_tag="$(latest_release_value "$release_json" ".tag_name")"
-
-	if [[ -z "$release_tag" ]]; then
-		error "GitHub response did not include a release tag."
-	fi
-
-	asset_digest="$(
-		jq -r --arg asset "$ASSET" \
-			'first(.assets[]? | select(.name == $asset)) // {} | .digest // empty' \
-			<<<"$release_json"
-	)"
-
-	if [[ ! "$asset_digest" =~ ^sha256:[0-9a-fA-F]{64}$ ]]; then
-		error "GitHub did not provide a valid SHA-256 digest for $ASSET in $release_tag."
-	fi
-
-	new_config="$(
-		jq -n \
-			--arg release_tag "$release_tag" \
-			--arg sha256 "$asset_digest" \
-			'{ release_tag: $release_tag, sha256: $sha256 }'
-	)"
-
-	log "New release config:"
-	printf '%s\n' "$new_config"
-
-	if confirm "Write $CONFIG_PATH?"; then
-		printf '%s\n' "$new_config" >"$CONFIG_PATH"
-		log "Updated $CONFIG_PATH"
-	else
-		log "Skipped writing $CONFIG_PATH"
-	fi
-}
-
 case "${1:-}" in
---open-releases)
-	require_command xdg-open
-	xdg-open "$RELEASES_URL"
-	exit 0
-	;;
---update-release-config)
-	update_release_config
-	exit 0
-	;;
+"") ;;
 -h | --help)
 	usage
 	exit 0
 	;;
-"") ;;
 *)
 	usage >&2
 	error "Unknown option: $1"
@@ -163,19 +89,34 @@ require_command tar
 
 require_linux_x86_64
 
-if [[ ! -f "$CONFIG_PATH" ]]; then
-	error "Missing config: $CONFIG_PATH"
-fi
-
-CODEX_RELEASE_TAG="$(read_config_value release_tag)"
-CODEX_SHA256="$(read_config_value sha256)"
+log "Fetching latest stable Codex release"
+RELEASE_JSON="$(fetch_latest_release_json)"
+CODEX_RELEASE_TAG="$(jq -r ".tag_name // empty" <<<"$RELEASE_JSON")"
+CODEX_RELEASE_NAME="$(jq -r ".name // empty" <<<"$RELEASE_JSON")"
+CODEX_SHA256="$(
+	jq -r --arg asset "$ASSET" \
+		'first(.assets[]? | select(.name == $asset)) // {} | .digest // empty' \
+		<<<"$RELEASE_JSON"
+)"
 
 if [[ -z "$CODEX_RELEASE_TAG" ]]; then
-	error "Missing release_tag in $CONFIG_PATH"
+	error "GitHub response did not include a release tag."
+fi
+
+if [[ -z "$CODEX_RELEASE_NAME" ]]; then
+	CODEX_RELEASE_NAME="$CODEX_RELEASE_TAG"
 fi
 
 if [[ ! "$CODEX_SHA256" =~ ^sha256:[0-9a-fA-F]{64}$ ]]; then
-	error "Invalid sha256 in $CONFIG_PATH. Expected sha256:<64_hex_sha256>."
+	error "GitHub did not provide a valid SHA-256 digest for $ASSET in $CODEX_RELEASE_TAG."
+fi
+
+log "Latest release: $CODEX_RELEASE_NAME ($CODEX_RELEASE_TAG)"
+log "SHA-256: $CODEX_SHA256"
+
+if ! confirm "Download and install this Codex release?"; then
+	log "Skipped update"
+	exit 0
 fi
 
 DOWNLOAD_URL="https://github.com/openai/codex/releases/download/$CODEX_RELEASE_TAG/$ASSET"
