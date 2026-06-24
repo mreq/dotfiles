@@ -6,14 +6,12 @@ sudo apt install git
 mkdir -p ~/.local/share
 git clone git@github.com:mreq/dotfiles.git ~/.local/share/dotfiles
 
-DOTFILES_DIR="$HOME/.local/share/dotfiles"
+"$HOME/.local/share/dotfiles/setup/setup.sh"
+"$HOME/.local/share/dotfiles/config/install.sh"
 
-"$DOTFILES_DIR/config/install.sh"
-"$DOTFILES_DIR/setup/setup.sh"
+sudo ln -s "$HOME/.local/share/dotfiles/cron/clear_downloads" /etc/cron.daily/clear_downloads
 
-sudo ln -s "$DOTFILES_DIR/cron/clear_downloads" /etc/cron.daily/clear_downloads
+sudo ln -s "$HOME/.local/share/dotfiles/cron/clear_dropbox" /etc/cron.daily/clear_dropbox
 
-sudo ln -s "$DOTFILES_DIR/cron/clear_dropbox" /etc/cron.daily/clear_dropbox
-
-sudo ln -s "$DOTFILES_DIR/cron/clear_work_logs" /etc/cron.daily/clear_work_logs
+sudo ln -s "$HOME/.local/share/dotfiles/cron/clear_work_logs" /etc/cron.daily/clear_work_logs
 ```
