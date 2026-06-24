@@ -8,13 +8,8 @@ git clone git@github.com:mreq/dotfiles.git ~/.local/share/dotfiles
 
 DOTFILES_DIR="$HOME/.local/share/dotfiles"
 
-sudo apt update && sudo apt install -y jq
-sudo apt install -y $(jq -r '.apt[].package' "$DOTFILES_DIR/setup/packages.json")
-
 "$DOTFILES_DIR/config/install.sh"
 "$DOTFILES_DIR/setup/setup.sh"
-
-pip3 install $(jq -r '.pip[].package' "$DOTFILES_DIR/setup/packages.json") --break-system-packages
 
 sudo ln -s "$DOTFILES_DIR/cron/clear_downloads" /etc/cron.daily/clear_downloads
 
