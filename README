@@ -3,18 +3,22 @@
 ```
 sudo apt install git
 
-git clone git@github.com:mreq/dotfiles.git .dotfiles
+mkdir -p ~/.local/share
+git clone git@github.com:mreq/dotfiles.git ~/.local/share/dotfiles
 
-sudo apt update && sudo apt install -y $(jq -r '.apt[].package' ~/.dotfiles/setup/packages.json)
+DOTFILES_DIR="$HOME/.local/share/dotfiles"
 
-~/.dotfiles/config/install.sh
-~/.dotfiles/setup/setup.sh
+sudo apt update && sudo apt install -y jq
+sudo apt install -y $(jq -r '.apt[].package' "$DOTFILES_DIR/setup/packages.json")
 
-pip3 install $(jq -r '.pip[].package' ~/.dotfiles/setup/packages.json) --break-system-packages
+"$DOTFILES_DIR/config/install.sh"
+"$DOTFILES_DIR/setup/setup.sh"
 
-sudo ln -s ~/.dotfiles/cron/clear_downloads /etc/cron.daily/clear_home_petr_downloads
+pip3 install $(jq -r '.pip[].package' "$DOTFILES_DIR/setup/packages.json") --break-system-packages
 
-sudo ln -s ~/.dotfiles/cron/clear_dropbox /etc/cron.daily/clear_home_petr_dropbox
+sudo ln -s "$DOTFILES_DIR/cron/clear_downloads" /etc/cron.daily/clear_downloads
 
-sudo ln -s ~/.dotfiles/cron/clear_work_logs /etc/cron.daily/clear_home_petr_work_logs
+sudo ln -s "$DOTFILES_DIR/cron/clear_dropbox" /etc/cron.daily/clear_dropbox
+
+sudo ln -s "$DOTFILES_DIR/cron/clear_work_logs" /etc/cron.daily/clear_work_logs
 ```
