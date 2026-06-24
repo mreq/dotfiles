@@ -4,7 +4,7 @@ import subprocess
 import secrets
 from datetime import datetime
 from .ssh_add import ssh_add
-from notify import notification
+from .notify import notification
 
 
 def generate_filename(extension: str) -> str:

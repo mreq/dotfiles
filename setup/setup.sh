@@ -391,29 +391,6 @@ install_mise() {
 	done
 }
 
-install_pip_packages() {
-	local pip_packages=()
-
-	section "Installing python packages"
-
-	mapfile -t pip_packages < <(json_array '.pip[]?.package')
-
-	if ((${#pip_packages[@]} == 0)); then
-		return
-	fi
-
-	if [[ $DRY_RUN -eq 1 ]]; then
-		log "dry-run: would install pip packages: ${pip_packages[*]}"
-		return
-	fi
-
-	if command -v pip3 >/dev/null 2>&1; then
-		pip3 install "${pip_packages[@]}" --break-system-packages >/dev/null 2>&1 || true
-	else
-		log "Skipping python packages; pip3 is missing"
-	fi
-}
-
 run_hooks() {
 	local hook
 	local hook_path
@@ -465,7 +442,6 @@ install_apt_packages
 install_snap_packages
 install_flatpak_packages
 install_mise
-install_pip_packages
 run_hooks
 
 echo ""

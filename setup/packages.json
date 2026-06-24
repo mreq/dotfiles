@@ -14,6 +14,10 @@
       "optional": true
     },
     {
+      "package": "black",
+      "info": "Opinionated Python code formatter"
+    },
+    {
       "package": "brightnessctl",
       "info": "Backlight and LED brightness control",
       "hooks": [
@@ -55,6 +59,10 @@
     {
       "package": "ffmpegthumbnailer",
       "info": "Video thumbnail generator"
+    },
+    {
+      "package": "flake8",
+      "info": "Python code linter"
     },
     {
       "package": "firefox",
@@ -202,6 +210,10 @@
       "info": "JPEG processing utilities"
     },
     {
+      "package": "libnotify-bin",
+      "info": "Desktop notification command-line tools"
+    },
+    {
       "package": "liblcms2-2",
       "info": "Color management library"
     },
@@ -347,8 +359,16 @@
       "optional": true
     },
     {
-      "package": "python3-pip",
-      "info": "Python package installer"
+      "package": "python3-cairosvg",
+      "info": "SVG to PNG/PDF/PS converter"
+    },
+    {
+      "package": "python3-i3ipc",
+      "info": "Python library for i3/sway IPC"
+    },
+    {
+      "package": "python3-ipdb",
+      "info": "IPython-enhanced Python debugger"
     },
     {
       "package": "r-base",
@@ -522,35 +542,5 @@
       "node",
       "ruby"
     ]
-  },
-  "pip": [
-    {
-      "package": "black",
-      "info": "Opinionated Python code formatter"
-    },
-    {
-      "package": "cairosvg",
-      "info": "SVG to PNG/PDF/PS converter"
-    },
-    {
-      "package": "i3ipc",
-      "info": "Python library for i3/sway IPC"
-    },
-    {
-      "package": "ipdb",
-      "info": "IPython-enhanced Python debugger"
-    },
-    {
-      "package": "notify-send",
-      "info": "Desktop notification sender"
-    },
-    {
-      "package": "ruff",
-      "info": "Fast Python linter written in Rust"
-    },
-    {
-      "package": "tldr",
-      "info": "Simplified man pages"
-    }
-  ]
+  }
 }

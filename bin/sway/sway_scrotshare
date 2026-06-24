@@ -6,10 +6,9 @@ import sys
 import time
 from pathlib import Path
 
-from notify import notification
-
 sys.path.append(str(Path(__file__).resolve().parents[2] / "python/modules"))
 import dotfiles  # noqa: E402
+from dotfiles import notification  # noqa: E402
 
 parser = argparse.ArgumentParser()
 

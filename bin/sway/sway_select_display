@@ -5,10 +5,10 @@ import sys
 from pathlib import Path
 
 from i3ipc import Connection
-from notify import notification
 
 sys.path.append(str(Path(__file__).resolve().parents[2] / "python/modules"))
 import dotfiles  # noqa: E402
+from dotfiles import notification  # noqa: E402
 
 TMP_FILE_PATH = "/tmp/sway_select_display.cache"
 

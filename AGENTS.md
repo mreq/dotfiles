@@ -10,7 +10,7 @@ After editing any code files, automatically format and lint them using the appro
 
 ### Python
 - Format: `black <file_path>`
-- Lint: `ruff check <file_path>`
+- Lint: `flake8 <file_path>`
 
 ### Bash/Shell
 - Format: `shfmt -w <file_path>`
