@@ -1,3 +1,6 @@
+# shellcheck shell=bash
+# shellcheck disable=SC1091
+
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -10,29 +13,35 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-  # include .bashrc if it exists
-  if [ -f "$HOME/.bashrc" ]; then
-  	. "$HOME/.bashrc"
-  fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ]; then
+	PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ]; then
-  PATH="$HOME/.local/bin:$PATH"
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
-for dir in $HOME/.dotfiles/*/bin; do
-  PATH="$PATH:$dir"
+for dir in "$HOME"/.local/share/dotfiles/*/bin; do
+	if [ -d "$dir" ]; then
+		PATH="$PATH:$dir"
+	fi
 done
 
-
 if [ -f ~/.local/bin/mise ]; then
-  eval "$(~/.local/bin/mise activate bash)"
+	eval "$(~/.local/bin/mise activate bash)"
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/share/mise/shims" ]; then
-  PATH="$HOME/.local/share/mise/shims:$PATH"
+	PATH="$HOME/.local/share/mise/shims:$PATH"
 fi
 
 export VISUAL=nvim
