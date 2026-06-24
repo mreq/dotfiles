@@ -17,3 +17,19 @@ and ask the user whether to apply it before editing it.
 
 If no existing skill fits, suggest whether the guidance belongs in the current
 repo's `AGENTS.md`, global `~/.codex/AGENTS.md`, or a new skill.
+
+## Sensitive Local Data
+
+Never inspect, print, summarize, search inside, or otherwise read local secret
+or credential files unless the user explicitly asks for that exact file or a
+specific redacted snippet.
+
+Treat these as sensitive by default:
+- Kubernetes configs and credentials such as `~/.kube`
+- SSH keys and config such as `~/.ssh`
+- AWS credentials and auth caches such as `~/.aws`
+- Password stores, keyrings, browser profiles, mail profiles, tokens, cookies,
+  certificates, and private keys
+
+It is fine to discuss directory names, permissions, migration commands, and
+high-level security patterns without reading the contents.
