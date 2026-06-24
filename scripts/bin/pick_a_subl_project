@@ -1,17 +1,43 @@
 #!/bin/bash
-paths="work/**/*.sublime-project .dotfiles/*.sublime-project .local/share/*/*.sublime-project Applications/**/*.sublime-project Dropbox/*/*.sublime-project Documents/*/*.sublime-project"
 
-handle_selection() {
-  if [ $1 ]; then
-    project=$( cd ~/; ls -t $paths | grep "/$1.sublime" )
-    if [ ! $project ]; then
-      notify-send "$1" "project doesn't exist"
-      exit 1
-    fi
-    touch "$project"
-    subl "$project"
-  fi
-  exit 0
+set -euo pipefail
+
+shopt -s globstar nullglob
+
+project_paths=(
+	"$HOME"/work/**/*.sublime-project
+	"$HOME"/.local/share/dotfiles/*.sublime-project
+	"$HOME"/.local/share/*/*.sublime-project
+	"$HOME"/Applications/**/*.sublime-project
+	"$HOME"/Dropbox/*/*.sublime-project
+	"$HOME"/Documents/*/*.sublime-project
+)
+
+list_projects() {
+	if ((${#project_paths[@]} == 0)); then
+		return
+	fi
+
+	ls -t "${project_paths[@]}"
 }
 
-handle_selection "$( cd ~/; ls -t $paths | sed -re 's/.+\/([^\/]+)\.sublime-project/\1/' | rofi -dmenu -i -theme base16-mreq-yellow )"
+handle_selection() {
+	local selection=$1
+	local project
+
+	if [[ -n "$selection" ]]; then
+		project=$(list_projects | grep "/$selection.sublime-project$" | head -n 1 || true)
+
+		if [[ -z "$project" ]]; then
+			notify-send "$selection" "project doesn't exist"
+			exit 1
+		fi
+
+		touch "$project"
+		subl "$project"
+	fi
+
+	exit 0
+}
+
+handle_selection "$(list_projects | sed -E 's|.*/([^/]+)\.sublime-project|\1|' | rofi -dmenu -i -theme base16-mreq-yellow)"
