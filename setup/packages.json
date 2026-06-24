@@ -412,15 +412,6 @@
       "info": "SSH passphrase prompt for GNOME"
     },
     {
-      "package": "spotify-client",
-      "info": "Spotify desktop client",
-      "gpg-key": "https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc",
-      "gpg-key-format": "dearmor",
-      "signed-by": "/etc/apt/keyrings/spotify.gpg",
-      "source-file": "/etc/apt/sources.list.d/spotify.sources",
-      "source-content": "Types: deb\nURIs: https://repository.spotify.com\nSuites: stable\nComponents: non-free\nSigned-By: /etc/apt/keyrings/spotify.gpg"
-    },
-    {
       "package": "sublime-text",
       "info": "Sublime Text editor",
       "gpg-key": "https://download.sublimetext.com/sublimehq-pub.gpg",
@@ -528,6 +519,11 @@
     }
   ],
   "snap": [
+    {
+      "package": "spotify",
+      "info": "Spotify desktop client",
+      "verified-publisher": "Spotify"
+    },
     {
       "package": "slack",
       "info": "Slack desktop client",

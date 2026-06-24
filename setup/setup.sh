@@ -54,6 +54,12 @@ apt_has_candidate() {
 	[[ -n "$candidate" && "$candidate" != "(none)" ]]
 }
 
+snap_is_installed() {
+	local package=$1
+
+	command -v snap >/dev/null 2>&1 && snap list "$package" >/dev/null 2>&1
+}
+
 apt_update_once() {
 	if [[ $APT_UPDATED -eq 1 ]]; then
 		return
@@ -100,6 +106,17 @@ bootstrap_setup_packages() {
 	log "Installing setup dependencies: ${missing[*]}"
 	apt_update_once
 	sudo apt install -y "${missing[@]}"
+}
+
+ensure_ca_certificates() {
+	if [[ $DRY_RUN -eq 1 ]]; then
+		log "dry-run: would refresh CA certificates"
+		return
+	fi
+
+	if command -v update-ca-certificates >/dev/null 2>&1; then
+		sudo update-ca-certificates >/dev/null
+	fi
 }
 
 json_array() {
@@ -295,26 +312,38 @@ install_snap_packages() {
 		command_name=$(jq -r '.command // empty' <<<"$entry")
 		apt_package=$(jq -r '."apt-package" // empty' <<<"$entry")
 
+		if [[ $DRY_RUN -eq 1 ]]; then
+			if [[ -n "$command_name" ]] && command -v "$command_name" >/dev/null 2>&1; then
+				log "$package already installed"
+				continue
+			fi
+
+			if [[ -n "$apt_package" ]] && apt_has_candidate "$apt_package"; then
+				log "dry-run: would install apt fallback for $package: $apt_package"
+				continue
+			fi
+
+			log "dry-run: would install snap package: $package"
+			continue
+		fi
+
+		if snap_is_installed "$package"; then
+			log "$package snap already installed"
+			continue
+		fi
+
 		if [[ -n "$command_name" ]] && command -v "$command_name" >/dev/null 2>&1; then
 			log "$package already installed"
 			continue
 		fi
 
 		if [[ -n "$apt_package" ]] && apt_has_candidate "$apt_package"; then
-			if [[ $DRY_RUN -eq 1 ]]; then
-				log "dry-run: would install apt fallback for $package: $apt_package"
-			else
-				apt_update_once
-				sudo apt install -y "$apt_package"
-			fi
+			apt_update_once
+			sudo apt install -y "$apt_package"
 			continue
 		fi
 
-		if [[ $DRY_RUN -eq 1 ]]; then
-			log "dry-run: would install snap package: $package"
-		else
-			sudo snap install "$package"
-		fi
+		sudo snap install "$package"
 	done < <(jq -c '.snap[]?' "$PACKAGES_JSON")
 }
 
@@ -356,6 +385,7 @@ install_mise() {
 	local mise_bin
 	local runtimes=()
 	local runtime
+	local ca_file=/etc/ssl/certs/ca-certificates.crt
 
 	if ! jq -e '.mise // false' "$PACKAGES_JSON" >/dev/null; then
 		return
@@ -374,6 +404,13 @@ install_mise() {
 	fi
 
 	if ! command -v mise >/dev/null 2>&1 && [[ ! -x "$HOME/.local/bin/mise" ]]; then
+		if [[ ! -r "$ca_file" ]]; then
+			error "CA certificate bundle is missing: $ca_file"
+		fi
+
+		ensure_ca_certificates
+		export CURL_CA_BUNDLE="$ca_file"
+		export SSL_CERT_FILE="$ca_file"
 		curl --fail --location --show-error https://mise.run | sh
 	fi
 
