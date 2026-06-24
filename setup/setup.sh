@@ -46,6 +46,12 @@ require_command() {
 	fi
 }
 
+apt_is_installed() {
+	local package=$1
+
+	dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -q "install ok installed"
+}
+
 apt_has_candidate() {
 	local package=$1
 	local candidate
@@ -89,7 +95,7 @@ bootstrap_setup_packages() {
 	local package
 
 	for package in ca-certificates curl gnupg; do
-		if ! dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -q "install ok installed"; then
+		if ! apt_is_installed "$package"; then
 			missing+=("$package")
 		fi
 	done
@@ -201,10 +207,12 @@ configure_apt_repositories() {
 	local source_content
 	local current_content
 	local repo_changed=0
+	local package_changed
 
 	section "Configuring apt repositories"
 
 	while IFS= read -r entry; do
+		package_changed=0
 		package=$(jq -r '.package' <<<"$entry")
 		gpg_key=$(jq -r '."gpg-key" // empty' <<<"$entry")
 		gpg_key_format=$(jq -r '."gpg-key-format" // "dearmor"' <<<"$entry")
@@ -220,63 +228,88 @@ configure_apt_repositories() {
 			error "$package repo metadata must include gpg-key, signed-by, source-file, and source-content"
 		fi
 
-		if [[ $DRY_RUN -eq 1 ]]; then
-			log "dry-run: would configure apt repo for $package at $source_file"
-			continue
-		fi
-
-		sudo install -d -m 0755 "$(dirname -- "$signed_by")"
-		sudo install -d -m 0755 "$(dirname -- "$source_file")"
-
 		if [[ ! -f "$signed_by" ]]; then
-			log "Adding apt key for $package"
-			case "$gpg_key_format" in
-			ascii)
-				curl --fail --location --show-error --silent "$gpg_key" | sudo tee "$signed_by" >/dev/null
-				;;
-			dearmor)
-				curl --fail --location --show-error --silent "$gpg_key" | sudo gpg --dearmor --yes -o "$signed_by"
-				;;
-			*) error "Unsupported gpg-key-format for $package: $gpg_key_format" ;;
-			esac
-			repo_changed=1
+			if [[ $DRY_RUN -eq 1 ]]; then
+				log "dry-run: would add apt key for $package at $signed_by"
+				package_changed=1
+			else
+				sudo install -d -m 0755 "$(dirname -- "$signed_by")"
+				log "Adding apt key for $package"
+				case "$gpg_key_format" in
+				ascii)
+					curl --fail --location --show-error --silent "$gpg_key" | sudo tee "$signed_by" >/dev/null
+					;;
+				dearmor)
+					curl --fail --location --show-error --silent "$gpg_key" | sudo gpg --dearmor --yes -o "$signed_by"
+					;;
+				*) error "Unsupported gpg-key-format for $package: $gpg_key_format" ;;
+				esac
+				repo_changed=1
+			fi
 		fi
 
 		current_content=$(cat "$source_file" 2>/dev/null || true)
 		if [[ "$current_content" != "$source_content" ]]; then
-			log "Writing apt source for $package"
-			printf '%s\n' "$source_content" | sudo tee "$source_file" >/dev/null
-			repo_changed=1
+			if [[ $DRY_RUN -eq 1 ]]; then
+				log "dry-run: would write apt source for $package at $source_file"
+				package_changed=1
+			else
+				sudo install -d -m 0755 "$(dirname -- "$source_file")"
+				log "Writing apt source for $package"
+				printf '%s\n' "$source_content" | sudo tee "$source_file" >/dev/null
+				repo_changed=1
+			fi
+		fi
+
+		if [[ $DRY_RUN -eq 1 ]]; then
+			if [[ $package_changed -eq 1 ]]; then
+				repo_changed=1
+			else
+				log "$package apt repo already configured"
+			fi
 		fi
 	done < <(jq -c '.apt[]?' "$PACKAGES_JSON")
 
 	if [[ $repo_changed -eq 1 ]]; then
 		apt_update_once
 	elif [[ $DRY_RUN -eq 1 ]]; then
-		log "dry-run: would run apt update if repository files changed"
+		log "apt repositories already configured"
 	fi
 }
 
 install_apt_packages() {
-	local required=()
+	local missing=()
 	local optional=()
 	local package
 
 	section "Installing apt packages"
 
-	mapfile -t required < <(json_array '.apt[]? | select(.optional != true) | .package')
+	while IFS= read -r package; do
+		[[ -n "$package" ]] || continue
+		if ! apt_is_installed "$package"; then
+			missing+=("$package")
+		fi
+	done < <(json_array '.apt[]? | select(.optional != true) | .package')
+
 	mapfile -t optional < <(json_array '.apt[]? | select(.optional == true) | .package')
 
-	if ((${#required[@]})); then
+	if ((${#missing[@]})); then
 		if [[ $DRY_RUN -eq 1 ]]; then
-			log "dry-run: would install apt packages: ${required[*]}"
+			log "dry-run: would install apt packages: ${missing[*]}"
 		else
 			apt_update_once
-			sudo apt install -y "${required[@]}"
+			sudo apt install -y "${missing[@]}"
 		fi
+	else
+		log "apt packages already installed"
 	fi
 
 	for package in "${optional[@]}"; do
+		if apt_is_installed "$package"; then
+			log "optional apt package already installed: $package"
+			continue
+		fi
+
 		if [[ $DRY_RUN -eq 1 ]]; then
 			log "dry-run: would install optional apt package: $package"
 			continue
@@ -409,9 +442,13 @@ install_mise() {
 		fi
 
 		ensure_ca_certificates
-		export CURL_CA_BUNDLE="$ca_file"
-		export SSL_CERT_FILE="$ca_file"
-		curl --fail --location --show-error https://mise.run | sh
+		(
+			export CURL_CA_BUNDLE="$ca_file"
+			export MISE_INSTALL_FROM_GITHUB=1
+			export MISE_INSTALL_PATH="$HOME/.local/bin/mise"
+			export SSL_CERT_FILE="$ca_file"
+			curl --fail --location --show-error https://mise.run | sh
+		)
 	fi
 
 	mise_bin=$(command -v mise || true)

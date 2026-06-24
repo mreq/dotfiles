@@ -534,9 +534,6 @@
   ],
   "flatpak": [],
   "mise": {
-    "runtimes": [
-      "node",
-      "ruby"
-    ]
+    "runtimes": []
   }
 }
