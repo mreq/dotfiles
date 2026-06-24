@@ -1,125 +1,556 @@
 {
   "apt": [
-    { "package": "apache2-utils", "info": "Apache HTTP utilities (ab, htpasswd)" },
-    { "package": "awscli", "info": "AWS command line interface" },
-    { "package": "blueman", "info": "GTK+ Bluetooth manager", "optional": true },
-    { "package": "btop", "info": "Resource monitor for CPU, memory, disks, network" },
-    { "package": "cups", "info": "Common UNIX Printing System" },
-    { "package": "cups-filters", "info": "Printer filters for CUPS" },
-    { "package": "curl", "info": "Command-line tool for transferring data with URLs" },
-    { "package": "doublecmd-qt", "info": "Twin-panel file manager" },
-    { "package": "exfat-fuse", "info": "FUSE filesystem for exFAT drives" },
-    { "package": "ffmpeg", "info": "Audio/video converter and streamer" },
-    { "package": "ffmpegthumbnailer", "info": "Video thumbnail generator" },
-    { "package": "firefox", "info": "Ubuntu Firefox integration package" },
-    { "package": "foot", "info": "Fast Wayland terminal emulator" },
-    { "package": "fzf", "info": "Command-line fuzzy finder" },
-    { "package": "gdebi", "info": ".deb package installer with dependency resolution" },
-    { "package": "gcr4", "info": "GNOME crypto UI and GCR SSH agent" },
-    { "package": "ghostscript", "info": "PostScript/PDF interpreter" },
-    { "package": "giflib-tools", "info": "GIF image manipulation tools" },
-    { "package": "gifsicle", "info": "GIF image optimizer and animator" },
-    { "package": "gimp", "info": "GNU Image Manipulation Program" },
-    { "package": "gnome-keyring", "info": "GNOME secret storage and keyring daemon" },
-    { "package": "gnupg", "info": "GNU Privacy Guard tools" },
-    { "package": "grim", "info": "Wayland screenshot utility" },
-    { "package": "imagemagick", "info": "Image manipulation toolkit" },
-    { "package": "inkscape", "info": "Vector graphics editor" },
-    { "package": "inotify-tools", "info": "File system event monitoring tools" },
-    { "package": "jq", "info": "Command-line JSON processor" },
-    { "package": "keepassxc", "info": "Cross-platform password manager" },
-    { "package": "libcurl4t64", "info": "URL transfer library" },
-    { "package": "libcurl4-openssl-dev", "info": "libcurl development headers (OpenSSL)" },
-    { "package": "libdjvulibre-dev", "info": "DjVu image format headers" },
-    { "package": "libexif12", "info": "EXIF metadata library" },
-    { "package": "libffi-dev", "info": "Foreign function interface headers" },
-    { "package": "libfuse2t64", "info": "FUSE filesystem library for AppImage support" },
-    { "package": "libgdbm-dev", "info": "GNU database library headers" },
-    { "package": "libgif-dev", "info": "GIF library headers" },
-    { "package": "libgif7", "info": "GIF image library" },
-    { "package": "libheif-dev", "info": "HEIF image format headers" },
-    { "package": "libheif-examples", "info": "HEIF image conversion tools" },
-    { "package": "libheif1", "info": "HEIF/HEIC image library" },
-    { "package": "libimage-exiftool-perl", "info": "Perl EXIF metadata library" },
-    { "package": "libjemalloc-dev", "info": "Memory allocator headers" },
-    { "package": "libjpeg-dev", "info": "JPEG library headers" },
-    { "package": "libjpeg-turbo-progs", "info": "JPEG processing utilities" },
-    { "package": "liblcms2-2", "info": "Color management library" },
-    { "package": "liblcms2-utils", "info": "Color management utilities" },
-    { "package": "libncurses-dev", "info": "Terminal UI library headers" },
-    { "package": "libopenjp2-7", "info": "JPEG 2000 image library" },
-    { "package": "libpng-dev", "info": "PNG library headers" },
-    { "package": "libpoppler-dev", "info": "PDF rendering library headers" },
-    { "package": "libpq-dev", "info": "PostgreSQL client library headers" },
-    { "package": "libreadline-dev", "info": "GNU readline library headers" },
-    { "package": "libsodium-dev", "info": "Modern cryptography library headers" },
-    { "package": "libssl-dev", "info": "OpenSSL development headers" },
-    { "package": "libtiff-dev", "info": "TIFF library headers" },
-    { "package": "libunrar5t64", "info": "RAR decompression library" },
-    { "package": "libvips-dev", "info": "Image processing library headers" },
-    { "package": "libvips-tools", "info": "Fast image processing CLI tools" },
-    { "package": "libwebp-dev", "info": "WebP image format headers" },
-    { "package": "libwmf-dev", "info": "Windows Metafile library headers" },
-    { "package": "libyaml-dev", "info": "YAML parser library headers" },
-    { "package": "libreoffice-calc", "info": "Spreadsheet application" },
-    { "package": "libreoffice-writer", "info": "Word processor application" },
-    { "package": "lm-sensors", "info": "Hardware monitoring (temperature, voltage, fans)" },
-    { "package": "nautilus", "info": "GNOME file manager" },
-    { "package": "ncdu", "info": "NCurses disk usage analyzer" },
-    { "package": "net-tools", "info": "Network utilities (ifconfig, route)" },
-    { "package": "nomacs", "info": "Lightweight image viewer" },
-    { "package": "optipng", "info": "PNG image optimizer" },
-    { "package": "pamixer", "info": "PulseAudio command-line mixer" },
-    { "package": "playerctl", "info": "Media player control utility" },
-    { "package": "policykit-1-gnome", "info": "Polkit authentication agent for GNOME" },
-    { "package": "postgresql", "info": "PostgreSQL database server" },
-    { "package": "postgresql-client", "info": "PostgreSQL command-line client" },
-    { "package": "power-profiles-daemon", "info": "Power profile management daemon" },
-    { "package": "printer-driver-cups-pdf", "info": "PDF printer driver" },
-    { "package": "pulseaudio-module-bluetooth", "info": "PulseAudio Bluetooth support", "optional": true },
-    { "package": "pulseaudio-utils", "info": "PulseAudio utilities (paplay, pactl)", "optional": true },
-    { "package": "python3-pip", "info": "Python package installer" },
-    { "package": "r-base", "info": "GNU R statistical computing and graphics system" },
-    { "package": "redis", "info": "In-memory data structure store" },
-    { "package": "ripgrep", "info": "Fast recursive grep alternative" },
-    { "package": "rofi", "info": "Application launcher and dmenu replacement" },
-    { "package": "rubber", "info": "Automated LaTeX document building", "optional": true },
-    { "package": "seahorse", "info": "GNOME password and key manager" },
-    { "package": "shellcheck", "info": "Shell script static analysis tool" },
-    { "package": "shfmt", "info": "Shell script formatter" },
-    { "package": "slurp", "info": "Wayland region selection utility" },
-    { "package": "ssh-askpass-gnome", "info": "SSH passphrase prompt for GNOME" },
-    { "package": "sway", "info": "i3-compatible Wayland compositor" },
-    { "package": "sway-notification-center", "info": "Notification daemon for Sway" },
-    { "package": "swayidle", "info": "Idle management daemon for Wayland" },
-    { "package": "swaylock", "info": "Screen locker for Wayland" },
-    { "package": "system-config-printer", "info": "Printer configuration GUI" },
-    { "package": "texlive-latex-recommended", "info": "Core LaTeX packages", "optional": true },
-    { "package": "texlive-xetex", "info": "XeTeX typesetting engine", "optional": true },
-    { "package": "thunderbird", "info": "Ubuntu Thunderbird integration package" },
-    { "package": "tmux", "info": "Terminal multiplexer" },
-    { "package": "ubuntu-restricted-extras", "info": "Common codecs and fonts" },
-    { "package": "unrar", "info": "RAR archive extractor" },
-    { "package": "vlc", "info": "VLC media player" },
-    { "package": "waybar", "info": "Status bar for Wayland" },
-    { "package": "webp", "info": "WebP image format tools" },
-    { "package": "wf-recorder", "info": "Screen recorder for wlroots compositors" },
-    { "package": "wget", "info": "Command-line network downloader" },
-    { "package": "wl-clipboard", "info": "Wayland clipboard utilities" },
-    { "package": "wob", "info": "Lightweight overlay volume/progress bar for Wayland" },
-    { "package": "wlsunset", "info": "Day/night gamma adjustment for Wayland" },
-    { "package": "xdg-desktop-portal-wlr", "info": "xdg-desktop-portal backend for wlroots" },
-    { "package": "xwayland", "info": "X11 compatibility layer for Wayland" },
-    { "package": "unzip", "info": "ZIP archive extractor" },
-    { "package": "zlib1g-dev", "info": "Compression library headers" }
+    {
+      "package": "apache2-utils",
+      "info": "Apache HTTP utilities (ab, htpasswd)"
+    },
+    {
+      "package": "awscli",
+      "info": "AWS command line interface"
+    },
+    {
+      "package": "blueman",
+      "info": "GTK+ Bluetooth manager",
+      "optional": true
+    },
+    {
+      "package": "brightnessctl",
+      "info": "Backlight and LED brightness control",
+      "hooks": [
+        "setup/hooks/brightnessctl_hook.sh"
+      ]
+    },
+    {
+      "package": "btop",
+      "info": "Resource monitor for CPU, memory, disks, network"
+    },
+    {
+      "package": "ca-certificates",
+      "info": "Common CA certificates"
+    },
+    {
+      "package": "cups",
+      "info": "Common UNIX Printing System"
+    },
+    {
+      "package": "cups-filters",
+      "info": "Printer filters for CUPS"
+    },
+    {
+      "package": "curl",
+      "info": "Command-line tool for transferring data with URLs"
+    },
+    {
+      "package": "doublecmd-qt",
+      "info": "Twin-panel file manager"
+    },
+    {
+      "package": "exfat-fuse",
+      "info": "FUSE filesystem for exFAT drives"
+    },
+    {
+      "package": "ffmpeg",
+      "info": "Audio/video converter and streamer"
+    },
+    {
+      "package": "ffmpegthumbnailer",
+      "info": "Video thumbnail generator"
+    },
+    {
+      "package": "firefox",
+      "info": "Ubuntu Firefox integration package"
+    },
+    {
+      "package": "foot",
+      "info": "Fast Wayland terminal emulator"
+    },
+    {
+      "package": "fzf",
+      "info": "Command-line fuzzy finder"
+    },
+    {
+      "package": "gdebi",
+      "info": ".deb package installer with dependency resolution"
+    },
+    {
+      "package": "gcr4",
+      "info": "GNOME crypto UI and GCR SSH agent"
+    },
+    {
+      "package": "ghostscript",
+      "info": "PostScript/PDF interpreter"
+    },
+    {
+      "package": "giflib-tools",
+      "info": "GIF image manipulation tools"
+    },
+    {
+      "package": "gifsicle",
+      "info": "GIF image optimizer and animator"
+    },
+    {
+      "package": "gimp",
+      "info": "GNU Image Manipulation Program"
+    },
+    {
+      "package": "gnome-keyring",
+      "info": "GNOME secret storage and keyring daemon"
+    },
+    {
+      "package": "gnupg",
+      "info": "GNU Privacy Guard tools"
+    },
+    {
+      "package": "google-chrome-stable",
+      "info": "Google Chrome web browser",
+      "gpg-key": "https://dl.google.com/linux/linux_signing_key.pub",
+      "gpg-key-format": "dearmor",
+      "signed-by": "/etc/apt/keyrings/google-chrome.gpg",
+      "source-file": "/etc/apt/sources.list.d/google-chrome.sources",
+      "source-content": "Types: deb\nURIs: https://dl.google.com/linux/chrome/deb/\nSuites: stable\nComponents: main\nArchitectures: amd64\nSigned-By: /etc/apt/keyrings/google-chrome.gpg"
+    },
+    {
+      "package": "grim",
+      "info": "Wayland screenshot utility"
+    },
+    {
+      "package": "imagemagick",
+      "info": "Image manipulation toolkit"
+    },
+    {
+      "package": "inkscape",
+      "info": "Vector graphics editor"
+    },
+    {
+      "package": "inotify-tools",
+      "info": "File system event monitoring tools"
+    },
+    {
+      "package": "jq",
+      "info": "Command-line JSON processor"
+    },
+    {
+      "package": "keepassxc",
+      "info": "Cross-platform password manager"
+    },
+    {
+      "package": "lazygit",
+      "info": "Terminal UI for git"
+    },
+    {
+      "package": "libcurl4t64",
+      "info": "URL transfer library"
+    },
+    {
+      "package": "libcurl4-openssl-dev",
+      "info": "libcurl development headers (OpenSSL)"
+    },
+    {
+      "package": "libdjvulibre-dev",
+      "info": "DjVu image format headers"
+    },
+    {
+      "package": "libexif12",
+      "info": "EXIF metadata library"
+    },
+    {
+      "package": "libffi-dev",
+      "info": "Foreign function interface headers"
+    },
+    {
+      "package": "libfuse2t64",
+      "info": "FUSE filesystem library for AppImage support"
+    },
+    {
+      "package": "libgdbm-dev",
+      "info": "GNU database library headers"
+    },
+    {
+      "package": "libgif-dev",
+      "info": "GIF library headers"
+    },
+    {
+      "package": "libgif7",
+      "info": "GIF image library"
+    },
+    {
+      "package": "libheif-dev",
+      "info": "HEIF image format headers"
+    },
+    {
+      "package": "libheif-examples",
+      "info": "HEIF image conversion tools"
+    },
+    {
+      "package": "libheif1",
+      "info": "HEIF/HEIC image library"
+    },
+    {
+      "package": "libimage-exiftool-perl",
+      "info": "Perl EXIF metadata library"
+    },
+    {
+      "package": "libjemalloc-dev",
+      "info": "Memory allocator headers"
+    },
+    {
+      "package": "libjpeg-dev",
+      "info": "JPEG library headers"
+    },
+    {
+      "package": "libjpeg-turbo-progs",
+      "info": "JPEG processing utilities"
+    },
+    {
+      "package": "liblcms2-2",
+      "info": "Color management library"
+    },
+    {
+      "package": "liblcms2-utils",
+      "info": "Color management utilities"
+    },
+    {
+      "package": "libncurses-dev",
+      "info": "Terminal UI library headers"
+    },
+    {
+      "package": "libopenjp2-7",
+      "info": "JPEG 2000 image library"
+    },
+    {
+      "package": "libpng-dev",
+      "info": "PNG library headers"
+    },
+    {
+      "package": "libpoppler-dev",
+      "info": "PDF rendering library headers"
+    },
+    {
+      "package": "libpq-dev",
+      "info": "PostgreSQL client library headers"
+    },
+    {
+      "package": "libreadline-dev",
+      "info": "GNU readline library headers"
+    },
+    {
+      "package": "libsodium-dev",
+      "info": "Modern cryptography library headers"
+    },
+    {
+      "package": "libssl-dev",
+      "info": "OpenSSL development headers"
+    },
+    {
+      "package": "libtiff-dev",
+      "info": "TIFF library headers"
+    },
+    {
+      "package": "libunrar5t64",
+      "info": "RAR decompression library"
+    },
+    {
+      "package": "libvips-dev",
+      "info": "Image processing library headers"
+    },
+    {
+      "package": "libvips-tools",
+      "info": "Fast image processing CLI tools"
+    },
+    {
+      "package": "libwebp-dev",
+      "info": "WebP image format headers"
+    },
+    {
+      "package": "libwmf-dev",
+      "info": "Windows Metafile library headers"
+    },
+    {
+      "package": "libyaml-dev",
+      "info": "YAML parser library headers"
+    },
+    {
+      "package": "libreoffice-calc",
+      "info": "Spreadsheet application"
+    },
+    {
+      "package": "libreoffice-writer",
+      "info": "Word processor application"
+    },
+    {
+      "package": "lm-sensors",
+      "info": "Hardware monitoring (temperature, voltage, fans)"
+    },
+    {
+      "package": "nautilus",
+      "info": "GNOME file manager"
+    },
+    {
+      "package": "ncdu",
+      "info": "NCurses disk usage analyzer"
+    },
+    {
+      "package": "neovim",
+      "info": "Text editor"
+    },
+    {
+      "package": "net-tools",
+      "info": "Network utilities (ifconfig, route)"
+    },
+    {
+      "package": "nomacs",
+      "info": "Lightweight image viewer"
+    },
+    {
+      "package": "optipng",
+      "info": "PNG image optimizer"
+    },
+    {
+      "package": "pamixer",
+      "info": "PulseAudio command-line mixer"
+    },
+    {
+      "package": "playerctl",
+      "info": "Media player control utility"
+    },
+    {
+      "package": "policykit-1-gnome",
+      "info": "Polkit authentication agent for GNOME"
+    },
+    {
+      "package": "postgresql",
+      "info": "PostgreSQL database server",
+      "hooks": [
+        "setup/hooks/postgresql_hook.sh"
+      ]
+    },
+    {
+      "package": "postgresql-client",
+      "info": "PostgreSQL command-line client"
+    },
+    {
+      "package": "power-profiles-daemon",
+      "info": "Power profile management daemon"
+    },
+    {
+      "package": "printer-driver-cups-pdf",
+      "info": "PDF printer driver"
+    },
+    {
+      "package": "pulseaudio-module-bluetooth",
+      "info": "PulseAudio Bluetooth support",
+      "optional": true
+    },
+    {
+      "package": "pulseaudio-utils",
+      "info": "PulseAudio utilities (paplay, pactl)",
+      "optional": true
+    },
+    {
+      "package": "python3-pip",
+      "info": "Python package installer"
+    },
+    {
+      "package": "r-base",
+      "info": "GNU R statistical computing and graphics system"
+    },
+    {
+      "package": "redis",
+      "info": "In-memory data structure store"
+    },
+    {
+      "package": "ripgrep",
+      "info": "Fast recursive grep alternative"
+    },
+    {
+      "package": "rofi",
+      "info": "Application launcher and dmenu replacement"
+    },
+    {
+      "package": "rubber",
+      "info": "Automated LaTeX document building",
+      "optional": true
+    },
+    {
+      "package": "seahorse",
+      "info": "GNOME password and key manager"
+    },
+    {
+      "package": "shellcheck",
+      "info": "Shell script static analysis tool"
+    },
+    {
+      "package": "shfmt",
+      "info": "Shell script formatter"
+    },
+    {
+      "package": "slurp",
+      "info": "Wayland region selection utility"
+    },
+    {
+      "package": "ssh-askpass-gnome",
+      "info": "SSH passphrase prompt for GNOME"
+    },
+    {
+      "package": "spotify-client",
+      "info": "Spotify desktop client",
+      "gpg-key": "https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc",
+      "gpg-key-format": "dearmor",
+      "signed-by": "/etc/apt/keyrings/spotify.gpg",
+      "source-file": "/etc/apt/sources.list.d/spotify.sources",
+      "source-content": "Types: deb\nURIs: https://repository.spotify.com\nSuites: stable\nComponents: non-free\nSigned-By: /etc/apt/keyrings/spotify.gpg"
+    },
+    {
+      "package": "sublime-text",
+      "info": "Sublime Text editor",
+      "gpg-key": "https://download.sublimetext.com/sublimehq-pub.gpg",
+      "gpg-key-format": "ascii",
+      "signed-by": "/etc/apt/keyrings/sublimehq-pub.asc",
+      "source-file": "/etc/apt/sources.list.d/sublime-text.sources",
+      "source-content": "Types: deb\nURIs: https://download.sublimetext.com/\nSuites: apt/stable/\nSigned-By: /etc/apt/keyrings/sublimehq-pub.asc"
+    },
+    {
+      "package": "sway",
+      "info": "i3-compatible Wayland compositor",
+      "hooks": [
+        "setup/hooks/sway_hook.sh"
+      ]
+    },
+    {
+      "package": "sway-notification-center",
+      "info": "Notification daemon for Sway"
+    },
+    {
+      "package": "swayidle",
+      "info": "Idle management daemon for Wayland"
+    },
+    {
+      "package": "swaylock",
+      "info": "Screen locker for Wayland"
+    },
+    {
+      "package": "system-config-printer",
+      "info": "Printer configuration GUI"
+    },
+    {
+      "package": "texlive-latex-recommended",
+      "info": "Core LaTeX packages",
+      "optional": true
+    },
+    {
+      "package": "texlive-xetex",
+      "info": "XeTeX typesetting engine",
+      "optional": true
+    },
+    {
+      "package": "thunderbird",
+      "info": "Ubuntu Thunderbird integration package"
+    },
+    {
+      "package": "tmux",
+      "info": "Terminal multiplexer"
+    },
+    {
+      "package": "ubuntu-restricted-extras",
+      "info": "Common codecs and fonts"
+    },
+    {
+      "package": "unrar",
+      "info": "RAR archive extractor"
+    },
+    {
+      "package": "unzip",
+      "info": "ZIP archive extractor"
+    },
+    {
+      "package": "vlc",
+      "info": "VLC media player"
+    },
+    {
+      "package": "waybar",
+      "info": "Status bar for Wayland"
+    },
+    {
+      "package": "webp",
+      "info": "WebP image format tools"
+    },
+    {
+      "package": "wf-recorder",
+      "info": "Screen recorder for wlroots compositors"
+    },
+    {
+      "package": "wget",
+      "info": "Command-line network downloader"
+    },
+    {
+      "package": "wl-clipboard",
+      "info": "Wayland clipboard utilities"
+    },
+    {
+      "package": "wob",
+      "info": "Lightweight overlay volume/progress bar for Wayland"
+    },
+    {
+      "package": "wlsunset",
+      "info": "Day/night gamma adjustment for Wayland"
+    },
+    {
+      "package": "xdg-desktop-portal-wlr",
+      "info": "xdg-desktop-portal backend for wlroots"
+    },
+    {
+      "package": "xwayland",
+      "info": "X11 compatibility layer for Wayland"
+    },
+    {
+      "package": "zlib1g-dev",
+      "info": "Compression library headers"
+    }
   ],
+  "snap": [
+    {
+      "package": "slack",
+      "info": "Slack desktop client",
+      "command": "slack",
+      "verified-publisher": "Slack",
+      "apt-package": "slack-desktop"
+    }
+  ],
+  "flatpak": [],
+  "mise": {
+    "runtimes": [
+      "node",
+      "ruby"
+    ]
+  },
   "pip": [
-    { "package": "black", "info": "Opinionated Python code formatter" },
-    { "package": "cairosvg", "info": "SVG to PNG/PDF/PS converter" },
-    { "package": "i3ipc", "info": "Python library for i3/sway IPC" },
-    { "package": "ipdb", "info": "IPython-enhanced Python debugger" },
-    { "package": "notify-send", "info": "Desktop notification sender" },
-    { "package": "ruff", "info": "Fast Python linter written in Rust" },
-    { "package": "tldr", "info": "Simplified man pages" }
+    {
+      "package": "black",
+      "info": "Opinionated Python code formatter"
+    },
+    {
+      "package": "cairosvg",
+      "info": "SVG to PNG/PDF/PS converter"
+    },
+    {
+      "package": "i3ipc",
+      "info": "Python library for i3/sway IPC"
+    },
+    {
+      "package": "ipdb",
+      "info": "IPython-enhanced Python debugger"
+    },
+    {
+      "package": "notify-send",
+      "info": "Desktop notification sender"
+    },
+    {
+      "package": "ruff",
+      "info": "Fast Python linter written in Rust"
+    },
+    {
+      "package": "tldr",
+      "info": "Simplified man pages"
+    }
   ]
 }
