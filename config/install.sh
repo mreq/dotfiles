@@ -2,22 +2,49 @@
 
 set -e
 
-cd "${0%/*}" || exit 0
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+DOTFILES_DIR=${DOTFILES_DIR:-$(cd -- "$SCRIPT_DIR/.." && pwd)}
+CONFIG_DIR="$DOTFILES_DIR/config"
+
+cd "$CONFIG_DIR" || exit 0
+
+backup_target() {
+	local target=$1
+	local timestamp
+	local backup
+	local counter=0
+
+	timestamp=$(date +%Y%m%d%H%M%S)
+	backup="$target.backup.$timestamp"
+
+	while [[ -e "$backup" || -L "$backup" ]]; do
+		counter=$((counter + 1))
+		backup="$target.backup.$timestamp.$counter"
+	done
+
+	echo "Backing up existing target: $target -> $backup"
+	mv -- "$target" "$backup"
+}
 
 create_symlink() {
 	local source=$1
 	local target=$2
 
-	if [[ ! -L "$target" || ! -e "$target" ]]; then
-		echo "Creating symlink: $source -> $target"
-		rm -rf -- "$target"
-		mkdir -p -- "$(dirname -- "$target")"
-		ln -s -- "$source" "$target"
+	if [[ -L "$target" && "$(readlink -- "$target")" == "$source" ]]; then
+		return
 	fi
+
+	if [[ -e "$target" || -L "$target" ]]; then
+		backup_target "$target"
+	fi
+
+	echo "Creating symlink: $source -> $target"
+	mkdir -p -- "$(dirname -- "$target")"
+	ln -s -- "$source" "$target"
 }
 
 create_dotfiles_config_symlink() {
-	create_symlink "$HOME/.dotfiles/config/$1" "$2"
+	create_symlink "$CONFIG_DIR/$1" "$2"
 }
 
 create_dotfiles_config_symlink bash/.bashrc ~/.bashrc
@@ -62,7 +89,7 @@ create_dotfiles_config_symlink waybar ~/.config/waybar
 
 create_dotfiles_config_symlink zed ~/.config/zed
 
-bash ~/.dotfiles/config/vscode-extensions/install.sh
+bash "$CONFIG_DIR/vscode-extensions/install.sh"
 
 create_dotfiles_config_symlink cursor/keybindings.json ~/.config/Cursor/User/keybindings.json
 create_dotfiles_config_symlink cursor/settings.json ~/.config/Cursor/User/settings.json
@@ -83,7 +110,7 @@ fi
 FONT_PATH=~/.fonts/FiraCodeNerdFontMono-Regular.ttf
 
 if [[ ! -f "$FONT_PATH" ]]; then
-	cp ../fonts/FiraCodeNerdFontMono-Regular.ttf "$FONT_PATH"
+	cp "$DOTFILES_DIR/fonts/FiraCodeNerdFontMono-Regular.ttf" "$FONT_PATH"
 	echo "Copying FiraCodeNerdFontMono-Regular to ~/.fonts"
 fi
 
