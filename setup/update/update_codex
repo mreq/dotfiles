@@ -1,0 +1,153 @@
+#!/bin/bash
+
+set -euo pipefail
+
+ASSET="codex-x86_64-unknown-linux-musl.tar.gz"
+BINARY="codex-x86_64-unknown-linux-musl"
+INSTALL_PATH="$HOME/.local/bin/codex"
+LATEST_RELEASE_API_URL="https://api.github.com/repos/openai/codex/releases/latest"
+
+log() {
+	echo "update_codex - $*"
+}
+
+error() {
+	log "ERROR: $*" >&2
+	exit 1
+}
+
+require_command() {
+	if ! command -v "$1" >/dev/null 2>&1; then
+		error "Missing required command: $1"
+	fi
+}
+
+usage() {
+	cat <<EOF
+Usage: setup/update/update_codex
+
+Fetch the latest stable Codex release, confirm it, and install it.
+EOF
+}
+
+require_linux_x86_64() {
+	local os
+	local arch
+
+	os="$(uname -s)"
+	arch="$(uname -m)"
+
+	if [[ "$os" != "Linux" || "$arch" != "x86_64" ]]; then
+		error "Unsupported platform: $os $arch. Expected Linux x86_64."
+	fi
+}
+
+confirm() {
+	local prompt=$1
+	local answer
+
+	while true; do
+		read -r -p "$prompt [Y/n] " answer
+
+		case "$answer" in
+		"" | [Yy] | [Yy][Ee][Ss])
+			return 0
+			;;
+		[Nn] | [Nn][Oo])
+			return 1
+			;;
+		*)
+			log "Please answer y or n."
+			;;
+		esac
+	done
+}
+
+fetch_latest_release_json() {
+	curl --fail --location --show-error --silent \
+		--header "Accept: application/vnd.github+json" \
+		"$LATEST_RELEASE_API_URL"
+}
+
+case "${1:-}" in
+"") ;;
+-h | --help)
+	usage
+	exit 0
+	;;
+*)
+	usage >&2
+	error "Unknown option: $1"
+	;;
+esac
+
+require_command curl
+require_command install
+require_command jq
+require_command sha256sum
+require_command tar
+
+require_linux_x86_64
+
+log "Fetching latest stable Codex release"
+RELEASE_JSON="$(fetch_latest_release_json)"
+CODEX_RELEASE_TAG="$(jq -r ".tag_name // empty" <<<"$RELEASE_JSON")"
+CODEX_RELEASE_NAME="$(jq -r ".name // empty" <<<"$RELEASE_JSON")"
+CODEX_SHA256="$(
+	jq -r --arg asset "$ASSET" \
+		'first(.assets[]? | select(.name == $asset)) // {} | .digest // empty' \
+		<<<"$RELEASE_JSON"
+)"
+
+if [[ -z "$CODEX_RELEASE_TAG" ]]; then
+	error "GitHub response did not include a release tag."
+fi
+
+if [[ -z "$CODEX_RELEASE_NAME" ]]; then
+	CODEX_RELEASE_NAME="$CODEX_RELEASE_TAG"
+fi
+
+if [[ ! "$CODEX_SHA256" =~ ^sha256:[0-9a-fA-F]{64}$ ]]; then
+	error "GitHub did not provide a valid SHA-256 digest for $ASSET in $CODEX_RELEASE_TAG."
+fi
+
+log "Latest release: $CODEX_RELEASE_NAME ($CODEX_RELEASE_TAG)"
+log "SHA-256: $CODEX_SHA256"
+
+if ! confirm "Download and install this Codex release?"; then
+	log "Skipped update"
+	exit 0
+fi
+
+DOWNLOAD_URL="https://github.com/openai/codex/releases/download/$CODEX_RELEASE_TAG/$ASSET"
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_DIR"' EXIT
+
+ARCHIVE_PATH="$TMP_DIR/$ASSET"
+
+log "Downloading $ASSET from $CODEX_RELEASE_TAG"
+curl --fail --location --show-error --silent \
+	--output "$ARCHIVE_PATH" \
+	"$DOWNLOAD_URL"
+
+log "Verifying SHA-256"
+printf '%s  %s\n' "${CODEX_SHA256#sha256:}" "$ARCHIVE_PATH" | sha256sum --check --strict
+
+log "Extracting $BINARY"
+tar -xzf "$ARCHIVE_PATH" -C "$TMP_DIR"
+
+if [[ ! -f "$TMP_DIR/$BINARY" ]]; then
+	error "Release archive did not contain $BINARY"
+fi
+
+log "Installing to $INSTALL_PATH"
+mkdir -p "$(dirname "$INSTALL_PATH")"
+install -m 0755 "$TMP_DIR/$BINARY" "$INSTALL_PATH"
+
+RESOLVED_CODEX="$(command -v codex || true)"
+if [[ "$RESOLVED_CODEX" != "$INSTALL_PATH" ]]; then
+	log "WARNING: PATH resolves codex to ${RESOLVED_CODEX:-nothing}, not $INSTALL_PATH"
+fi
+
+log "Installed Codex $CODEX_RELEASE_TAG"
+log $'\033[32mDone\033[0m'
