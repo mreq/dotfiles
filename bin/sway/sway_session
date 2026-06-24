@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+systemctl --user start gcr-ssh-agent.socket gnome-keyring-daemon.socket
+
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gcr/ssh"
+
+systemctl --user import-environment SSH_AUTH_SOCK DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP || true
+
+if command -v dbus-update-activation-environment >/dev/null; then
+	dbus-update-activation-environment --systemd SSH_AUTH_SOCK DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP || true
+fi
+
+exec sway
