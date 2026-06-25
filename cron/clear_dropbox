@@ -1,3 +1,2 @@
 #!/bin/bash
 find /home/petr/Dropbox -type f -name '* conflicted copy *' -delete
-

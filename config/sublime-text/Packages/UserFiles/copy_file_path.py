@@ -13,7 +13,7 @@ class CopyFilePath(sublime_plugin.TextCommand):
 class CopyFilePathWithLineNumber(CopyFilePath):
     def get_path(self):
         path = super().get_path()
-        (row, col) = self.view.rowcol(self.view.sel()[0].begin())
+        row, col = self.view.rowcol(self.view.sel()[0].begin())
         return path + ":" + str(row + 1)
 
 
