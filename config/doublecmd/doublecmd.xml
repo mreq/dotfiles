@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="1.1.11 beta" ConfigVersion="15">
+<doublecmd DCVersion="1.1.32 gamma" ConfigVersion="15">
   <Configuration Save="True" SortOrder="0" TreeType="0">
     <FolderTabs Save="True"/>
   </Configuration>
@@ -139,7 +139,7 @@
         <Name>FTP</Name>
         <Path>%commander_path%/plugins/wfx/ftp/ftp.wfx</Path>
       </WfxPlugin>
-      <WfxPlugin Enabled="True">
+      <WfxPlugin Enabled="False">
         <Name>Windows Network</Name>
         <Path>%commander_path%/plugins/wfx/samba/samba.wfx</Path>
       </WfxPlugin>
@@ -425,6 +425,7 @@
       <MulRenFilenameWithFullPathInLog>False</MulRenFilenameWithFullPathInLog>
       <MulRenPathRangeSeparator>- </MulRenPathRangeSeparator>
     </MultiRename>
+    <DefaultDropEffect>True</DefaultDropEffect>
   </FileOperations>
   <Tabs>
     <Options>54161</Options>
@@ -438,7 +439,7 @@
   </Log>
   <History>
     <SearchReplaceHistory Save="True"/>
-    <DirHistory Save="True"/>
+    <DirHistory Save="True" Count="30"/>
     <CmdLineHistory Save="True"/>
     <FileMaskHistory Save="True"/>
     <VolumeSizeHistory Save="True"/>
@@ -749,6 +750,7 @@
     <FileMask Save="True">*</FileMask>
     <Asymmetric Save="False">False</Asymmetric>
     <DateTimeFormat>yyyy.mm.dd hh:nn:ss</DateTimeFormat>
+    <FilterUnknown>True</FilterUnknown>
   </SyncDirs>
   <Description>
     <CreateNewUnicode>True</CreateNewUnicode>

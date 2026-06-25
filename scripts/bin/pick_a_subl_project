@@ -6,7 +6,6 @@ shopt -s globstar nullglob
 
 project_paths=(
 	"$HOME"/work/**/*.sublime-project
-	"$HOME"/.local/share/dotfiles/*.sublime-project
 	"$HOME"/.local/share/*/*.sublime-project
 	"$HOME"/Applications/**/*.sublime-project
 	"$HOME"/Dropbox/*/*.sublime-project
