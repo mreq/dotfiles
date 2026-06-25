@@ -61,10 +61,6 @@
       "info": "Video thumbnail generator"
     },
     {
-      "package": "flake8",
-      "info": "Python code linter"
-    },
-    {
       "package": "firefox",
       "info": "Ubuntu Firefox integration package"
     },
@@ -113,9 +109,12 @@
       "info": "Google Chrome web browser",
       "gpg-key": "https://dl.google.com/linux/linux_signing_key.pub",
       "gpg-key-format": "dearmor",
-      "signed-by": "/etc/apt/keyrings/google-chrome.gpg",
+      "signed-by": "/usr/share/keyrings/google-chrome.gpg",
       "source-file": "/etc/apt/sources.list.d/google-chrome.sources",
-      "source-content": "Types: deb\nURIs: https://dl.google.com/linux/chrome/deb/\nSuites: stable\nComponents: main\nArchitectures: amd64\nSigned-By: /etc/apt/keyrings/google-chrome.gpg"
+      "source-content": "### THIS FILE IS AUTOMATICALLY CONFIGURED ###\n# Changes to this file will not be preserved.\n# This file will not be recreated if removed.\nX-Repolib-Name: Google Chrome\nTypes: deb\nURIs: https://dl.google.com/linux/chrome-stable/deb/\nSuites: stable\nComponents: main\nArchitectures: amd64\nSigned-By: /usr/share/keyrings/google-chrome.gpg",
+      "source-content-alternates": [
+        "Types: deb\nURIs: https://dl.google.com/linux/chrome/deb/\nSuites: stable\nComponents: main\nArchitectures: amd64\nSigned-By: /etc/apt/keyrings/google-chrome.gpg"
+      ]
     },
     {
       "package": "grim",
@@ -534,6 +533,8 @@
   ],
   "flatpak": [],
   "mise": {
-    "runtimes": []
+    "runtimes": [
+      "ruff@latest"
+    ]
   }
 }

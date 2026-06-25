@@ -197,6 +197,28 @@ validate_manifest() {
 	fi
 }
 
+source_content_matches() {
+	local current_content=$1
+	local source_content=$2
+	local entry=$3
+	local encoded
+	local alternate_content
+
+	if [[ "$current_content" == "$source_content" ]]; then
+		return 0
+	fi
+
+	while IFS= read -r encoded; do
+		[[ -n "$encoded" ]] || continue
+		alternate_content=$(printf '%s' "$encoded" | base64 --decode)
+		if [[ "$current_content" == "$alternate_content" ]]; then
+			return 0
+		fi
+	done < <(jq -r '."source-content-alternates"[]? | @base64' <<<"$entry")
+
+	return 1
+}
+
 configure_apt_repositories() {
 	local entry
 	local package
@@ -249,7 +271,7 @@ configure_apt_repositories() {
 		fi
 
 		current_content=$(cat "$source_file" 2>/dev/null || true)
-		if [[ "$current_content" != "$source_content" ]]; then
+		if ! source_content_matches "$current_content" "$source_content" "$entry"; then
 			if [[ $DRY_RUN -eq 1 ]]; then
 				log "dry-run: would write apt source for $package at $source_file"
 				package_changed=1

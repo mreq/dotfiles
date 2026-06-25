@@ -18,8 +18,13 @@ if command -v systemctl >/dev/null 2>&1 && ! systemctl is-active --quiet postgre
 	sudo systemctl enable --now postgresql
 fi
 
-if sudo -u postgres psql --tuples-only --no-align --set=rolname="$SUPERUSER" \
-	-c "SELECT 1 FROM pg_roles WHERE rolname = :'rolname';" | grep -Fxq 1; then
+role_exists=$(
+	sudo -u postgres psql --tuples-only --no-align --set=rolname="$SUPERUSER" <<'SQL'
+SELECT 1 FROM pg_roles WHERE rolname = :'rolname';
+SQL
+)
+
+if [[ "$role_exists" == "1" ]]; then
 	log "PostgreSQL role already exists: $SUPERUSER"
 	exit 0
 fi
