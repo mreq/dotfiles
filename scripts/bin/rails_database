@@ -1,0 +1,375 @@
+#!/usr/bin/env ruby
+require 'erb'
+require 'fileutils'
+require 'open3'
+require 'shellwords'
+require 'time'
+require 'uri'
+require 'yaml'
+
+BACKUP_DATE = /\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}/.freeze
+MODES = {
+  '--restore' => :restore,
+  '--backup' => :backup,
+}.freeze
+
+def abort_with(message)
+  warn message
+  exit 1
+end
+
+def usage
+  <<~USAGE
+    Usage:
+      rails_database --restore
+      rails_database --backup
+  USAGE
+end
+
+def parse_mode(arguments)
+  if arguments == ['--help'] || arguments == ['-h']
+    puts usage
+    exit
+  end
+
+  return MODES[arguments.first] if arguments.size == 1 && MODES.key?(arguments.first)
+
+  warn usage
+  exit 1
+end
+
+def find_rails_project(start_path)
+  path = File.expand_path(start_path)
+
+  loop do
+    direct_database_config = File.join(path, 'config/database.yml')
+    dummy_database_config = File.join(path, 'test/dummy/config/database.yml')
+
+    if File.basename(path) == 'dummy' && File.basename(File.dirname(path)) == 'test'
+      engine_root = File.dirname(File.dirname(path))
+      return [engine_root, direct_database_config] if File.file?(direct_database_config)
+    end
+
+    return [path, direct_database_config] if File.file?(direct_database_config)
+    return [path, dummy_database_config] if File.file?(dummy_database_config)
+
+    parent = File.dirname(path)
+    return nil if parent == path
+
+    path = parent
+  end
+end
+
+def load_database_config(path)
+  rendered = ERB.new(File.read(path)).result
+  YAML.safe_load(rendered, aliases: true)
+rescue Psych::Exception => e
+  abort_with "Could not parse #{path}: #{e.message}"
+rescue StandardError => e
+  abort_with "Could not render ERB in #{path}: #{e.message}"
+end
+
+def parse_dotenv_value(value)
+  value = value.strip
+
+  if value.start_with?("'") && value.end_with?("'")
+    value[1...-1]
+  elsif value.start_with?('"') && value.end_with?('"')
+    value[1...-1]
+      .gsub('\n', "\n")
+      .gsub('\r', "\r")
+      .gsub('\t', "\t")
+      .gsub('\"', '"')
+      .gsub('\\\\', '\\')
+  else
+    value.sub(/\s+#.*\z/, '').strip
+  end
+end
+
+def dotenv_value(path, key)
+  return nil unless File.file?(path)
+
+  pattern = /\A\s*(?:export\s+)?#{Regexp.escape(key)}\s*=\s*(.*)\z/
+  line = nil
+  File.foreach(path) do |candidate|
+    candidate = candidate.chomp
+    if candidate.match?(pattern)
+      line = candidate
+      break
+    end
+  end
+  return nil unless line
+
+  parse_dotenv_value(line.match(pattern)[1])
+end
+
+def env_or_dotenv_value(path, key)
+  return ENV[key] if ENV.key?(key)
+
+  dotenv_value(path, key)
+end
+
+def database_from_url(url)
+  return nil if url.to_s.strip.empty?
+
+  uri = URI.parse(url)
+  database = uri.path.to_s.sub(%r{\A/}, '')
+  return nil if database.empty?
+
+  URI.decode_www_form_component(database)
+rescue URI::InvalidURIError
+  nil
+end
+
+def value_at(config, *keys)
+  keys.reduce(config) do |memo, key|
+    break nil unless memo.is_a?(Hash)
+
+    memo[key]
+  end
+end
+
+def database_name_from(development_config)
+  if development_config.is_a?(String)
+    return database_from_url(development_config)
+  end
+
+  return nil unless development_config.is_a?(Hash)
+
+  database = development_config['database']
+  return database.to_s unless database.to_s.strip.empty?
+
+  primary_database = value_at(development_config, 'primary', 'database')
+  return primary_database.to_s unless primary_database.to_s.strip.empty?
+
+  database_from_url(development_config['url']) ||
+    database_from_url(value_at(development_config, 'primary', 'url'))
+end
+
+def truthy_value?(value)
+  %w[1 true yes on].include?(value.to_s.strip.downcase)
+end
+
+def current_git_branch(rails_root)
+  branch, status = Open3.capture2(
+    'git',
+    'symbolic-ref',
+    '--quiet',
+    '--short',
+    'HEAD',
+    chdir: rails_root
+  )
+  return branch.chomp unless branch.chomp.empty? || !status.success?
+
+  branch, status = Open3.capture2(
+    'git',
+    'rev-parse',
+    '--abbrev-ref',
+    'HEAD',
+    chdir: rails_root
+  )
+  branch = branch.chomp
+  return branch if status.success? && !branch.empty? && branch != 'HEAD'
+
+  'master'
+end
+
+def branch_database_name(database_name, branch)
+  suffix = branch.gsub(/\W/, '_')
+  return database_name if database_name.end_with?("_#{suffix}")
+
+  "#{database_name}_#{suffix}"
+end
+
+def backup_tokens(project_name, database_name)
+  [
+    project_name,
+    database_name,
+    database_name.sub(/_development(?:_.+)?\z/, ''),
+    database_name.sub(/_dev(?:_.+)?\z/, ''),
+  ].compact.map(&:downcase).map(&:strip).reject(&:empty?).uniq
+end
+
+def normalize(value)
+  value.downcase.gsub(/[^a-z0-9]/, '')
+end
+
+def backup_matches?(path, tokens)
+  basename = File.basename(path).downcase
+  normalized_basename = normalize(basename)
+
+  tokens.any? do |token|
+    basename.include?(token) || normalized_basename.include?(normalize(token))
+  end
+end
+
+def backup_time(path)
+  date_str = File.basename(path)[BACKUP_DATE]
+  return Time.strptime(date_str, '%Y-%m-%d-%H-%M-%S') if date_str
+
+  File.mtime(path)
+rescue ArgumentError
+  File.mtime(path)
+end
+
+def ordered_backups(sql_dir, tokens)
+  Dir.glob(File.join(sql_dir, '*.sql'))
+    .select { |path| backup_matches?(path, tokens) }
+    .sort_by { |path| [backup_time(path).to_i, File.basename(path)] }
+    .reverse
+end
+
+def prompt_choice(backups)
+  puts 'Select backup to use (Enter = first):'
+  puts
+  backups.each_with_index do |path, index|
+    puts "  #{index + 1}. #{File.basename(path)}"
+  end
+  puts
+
+  print 'Choice [1]: '
+  answer = $stdin.gets
+  abort_with 'No backup selected. Ending.' unless answer
+
+  choice = answer.chomp.strip
+  index = if choice.empty?
+    0
+  else
+    (choice.to_i - 1).clamp(0, backups.size - 1)
+  end
+
+  backups[index]
+end
+
+def confirm_default_yes
+  print '[Yn] '
+  answer = $stdin.gets
+  abort_with 'No confirmation received. Ending.' unless answer
+
+  case answer.chomp.strip.downcase
+  when '', 'y', 'yes'
+    true
+  when 'n', 'no'
+    false
+  else
+    abort_with 'Invalid confirmation. Ending.'
+  end
+end
+
+def print_database_header(project_name:, rails_root:, database_config_path:, branch:, database_name:, sql_file: nil)
+  puts
+  puts "Project: #{project_name}"
+  puts "Root: #{rails_root}"
+  puts "Config: #{database_config_path}"
+  puts "Branch: #{branch}" if branch
+  puts
+  puts "Database: #{database_name}"
+  puts "SQL file: #{sql_file}" if sql_file
+  puts
+end
+
+def run_command(*command)
+  puts Shellwords.join(command)
+  return if system(*command)
+
+  abort_with "Command failed: #{Shellwords.join(command)}"
+end
+
+def run_dump(database_name, backup_path)
+  command = ['pg_dump', database_name]
+  puts "#{Shellwords.join(command)} > #{backup_path.shellescape}"
+
+  File.open(backup_path, 'w') do |file|
+    return if system(*command, out: file)
+  end
+
+  abort_with "Command failed: #{Shellwords.join(command)} > #{backup_path.shellescape}"
+end
+
+def restore_database(database_name, sql_dir, tokens)
+  abort_with "SQL directory not found: #{sql_dir}. Ending." unless File.directory?(sql_dir)
+
+  backups = ordered_backups(sql_dir, tokens)
+  if backups.empty?
+    abort_with "No backup in #{sql_dir} matching #{tokens.join(', ')}. Ending."
+  end
+
+  backup_path = prompt_choice(backups)
+  puts "Using backup #{backup_path}"
+
+  puts "This will drop and recreate #{database_name} from #{backup_path}."
+
+  run_command('dropdb', '--if-exists', database_name)
+  run_command('createdb', database_name)
+  run_command(
+    'psql',
+    '-v',
+    'ON_ERROR_STOP=1',
+    '-d',
+    database_name,
+    '-c',
+    'CREATE EXTENSION IF NOT EXISTS unaccent; CREATE EXTENSION IF NOT EXISTS pg_trgm;'
+  )
+  run_command('psql', '-v', 'ON_ERROR_STOP=1', '-d', database_name, '-f', backup_path)
+end
+
+def backup_database(database_name, sql_dir, project_name, rails_root, database_config_path, branch)
+  FileUtils.mkdir_p(sql_dir)
+
+  timestamp = Time.now.strftime('%Y-%m-%d-%H-%M-%S')
+  backup_path = File.join(sql_dir, "#{database_name}-#{timestamp}.sql")
+
+  print_database_header(
+    project_name: project_name,
+    rails_root: rails_root,
+    database_config_path: database_config_path,
+    branch: branch,
+    database_name: database_name,
+    sql_file: File.basename(backup_path)
+  )
+
+  exit 1 unless confirm_default_yes
+
+  puts "Writing backup #{backup_path}"
+  run_dump(database_name, backup_path)
+end
+
+mode = parse_mode(ARGV)
+
+rails_project = find_rails_project(Dir.pwd)
+unless rails_project
+  abort_with 'No Rails config/database.yml or test/dummy/config/database.yml found from current directory upward. Ending.'
+end
+
+rails_root, database_config_path = rails_project
+dotenv_path = File.join(rails_root, '.env')
+
+database_config = load_database_config(database_config_path)
+development_config = database_config.fetch('development', nil) if database_config.is_a?(Hash)
+abort_with "No development config in #{database_config_path}. Ending." unless development_config
+
+project_name = File.basename(rails_root)
+database_name = database_name_from(development_config)
+abort_with "Could not resolve development database name from #{database_config_path}. Ending." if database_name.to_s.strip.empty?
+
+if truthy_value?(env_or_dotenv_value(dotenv_path, 'DB_NAME_PER_BRANCH'))
+  branch = current_git_branch(rails_root)
+  database_name = branch_database_name(database_name, branch)
+end
+
+sql_dir = File.expand_path('~/Documents/SQL')
+tokens = backup_tokens(project_name, database_name)
+
+case mode
+when :restore
+  print_database_header(
+    project_name: project_name,
+    rails_root: rails_root,
+    database_config_path: database_config_path,
+    branch: branch,
+    database_name: database_name
+  )
+  restore_database(database_name, sql_dir, tokens)
+when :backup
+  backup_database(database_name, sql_dir, project_name, rails_root, database_config_path, branch)
+end
