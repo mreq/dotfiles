@@ -54,6 +54,7 @@ create_dotfiles_config_symlink bash/.profile ~/.profile
 create_dotfiles_config_symlink btop ~/.config/btop
 
 create_dotfiles_config_symlink codex/AGENTS.md ~/.codex/AGENTS.md
+create_dotfiles_config_symlink codex/config.toml ~/.codex/config.toml
 
 create_dotfiles_config_symlink git/.gitconfig ~/.gitconfig
 create_dotfiles_config_symlink git/ignore ~/.config/git/ignore

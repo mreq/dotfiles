@@ -1,0 +1,3 @@
+approval_policy = "untrusted"
+approvals_reviewer = "user"
+sandbox_mode = "read-only"
