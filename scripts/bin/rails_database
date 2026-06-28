@@ -60,13 +60,47 @@ def find_rails_project(start_path)
   end
 end
 
-def load_database_config(path)
-  rendered = ERB.new(File.read(path)).result
-  YAML.safe_load(rendered, aliases: true)
-rescue Psych::Exception => e
-  abort_with "Could not parse #{path}: #{e.message}"
+def database_config_subset(content, section_name)
+  included = false
+  wanted_sections = ['default', section_name]
+
+  content.lines.filter_map do |line|
+    if (match = line.match(/\A([A-Za-z0-9_-]+):(?:\s|$)/))
+      included = wanted_sections.include?(match[1])
+    end
+
+    line if included
+  end.join
+end
+
+def load_database_config(path, section_name)
+  content = File.read(path)
+  YAML.safe_load(content, aliases: true)
+rescue Psych::Exception
+  subset = database_config_subset(content, section_name)
+
+  begin
+    return YAML.safe_load(subset, aliases: true) unless subset.empty?
+  rescue Psych::Exception
+    nil
+  end
+
+  begin
+    rendered = ERB.new(content).result
+    YAML.safe_load(rendered, aliases: true)
+  rescue Psych::Exception => e
+    abort_with "Could not parse #{path}: #{e.message}"
+  rescue StandardError => e
+    abort_with "Could not render ERB in #{path}: #{e.message}"
+  end
+end
+
+def render_erb_value(value, path)
+  return value unless value.is_a?(String) && value.include?('<%')
+
+  ERB.new(value).result
 rescue StandardError => e
-  abort_with "Could not render ERB in #{path}: #{e.message}"
+  abort_with "Could not render ERB value in #{path}: #{e.message}"
 end
 
 def parse_dotenv_value(value)
@@ -129,21 +163,21 @@ def value_at(config, *keys)
   end
 end
 
-def database_name_from(development_config)
+def database_name_from(development_config, path)
   if development_config.is_a?(String)
-    return database_from_url(development_config)
+    return database_from_url(render_erb_value(development_config, path))
   end
 
   return nil unless development_config.is_a?(Hash)
 
-  database = development_config['database']
+  database = render_erb_value(development_config['database'], path)
   return database.to_s unless database.to_s.strip.empty?
 
-  primary_database = value_at(development_config, 'primary', 'database')
+  primary_database = render_erb_value(value_at(development_config, 'primary', 'database'), path)
   return primary_database.to_s unless primary_database.to_s.strip.empty?
 
-  database_from_url(development_config['url']) ||
-    database_from_url(value_at(development_config, 'primary', 'url'))
+  database_from_url(render_erb_value(development_config['url'], path)) ||
+    database_from_url(render_erb_value(value_at(development_config, 'primary', 'url'), path))
 end
 
 def truthy_value?(value)
@@ -344,12 +378,12 @@ end
 rails_root, database_config_path = rails_project
 dotenv_path = File.join(rails_root, '.env')
 
-database_config = load_database_config(database_config_path)
+database_config = load_database_config(database_config_path, 'development')
 development_config = database_config.fetch('development', nil) if database_config.is_a?(Hash)
 abort_with "No development config in #{database_config_path}. Ending." unless development_config
 
 project_name = File.basename(rails_root)
-database_name = database_name_from(development_config)
+database_name = database_name_from(development_config, database_config_path)
 abort_with "Could not resolve development database name from #{database_config_path}. Ending." if database_name.to_s.strip.empty?
 
 if truthy_value?(env_or_dotenv_value(dotenv_path, 'DB_NAME_PER_BRANCH'))
