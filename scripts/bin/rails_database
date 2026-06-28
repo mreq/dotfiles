@@ -8,10 +8,6 @@ require 'uri'
 require 'yaml'
 
 BACKUP_DATE = /\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}/.freeze
-MODES = {
-  '--restore' => :restore,
-  '--backup' => :backup,
-}.freeze
 
 def abort_with(message)
   warn message
@@ -21,18 +17,28 @@ end
 def usage
   <<~USAGE
     Usage:
-      rails_database --restore
+      rails_database --restore [--extensions]
       rails_database --backup
   USAGE
 end
 
-def parse_mode(arguments)
+def parse_arguments(arguments)
   if arguments == ['--help'] || arguments == ['-h']
     puts usage
     exit
   end
 
-  return MODES[arguments.first] if arguments.size == 1 && MODES.key?(arguments.first)
+  if arguments == ['--restore']
+    return [:restore, { create_extensions: false }]
+  end
+
+  if arguments == ['--restore', '--extensions']
+    return [:restore, { create_extensions: true }]
+  end
+
+  if arguments == ['--backup']
+    return [:backup, { create_extensions: false }]
+  end
 
   warn usage
   exit 1
@@ -320,7 +326,7 @@ def run_dump(database_name, backup_path)
   abort_with "Command failed: #{Shellwords.join(command)} > #{backup_path.shellescape}"
 end
 
-def restore_database(database_name, sql_dir, tokens)
+def restore_database(database_name, sql_dir, tokens, create_extensions:)
   abort_with "SQL directory not found: #{sql_dir}. Ending." unless File.directory?(sql_dir)
 
   backups = ordered_backups(sql_dir, tokens)
@@ -335,15 +341,17 @@ def restore_database(database_name, sql_dir, tokens)
 
   run_command('dropdb', '--if-exists', database_name)
   run_command('createdb', database_name)
-  run_command(
-    'psql',
-    '-v',
-    'ON_ERROR_STOP=1',
-    '-d',
-    database_name,
-    '-c',
-    'CREATE EXTENSION IF NOT EXISTS unaccent; CREATE EXTENSION IF NOT EXISTS pg_trgm;'
-  )
+  if create_extensions
+    run_command(
+      'psql',
+      '-v',
+      'ON_ERROR_STOP=1',
+      '-d',
+      database_name,
+      '-c',
+      'CREATE EXTENSION IF NOT EXISTS unaccent; CREATE EXTENSION IF NOT EXISTS pg_trgm;'
+    )
+  end
   run_command('psql', '-v', 'ON_ERROR_STOP=1', '-d', database_name, '-f', backup_path)
 end
 
@@ -368,7 +376,7 @@ def backup_database(database_name, sql_dir, project_name, rails_root, database_c
   run_dump(database_name, backup_path)
 end
 
-mode = parse_mode(ARGV)
+mode, options = parse_arguments(ARGV)
 
 rails_project = find_rails_project(Dir.pwd)
 unless rails_project
@@ -403,7 +411,7 @@ when :restore
     branch: branch,
     database_name: database_name
   )
-  restore_database(database_name, sql_dir, tokens)
+  restore_database(database_name, sql_dir, tokens, create_extensions: options[:create_extensions])
 when :backup
   backup_database(database_name, sql_dir, project_name, rails_root, database_config_path, branch)
 end
