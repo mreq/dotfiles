@@ -49,6 +49,15 @@
       "info": "Twin-panel file manager"
     },
     {
+      "package": "dropbox",
+      "info": "Dropbox desktop sync client",
+      "gpg-key": "https://linux.dropbox.com/fedora/rpm-public-key.asc",
+      "gpg-key-format": "ascii",
+      "signed-by": "/etc/apt/keyrings/dropbox.asc",
+      "source-file": "/etc/apt/sources.list.d/dropbox.sources",
+      "source-content": "Types: deb\nURIs: https://linux.dropbox.com/ubuntu\nSuites: resolute\nComponents: main\nArchitectures: amd64\nSigned-By: /etc/apt/keyrings/dropbox.asc"
+    },
+    {
       "package": "exfat-fuse",
       "info": "FUSE filesystem for exFAT drives"
     },
