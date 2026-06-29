@@ -115,12 +115,8 @@ if [[ ! -f "$FONT_PATH" ]]; then
 	echo "Copying FiraCodeNerdFontMono-Regular to ~/.fonts"
 fi
 
-# Dropbox symlinks
-if [[ -d ~/Dropbox/ubuntu ]]; then
-	create_symlink ~/Dropbox/dotfiles/AppImages ~/AppImages
-	create_symlink ~/Dropbox/dotfiles/tex/texmf ~/texmf
-	create_symlink ~/Dropbox/Pictures/unsplash ~/Pictures/unsplash
-	create_symlink ~/Dropbox/Pictures/unsplash_hd ~/Pictures/unsplash_hd
-else
-	echo "Dropbox not present - not creating Dropbox symlinks."
+PRIVATE_INSTALL="$DOTFILES_DIR/../dotfiles-private/config/install.sh"
+
+if [[ -f "$PRIVATE_INSTALL" ]]; then
+	env -u DOTFILES_DIR bash "$PRIVATE_INSTALL"
 fi
