@@ -219,6 +219,43 @@ source_content_matches() {
 	return 1
 }
 
+cleanup_obsolete_apt_sources() {
+	local entry
+	local package
+	local source_file
+	local obsolete_source_file
+	local changed=0
+
+	while IFS= read -r entry; do
+		package=$(jq -r '.package' <<<"$entry")
+		source_file=$(jq -r '."source-file" // empty' <<<"$entry")
+
+		while IFS= read -r obsolete_source_file; do
+			[[ -n "$obsolete_source_file" ]] || continue
+			if [[ -n "$source_file" && "$obsolete_source_file" == "$source_file" ]]; then
+				error "$package obsolete-source-files must not include source-file: $source_file"
+			fi
+
+			if [[ ! -e "$obsolete_source_file" ]]; then
+				continue
+			fi
+
+			if [[ $DRY_RUN -eq 1 ]]; then
+				log "dry-run: would remove obsolete apt source for $package at $obsolete_source_file"
+			else
+				log "Removing obsolete apt source for $package at $obsolete_source_file"
+				sudo rm -f -- "$obsolete_source_file"
+			fi
+			changed=1
+		done < <(jq -r '."obsolete-source-files"[]?' <<<"$entry")
+	done < <(jq -c '.apt[]?' "$PACKAGES_JSON")
+
+	if [[ $changed -eq 1 ]]; then
+		return 0
+	fi
+	return 1
+}
+
 configure_apt_repositories() {
 	local entry
 	local package
@@ -292,6 +329,10 @@ configure_apt_repositories() {
 		fi
 	done < <(jq -c '.apt[]?' "$PACKAGES_JSON")
 
+	if cleanup_obsolete_apt_sources; then
+		repo_changed=1
+	fi
+
 	if [[ $repo_changed -eq 1 ]]; then
 		apt_update_once
 	elif [[ $DRY_RUN -eq 1 ]]; then
@@ -340,6 +381,8 @@ install_apt_packages() {
 		apt_update_once
 		sudo apt install -y "$package" || log "WARN: optional apt package failed: $package"
 	done
+
+	cleanup_obsolete_apt_sources || true
 }
 
 install_snap_packages() {

@@ -55,7 +55,10 @@
       "gpg-key-format": "ascii",
       "signed-by": "/etc/apt/keyrings/dropbox.asc",
       "source-file": "/etc/apt/sources.list.d/dropbox.sources",
-      "source-content": "Types: deb\nURIs: https://linux.dropbox.com/ubuntu\nSuites: resolute\nComponents: main\nArchitectures: amd64\nSigned-By: /etc/apt/keyrings/dropbox.asc"
+      "source-content": "Types: deb\nURIs: https://linux.dropbox.com/ubuntu\nSuites: resolute\nComponents: main\nArchitectures: amd64\nSigned-By: /etc/apt/keyrings/dropbox.asc",
+      "obsolete-source-files": [
+        "/etc/apt/sources.list.d/dropbox.list"
+      ]
     },
     {
       "package": "exfat-fuse",
