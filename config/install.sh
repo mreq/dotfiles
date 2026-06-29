@@ -11,18 +11,21 @@ cd "$CONFIG_DIR" || exit 0
 backup_target() {
 	local target=$1
 	local timestamp
+	local backup_root
 	local backup
 	local counter=0
 
 	timestamp=$(date +%Y%m%d%H%M%S)
-	backup="$target.backup.$timestamp"
+	backup_root=${DOTFILES_BACKUP_DIR:-/tmp/dotfiles-backups}
+	backup="$backup_root/$timestamp/${target#/}"
 
 	while [[ -e "$backup" || -L "$backup" ]]; do
 		counter=$((counter + 1))
-		backup="$target.backup.$timestamp.$counter"
+		backup="$backup_root/$timestamp.$counter/${target#/}"
 	done
 
 	echo "Backing up existing target: $target -> $backup"
+	mkdir -p -- "$(dirname -- "$backup")"
 	mv -- "$target" "$backup"
 }
 
