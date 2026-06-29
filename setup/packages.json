@@ -330,6 +330,10 @@
       "info": "PulseAudio command-line mixer"
     },
     {
+      "package": "pavucontrol",
+      "info": "PulseAudio volume control GUI"
+    },
+    {
       "package": "playerctl",
       "info": "Media player control utility"
     },
