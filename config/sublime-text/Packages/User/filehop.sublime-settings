@@ -69,6 +69,12 @@
       "slot": "alpha"
     },
     {
+      "id": "to_ruby_tiptap_node_component_rb",
+      "from": ["(packs/[^/]+/)?app/models/(.+/tiptap/node/(?:.+/)?)([^/]+)\\.rb"],
+      "to": ["$1app/components/$2$3_component.rb"],
+      "slot": "alpha"
+    },
+    {
       "id": "to_ruby_controller_rb",
       "from": ["(packs/[^/]+/)?test/controllers/(.+/)?([^/]+)_controller_test\\.rb"],
       "to": ["$1app/controllers/$2$3_controller.rb"],
