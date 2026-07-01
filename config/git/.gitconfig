@@ -45,6 +45,9 @@
 [commit]
   verbose = true
 
+[status]
+  showUntrackedFiles = all
+
 [rebase]
   autoSquash = true
   autoStash = true
