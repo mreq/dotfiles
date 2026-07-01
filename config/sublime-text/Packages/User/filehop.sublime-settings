@@ -19,6 +19,18 @@
       "slot": "delta"
     },
     {
+      "id": "to_ruby_controller_rb_from_test",
+      "from": ["(packs/[^/]+/)?test/controllers/(.+/)?([^/]+)_controller_test\\.rb"],
+      "to": ["$1app/controllers/$2$3_controller.rb"],
+      "slot": "delta"
+    },
+    {
+      "id": "to_ruby_controller_test",
+      "from": ["(packs/[^/]+/)?app/controllers/(.+/)?([^/]+)_controller\\.rb"],
+      "to": ["$1test/controllers/$2$3_controller_test.rb"],
+      "slot": "delta"
+    },
+    {
       "id": "to_ruby_view_component_sass",
       "from": ["(packs/[^/]+/)?(app|test)/components/(.+/)?([^/]+)_component(?:\\.(?!sass|scss)\\w+|_test\\.rb)"],
       "to": ["$1app/components/$3$4_component.scss", "$1app/components/$3$4_component.sass"],
@@ -54,6 +66,29 @@
       "id": "to_ruby_view_component_rb",
       "from": ["(packs/[^/]+/)?(test|app)/components/(.+/)?([^/]+)_component(?:\\.\\w+|_test\\.rb)"],
       "to": ["$1app/components/$3$4_component.rb"],
+      "slot": "alpha"
+    },
+    {
+      "id": "to_ruby_controller_rb",
+      "from": ["(packs/[^/]+/)?test/controllers/(.+/)?([^/]+)_controller_test\\.rb"],
+      "to": ["$1app/controllers/$2$3_controller.rb"],
+      "slot": "alpha"
+    },
+    {
+      "id": "to_ruby_view_from_controller",
+      "from": ["(packs/[^/]+/)?app/controllers/(.+/)?([^/]+)_controller\\.rb"],
+      "to": [
+        "$1app/views/$2$3/index.slim",
+        "$1app/views/$2$3/show.slim",
+        "$1app/views/$2$3/edit.slim",
+        "$1app/views/$2$3/new.slim"
+      ],
+      "slot": "alpha"
+    },
+    {
+      "id": "to_ruby_controller_from_view",
+      "from": ["(packs/[^/]+/)?app/views/(.+/)?([^/]+)/\\w+\\.slim"],
+      "to": ["$1app/controllers/$2$3_controller.rb"],
       "slot": "alpha"
     }
   ]
