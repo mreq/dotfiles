@@ -208,6 +208,34 @@
     "context": [{ "key": "selector", "operand": "git-savvy.diff" }]
   },
 
+  // Git diff: page down
+  {
+    "keys": ["ctrl+d"],
+    "command": "move",
+    "args": {
+      "by": "pages",
+      "forward": true
+    },
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.diff_view", "operator": "equal", "operand": true }
+    ]
+  },
+
+  // Git diff: page up
+  {
+    "keys": ["ctrl+u"],
+    "command": "move",
+    "args": {
+      "by": "pages",
+      "forward": false
+    },
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.diff_view", "operator": "equal", "operand": true }
+    ]
+  },
+
   // Git diff: stage and close
   {
     "keys": ["e"],
