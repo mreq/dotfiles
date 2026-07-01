@@ -390,6 +390,8 @@ install_snap_packages() {
 	local package
 	local command_name
 	local apt_package
+	local classic
+	local -a install_args
 
 	if ! jq -e '.snap | length > 0' "$PACKAGES_JSON" >/dev/null; then
 		return
@@ -409,6 +411,12 @@ install_snap_packages() {
 		package=$(jq -r '.package' <<<"$entry")
 		command_name=$(jq -r '.command // empty' <<<"$entry")
 		apt_package=$(jq -r '."apt-package" // empty' <<<"$entry")
+		classic=$(jq -r '.classic // false' <<<"$entry")
+		install_args=("$package")
+
+		if [[ "$classic" == "true" ]]; then
+			install_args+=("--classic")
+		fi
 
 		if [[ $DRY_RUN -eq 1 ]]; then
 			if [[ -n "$command_name" ]] && command -v "$command_name" >/dev/null 2>&1; then
@@ -421,7 +429,7 @@ install_snap_packages() {
 				continue
 			fi
 
-			log "dry-run: would install snap package: $package"
+			log "dry-run: would install snap package: ${install_args[*]}"
 			continue
 		fi
 
@@ -441,7 +449,7 @@ install_snap_packages() {
 			continue
 		fi
 
-		sudo snap install "$package"
+		sudo snap install "${install_args[@]}"
 	done < <(jq -c '.snap[]?' "$PACKAGES_JSON")
 }
 

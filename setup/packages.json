@@ -535,6 +535,12 @@
   ],
   "snap": [
     {
+      "package": "kubectl",
+      "info": "Kubernetes command-line tool",
+      "command": "kubectl",
+      "classic": true
+    },
+    {
       "package": "spotify",
       "info": "Spotify desktop client",
       "verified-publisher": "Spotify"
