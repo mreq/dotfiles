@@ -19,6 +19,7 @@ def usage
     Usage:
       rails_database --restore [--extensions]
       rails_database --backup
+      rails_database --clear
   USAGE
 end
 
@@ -38,6 +39,10 @@ def parse_arguments(arguments)
 
   if arguments == ['--backup']
     return [:backup, { create_extensions: false }]
+  end
+
+  if arguments == ['--clear']
+    return [:clear, { create_extensions: false }]
   end
 
   warn usage
@@ -243,6 +248,17 @@ def backup_matches?(path, tokens)
   end
 end
 
+def backup_target(path)
+  File.basename(path)[/\A(.+)-#{BACKUP_DATE.source}\.sql\z/, 1]
+end
+
+def repo_backup_matches?(path, project_name)
+  target = backup_target(path)
+  return false unless target
+
+  target.downcase.include?(project_name.downcase) || normalize(target).include?(normalize(project_name))
+end
+
 def backup_time(path)
   date_str = File.basename(path)[BACKUP_DATE]
   return Time.strptime(date_str, '%Y-%m-%d-%H-%M-%S') if date_str
@@ -257,6 +273,23 @@ def ordered_backups(sql_dir, tokens)
     .select { |path| backup_matches?(path, tokens) }
     .sort_by { |path| [backup_time(path).to_i, File.basename(path)] }
     .reverse
+end
+
+def duplicate_repo_backups(sql_dir, project_name)
+  return [] unless File.directory?(sql_dir)
+
+  Dir.glob(File.join(sql_dir, '*.sql'))
+    .select { |path| repo_backup_matches?(path, project_name) }
+    .group_by { |path| backup_target(path) }
+    .values
+    .filter_map do |paths|
+      ordered_paths = paths.sort_by { |path| [backup_time(path).to_i, File.basename(path)] }.reverse
+      old_paths = ordered_paths.drop(1)
+      next if old_paths.empty?
+
+      [ordered_paths.first, old_paths]
+    end
+    .sort_by { |latest_path, _old_paths| backup_target(latest_path) }
 end
 
 def prompt_choice(backups)
@@ -376,6 +409,46 @@ def backup_database(database_name, sql_dir, project_name, rails_root, database_c
   run_dump(database_name, backup_path)
 end
 
+def clear_database_backups(sql_dir, project_name, rails_root, database_config_path, branch)
+  duplicate_backups = duplicate_repo_backups(sql_dir, project_name)
+
+  if duplicate_backups.empty?
+    puts "No old backups to clear for #{project_name} in #{sql_dir}."
+    return
+  end
+
+  puts
+  puts "Project: #{project_name}"
+  puts "Root: #{rails_root}"
+  puts "Config: #{database_config_path}"
+  puts "Branch: #{branch}" if branch
+  puts
+  puts '---'
+  duplicate_backups.each do |latest_backup, old_backups|
+    puts
+    puts "Base:   #{backup_target(latest_backup)}"
+    puts
+    puts "Keep:   #{File.basename(latest_backup)}"
+    puts
+    old_backups.each_with_index do |path, index|
+      prefix = index.zero? ? 'Remove: ' : '        '
+      puts "#{prefix}#{File.basename(path)}"
+    end
+    puts
+    puts '---'
+  end
+  puts
+  puts 'Remove old backups?'
+  puts
+
+  return unless confirm_default_yes
+
+  duplicate_backups.flat_map(&:last).each do |path|
+    FileUtils.rm(path)
+    puts "Removed #{path}"
+  end
+end
+
 mode, options = parse_arguments(ARGV)
 
 rails_project = find_rails_project(Dir.pwd)
@@ -414,4 +487,6 @@ when :restore
   restore_database(database_name, sql_dir, tokens, create_extensions: options[:create_extensions])
 when :backup
   backup_database(database_name, sql_dir, project_name, rails_root, database_config_path, branch)
+when :clear
+  clear_database_backups(sql_dir, project_name, rails_root, database_config_path, branch)
 end
