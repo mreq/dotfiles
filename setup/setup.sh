@@ -129,6 +129,14 @@ json_array() {
 	jq -r "$1" "$PACKAGES_JSON"
 }
 
+apt_package_entries() {
+	jq -c '
+		.apt[]? as $entry
+		| $entry,
+			($entry.subpackages[]? | . + { optional: (.optional // $entry.optional // false) })
+	' "$PACKAGES_JSON"
+}
+
 validate_hook() {
 	local hook_rel=$1
 	local hook_path
@@ -163,7 +171,7 @@ validate_manifest() {
 
 	jq empty "$PACKAGES_JSON"
 
-	duplicates=$(json_array '.apt[]?.package' | sort | uniq -d)
+	duplicates=$(apt_package_entries | jq -r '.package' | sort | uniq -d)
 	if [[ -n "$duplicates" ]]; then
 		error "Duplicate apt package entries: $(echo "$duplicates" | tr '\n' ' ')"
 	fi
@@ -189,7 +197,7 @@ validate_manifest() {
 			if ! apt_has_candidate "$package"; then
 				plain_missing+=("$package")
 			fi
-		done < <(jq -r '.apt[]? | select(has("source-file") | not) | select(.optional != true) | .package' "$PACKAGES_JSON")
+		done < <(apt_package_entries | jq -r 'select(has("source-file") | not) | select(.optional != true) | .package')
 
 		if ((${#plain_missing[@]})); then
 			error "Required apt packages without candidates: ${plain_missing[*]}"
@@ -341,20 +349,39 @@ configure_apt_repositories() {
 }
 
 install_apt_packages() {
+	local entry
 	local missing=()
+	local missing_no_recommends=()
+	local no_recommends_flag
 	local optional=()
+	local optional_flag
 	local package
 
 	section "Installing apt packages"
 
-	while IFS= read -r package; do
+	while IFS= read -r entry; do
+		package=$(jq -r '.package' <<<"$entry")
+		no_recommends_flag=$(jq -r '."no-install-recommends" // false' <<<"$entry")
+		optional_flag=$(jq -r '.optional // false' <<<"$entry")
 		[[ -n "$package" ]] || continue
-		if ! apt_is_installed "$package"; then
+
+		if [[ "$optional_flag" == "true" ]]; then
+			optional+=("$package")
+		elif [[ "$no_recommends_flag" == "true" ]] && ! apt_is_installed "$package"; then
+			missing_no_recommends+=("$package")
+		elif ! apt_is_installed "$package"; then
 			missing+=("$package")
 		fi
-	done < <(json_array '.apt[]? | select(.optional != true) | .package')
+	done < <(apt_package_entries)
 
-	mapfile -t optional < <(json_array '.apt[]? | select(.optional == true) | .package')
+	if ((${#missing_no_recommends[@]})); then
+		if [[ $DRY_RUN -eq 1 ]]; then
+			log "dry-run: would install apt packages without recommends: ${missing_no_recommends[*]}"
+		else
+			apt_update_once
+			sudo apt install -y --no-install-recommends "${missing_no_recommends[@]}"
+		fi
+	fi
 
 	if ((${#missing[@]})); then
 		if [[ $DRY_RUN -eq 1 ]]; then
@@ -363,7 +390,7 @@ install_apt_packages() {
 			apt_update_once
 			sudo apt install -y "${missing[@]}"
 		fi
-	else
+	elif ((${#missing_no_recommends[@]} == 0)); then
 		log "apt packages already installed"
 	fi
 

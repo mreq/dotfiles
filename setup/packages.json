@@ -49,6 +49,24 @@
       "info": "Twin-panel file manager"
     },
     {
+      "package": "docker.io",
+      "info": "Docker container engine",
+      "no-install-recommends": true,
+      "subpackages": [
+        {
+          "package": "docker-compose-v2",
+          "info": "Docker Compose v2 plugin"
+        },
+        {
+          "package": "rootlesskit",
+          "info": "Rootless Docker support"
+        }
+      ],
+      "hooks": [
+        "setup/hooks/docker_rootless_hook.sh"
+      ]
+    },
+    {
       "package": "dropbox",
       "info": "Dropbox desktop sync client",
       "gpg-key": "https://linux.dropbox.com/fedora/rpm-public-key.asc",

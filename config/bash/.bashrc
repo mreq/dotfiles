@@ -151,6 +151,8 @@ fi
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 export PATH="$HOME/.local/bin:$PATH"
+DOCKER_HOST="unix:///run/user/$(id -u)/docker.sock"
+export DOCKER_HOST
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
