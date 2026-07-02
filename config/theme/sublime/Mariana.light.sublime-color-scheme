@@ -1,0 +1,119 @@
+// Documentation at https://www.sublimetext.com/docs/color_schemes.html
+{
+  "variables":
+  {
+    "black": "hsl(0, 0%, 0%)",
+    "blue": "hsl(210, 50%, 42%)",
+    "blue-vibrant": "hsl(210, 60%, 45%)",
+    "blue2": "hsla(210, 20%, 84%, 0.75)",
+    "blue3": "hsl(210, 38%, 96%)",
+    "blue4": "hsl(210, 18%, 72%)",
+    "blue5": "hsl(180, 32%, 36%)",
+    "blue6": "hsl(221, 13%, 46%)",
+    "green": "hsl(114, 27%, 36%)",
+    "grey": "hsl(0, 0%, 22%)",
+    "orange": "hsl(32, 80%, 42%)",
+    "orange2": "hsl(32, 85%, 38%)",
+    "orange3": "hsl(40, 86%, 42%)",
+    "pink": "hsl(300, 24%, 42%)",
+    "red": "hsl(357, 62%, 48%)",
+    "red2": "hsl(13, 75%, 45%)",
+    "white": "hsl(210, 22%, 16%)",
+    "white2": "hsl(210, 22%, 22%)",
+    "white3": "hsl(210, 16%, 24%)",
+  },
+  "globals":
+  {
+    "foreground": "var(white3)",
+    "background": "var(blue3)",
+    "accent": "var(blue-vibrant)",
+    "caret": "var(orange)",
+    "line_highlight": "var(blue2)",
+    "selection": "var(blue2)",
+    "selection_foreground": "var(white3)",
+    "selection_border": "var(blue4)",
+    "inactive_selection": "var(blue2)",
+    "inactive_selection_foreground": "var(white3)",
+    "misspelling": "var(red)",
+    "shadow": "color(var(black) alpha(0.12))",
+    "active_guide": "var(blue5)",
+    "stack_guide": "color(var(blue5) alpha(0.5))",
+    "highlight": "var(blue5)",
+    "find_highlight_foreground": "var(blue3)",
+    "find_highlight": "var(orange3)",
+    "brackets_options": "underline",
+    "brackets_foreground": "var(orange)",
+    "bracket_contents_options": "underline",
+    "bracket_contents_foreground": "var(blue5)",
+    "tags_options": "stippled_underline",
+    "tags_foreground": "var(pink)",
+  },
+  "rules":
+  [
+    {
+      "scope": "keyword.control",
+      "foreground": "var(red)",
+    },
+    {
+      "scope": "keyword.declaration",
+      "foreground": "var(red)",
+    },
+    {
+      "scope": "variable.language",
+      "font_style": "normal"
+    },
+    {
+      "scope": "keyword.other.git-savvy.section.header.untracked, keyword.other.git-savvy.section.header.unstaged,  keyword.other.git-savvy.summary-header.ahead-behind",
+      "foreground": "var(red)",
+    },
+    {
+      "scope": "constant.other.git-savvy.summary-header.branch-name",
+      "foreground": "var(pink)",
+    },
+    {
+      "scope": "meta.git-savvy.status.section.staged",
+      "foreground": "var(orange3)",
+    },
+    {
+      "scope": "meta.git-savvy.entity.stash, keyword.other.git-savvy.section.header.stashes",
+      "foreground": "var(blue4)",
+    },
+    {
+      "scope": "support.type.git-savvy.key-bindings-header-text, punctuation.definition.git-savvy.section",
+      "foreground": "var(blue3)",
+    },
+    {
+      "scope": "variable.other.readwrite",
+      "foreground": "var(blue5)",
+    },
+    {
+      "scope": "entity.name.function",
+      "foreground": "var(orange3)",
+    },
+    {
+      "name": "Library class/type",
+      "scope": "support.type, support.class",
+      "foreground": "var(orange)",
+      "font_style": "normal",
+    },
+    {
+      "scope": "constant.other.symbol.ruby, punctuation.definition.constant.ruby",
+      "foreground": "var(pink)",
+    },
+    {
+      "scope": "entity.other.attribute-name",
+      "foreground": "var(orange)",
+    },
+    {
+      "name": "Library function",
+      "scope": "support.function, support.macro",
+      "foreground": "var(blue)",
+      "font_style": "normal"
+    },
+    {
+      "scope": "text.slim support.function.actionpack.rails",
+      "foreground": "var(blue5)",
+      "font_style": "normal",
+    },
+  ]
+}

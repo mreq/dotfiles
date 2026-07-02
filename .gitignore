@@ -2,6 +2,8 @@ __pycache__
 gtk/_colors-public.scss
 GitSavvy.log_graph_view.hidden-tmTheme
 
+config/theme/tmp/
+
 Code/*
 !Code/User
 Code/User/*

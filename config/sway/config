@@ -1,3 +1,4 @@
+include ~/.local/share/dotfiles/config/theme/tmp/sway-colors.conf
 include ~/.config/sway/config.d/*.conf
 include ~/.config/sway/config.d/app/*.conf
 include ~/.local/share/dotfiles-private/config/sway/private_config.conf

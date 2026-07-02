@@ -1,4 +1,4 @@
-@import "_base16-mreq-variables"
+@import "../theme/tmp/rofi-variables"
 
 * {
   primary: @blue;

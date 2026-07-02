@@ -103,6 +103,8 @@ create_dotfiles_config_symlink cursor/settings.json ~/.config/Cursor/User/settin
 	done
 )
 
+"$DOTFILES_DIR/bin/theme/dotfiles_theme" ensure
+
 if [[ ! -d ~/.fonts ]]; then
 	mkdir -p ~/.fonts
 	echo "Creating ~/.fonts"

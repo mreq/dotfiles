@@ -13,4 +13,6 @@ if command -v dbus-update-activation-environment >/dev/null; then
 	dbus-update-activation-environment --systemd SSH_AUTH_SOCK XDG_CURRENT_DESKTOP || true
 fi
 
+"$HOME/.local/share/dotfiles/bin/theme/dotfiles_theme" ensure
+
 exec sway
