@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -108,6 +109,15 @@ def select_output(output_name):
     return True
 
 
+def reload_waybar():
+    subprocess.run(
+        ["pkill", "-SIGUSR2", "waybar"],
+        check=False,
+        stderr=subprocess.DEVNULL,
+        stdout=subprocess.DEVNULL,
+    )
+
+
 if result is None:
     if args.handle_reload:
         result = get_cached_output() or "all"
@@ -159,3 +169,5 @@ else:
 
 with open(TMP_FILE_PATH, "w") as f:
     f.write(result + "\n")
+
+reload_waybar()
