@@ -24,7 +24,9 @@ result = args.output
 sway = Connection()
 
 outputs = sway.get_outputs()
-output_names = [o.name for o in sway.get_outputs()]
+available_outputs = [output for output in outputs if output.modes]
+output_by_name = {output.name: output for output in available_outputs}
+output_names = list(output_by_name.keys())
 
 
 def get_best_mode_from_output(output):
@@ -49,6 +51,9 @@ def get_best_mode_from_output(output):
 
 
 def are_modes_equal(a, b):
+    if b is None:
+        return False
+
     return a.width == b.width and a.height == b.height and a.refresh == b.refresh
 
 
@@ -66,23 +71,65 @@ def set_mode(output, mode):
     )
 
 
+def get_cached_output():
+    if not os.path.isfile(TMP_FILE_PATH):
+        return None
+
+    with open(TMP_FILE_PATH, "r") as f:
+        return f.read().strip()
+
+
+def set_best_mode(output):
+    best_mode = get_best_mode_from_output(output)
+
+    if not are_modes_equal(best_mode, output.current_mode):
+        set_mode(output, best_mode)
+
+
+def enable_output(output):
+    if not output.active:
+        sway.command("output " + output.name + " enable")
+
+    set_best_mode(output)
+
+
+def select_output(output_name):
+    target_output = output_by_name.get(output_name)
+
+    if target_output is None:
+        return False
+
+    enable_output(target_output)
+
+    for output in outputs:
+        if output.name != output_name and output.active:
+            sway.command("output " + output.name + " disable")
+
+    return True
+
+
 if result is None:
     if args.handle_reload:
-        if os.path.isfile(TMP_FILE_PATH):
-            with open(TMP_FILE_PATH, "r") as f:
-                result = f.read().strip()
+        result = get_cached_output() or "all"
 
-        else:
+        if result != "all" and result not in output_by_name:
             result = "all"
 
 if result is None:
-    if len(outputs) < 2:
-        best_mode = get_best_mode_from_output(outputs[0])
+    if len(available_outputs) < 2:
+        if not available_outputs:
+            notification(
+                "sway_select_display", message="no available outputs", app_name="sway"
+            )
+            exit(1)
 
-        if outputs[0] and not outputs[0].active:
-            result = outputs[0].name
-        elif not are_modes_equal(best_mode, outputs[0].current_mode):
-            result = outputs[0].name
+        output = available_outputs[0]
+        best_mode = get_best_mode_from_output(output)
+
+        if not output.active:
+            result = output.name
+        elif not are_modes_equal(best_mode, output.current_mode):
+            result = output.name
 
         if not result:
             notification(
@@ -99,27 +146,16 @@ if result is None:
             exit(0)
 
 if result == "all":
-    for output in outputs:
-        if not output.active:
-            sway.command("output " + output.name + " enable")
-
-        best_mode = get_best_mode_from_output(output)
-
-        if not are_modes_equal(best_mode, output.current_mode):
-            set_mode(output, best_mode)
+    for output in available_outputs:
+        enable_output(output)
 else:
-    for output in outputs:
-        if output.name == result:
-            if not output.active:
-                sway.command("output " + output.name + " enable")
-
-            best_mode = get_best_mode_from_output(output)
-
-            if not are_modes_equal(best_mode, output.current_mode):
-                set_mode(output, best_mode)
-        else:
-            if output.active:
-                sway.command("output " + output.name + " disable")
+    if not select_output(result):
+        notification(
+            "sway_select_display",
+            message=f"output not found: {result}",
+            app_name="sway",
+        )
+        exit(1)
 
 with open(TMP_FILE_PATH, "w") as f:
     f.write(result + "\n")
