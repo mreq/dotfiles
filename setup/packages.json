@@ -339,6 +339,10 @@
       "info": "Network utilities (ifconfig, route)"
     },
     {
+      "package": "network-manager-applet",
+      "info": "NetworkManager system tray applet"
+    },
+    {
       "package": "nomacs",
       "info": "Lightweight image viewer"
     },
