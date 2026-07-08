@@ -275,6 +275,10 @@
       "info": "GNU readline library headers"
     },
     {
+      "package": "libsecret-tools",
+      "info": "Secret Service CLI tools for GNOME keyring"
+    },
+    {
       "package": "libsodium-dev",
       "info": "Modern cryptography library headers"
     },
