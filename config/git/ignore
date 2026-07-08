@@ -15,6 +15,9 @@ npm-debug.log
 # Exiftool
 /tmp/exiftool_tags_*
 
+# Rubocop
+/tmp/rubocop_cache
+
 # ruby core dump
 /core
 
