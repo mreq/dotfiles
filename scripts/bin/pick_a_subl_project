@@ -5,9 +5,8 @@ set -euo pipefail
 shopt -s globstar nullglob
 
 project_paths=(
-	"$HOME"/work/**/*.sublime-project
+	"$HOME"/work/*/*.sublime-project
 	"$HOME"/.local/share/*/*.sublime-project
-	"$HOME"/Applications/**/*.sublime-project
 	"$HOME"/Dropbox/*/*.sublime-project
 	"$HOME"/Documents/*/*.sublime-project
 )
