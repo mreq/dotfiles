@@ -17,6 +17,7 @@
         "battery",
         "power-profiles-daemon",
         "sway/language",
+        "idle_inhibitor",
         "clock",
         "tray",
         "custom/notification",
@@ -128,6 +129,17 @@
         "balanced": "",
         "power-saver": ""
       }
+    },
+    "idle_inhibitor": {
+        "format": "<span size=\"large\">{icon}</span>",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "timeout": 525600,
+        "tooltip": true,
+        "tooltip-format-activated": "Idle lock disabled",
+        "tooltip-format-deactivated": "Idle lock enabled"
     },
     "custom/recording": {
         "format": "{}",
