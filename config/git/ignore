@@ -16,6 +16,7 @@ npm-debug.log
 /tmp/exiftool_tags_*
 
 /tmp/*cache
+/tmp/PLAN_*.md
 
 # ruby core dump
 /core

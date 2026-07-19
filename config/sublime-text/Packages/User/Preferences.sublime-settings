@@ -14,7 +14,7 @@
 		"build",
 		"node_modules",
 		"public/system/dragonfly",
-		"tmp"
+		"tmp/*"
 	],
 	"font_face": "FiraCode Nerd Font Mono",
 	"font_options":

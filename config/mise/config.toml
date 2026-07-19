@@ -5,3 +5,4 @@ idiomatic_version_file_enable_tools = ["ruby"]
 node = "latest"
 ruff = "latest"
 ruby = "latest"
+opencode = "latest"
