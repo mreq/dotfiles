@@ -82,12 +82,12 @@
         "format-muted": "<span foreground=\"#ac4142\"><span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span>{volume}%</span>",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
+            "hands-free": "<span size=\"large\"></span>",
             "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
-            "bluetooth": "",
+            "bluetooth": "<span size=\"large\"></span>",
             "default": ["\uf028"]
         },
         "on-click": "pavucontrol"
