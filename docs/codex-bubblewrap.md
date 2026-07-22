@@ -1,32 +1,44 @@
-# Codex Bubblewrap on Ubuntu 24.04
+# Codex Bubblewrap on Ubuntu
 
-## Symptom
+Codex uses the system Bubblewrap executable for its Linux sandbox. This
+repository manages the Ubuntu package and the narrow AppArmor exception that
+lets `/usr/bin/bwrap` create the user namespace it needs.
 
-Codex file edits repeatedly ask to retry without the sandbox:
+## Setup
 
-```text
-Would you like to make the following edits?
-
-Reason: command failed; retry without sandbox?
-```
-
-The standalone sandbox test fails with:
+Run the normal setup script:
 
 ```bash
-codex sandbox linux -- true
+setup/setup.sh
 ```
 
-```text
-bwrap: loopback: Failed RTM_NEWADDR: Operation not permitted
+The `bubblewrap` package declares `apparmor` as a subpackage. After package
+provisioning, its hook manages `/etc/apparmor.d/usr.bin.bwrap`, reloads that
+profile, and checks that Bubblewrap can start a minimal sandbox. Re-running
+setup is safe: the hook replaces the profile only when its content differs.
+
+## Validate
+
+```bash
+bwrap --ro-bind / / true
+codex sandbox -- true
 ```
 
-## Diagnosis
+Both commands should exit successfully without output. The Codex updater runs
+the second check after each upgrade and points back to `setup/setup.sh` if the
+host sandbox is not usable.
 
-On Ubuntu 24.04, AppArmor can restrict unprivileged user namespaces. Codex uses
-Bubblewrap for the Linux sandbox, and Bubblewrap needs user/network namespace
-setup.
+## Why use the Ubuntu package?
 
-Useful checks:
+Codex prefers a system `bwrap` when one is available. Keeping Bubblewrap under
+APT leaves security updates to Ubuntu and ensures that its AppArmor policy
+matches `/usr/bin/bwrap`. The updater intentionally downloads only Codex, not
+a release-provided Bubblewrap binary.
+
+## Troubleshooting
+
+If the hook still fails, collect these values before investigating the host
+policy:
 
 ```bash
 which bwrap
@@ -35,59 +47,6 @@ sysctl kernel.unprivileged_userns_clone
 sysctl kernel.apparmor_restrict_unprivileged_userns
 ```
 
-Expected values from the fixed machine:
-
-```text
-/usr/bin/bwrap
-bubblewrap 0.9.0
-kernel.unprivileged_userns_clone = 1
-kernel.apparmor_restrict_unprivileged_userns = 1
-```
-
-If `kernel.apparmor_restrict_unprivileged_userns = 1`, add a targeted
-AppArmor profile for Bubblewrap instead of disabling the restriction globally.
-
-## Fix
-
-Create `/etc/apparmor.d/usr.bin.bwrap`:
-
-```bash
-sudo tee /etc/apparmor.d/usr.bin.bwrap >/dev/null <<'EOF'
-abi <abi/4.0>,
-include <tunables/global>
-
-profile bwrap /usr/bin/bwrap flags=(unconfined) {
-  userns,
-
-  include if exists <local/bwrap>
-}
-EOF
-```
-
-Load the profile:
-
-```bash
-sudo apparmor_parser -r /etc/apparmor.d/usr.bin.bwrap
-```
-
-Validate:
-
-```bash
-bwrap --ro-bind / / true
-codex sandbox linux -- true
-```
-
-No output from both commands means success.
-
-## Notes
-
-This fix does not bypass Codex approvals. It only lets Bubblewrap create the
-sandbox that Codex is already configured to use. Command confirmations still
-follow Codex's approval policy and persisted prefix rules in:
-
-```text
-~/.codex/rules/default.rules
-```
-
-Avoid switching to `--dangerously-bypass-approvals-and-sandbox` for this issue;
-that disables both the sandbox and approvals.
+Do not use `--dangerously-bypass-approvals-and-sandbox` as a workaround. It
+disables both the sandbox and approval controls instead of repairing the host
+setup.

@@ -29,6 +29,19 @@
       "info": "Resource monitor for CPU, memory, disks, network"
     },
     {
+      "package": "bubblewrap",
+      "info": "Sandbox runtime used by Codex on Linux",
+      "subpackages": [
+        {
+          "package": "apparmor",
+          "info": "Mandatory access control and Bubblewrap profile tooling"
+        }
+      ],
+      "hooks": [
+        "setup/hooks/bubblewrap_hook.sh"
+      ]
+    },
+    {
       "package": "ca-certificates",
       "info": "Common CA certificates"
     },

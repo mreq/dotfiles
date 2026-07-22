@@ -149,5 +149,11 @@ if [[ "$RESOLVED_CODEX" != "$INSTALL_PATH" ]]; then
 	log "WARNING: PATH resolves codex to ${RESOLVED_CODEX:-nothing}, not $INSTALL_PATH"
 fi
 
+if "$INSTALL_PATH" sandbox -- true; then
+	log "Codex sandbox verified"
+else
+	log "WARNING: Codex sandbox validation failed. Run setup/setup.sh to install Bubblewrap and configure its AppArmor profile."
+fi
+
 log "Installed Codex $CODEX_RELEASE_TAG"
 log $'\033[32mDone\033[0m'
