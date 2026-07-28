@@ -7,6 +7,7 @@ DOTFILES_DIR=${DOTFILES_DIR:-$(cd -- "$SCRIPT_DIR/.." && pwd)}
 PACKAGES_JSON="$SCRIPT_DIR/packages.json"
 DRY_RUN=0
 APT_UPDATED=0
+DMI_PRODUCT_FAMILY=
 
 usage() {
 	cat <<EOF
@@ -44,6 +45,165 @@ require_command() {
 	if ! command -v "$1" >/dev/null 2>&1; then
 		error "Missing required command: $1"
 	fi
+}
+
+trim_filter_value() {
+	local value=$1
+
+	value="${value#"${value%%[![:space:]]*}"}"
+	value="${value%"${value##*[![:space:]]}"}"
+	printf '%s' "$value"
+}
+
+read_dmi_product_family() {
+	local dmi_id_dir=$1
+	local product_family_file="$dmi_id_dir/product_family"
+	local value
+
+	if [[ ! -r "$product_family_file" ]]; then
+		return
+	fi
+
+	IFS= read -r value <"$product_family_file" || true
+	trim_filter_value "$value"
+}
+
+manifest_filter_errors() {
+	local manifest=$1
+
+	jq -r '
+		def entries:
+			.apt[]?,
+			.apt[]?.subpackages[]?,
+			.snap[]?,
+			.flatpak[]?;
+		def entry_name:
+			.package // "<unnamed>";
+		def trim:
+			gsub("^\\s+|\\s+$"; "");
+
+		entries
+		| select(has("filter"))
+		| if (.filter | type) != "object" then
+				"\(entry_name): filter must be an object"
+			elif (.filter | length) == 0 then
+				"\(entry_name): filter must not be empty"
+			elif (((.filter | keys_unsorted) - ["dmi"]) | length) > 0 then
+				"\(entry_name): filter supports only the dmi group"
+			elif (.filter | has("dmi") | not) then
+				"\(entry_name): filter must contain dmi"
+			elif (.filter.dmi | type) != "object" then
+				"\(entry_name): filter.dmi must be an object"
+			elif (.filter.dmi | length) == 0 then
+				"\(entry_name): filter.dmi must not be empty"
+			elif (((.filter.dmi | keys_unsorted) - ["product_family"]) | length) > 0 then
+				"\(entry_name): filter.dmi supports only product_family"
+			elif (.filter.dmi | has("product_family") | not) then
+				"\(entry_name): filter.dmi must contain product_family"
+			elif (.filter.dmi.product_family | type) != "string" then
+				"\(entry_name): filter.dmi.product_family must be a string"
+			elif (.filter.dmi.product_family | trim | length) == 0 then
+				"\(entry_name): filter.dmi.product_family must not be blank"
+			else
+				empty
+			end
+	' "$manifest"
+}
+
+filtered_package_entries() {
+	local manifest=$1
+	local package_type=$2
+	local dmi_product_family=$3
+
+	jq -c \
+		--arg package_type "$package_type" \
+		--arg dmi_product_family "$dmi_product_family" '
+			def trim:
+				gsub("^\\s+|\\s+$"; "");
+			def matches_filter:
+				if has("filter") | not then
+					true
+				elif $dmi_product_family == "" then
+					false
+				else
+					(.filter.dmi.product_family | trim) == $dmi_product_family
+				end;
+
+			.[$package_type][]?
+			| select(matches_filter)
+		' "$manifest"
+}
+
+filtered_apt_package_entries() {
+	local manifest=$1
+	local dmi_product_family=$2
+
+	jq -c \
+		--arg dmi_product_family "$dmi_product_family" '
+			def trim:
+				gsub("^\\s+|\\s+$"; "");
+			def matches_filter:
+				if has("filter") | not then
+					true
+				elif $dmi_product_family == "" then
+					false
+				else
+					(.filter.dmi.product_family | trim) == $dmi_product_family
+				end;
+
+			.apt[]? as $entry
+			| select($entry | matches_filter)
+			| $entry,
+				(
+					$entry.subpackages[]?
+					| select(matches_filter)
+					| . + { optional: (.optional // $entry.optional // false) }
+				)
+		' "$manifest"
+}
+
+manifest_filter_decisions() {
+	local manifest=$1
+	local dmi_product_family=$2
+
+	jq -r \
+		--arg dmi_product_family "$dmi_product_family" '
+			def trim:
+				gsub("^\\s+|\\s+$"; "");
+			def matches_filter:
+				if has("filter") | not then
+					true
+				elif $dmi_product_family == "" then
+					false
+				else
+					(.filter.dmi.product_family | trim) == $dmi_product_family
+				end;
+			def decision($entry; $parent_matches):
+				$entry
+				| select(has("filter"))
+				| [
+					.package,
+					(
+						if $parent_matches and matches_filter
+						then "matched"
+						else "skipped"
+						end
+					),
+					(.filter.dmi.product_family | trim)
+				];
+
+			(
+				.apt[]? as $parent
+				| decision($parent; true),
+					(
+						$parent.subpackages[]?
+						| decision(.; ($parent | matches_filter))
+					)
+			),
+			(.snap[]? | decision(.; true)),
+			(.flatpak[]? | decision(.; true))
+			| @tsv
+		' "$manifest"
 }
 
 apt_is_installed() {
@@ -130,11 +290,44 @@ json_array() {
 }
 
 apt_package_entries() {
+	filtered_apt_package_entries "$PACKAGES_JSON" "$DMI_PRODUCT_FAMILY"
+}
+
+all_apt_package_entries() {
 	jq -c '
 		.apt[]? as $entry
 		| $entry,
 			($entry.subpackages[]? | . + { optional: (.optional // $entry.optional // false) })
 	' "$PACKAGES_JSON"
+}
+
+package_entries() {
+	local package_type=$1
+
+	filtered_package_entries "$PACKAGES_JSON" "$package_type" "$DMI_PRODUCT_FAMILY"
+}
+
+selected_hooks() {
+	{
+		package_entries apt
+		package_entries snap
+		package_entries flatpak
+	} | jq -r '.hooks[]?' | sort -u
+}
+
+log_filter_decisions() {
+	local package
+	local decision
+	local expected
+
+	if [[ $DRY_RUN -ne 1 ]]; then
+		return
+	fi
+
+	while IFS=$'\t' read -r package decision expected; do
+		[[ -n "$package" ]] || continue
+		log "hardware filter $decision: $package (DMI product_family: $expected)"
+	done < <(manifest_filter_decisions "$PACKAGES_JSON" "$DMI_PRODUCT_FAMILY")
 }
 
 validate_hook() {
@@ -168,10 +361,16 @@ validate_manifest() {
 	local hook
 	local package
 	local plain_missing=()
+	local filter_errors
 
 	jq empty "$PACKAGES_JSON"
 
-	duplicates=$(apt_package_entries | jq -r '.package' | sort | uniq -d)
+	filter_errors=$(manifest_filter_errors "$PACKAGES_JSON")
+	if [[ -n "$filter_errors" ]]; then
+		error "Invalid package filters: ${filter_errors//$'\n'/; }"
+	fi
+
+	duplicates=$(all_apt_package_entries | jq -r '.package' | sort | uniq -d)
 	if [[ -n "$duplicates" ]]; then
 		error "Duplicate apt package entries: $(echo "$duplicates" | tr '\n' ' ')"
 	fi
@@ -189,7 +388,7 @@ validate_manifest() {
 	while IFS= read -r hook; do
 		[[ -n "$hook" ]] || continue
 		validate_hook "$hook"
-	done < <(json_array '[.apt[]?.hooks[]?, .snap[]?.hooks[]?, .flatpak[]?.hooks[]?] | unique[]')
+	done < <(selected_hooks)
 
 	if [[ $DRY_RUN -eq 1 ]]; then
 		while IFS= read -r package; do
@@ -256,7 +455,7 @@ cleanup_obsolete_apt_sources() {
 			fi
 			changed=1
 		done < <(jq -r '."obsolete-source-files"[]?' <<<"$entry")
-	done < <(jq -c '.apt[]?' "$PACKAGES_JSON")
+	done < <(package_entries apt)
 
 	if [[ $changed -eq 1 ]]; then
 		return 0
@@ -335,7 +534,7 @@ configure_apt_repositories() {
 				log "$package apt repo already configured"
 			fi
 		fi
-	done < <(jq -c '.apt[]?' "$PACKAGES_JSON")
+	done < <(package_entries apt)
 
 	if cleanup_obsolete_apt_sources; then
 		repo_changed=1
@@ -420,7 +619,10 @@ install_snap_packages() {
 	local classic
 	local -a install_args
 
-	if ! jq -e '.snap | length > 0' "$PACKAGES_JSON" >/dev/null; then
+	local snap_entries
+
+	snap_entries=$(package_entries snap)
+	if [[ -z "$snap_entries" ]]; then
 		return
 	fi
 
@@ -477,14 +679,17 @@ install_snap_packages() {
 		fi
 
 		sudo snap install "${install_args[@]}"
-	done < <(jq -c '.snap[]?' "$PACKAGES_JSON")
+	done <<<"$snap_entries"
 }
 
 install_flatpak_packages() {
+	local entry
+	local flatpak_entries
 	local package
 	local installed
 
-	if ! jq -e '.flatpak | length > 0' "$PACKAGES_JSON" >/dev/null; then
+	flatpak_entries=$(package_entries flatpak)
+	if [[ -z "$flatpak_entries" ]]; then
 		return
 	fi
 
@@ -502,7 +707,8 @@ install_flatpak_packages() {
 
 	installed=$(flatpak list --app --columns=application 2>/dev/null || true)
 
-	while IFS= read -r package; do
+	while IFS= read -r entry; do
+		package=$(jq -r '.package' <<<"$entry")
 		[[ -n "$package" ]] || continue
 		if printf '%s\n' "$installed" | grep -qx "$package"; then
 			log "$package already installed"
@@ -511,7 +717,7 @@ install_flatpak_packages() {
 		else
 			flatpak install --user --noninteractive --assumeyes flathub "$package"
 		fi
-	done < <(json_array '.flatpak[]?.package')
+	done <<<"$flatpak_entries"
 }
 
 install_mise() {
@@ -581,7 +787,7 @@ run_hooks() {
 		else
 			DOTFILES_DIR="$DOTFILES_DIR" SETUP_DIR="$SCRIPT_DIR" PACKAGES_JSON="$PACKAGES_JSON" bash "$hook_path"
 		fi
-	done < <(json_array '[.apt[]?.hooks[]?, .snap[]?.hooks[]?, .flatpak[]?.hooks[]?] | unique[]')
+	done < <(selected_hooks)
 }
 
 case "${1:-}" in
@@ -604,12 +810,14 @@ if [[ ! -f "$PACKAGES_JSON" ]]; then
 fi
 
 bootstrap_jq
+DMI_PRODUCT_FAMILY=$(read_dmi_product_family /sys/class/dmi/id)
 require_command apt-cache
 require_command awk
 require_command sort
 require_command uniq
 
 validate_manifest
+log_filter_decisions
 bootstrap_setup_packages
 configure_apt_repositories
 install_apt_packages
