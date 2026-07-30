@@ -26,7 +26,7 @@ disable_system_units() {
 	fi
 
 	for unit in "$@"; do
-		if systemctl list-unit-files "$unit" --no-legend 2>/dev/null | grep -q "^$unit"; then
+		if systemctl is-enabled --quiet "$unit" || systemctl is-active --quiet "$unit"; then
 			existing+=("$unit")
 		fi
 	done

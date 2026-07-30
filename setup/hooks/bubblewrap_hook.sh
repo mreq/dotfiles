@@ -33,15 +33,24 @@ profile bwrap /usr/bin/bwrap flags=(unconfined) {
 }
 EOF
 
-if [[ -f "$APPARMOR_PROFILE" ]] && sudo cmp -s "$tmp_profile" "$APPARMOR_PROFILE"; then
+profile_changed=0
+
+if [[ -f "$APPARMOR_PROFILE" ]] && cmp -s "$tmp_profile" "$APPARMOR_PROFILE"; then
 	log "$APPARMOR_PROFILE is current"
 else
 	log "Installing $APPARMOR_PROFILE"
 	sudo install -D -m 0644 "$tmp_profile" "$APPARMOR_PROFILE"
+	profile_changed=1
 fi
 
-log "Loading $APPARMOR_PROFILE"
-sudo apparmor_parser -r "$APPARMOR_PROFILE"
+if [[ $profile_changed -eq 1 ]]; then
+	log "Loading $APPARMOR_PROFILE"
+	sudo apparmor_parser -r "$APPARMOR_PROFILE"
+fi
 
 log "Validating Bubblewrap"
-bwrap --ro-bind / / true
+if ! bwrap --ro-bind / / true; then
+	log "Reloading $APPARMOR_PROFILE after failed validation"
+	sudo apparmor_parser -r "$APPARMOR_PROFILE"
+	bwrap --ro-bind / / true
+fi

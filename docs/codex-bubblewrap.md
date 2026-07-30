@@ -15,7 +15,10 @@ setup/setup.sh
 The `bubblewrap` package declares `apparmor` as a subpackage. After package
 provisioning, its hook manages `/etc/apparmor.d/usr.bin.bwrap`, reloads that
 profile, and checks that Bubblewrap can start a minimal sandbox. Re-running
-setup is safe: the hook replaces the profile only when its content differs.
+setup is safe: the hook replaces and reloads the profile only when its content
+differs, so an already-correct setup does not need `sudo`. If validation fails
+(for example, after AppArmor has restarted), the hook reloads the profile and
+validates again.
 
 ## Validate
 
