@@ -74,7 +74,8 @@ tooltip label {
 #tray,
 #custom_notification,
 #custom_spacer,
-#custom_recording {
+#custom_recording,
+#custom-thinkpad-thermal {
   padding: 0 0.5em;
 }
 
@@ -101,4 +102,13 @@ tooltip label {
 
 #custom-recording {
   color: @base-red;
+}
+
+#custom-thinkpad-thermal.auto {
+  color: @base-yellow;
+}
+
+#custom-thinkpad-thermal.warning {
+  background: @base-red;
+  color: @base-blackey;
 }

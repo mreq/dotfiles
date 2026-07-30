@@ -1,0 +1,13 @@
+# Managed by dotfiles: setup/hooks/ryzenadj_hook.sh
+
+[Unit]
+Description=Periodically check ThinkPad thermal-control state
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=60s
+AccuracySec=5s
+Unit=thinkpad-thermal-check.service
+
+[Install]
+WantedBy=timers.target

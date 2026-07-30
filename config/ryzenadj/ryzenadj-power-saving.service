@@ -1,0 +1,17 @@
+# Managed by dotfiles: setup/hooks/ryzenadj_hook.sh
+
+[Unit]
+Description=Apply RyzenAdj power-saving mode
+Documentation=https://github.com/FlyGoat/RyzenAdj
+After=local-fs.target
+After=suspend.target
+After=suspend-then-hibernate.target
+After=hybrid-sleep.target
+After=hibernate.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/thinkpad-thermal apply
+
+[Install]
+WantedBy=multi-user.target sleep.target

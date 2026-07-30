@@ -508,6 +508,33 @@
       "optional": true
     },
     {
+      "package": "thinkfan",
+      "info": "Temperature-based fan controller",
+      "subpackages": [
+        {
+          "package": "build-essential",
+          "info": "Compiler toolchain for the pinned RyzenAdj build"
+        },
+        {
+          "package": "cmake",
+          "info": "Build system for the pinned RyzenAdj build"
+        },
+        {
+          "package": "libpci-dev",
+          "info": "PCI development library required by RyzenAdj"
+        }
+      ],
+      "filter": {
+        "dmi": {
+          "product_family": "ThinkPad T14 Gen 1"
+        }
+      },
+      "hooks": [
+        "setup/hooks/thinkfan_hook.sh",
+        "setup/hooks/ryzenadj_hook.sh"
+      ]
+    },
+    {
       "package": "thunderbird",
       "info": "Ubuntu Thunderbird integration package"
     },

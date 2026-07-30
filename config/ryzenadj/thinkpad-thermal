@@ -1,0 +1,430 @@
+#!/bin/bash
+# Managed by dotfiles: setup/hooks/ryzenadj_hook.sh
+
+set -euo pipefail
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH
+unset BASH_ENV CDPATH ENV
+
+EXPECTED_DMI_PRODUCT_FAMILY="ThinkPad T14 Gen 1"
+EXPECTED_CCLK_BOOST_SETPOINT=95
+
+RYZENADJ=/usr/local/bin/ryzenadj
+CONTROLLER=/usr/local/bin/thinkpad-thermal
+STATUS_DIR=/run/thinkpad-thermal
+STATUS_FILE="$STATUS_DIR/status.json"
+MODE_FILE="$STATUS_DIR/mode"
+
+APPLY_SERVICE=ryzenadj-power-saving.service
+CHECK_TIMER=thinkpad-thermal-check.timer
+THINKFAN_SERVICE=thinkfan.service
+FAN_CONTROL_PARAMETER=/sys/module/thinkpad_acpi/parameters/fan_control
+FAN_INTERFACE=/proc/acpi/ibm/fan
+
+usage() {
+	cat <<EOF
+Usage: thinkpad-thermal read
+       thinkpad-thermal apply
+       thinkpad-thermal auto
+EOF
+}
+
+error() {
+	echo "thinkpad-thermal: $*" >&2
+	exit 1
+}
+
+table_value() {
+	local name=$1
+	local output=$2
+
+	awk -F "|" -v expected_name="$name" '
+		NF >= 4 {
+			name = $2
+			gsub(/^[[:space:]]+|[[:space:]]+$/, "", name)
+
+			if (name == expected_name) {
+				value = $3
+				gsub(/^[[:space:]]+|[[:space:]]+$/, "", value)
+				print value
+				exit
+			}
+		}
+	' <<<"$output"
+}
+
+service_state() {
+	local operation=$1
+	local unit=$2
+
+	systemctl "$operation" "$unit" 2>/dev/null || true
+}
+
+fan_value() {
+	local name=$1
+	local output=$2
+
+	awk -F ":" -v expected_name="$name" '
+		$1 == expected_name {
+			value = $2
+			gsub(/^[[:space:]]+|[[:space:]]+$/, "", value)
+			print value
+			exit
+		}
+	' <<<"$output"
+}
+
+read_dmi_product_family() {
+	local product_family_file=/sys/class/dmi/id/product_family
+	local value
+
+	[[ -r "$product_family_file" ]] || return
+	IFS= read -r value <"$product_family_file" || true
+	value="${value#"${value%%[![:space:]]*}"}"
+	value="${value%"${value##*[![:space:]]}"}"
+	printf '%s' "$value"
+}
+
+read_mode() {
+	local mode
+
+	if [[ -r "$MODE_FILE" ]]; then
+		IFS= read -r mode <"$MODE_FILE" || true
+	fi
+
+	case "${mode:-}" in
+	regular | auto)
+		printf '%s' "$mode"
+		;;
+	*)
+		printf '%s' "unknown"
+		;;
+	esac
+}
+
+write_mode() {
+	local mode=$1
+	local mode_tmp
+
+	install -d -m 0755 "$STATUS_DIR" || return
+	mode_tmp=$(mktemp "$STATUS_DIR/.mode.XXXXXX") || return
+
+	if ! printf '%s\n' "$mode" >"$mode_tmp" ||
+		! chmod 0644 "$mode_tmp" ||
+		! mv -f -- "$mode_tmp" "$MODE_FILE"; then
+		rm -f -- "$mode_tmp"
+		return 1
+	fi
+}
+
+restore_firmware_auto() {
+	[[ -w "$FAN_INTERFACE" ]] || return 1
+
+	printf '%s\n' "level auto" >"$FAN_INTERFACE" &&
+		printf '%s\n' "watchdog 0" >"$FAN_INTERFACE"
+}
+
+write_status() {
+	local action=$1
+	local command_status=$2
+	local output=$3
+	local cclk_boost_setpoint=$4
+	local operation_issue=$5
+	local status_tmp
+	local checked_at
+	local healthy
+	local issues_text
+	local mode
+	local thinkfan_active
+	local fan_control
+	local fan_level
+	local fan_output
+	local apply_service_enabled
+	local check_timer_enabled
+	local check_timer_active
+	local stapm_limit
+	local fast_limit
+	local slow_limit
+	local tctl_limit
+	local apu_skin_temp_limit
+	local issues=()
+
+	checked_at=$(date +%s)
+	mode=$(read_mode)
+	thinkfan_active=$(service_state is-active "$THINKFAN_SERVICE")
+	apply_service_enabled=$(service_state is-enabled "$APPLY_SERVICE")
+	check_timer_enabled=$(service_state is-enabled "$CHECK_TIMER")
+	check_timer_active=$(service_state is-active "$CHECK_TIMER")
+
+	fan_control=unavailable
+	if [[ -r "$FAN_CONTROL_PARAMETER" ]]; then
+		fan_control=$(<"$FAN_CONTROL_PARAMETER")
+	fi
+
+	fan_level=unavailable
+	if [[ -r "$FAN_INTERFACE" ]]; then
+		fan_output=$(<"$FAN_INTERFACE")
+		fan_level=$(fan_value "level" "$fan_output")
+		fan_level=${fan_level:-unknown}
+	fi
+
+	stapm_limit=$(table_value "STAPM LIMIT" "$output")
+	fast_limit=$(table_value "PPT LIMIT FAST" "$output")
+	slow_limit=$(table_value "PPT LIMIT SLOW" "$output")
+	tctl_limit=$(table_value "THM LIMIT CORE" "$output")
+	apu_skin_temp_limit=$(table_value "STT LIMIT APU" "$output")
+
+	if [[ -n "$operation_issue" ]]; then
+		issues+=("$operation_issue")
+	fi
+
+	if [[ $command_status -ne 0 ]]; then
+		issues+=("RyzenAdj $action failed")
+	elif [[ -z "$cclk_boost_setpoint" ]]; then
+		issues+=("RyzenAdj did not report the CCLK boost setpoint")
+	elif [[ "$cclk_boost_setpoint" != "$EXPECTED_CCLK_BOOST_SETPOINT.000" ]]; then
+		issues+=(
+			"RyzenAdj power-saving is not active (CCLK setpoint $cclk_boost_setpoint)"
+		)
+	fi
+
+	case "$mode" in
+	regular)
+		if [[ "$thinkfan_active" != "active" ]]; then
+			issues+=("$THINKFAN_SERVICE is $thinkfan_active in regular mode")
+		fi
+		;;
+	auto)
+		if [[ "$thinkfan_active" == "active" ]]; then
+			issues+=("$THINKFAN_SERVICE is active in firmware-auto mode")
+		fi
+
+		if [[ "$fan_level" != "auto" ]]; then
+			issues+=("firmware-auto mode reports fan level $fan_level")
+		fi
+		;;
+	*)
+		issues+=("thermal-control mode is unknown")
+		;;
+	esac
+
+	if [[ "$fan_control" != "Y" ]]; then
+		issues+=("thinkpad_acpi fan control is $fan_control")
+	fi
+
+	case "$apply_service_enabled" in
+	enabled | enabled-runtime) ;;
+	*) issues+=("$APPLY_SERVICE is $apply_service_enabled") ;;
+	esac
+
+	case "$check_timer_enabled" in
+	enabled | enabled-runtime) ;;
+	*) issues+=("$CHECK_TIMER is $check_timer_enabled") ;;
+	esac
+
+	if [[ "$check_timer_active" != "active" ]]; then
+		issues+=("$CHECK_TIMER is $check_timer_active")
+	fi
+
+	if ((${#issues[@]} == 0)); then
+		healthy=true
+		issues_text=
+	else
+		healthy=false
+		issues_text=$(printf '%s\n' "${issues[@]}")
+	fi
+
+	install -d -m 0755 "$STATUS_DIR"
+	status_tmp=$(mktemp "$STATUS_DIR/.status.json.XXXXXX")
+
+	if ! jq -n \
+		--argjson healthy "$healthy" \
+		--argjson checked_at "$checked_at" \
+		--arg action "$action" \
+		--arg mode "$mode" \
+		--arg cclk_boost_setpoint "$cclk_boost_setpoint" \
+		--arg stapm_limit "$stapm_limit" \
+		--arg fast_limit "$fast_limit" \
+		--arg slow_limit "$slow_limit" \
+		--arg tctl_limit "$tctl_limit" \
+		--arg apu_skin_temp_limit "$apu_skin_temp_limit" \
+		--arg thinkfan_active "$thinkfan_active" \
+		--arg fan_control "$fan_control" \
+		--arg fan_level "$fan_level" \
+		--arg apply_service_enabled "$apply_service_enabled" \
+		--arg check_timer_enabled "$check_timer_enabled" \
+		--arg check_timer_active "$check_timer_active" \
+		--arg issues "$issues_text" \
+		'{
+			healthy: $healthy,
+			checked_at: $checked_at,
+			action: $action,
+			mode: $mode,
+			ryzenadj: {
+				cclk_boost_setpoint: $cclk_boost_setpoint,
+				stapm_limit_w: $stapm_limit,
+				fast_limit_w: $fast_limit,
+				slow_limit_w: $slow_limit,
+				tctl_limit_c: $tctl_limit,
+				apu_skin_temp_limit_c: $apu_skin_temp_limit
+			},
+			thinkfan: {
+				active: $thinkfan_active,
+				fan_control: $fan_control,
+				level: $fan_level
+			},
+			services: {
+				apply_enabled: $apply_service_enabled,
+				check_timer_enabled: $check_timer_enabled,
+				check_timer_active: $check_timer_active
+			},
+			issues: ($issues | split("\n") | map(select(length > 0)))
+		}' >"$status_tmp"; then
+		rm -f -- "$status_tmp"
+		error "could not create the status cache"
+	fi
+
+	chmod 0644 "$status_tmp"
+	mv -f -- "$status_tmp" "$STATUS_FILE"
+}
+
+if [[ $# -ne 1 ]]; then
+	usage >&2
+	exit 2
+fi
+
+case "$1" in
+read | apply | auto)
+	action=$1
+	;;
+-h | --help)
+	usage
+	exit 0
+	;;
+*)
+	usage >&2
+	exit 2
+	;;
+esac
+
+if [[ $EUID -ne 0 ]]; then
+	exec sudo -n -- "$CONTROLLER" "$action"
+fi
+
+if [[ "$(read_dmi_product_family)" != "$EXPECTED_DMI_PRODUCT_FAMILY" ]]; then
+	error "unsupported DMI product family"
+fi
+
+if [[ ! -x "$RYZENADJ" ]]; then
+	error "$RYZENADJ is not executable"
+fi
+
+operation_issue=
+mode_switch_status=0
+
+case "$action" in
+apply)
+	if ! systemctl start "$THINKFAN_SERVICE"; then
+		operation_issue="Could not start $THINKFAN_SERVICE"
+		mode_switch_status=1
+	fi
+	;;
+auto)
+	if ! systemctl stop "$THINKFAN_SERVICE"; then
+		operation_issue="Could not stop $THINKFAN_SERVICE"
+		mode_switch_status=1
+	elif ! restore_firmware_auto; then
+		operation_issue="Could not restore firmware fan control"
+		mode_switch_status=1
+
+		if ! systemctl start "$THINKFAN_SERVICE"; then
+			operation_issue+="; could not restore $THINKFAN_SERVICE"
+		elif ! write_mode regular; then
+			operation_issue+="; could not record restored regular mode"
+		fi
+	elif ! write_mode auto; then
+		operation_issue="Could not record firmware-auto mode"
+		mode_switch_status=1
+
+		if ! systemctl start "$THINKFAN_SERVICE"; then
+			operation_issue+="; could not restore $THINKFAN_SERVICE"
+		elif ! write_mode regular; then
+			operation_issue+="; could not record restored regular mode"
+		fi
+	fi
+	;;
+esac
+
+ryzenadj_arguments=(--info)
+if [[ "$action" == "apply" ]]; then
+	ryzenadj_arguments=(--power-saving --info)
+fi
+
+set +e
+ryzenadj_output=$(LC_ALL=C "$RYZENADJ" "${ryzenadj_arguments[@]}" 2>&1)
+ryzenadj_status=$?
+set -e
+
+if [[ "$action" == "apply" &&
+	$mode_switch_status -eq 0 &&
+	$ryzenadj_status -eq 0 ]]; then
+	if ! write_mode regular; then
+		operation_issue="Could not record regular mode"
+		mode_switch_status=1
+	fi
+fi
+
+cclk_boost_setpoint=$(table_value "CCLK Boost SETPOINT" "$ryzenadj_output")
+write_status \
+	"$action" \
+	"$ryzenadj_status" \
+	"$ryzenadj_output" \
+	"$cclk_boost_setpoint" \
+	"$operation_issue"
+
+if [[ $ryzenadj_status -ne 0 ]]; then
+	printf '%s\n' "$ryzenadj_output" >&2
+	error "RyzenAdj $action failed"
+fi
+
+if [[ $mode_switch_status -ne 0 ]]; then
+	error "$operation_issue"
+fi
+
+if [[ "$cclk_boost_setpoint" == "$EXPECTED_CCLK_BOOST_SETPOINT.000" ]]; then
+	power_saving_state=enabled
+	power_saving_status=0
+else
+	power_saving_state=disabled
+	power_saving_status=1
+fi
+
+mode=$(read_mode)
+thinkfan_active=$(service_state is-active "$THINKFAN_SERVICE")
+fan_level=unavailable
+if [[ -r "$FAN_INTERFACE" ]]; then
+	fan_output=$(<"$FAN_INTERFACE")
+	fan_level=$(fan_value "level" "$fan_output")
+	fan_level=${fan_level:-unknown}
+fi
+
+printf 'mode: %s (thinkfan: %s, fan level: %s)\n' \
+	"$mode" \
+	"$thinkfan_active" \
+	"$fan_level"
+printf 'power-saving: %s (CCLK boost setpoint: %s)\n' \
+	"$power_saving_state" \
+	"${cclk_boost_setpoint:-unknown}"
+printf 'limits: STAPM=%s W, fast=%s W, slow=%s W, Tctl=%s°C, skin=%s°C\n' \
+	"$(table_value "STAPM LIMIT" "$ryzenadj_output")" \
+	"$(table_value "PPT LIMIT FAST" "$ryzenadj_output")" \
+	"$(table_value "PPT LIMIT SLOW" "$ryzenadj_output")" \
+	"$(table_value "THM LIMIT CORE" "$ryzenadj_output")" \
+	"$(table_value "STT LIMIT APU" "$ryzenadj_output")"
+
+if [[ "$action" == "auto" ]]; then
+	exit 0
+fi
+
+exit "$power_saving_status"
