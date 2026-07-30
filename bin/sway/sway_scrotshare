@@ -71,8 +71,8 @@ def handle_target(path, adhoc):
                 app_name="sway",
             )
         elif result == "gimp":
-            os.system("gimp " + path + " &")
-            time.sleep(3)
+            subprocess.Popen(["gimp", path], start_new_session=True)
+            time.sleep(10)
         elif result == "keep":
             notification(
                 "sway_scrotshare",
