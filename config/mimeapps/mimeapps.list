@@ -23,6 +23,9 @@ text/x-log=sublime_text.desktop;
 application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
 video/mp4=google-chrome.desktop;
 x-scheme-handler/freelens=freelens.desktop
+x-scheme-handler/mailto=thunderbird_thunderbird.desktop
+x-scheme-handler/mid=thunderbird_thunderbird.desktop
+x-scheme-handler/net.thunderbird=thunderbird_thunderbird.desktop
 
 [Added Associations]
 application/toml=sublime_text.desktop;
