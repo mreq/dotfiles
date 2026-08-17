@@ -5,6 +5,9 @@ set -euo pipefail
 ASSET="codex-x86_64-unknown-linux-musl.tar.gz"
 BINARY="codex-x86_64-unknown-linux-musl"
 INSTALL_PATH="$HOME/.local/bin/codex"
+CODE_MODE_HOST_ASSET="codex-code-mode-host-x86_64-unknown-linux-musl.tar.gz"
+CODE_MODE_HOST_BINARY="codex-code-mode-host-x86_64-unknown-linux-musl"
+CODE_MODE_HOST_INSTALL_PATH="$HOME/.local/bin/codex-code-mode-host"
 LATEST_RELEASE_API_URL="https://api.github.com/repos/openai/codex/releases/latest"
 
 log() {
@@ -28,6 +31,14 @@ Usage: setup/update/update_codex
 
 Fetch the latest stable Codex release, confirm it, and install it.
 EOF
+}
+
+asset_sha256() {
+	local asset=$1
+
+	jq -r --arg asset "$asset" \
+		'first(.assets[]? | select(.name == $asset)) // {} | .digest // empty' \
+		<<<"$RELEASE_JSON"
 }
 
 require_linux_x86_64() {
@@ -93,11 +104,8 @@ log "Fetching latest stable Codex release"
 RELEASE_JSON="$(fetch_latest_release_json)"
 CODEX_RELEASE_TAG="$(jq -r ".tag_name // empty" <<<"$RELEASE_JSON")"
 CODEX_RELEASE_NAME="$(jq -r ".name // empty" <<<"$RELEASE_JSON")"
-CODEX_SHA256="$(
-	jq -r --arg asset "$ASSET" \
-		'first(.assets[]? | select(.name == $asset)) // {} | .digest // empty' \
-		<<<"$RELEASE_JSON"
-)"
+CODEX_SHA256="$(asset_sha256 "$ASSET")"
+CODE_MODE_HOST_SHA256="$(asset_sha256 "$CODE_MODE_HOST_ASSET")"
 
 if [[ -z "$CODEX_RELEASE_TAG" ]]; then
 	error "GitHub response did not include a release tag."
@@ -111,8 +119,13 @@ if [[ ! "$CODEX_SHA256" =~ ^sha256:[0-9a-fA-F]{64}$ ]]; then
 	error "GitHub did not provide a valid SHA-256 digest for $ASSET in $CODEX_RELEASE_TAG."
 fi
 
+if [[ ! "$CODE_MODE_HOST_SHA256" =~ ^sha256:[0-9a-fA-F]{64}$ ]]; then
+	error "GitHub did not provide a valid SHA-256 digest for $CODE_MODE_HOST_ASSET in $CODEX_RELEASE_TAG."
+fi
+
 log "Latest release: $CODEX_RELEASE_NAME ($CODEX_RELEASE_TAG)"
-log "SHA-256: $CODEX_SHA256"
+log "Codex SHA-256: $CODEX_SHA256"
+log "Code Mode host SHA-256: $CODE_MODE_HOST_SHA256"
 
 if ! confirm "Download and install this Codex release?"; then
 	log "Skipped update"
@@ -120,29 +133,49 @@ if ! confirm "Download and install this Codex release?"; then
 fi
 
 DOWNLOAD_URL="https://github.com/openai/codex/releases/download/$CODEX_RELEASE_TAG/$ASSET"
+CODE_MODE_HOST_DOWNLOAD_URL="https://github.com/openai/codex/releases/download/$CODEX_RELEASE_TAG/$CODE_MODE_HOST_ASSET"
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "$TMP_DIR"' EXIT
 
 ARCHIVE_PATH="$TMP_DIR/$ASSET"
+CODE_MODE_HOST_ARCHIVE_PATH="$TMP_DIR/$CODE_MODE_HOST_ASSET"
 
 log "Downloading $ASSET from $CODEX_RELEASE_TAG"
 curl --fail --location --show-error --silent \
 	--output "$ARCHIVE_PATH" \
 	"$DOWNLOAD_URL"
 
-log "Verifying SHA-256"
+log "Downloading $CODE_MODE_HOST_ASSET from $CODEX_RELEASE_TAG"
+curl --fail --location --show-error --silent \
+	--output "$CODE_MODE_HOST_ARCHIVE_PATH" \
+	"$CODE_MODE_HOST_DOWNLOAD_URL"
+
+log "Verifying Codex SHA-256"
 printf '%s  %s\n' "${CODEX_SHA256#sha256:}" "$ARCHIVE_PATH" | sha256sum --check --strict
+
+log "Verifying Code Mode host SHA-256"
+printf '%s  %s\n' "${CODE_MODE_HOST_SHA256#sha256:}" "$CODE_MODE_HOST_ARCHIVE_PATH" | sha256sum --check --strict
 
 log "Extracting $BINARY"
 tar -xzf "$ARCHIVE_PATH" -C "$TMP_DIR"
+
+log "Extracting $CODE_MODE_HOST_BINARY"
+tar -xzf "$CODE_MODE_HOST_ARCHIVE_PATH" -C "$TMP_DIR"
 
 if [[ ! -f "$TMP_DIR/$BINARY" ]]; then
 	error "Release archive did not contain $BINARY"
 fi
 
+if [[ ! -f "$TMP_DIR/$CODE_MODE_HOST_BINARY" ]]; then
+	error "Release archive did not contain $CODE_MODE_HOST_BINARY"
+fi
+
 log "Installing to $INSTALL_PATH"
 mkdir -p "$(dirname "$INSTALL_PATH")"
 install -m 0755 "$TMP_DIR/$BINARY" "$INSTALL_PATH"
+
+log "Installing Code Mode host to $CODE_MODE_HOST_INSTALL_PATH"
+install -m 0755 "$TMP_DIR/$CODE_MODE_HOST_BINARY" "$CODE_MODE_HOST_INSTALL_PATH"
 
 RESOLVED_CODEX="$(command -v codex || true)"
 if [[ "$RESOLVED_CODEX" != "$INSTALL_PATH" ]]; then
