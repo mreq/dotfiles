@@ -67,6 +67,10 @@
       "no-install-recommends": true,
       "subpackages": [
         {
+          "package": "docker-buildx",
+          "info": "Docker Buildx plugin for Kamal / rails"
+        },
+        {
           "package": "docker-compose-v2",
           "info": "Docker Compose v2 plugin"
         },
