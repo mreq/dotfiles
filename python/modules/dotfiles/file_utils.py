@@ -34,7 +34,7 @@ def upload_to_server(path: str, filename: str, app_name: str) -> None:
 
     ssh_add()
     subprocess.run(
-        ["scp", path, f"mreq:s.mreq.eu/{filename}"],
+        ["scp", path, f"mreq-vps-ssp:s.mreq.eu/{filename}"],
         check=True,
     )
 
