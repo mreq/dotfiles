@@ -109,7 +109,25 @@
     },
     {
       "package": "firefox",
-      "info": "Ubuntu Firefox integration package"
+      "info": "Mozilla Firefox web browser",
+      "gpg-key": "https://packages.mozilla.org/apt/repo-signing-key.gpg",
+      "gpg-key-format": "ascii",
+      "signed-by": "/etc/apt/keyrings/packages.mozilla.org.asc",
+      "source-file": "/etc/apt/sources.list.d/mozilla.sources",
+      "source-content": "Types: deb\nURIs: https://packages.mozilla.org/apt\nSuites: mozilla\nComponents: main\nSigned-By: /etc/apt/keyrings/packages.mozilla.org.asc\n\nTypes: deb\nURIs: https://packages.mozilla.org/apt\nSuites: thunderbird-deb\nComponents: main\nSigned-By: /etc/apt/keyrings/packages.mozilla.org.asc",
+      "preferences-file": "/etc/apt/preferences.d/mozilla",
+      "preferences-content": "Package: firefox thunderbird\nPin: origin packages.mozilla.org\nPin-Priority: 1001\n\nPackage: firefox thunderbird\nPin: release o=Ubuntu\nPin-Priority: -1",
+      "obsolete-source-files": [
+        "/etc/apt/sources.list.d/mozilla.list",
+        "/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-noble.list",
+        "/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-noble.sources"
+      ],
+      "obsolete-preferences-files": [
+        "/etc/apt/preferences.d/firefox",
+        "/etc/apt/preferences.d/thunderbird"
+      ],
+      "ensure-candidate": true,
+      "replaces-snap": "firefox"
     },
     {
       "package": "foot",
@@ -540,7 +558,9 @@
     },
     {
       "package": "thunderbird",
-      "info": "Ubuntu Thunderbird integration package"
+      "info": "Mozilla Thunderbird email client",
+      "ensure-candidate": true,
+      "replaces-snap": "thunderbird"
     },
     {
       "package": "tmux",

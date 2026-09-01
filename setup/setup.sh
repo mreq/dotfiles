@@ -220,6 +220,17 @@ apt_has_candidate() {
 	[[ -n "$candidate" && "$candidate" != "(none)" ]]
 }
 
+apt_matches_candidate() {
+	local package=$1
+	local candidate
+	local installed
+
+	candidate=$(apt-cache policy "$package" 2>/dev/null | awk '/Candidate:/ {print $2; exit}')
+	installed=$(dpkg-query -W -f='${Version}' "$package" 2>/dev/null || true)
+
+	[[ -n "$installed" && -n "$candidate" && "$candidate" != "(none)" && "$installed" == "$candidate" ]]
+}
+
 snap_is_installed() {
 	local package=$1
 
@@ -426,15 +437,18 @@ source_content_matches() {
 	return 1
 }
 
-cleanup_obsolete_apt_sources() {
+cleanup_obsolete_apt_configuration() {
 	local entry
 	local package
+	local preferences_file
 	local source_file
+	local obsolete_preferences_file
 	local obsolete_source_file
 	local changed=0
 
 	while IFS= read -r entry; do
 		package=$(jq -r '.package' <<<"$entry")
+		preferences_file=$(jq -r '."preferences-file" // empty' <<<"$entry")
 		source_file=$(jq -r '."source-file" // empty' <<<"$entry")
 
 		while IFS= read -r obsolete_source_file; do
@@ -455,6 +469,25 @@ cleanup_obsolete_apt_sources() {
 			fi
 			changed=1
 		done < <(jq -r '."obsolete-source-files"[]?' <<<"$entry")
+
+		while IFS= read -r obsolete_preferences_file; do
+			[[ -n "$obsolete_preferences_file" ]] || continue
+			if [[ -n "$preferences_file" && "$obsolete_preferences_file" == "$preferences_file" ]]; then
+				error "$package obsolete-preferences-files must not include preferences-file: $preferences_file"
+			fi
+
+			if [[ ! -e "$obsolete_preferences_file" ]]; then
+				continue
+			fi
+
+			if [[ $DRY_RUN -eq 1 ]]; then
+				log "dry-run: would remove obsolete apt preferences for $package at $obsolete_preferences_file"
+			else
+				log "Removing obsolete apt preferences for $package at $obsolete_preferences_file"
+				sudo rm -f -- "$obsolete_preferences_file"
+			fi
+			changed=1
+		done < <(jq -r '."obsolete-preferences-files"[]?' <<<"$entry")
 	done < <(package_entries apt)
 
 	if [[ $changed -eq 1 ]]; then
@@ -472,6 +505,9 @@ configure_apt_repositories() {
 	local source_file
 	local source_content
 	local current_content
+	local preferences_file
+	local preferences_content
+	local current_preferences
 	local repo_changed=0
 	local package_changed
 
@@ -485,16 +521,20 @@ configure_apt_repositories() {
 		signed_by=$(jq -r '."signed-by" // empty' <<<"$entry")
 		source_file=$(jq -r '."source-file" // empty' <<<"$entry")
 		source_content=$(jq -r '."source-content" // empty' <<<"$entry")
+		preferences_file=$(jq -r '."preferences-file" // empty' <<<"$entry")
+		preferences_content=$(jq -r '."preferences-content" // empty' <<<"$entry")
 
-		if [[ -z "$gpg_key" && -z "$source_file" && -z "$source_content" && -z "$signed_by" ]]; then
+		if [[ -z "$gpg_key" && -z "$source_file" && -z "$source_content" && -z "$signed_by" && -z "$preferences_file" && -z "$preferences_content" ]]; then
 			continue
 		fi
 
-		if [[ -z "$gpg_key" || -z "$signed_by" || -z "$source_file" || -z "$source_content" ]]; then
-			error "$package repo metadata must include gpg-key, signed-by, source-file, and source-content"
+		if [[ -n "$gpg_key" || -n "$source_file" || -n "$source_content" || -n "$signed_by" ]]; then
+			if [[ -z "$gpg_key" || -z "$signed_by" || -z "$source_file" || -z "$source_content" ]]; then
+				error "$package repo metadata must include gpg-key, signed-by, source-file, and source-content"
+			fi
 		fi
 
-		if [[ ! -f "$signed_by" ]]; then
+		if [[ -n "$signed_by" && ! -f "$signed_by" ]]; then
 			if [[ $DRY_RUN -eq 1 ]]; then
 				log "dry-run: would add apt key for $package at $signed_by"
 				package_changed=1
@@ -514,8 +554,11 @@ configure_apt_repositories() {
 			fi
 		fi
 
-		current_content=$(cat "$source_file" 2>/dev/null || true)
-		if ! source_content_matches "$current_content" "$source_content" "$entry"; then
+		current_content=
+		if [[ -n "$source_file" ]]; then
+			current_content=$(cat "$source_file" 2>/dev/null || true)
+		fi
+		if [[ -n "$source_file" ]] && ! source_content_matches "$current_content" "$source_content" "$entry"; then
 			if [[ $DRY_RUN -eq 1 ]]; then
 				log "dry-run: would write apt source for $package at $source_file"
 				package_changed=1
@@ -524,6 +567,25 @@ configure_apt_repositories() {
 				log "Writing apt source for $package"
 				printf '%s\n' "$source_content" | sudo tee "$source_file" >/dev/null
 				repo_changed=1
+			fi
+		fi
+
+		if [[ -n "$preferences_file" || -n "$preferences_content" ]]; then
+			if [[ -z "$preferences_file" || -z "$preferences_content" ]]; then
+				error "$package apt preferences must include preferences-file and preferences-content"
+			fi
+
+			current_preferences=$(cat "$preferences_file" 2>/dev/null || true)
+			if [[ "$current_preferences" != "$preferences_content" ]]; then
+				if [[ $DRY_RUN -eq 1 ]]; then
+					log "dry-run: would write apt preferences for $package at $preferences_file"
+					package_changed=1
+				else
+					sudo install -d -m 0755 "$(dirname -- "$preferences_file")"
+					log "Writing apt preferences for $package"
+					printf '%s\n' "$preferences_content" | sudo tee "$preferences_file" >/dev/null
+					repo_changed=1
+				fi
 			fi
 		fi
 
@@ -536,7 +598,7 @@ configure_apt_repositories() {
 		fi
 	done < <(package_entries apt)
 
-	if cleanup_obsolete_apt_sources; then
+	if cleanup_obsolete_apt_configuration; then
 		repo_changed=1
 	fi
 
@@ -549,23 +611,28 @@ configure_apt_repositories() {
 
 install_apt_packages() {
 	local entry
+	local ensure_candidate_flag
 	local missing=()
 	local missing_no_recommends=()
 	local no_recommends_flag
 	local optional=()
 	local optional_flag
 	local package
+	local reconcile=()
 
 	section "Installing apt packages"
 
 	while IFS= read -r entry; do
 		package=$(jq -r '.package' <<<"$entry")
+		ensure_candidate_flag=$(jq -r '."ensure-candidate" // false' <<<"$entry")
 		no_recommends_flag=$(jq -r '."no-install-recommends" // false' <<<"$entry")
 		optional_flag=$(jq -r '.optional // false' <<<"$entry")
 		[[ -n "$package" ]] || continue
 
 		if [[ "$optional_flag" == "true" ]]; then
 			optional+=("$package")
+		elif [[ "$ensure_candidate_flag" == "true" ]] && { [[ $DRY_RUN -eq 1 ]] || ! apt_matches_candidate "$package"; }; then
+			reconcile+=("$package")
 		elif [[ "$no_recommends_flag" == "true" ]] && ! apt_is_installed "$package"; then
 			missing_no_recommends+=("$package")
 		elif ! apt_is_installed "$package"; then
@@ -593,6 +660,15 @@ install_apt_packages() {
 		log "apt packages already installed"
 	fi
 
+	if ((${#reconcile[@]})); then
+		if [[ $DRY_RUN -eq 1 ]]; then
+			log "dry-run: would install apt package candidates: ${reconcile[*]}"
+		else
+			apt_update_once
+			sudo apt install -y --allow-downgrades "${reconcile[@]}"
+		fi
+	fi
+
 	for package in "${optional[@]}"; do
 		if apt_is_installed "$package"; then
 			log "optional apt package already installed: $package"
@@ -608,7 +684,35 @@ install_apt_packages() {
 		sudo apt install -y "$package" || log "WARN: optional apt package failed: $package"
 	done
 
-	cleanup_obsolete_apt_sources || true
+	cleanup_obsolete_apt_configuration || true
+}
+
+remove_replaced_snaps() {
+	local apt_package
+	local entry
+	local snap_package
+
+	while IFS= read -r entry; do
+		apt_package=$(jq -r '.package' <<<"$entry")
+		snap_package=$(jq -r '."replaces-snap" // empty' <<<"$entry")
+		[[ -n "$snap_package" ]] || continue
+
+		if [[ $DRY_RUN -eq 1 ]]; then
+			if snap_is_installed "$snap_package"; then
+				log "dry-run: would remove replaced snap package: $snap_package"
+			fi
+			continue
+		fi
+
+		if ! apt_matches_candidate "$apt_package"; then
+			error "Refusing to remove $snap_package snap: $apt_package apt candidate is not installed"
+		fi
+
+		if snap_is_installed "$snap_package"; then
+			log "Removing replaced snap package: $snap_package"
+			sudo snap remove "$snap_package"
+		fi
+	done < <(apt_package_entries)
 }
 
 install_snap_packages() {
@@ -821,6 +925,7 @@ log_filter_decisions
 bootstrap_setup_packages
 configure_apt_repositories
 install_apt_packages
+remove_replaced_snaps
 install_snap_packages
 install_flatpak_packages
 install_mise
