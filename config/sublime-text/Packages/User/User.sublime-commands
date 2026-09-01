@@ -30,5 +30,15 @@
   {
     "caption": "Icons: Add icon from downloads",
     "command": "add_icon_from_downloads"
+  },
+
+  {
+    "caption": "YAML Nav: Goto Symbol",
+    "command": "goto_yaml_symbol"
+  },
+
+  {
+    "caption": "YAML Nav: Copy Symbol To Clipboard",
+    "command": "copy_yaml_symbol_to_clipboard"
   }
 ]

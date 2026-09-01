@@ -306,6 +306,15 @@
     ]
   },
 
+  // YAML navigation
+  {
+    "keys": ["ctrl+r"],
+    "command": "goto_yaml_symbol",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.yaml" }
+    ]
+  },
+
   // Replace in file
   {
     "keys": ["alt+f"],
