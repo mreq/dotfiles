@@ -1,4 +1,4 @@
-#!/home/petr/.rbenv/shims/ruby
+#!/usr/bin/env ruby
 
 fail 'No app/assets/fonts directory!' unless File.directory?('app/assets/fonts')
 

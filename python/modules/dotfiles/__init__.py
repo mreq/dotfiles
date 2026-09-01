@@ -2,6 +2,7 @@
 from .rofi import dmenu, prompt
 from .ssh_add import ssh_add
 from .file_utils import generate_filename, upload_to_server
+from .notify import notification
 from .sway_utils import get_sway_selection, SwaySelectionError
 
 __all__ = [
@@ -10,6 +11,7 @@ __all__ = [
     "ssh_add",
     "generate_filename",
     "upload_to_server",
+    "notification",
     "get_sway_selection",
     "SwaySelectionError",
 ]

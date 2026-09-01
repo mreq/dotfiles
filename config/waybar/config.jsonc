@@ -16,7 +16,9 @@
         "backlight",
         "battery",
         "power-profiles-daemon",
+        "custom/thinkpad-thermal",
         "sway/language",
+        "idle_inhibitor",
         "clock",
         "tray",
         "custom/notification",
@@ -81,12 +83,12 @@
         "format-muted": "<span foreground=\"#ac4142\"><span size=\"x-large\">{icon}</span><span size=\"x-small\"> </span>{volume}%</span>",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
+            "hands-free": "<span size=\"large\"></span>",
             "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
-            "bluetooth": "",
+            "bluetooth": "<span size=\"large\"></span>",
             "default": ["\uf028"]
         },
         "on-click": "pavucontrol"
@@ -129,11 +131,31 @@
         "power-saver": ""
       }
     },
+    "custom/thinkpad-thermal": {
+        "format": "<span size=\"large\">{}</span>",
+        "return-type": "json",
+        "exec": "$HOME/.config/waybar/thinkpad-thermal-status",
+        "interval": 15,
+        "hide-empty-text": true,
+        "on-click": "/usr/local/bin/thinkpad-thermal apply",
+        "tooltip": true
+    },
+    "idle_inhibitor": {
+        "format": "<span size=\"large\">{icon}</span>",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "timeout": 525600,
+        "tooltip": true,
+        "tooltip-format-activated": "Idle lock disabled",
+        "tooltip-format-deactivated": "Idle lock enabled"
+    },
     "custom/recording": {
         "format": "{}",
         "interval": 1,
-        "exec": "/home/petr/.dotfiles/bin/sway/sway_recorder_status",
-        "on-click": "/home/petr/.dotfiles/bin/sway/sway_recorder",
+        "exec": "/home/petr/.local/share/dotfiles/bin/sway/sway_recorder_status",
+        "on-click": "/home/petr/.local/share/dotfiles/bin/sway/sway_recorder",
         "signal": 8,
         "tooltip": false
     }

@@ -1,0 +1,97 @@
+#!/bin/bash
+
+set -euo pipefail
+
+EXPECTED_DMI_PRODUCT_FAMILY="ThinkPad T14 Gen 1"
+STATUS_FILE=/run/thinkpad-thermal/status.json
+MAX_STATUS_AGE_SECONDS=180
+
+empty_status() {
+	jq -cn '{
+		text: "",
+		tooltip: "",
+		class: "healthy"
+	}'
+}
+
+warning_status() {
+	local tooltip=$1
+
+	jq -cn \
+		--arg tooltip "$tooltip" \
+		'{
+			text: "",
+			tooltip: $tooltip,
+			class: "warning"
+		}'
+}
+
+auto_status() {
+	jq -cn '{
+		text: "󰈐",
+		tooltip: "Lenovo firmware fan control is active.\nThinkfan is stopped; RyzenAdj and the power profile are unchanged.\n\nClick to restore regular quiet mode.",
+		class: "auto"
+	}'
+}
+
+read_dmi_product_family() {
+	local product_family_file=/sys/class/dmi/id/product_family
+	local value
+
+	[[ -r "$product_family_file" ]] || return
+	IFS= read -r value <"$product_family_file" || true
+	value="${value#"${value%%[![:space:]]*}"}"
+	value="${value%"${value##*[![:space:]]}"}"
+	printf '%s' "$value"
+}
+
+if [[ "$(read_dmi_product_family)" != "$EXPECTED_DMI_PRODUCT_FAMILY" ]]; then
+	empty_status
+	exit
+fi
+
+if [[ ! -r "$STATUS_FILE" ]] || ! jq -e '
+	type == "object" and
+	(.healthy | type == "boolean") and
+	(.checked_at | type == "number") and
+	(.mode | type == "string") and
+	(.issues | type == "array")
+' "$STATUS_FILE" >/dev/null 2>&1; then
+	warning_status $'ThinkPad thermal status is unavailable.\nRun setup/setup.sh to install the checker.'
+	exit
+fi
+
+checked_at=$(jq -r ".checked_at" "$STATUS_FILE")
+status_age=$(($(date +%s) - checked_at))
+
+if ((status_age < 0)); then
+	status_age=0
+fi
+
+healthy=$(jq -r ".healthy" "$STATUS_FILE")
+if [[ "$healthy" == "true" && $status_age -le $MAX_STATUS_AGE_SECONDS ]]; then
+	mode=$(jq -r ".mode" "$STATUS_FILE")
+	if [[ "$mode" == "auto" ]]; then
+		auto_status
+	else
+		empty_status
+	fi
+	exit
+fi
+
+issues=$(jq -r '.issues[]?' "$STATUS_FILE")
+if ((status_age > MAX_STATUS_AGE_SECONDS)); then
+	if [[ -n "$issues" ]]; then
+		issues+=$'\n'
+	fi
+	issues+="Thermal status is stale (${status_age}s old)"
+fi
+
+if [[ -z "$issues" ]]; then
+	issues="Thermal-control health check failed"
+fi
+
+tooltip=$(printf \
+	'ThinkPad thermal control needs attention:\n%s\n\nClick to restore regular quiet mode.' \
+	"$issues")
+warning_status "$tooltip"

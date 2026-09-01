@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-import argparse, sys, os
+import argparse
+import os
 import subprocess
+import sys
 import time
-from notify import notification
+from pathlib import Path
 
-sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
-import dotfiles
+sys.path.append(str(Path(__file__).resolve().parents[2] / "python/modules"))
+import dotfiles  # noqa: E402
+from dotfiles import notification  # noqa: E402
 
 parser = argparse.ArgumentParser()
 
@@ -68,8 +71,8 @@ def handle_target(path, adhoc):
                 app_name="sway",
             )
         elif result == "gimp":
-            os.system("gimp " + path + " &")
-            time.sleep(3)
+            subprocess.Popen(["gimp", path], start_new_session=True)
+            time.sleep(10)
         elif result == "keep":
             notification(
                 "sway_scrotshare",

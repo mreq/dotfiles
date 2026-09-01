@@ -9,6 +9,25 @@ actions=(
 	'poweroff'
 )
 
+suspend() {
+	local can_suspend_then_hibernate
+
+	can_suspend_then_hibernate=$(
+		busctl call \
+			org.freedesktop.login1 \
+			/org/freedesktop/login1 \
+			org.freedesktop.login1.Manager \
+			CanSuspendThenHibernate \
+			2>/dev/null || true
+	)
+
+	if [[ $can_suspend_then_hibernate == 's "yes"' ]]; then
+		systemctl suspend-then-hibernate
+	else
+		systemctl suspend
+	fi
+}
+
 select_action() {
 	case $1 in
 	screen)
@@ -17,7 +36,7 @@ select_action() {
 			resume "swaymsg \"output * power on\"; kill -TERM \"\$PPID\""
 		;;
 	suspend)
-		systemctl suspend
+		suspend
 		;;
 	reboot | restart)
 		systemctl reboot

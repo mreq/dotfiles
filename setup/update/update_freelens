@@ -1,0 +1,149 @@
+#!/bin/bash
+
+set -euo pipefail
+
+ASSET_PATTERN='^Freelens-.*-linux-amd64\.deb$'
+LATEST_RELEASE_API_URL="https://api.github.com/repos/freelensapp/freelens/releases/latest"
+
+log() {
+	echo "update_freelens - $*"
+}
+
+error() {
+	log "ERROR: $*" >&2
+	exit 1
+}
+
+require_command() {
+	if ! command -v "$1" >/dev/null 2>&1; then
+		error "Missing required command: $1"
+	fi
+}
+
+usage() {
+	cat <<EOF
+Usage: setup/update/update_freelens
+
+Fetch the latest Freelens .deb release, confirm it, and install it.
+EOF
+}
+
+require_linux_x86_64() {
+	local os
+	local arch
+
+	os="$(uname -s)"
+	arch="$(uname -m)"
+
+	if [[ "$os" != "Linux" || "$arch" != "x86_64" ]]; then
+		error "Unsupported platform: $os $arch. Expected Linux x86_64."
+	fi
+}
+
+confirm() {
+	local prompt=$1
+	local answer
+
+	while true; do
+		read -r -p "$prompt [Y/n] " answer
+
+		case "$answer" in
+		"" | [Yy] | [Yy][Ee][Ss])
+			return 0
+			;;
+		[Nn] | [Nn][Oo])
+			return 1
+			;;
+		*)
+			log "Please answer y or n."
+			;;
+		esac
+	done
+}
+
+fetch_latest_release_json() {
+	curl --fail --location --show-error --silent \
+		--header "Accept: application/vnd.github+json" \
+		"$LATEST_RELEASE_API_URL"
+}
+
+case "${1:-}" in
+"") ;;
+-h | --help)
+	usage
+	exit 0
+	;;
+*)
+	usage >&2
+	error "Unknown option: $1"
+	;;
+esac
+
+require_command curl
+require_command jq
+require_command sudo
+
+require_linux_x86_64
+
+log "Fetching latest Freelens release"
+RELEASE_JSON="$(fetch_latest_release_json)"
+RELEASE_TAG="$(jq -r ".tag_name // empty" <<<"$RELEASE_JSON")"
+RELEASE_NAME="$(jq -r ".name // empty" <<<"$RELEASE_JSON")"
+ASSET_JSON="$(jq -c --arg pattern "$ASSET_PATTERN" '[.assets[]? | select(.name | test($pattern))] | if length == 1 then .[0] else empty end' <<<"$RELEASE_JSON")"
+
+if [[ -z "$RELEASE_TAG" ]]; then
+	error "GitHub response did not include a release tag."
+fi
+
+if [[ -z "$RELEASE_NAME" ]]; then
+	RELEASE_NAME="$RELEASE_TAG"
+fi
+
+if [[ -z "$ASSET_JSON" ]]; then
+	log "Release assets:"
+	jq -r '.assets[]?.name | "  - \(.)"' <<<"$RELEASE_JSON" >&2
+	error "Could not find exactly one asset matching $ASSET_PATTERN in $RELEASE_TAG."
+fi
+
+ASSET_NAME="$(jq -r '.name' <<<"$ASSET_JSON")"
+DOWNLOAD_URL="$(jq -r '.browser_download_url // empty' <<<"$ASSET_JSON")"
+ASSET_SHA256="$(jq -r '.digest // empty' <<<"$ASSET_JSON")"
+
+if [[ -z "$DOWNLOAD_URL" ]]; then
+	error "GitHub response did not include a download URL for $ASSET_NAME."
+fi
+
+log "Latest release: $RELEASE_NAME ($RELEASE_TAG)"
+log "Asset: $ASSET_NAME"
+if [[ "$ASSET_SHA256" =~ ^sha256:[0-9a-fA-F]{64}$ ]]; then
+	log "SHA-256: $ASSET_SHA256"
+fi
+
+if ! confirm "Download and install this Freelens release?"; then
+	log "Skipped update"
+	exit 0
+fi
+
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_DIR"' EXIT
+
+DEB_PATH="$TMP_DIR/$ASSET_NAME"
+
+log "Downloading $ASSET_NAME from $RELEASE_TAG"
+curl --fail --location --show-error --silent \
+	--output "$DEB_PATH" \
+	"$DOWNLOAD_URL"
+
+if [[ "$ASSET_SHA256" =~ ^sha256:[0-9a-fA-F]{64}$ ]]; then
+	require_command sha256sum
+	log "Verifying SHA-256"
+	printf '%s  %s\n' "${ASSET_SHA256#sha256:}" "$DEB_PATH" | sha256sum --check --strict
+else
+	log "WARNING: GitHub did not provide a SHA-256 digest for $ASSET_NAME"
+fi
+
+log "Installing $ASSET_NAME"
+sudo apt install -y "$DEB_PATH"
+
+log "Installed Freelens $RELEASE_TAG"
+log $'\033[32mDone\033[0m'

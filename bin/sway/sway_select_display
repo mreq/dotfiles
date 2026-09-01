@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-from i3ipc import Connection
-from notify import notification
 import argparse
-
 import os
 import sys
+from pathlib import Path
 
-sys.path.append(os.path.expanduser("~/.dotfiles/python/modules"))
+from i3ipc import Connection
+
+sys.path.append(str(Path(__file__).resolve().parents[2] / "python/modules"))
 import dotfiles
+from dotfiles import notification
 
 TMP_FILE_PATH = "/tmp/sway_select_display.cache"
+HDMI_DP_OPTION = "HDMI + DP"
 
 parser = argparse.ArgumentParser()
 
@@ -23,7 +25,9 @@ result = args.output
 sway = Connection()
 
 outputs = sway.get_outputs()
-output_names = [o.name for o in sway.get_outputs()]
+available_outputs = [output for output in outputs if output.modes]
+output_by_name = {output.name: output for output in available_outputs}
+output_names = list(output_by_name.keys())
 
 
 def get_best_mode_from_output(output):
@@ -48,6 +52,9 @@ def get_best_mode_from_output(output):
 
 
 def are_modes_equal(a, b):
+    if b is None:
+        return False
+
     return a.width == b.width and a.height == b.height and a.refresh == b.refresh
 
 
@@ -65,60 +72,135 @@ def set_mode(output, mode):
     )
 
 
+def get_cached_output():
+    if not os.path.isfile(TMP_FILE_PATH):
+        return None
+
+    with open(TMP_FILE_PATH, "r") as f:
+        return f.read().strip()
+
+
+def set_best_mode(output):
+    best_mode = get_best_mode_from_output(output)
+
+    if not are_modes_equal(best_mode, output.current_mode):
+        set_mode(output, best_mode)
+
+
+def enable_output(output):
+    if not output.active:
+        sway.command("output " + output.name + " enable")
+
+    set_best_mode(output)
+
+
+def get_output_by_prefix(prefix):
+    return next(
+        (output for output in available_outputs if output.name.startswith(prefix)), None
+    )
+
+
+def has_hdmi_dp_layout():
+    return all(
+        get_output_by_prefix(prefix) is not None for prefix in ("eDP-", "DP-", "HDMI-")
+    )
+
+
+def select_hdmi_dp_outputs():
+    edp_output = get_output_by_prefix("eDP-")
+    dp_output = get_output_by_prefix("DP-")
+    hdmi_output = get_output_by_prefix("HDMI-")
+
+    if not all((edp_output, dp_output, hdmi_output)):
+        return False
+
+    enable_output(dp_output)
+    enable_output(hdmi_output)
+
+    hdmi_mode = get_best_mode_from_output(hdmi_output)
+    sway.command("output " + dp_output.name + " pos 0 0")
+    sway.command("output " + hdmi_output.name + " pos " + str(-hdmi_mode.width) + " 0")
+
+    for output in outputs:
+        if output.name not in (dp_output.name, hdmi_output.name) and output.active:
+            sway.command("output " + output.name + " disable")
+
+    return True
+
+
+def select_output(output_name):
+    target_output = output_by_name.get(output_name)
+
+    if target_output is None:
+        return False
+
+    enable_output(target_output)
+
+    for output in outputs:
+        if output.name != output_name and output.active:
+            sway.command("output " + output.name + " disable")
+
+    return True
+
+
+if result is None and args.handle_reload:
+    result = get_cached_output() or "all"
+
+    if (result == HDMI_DP_OPTION and not has_hdmi_dp_layout()) or (
+        result not in ("all", HDMI_DP_OPTION) and result not in output_by_name
+    ):
+        result = "all"
+
 if result is None:
-    if args.handle_reload:
-        if os.path.isfile(TMP_FILE_PATH):
-            with open(TMP_FILE_PATH, "r") as f:
-                result = f.read().strip()
+    if len(available_outputs) < 2:
+        if not available_outputs:
+            notification(
+                "sway_select_display", message="no available outputs", app_name="sway"
+            )
+            sys.exit(1)
 
-        else:
-            result = "all"
+        output = available_outputs[0]
+        best_mode = get_best_mode_from_output(output)
 
-if result is None:
-    if len(outputs) < 2:
-        best_mode = get_best_mode_from_output(outputs[0])
-
-        if outputs[0] and not outputs[0].active:
-            result = outputs[0].name
-        elif not are_modes_equal(best_mode, outputs[0].current_mode):
-            result = outputs[0].name
+        if not output.active or not are_modes_equal(best_mode, output.current_mode):
+            result = output.name
 
         if not result:
             notification(
                 "sway_select_display", message="only one output", app_name="sway"
             )
-            exit(1)
+            sys.exit(1)
 
     else:
         options = ["all"] + output_names
 
+        if has_hdmi_dp_layout():
+            options.insert(1, HDMI_DP_OPTION)
+
         result = dotfiles.rofi.dmenu(options)
 
         if result not in options:
-            exit(0)
+            sys.exit(0)
 
 if result == "all":
-    for output in outputs:
-        if not output.active:
-            sway.command("output " + output.name + " enable")
-
-        best_mode = get_best_mode_from_output(output)
-
-        if not are_modes_equal(best_mode, output.current_mode):
-            set_mode(output, best_mode)
+    for output in available_outputs:
+        enable_output(output)
+elif result == HDMI_DP_OPTION:
+    if not select_hdmi_dp_outputs():
+        notification(
+            "sway_select_display",
+            message="eDP, DP, and HDMI outputs are required",
+            app_name="sway",
+        )
+        sys.exit(1)
 else:
-    for output in outputs:
-        if output.name == result:
-            if not output.active:
-                sway.command("output " + output.name + " enable")
-
-            best_mode = get_best_mode_from_output(output)
-
-            if not are_modes_equal(best_mode, output.current_mode):
-                set_mode(output, best_mode)
-        else:
-            if output.active:
-                sway.command("output " + output.name + " disable")
+    if not select_output(result):
+        notification(
+            "sway_select_display",
+            message=f"output not found: {result}",
+            app_name="sway",
+        )
+        sys.exit(1)
 
 with open(TMP_FILE_PATH, "w") as f:
     f.write(result + "\n")

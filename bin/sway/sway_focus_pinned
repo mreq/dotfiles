@@ -2,7 +2,6 @@
 import i3ipc
 import argparse
 import os
-import code
 
 parser = argparse.ArgumentParser()
 
@@ -68,5 +67,5 @@ for c in look_at:
     if found:
         break
 
-if found == False:
+if not found:
     os.system(args.executable + " &")

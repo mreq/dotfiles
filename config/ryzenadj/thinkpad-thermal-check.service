@@ -1,0 +1,10 @@
+# Managed by dotfiles: setup/hooks/ryzenadj_hook.sh
+
+[Unit]
+Description=Check ThinkPad thermal-control state
+After=ryzenadj-power-saving.service thinkfan.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/thinkpad-thermal read
+StandardOutput=null
