@@ -603,6 +603,7 @@ configure_apt_repositories() {
 	fi
 
 	if [[ $repo_changed -eq 1 ]]; then
+		APT_UPDATED=0
 		apt_update_once
 	elif [[ $DRY_RUN -eq 1 ]]; then
 		log "apt repositories already configured"
