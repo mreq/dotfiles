@@ -50,6 +50,17 @@
     ]
   },
 
+  // Git: generate commit message with Codex
+  {
+    "keys": ["alt+c"],
+    "command": "git_generate_commit_message_with_codex",
+    "context": [
+      { "key": "setting.command_mode", "operator": "equal", "operand": false },
+      { "key": "setting.git_savvy.commit_view", "operator": "equal", "operand": true },
+      { "key": "selector", "operator": "equal", "operand": "git-savvy.make-commit meta.commit.message.subject markup.heading.subject.git.commit" }
+    ]
+  },
+
   // Git: git status
   {
     "keys": [" ", "g", "s"],

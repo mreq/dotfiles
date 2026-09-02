@@ -1,5 +1,9 @@
 [
   {
+    "caption": "Git: Generate Commit Message with Codex",
+    "command": "git_generate_commit_message_with_codex"
+  },
+  {
     "caption": "Git: Pull --rebase",
     "command": "git_custom",
     "args": {
