@@ -9,6 +9,7 @@ import sublime_plugin
 
 CODEX_MODEL = "gpt-5.6-luna"
 CODEX_REASONING_EFFORT = "low"
+RECENT_SUBJECT_LIMIT = 12
 STATUS_KEY = "user_git.codex_commit_message"
 FINAL_STATUS_DURATION_MS = 4000
 GENERATING_VIEW_IDS = set()
@@ -20,7 +21,9 @@ Do not use tools or infer repository contents beyond that diff.
 Return only the commit message as plain text, without Markdown or commentary.
 Use a Conventional Commits subject: type(scope): description, or type: description
 when no useful scope is clear. Keep the subject imperative and at most 72
-characters. After one blank line, add one super-concise explanatory sentence."""
+characters. After one blank line, add one super-concise explanatory sentence.
+Use recent commit subjects only as a style and terminology reference. The diff
+is the source of truth for the commit's intent."""
 
 SENSITIVE_SUFFIXES = (".key", ".pem", ".p12", ".pfx", ".jks", ".token")
 SENSITIVE_FILENAMES = {
@@ -140,6 +143,16 @@ def has_sensitive_path(repo_path, args):
     )
 
 
+def recent_commit_subjects(repo_path):
+    try:
+        return run_git(
+            repo_path,
+            ["log", "-n", str(RECENT_SUBJECT_LIMIT), "--format=%s"],
+        )
+    except RuntimeError:
+        return b""
+
+
 def valid_commit_message(message):
     message = message.strip()
     if "```" in message or "\n\n" not in message:
@@ -201,7 +214,7 @@ class GitGenerateCommitMessageWithCodexCommand(sublime_plugin.TextCommand):
                 self.report(view_id, "Codex: no changes to describe.")
                 return
 
-            suggestion = self.run_codex(diff)
+            suggestion = self.run_codex(diff, recent_commit_subjects(repo_path))
             if not suggestion:
                 self.report(view_id, "Codex: returned an invalid commit message.")
                 return
@@ -223,7 +236,7 @@ class GitGenerateCommitMessageWithCodexCommand(sublime_plugin.TextCommand):
             lambda: self.apply_suggestion(view_id, original_message, suggestion), 0
         )
 
-    def run_codex(self, diff):
+    def run_codex(self, diff, recent_subjects):
         with tempfile.TemporaryDirectory(prefix="sublime-git-codex-") as directory:
             output_path = os.path.join(directory, "message")
             command = [
@@ -259,7 +272,11 @@ class GitGenerateCommitMessageWithCodexCommand(sublime_plugin.TextCommand):
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.PIPE,
             )
-            _, diagnostics = process.communicate(diff)
+            context = diff
+            if recent_subjects:
+                context += b"\n\nRecent commit subjects (style reference only):\n"
+                context += recent_subjects
+            _, diagnostics = process.communicate(context)
             if process.returncode != 0:
                 raise CodexError(
                     process.returncode, diagnostics.decode("utf-8", "replace")
