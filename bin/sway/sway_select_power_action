@@ -53,5 +53,5 @@ select_action() {
 if [[ $1 ]]; then
 	select_action "$1"
 else
-	select_action "$(printf "%s\n" "${actions[@]}" | rofi -dmenu -i -theme base16-mreq-red)"
+	select_action "$(printf "%s\n" "${actions[@]}" | rofi -dmenu -i -theme base16-mreq-red -monitor -1)"
 fi

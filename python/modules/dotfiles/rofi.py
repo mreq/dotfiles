@@ -3,17 +3,24 @@
 import subprocess
 
 
-def dmenu(list, color="blue"):
-    echo_part = 'echo "' + "\n".join(list) + '"'
-    rofi_part = "rofi -dmenu -theme base16-mreq-" + color
-    command = echo_part + " | " + rofi_part
+def run(arguments, input_text=None):
+    return subprocess.run(
+        ["rofi", *arguments, "-monitor", "-1"],
+        input=input_text,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
 
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+
+def dmenu(options, color="blue"):
+    result = run(
+        ["-dmenu", "-theme", "base16-mreq-" + color],
+        input_text="\n".join(options) + "\n",
+    )
     return result.stdout.strip() or None
 
 
 def prompt(color="red"):
-    command = "rofi -dmenu -i -theme base16-mreq-" + color
-
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    result = run(["-dmenu", "-i", "-theme", "base16-mreq-" + color])
     return result.stdout.strip() or None
